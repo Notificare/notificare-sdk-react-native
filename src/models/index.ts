@@ -26,7 +26,7 @@ export class NotificareTime {
   public readonly hours: number;
   public readonly minutes: number;
 
-  constructor(time: string | { hours: number; minutes: number }) {
+  constructor(time: string | Date | { hours: number; minutes: number }) {
     let hours: number;
     let minutes: number;
 
@@ -38,6 +38,9 @@ export class NotificareTime {
 
       hours = parseInt(parts[0], 10);
       minutes = parseInt(parts[1], 10);
+    } else if (typeof time === 'object' && time instanceof Date) {
+      hours = time.getHours();
+      minutes = time.getMinutes();
     } else if (typeof time === 'object') {
       hours = time.hours;
       minutes = time.minutes;
