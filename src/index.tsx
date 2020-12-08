@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { NotificareDeviceManager } from './modules/device-manager';
 import type { NotificareDevice } from './models';
+import { NotificareDeviceAdapter } from './utils';
 
 const NotificareModule = NativeModules.NotificareReactModule;
 
@@ -41,7 +42,9 @@ export class Notificare {
   static onDeviceRegistered(
     callback: (device: NotificareDevice) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('device_registered', callback);
+    return this.eventEmitter.addListener('device_registered', (data) => {
+      callback(NotificareDeviceAdapter.fromJson(data));
+    });
   }
 }
 

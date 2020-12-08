@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import { Notificare } from '@notificare/react-native';
-import type {
+import {
   NotificareDoNotDisturb,
+  NotificareTime,
   NotificareUserData,
 } from '../../src/models';
 
@@ -130,8 +131,8 @@ export default function App() {
         title="Update do not disturb"
         onPress={async () => {
           const dnd: NotificareDoNotDisturb = {
-            start: '23:00',
-            end: '08:00',
+            start: new NotificareTime('23:00'),
+            end: new NotificareTime('08:00'),
           };
 
           await Notificare.deviceManager.updateDoNotDisturb(dnd);

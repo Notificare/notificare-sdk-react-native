@@ -5,12 +5,17 @@ import type {
   NotificareDoNotDisturb,
   NotificareUserData,
 } from '../models';
+import {
+  NotificareDeviceAdapter,
+  NotificareDoNotDisturbAdapter,
+} from '../utils';
 
 const NativeModule = NativeModules.NotificareDeviceManagerReactModule;
 
 export class NotificareDeviceManager {
   async getCurrentDevice(): Promise<NotificareDevice> {
-    return NativeModule.getCurrentDevice();
+    const data = await NativeModule.getCurrentDevice();
+    return NotificareDeviceAdapter.fromJson(data);
   }
 
   async register(
@@ -53,11 +58,15 @@ export class NotificareDeviceManager {
   }
 
   async fetchDoNotDisturb(): Promise<Nullable<NotificareDoNotDisturb>> {
-    return NativeModule.fetchDoNotDisturb();
+    const data = await NativeModule.fetchDoNotDisturb();
+    return data && NotificareDoNotDisturbAdapter.fromJson(data);
   }
 
   async updateDoNotDisturb(dnd: NotificareDoNotDisturb): Promise<void> {
-    await NativeModule.updateDoNotDisturb(dnd);
+    // noinspection TypeScriptValidateJSTypes
+    await NativeModule.updateDoNotDisturb(
+      NotificareDoNotDisturbAdapter.toJson(dnd)
+    );
   }
 
   async clearDoNotDisturb(): Promise<void> {
