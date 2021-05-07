@@ -61,4 +61,4 @@ lib/
 
 # Notificare configs
 notificare-services.json
-Notificare.plist
+NotificareServices.plist
