@@ -1,4 +1,4 @@
-package com.reactnativenotificare
+package re.notifica.react_native
 
 import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule

@@ -2,5 +2,5 @@ rootProject.name = 'NotificareExample'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
 
-include ':reactnativenotificare'
-project(':reactnativenotificare').projectDir = new File(rootProject.projectDir, '../../android')
+include ':react-native-notificare'
+project(':react-native-notificare').projectDir = new File(rootProject.projectDir, '../../android')

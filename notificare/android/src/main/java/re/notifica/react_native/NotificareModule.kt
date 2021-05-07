@@ -1,4 +1,4 @@
-package com.reactnativenotificare
+package re.notifica.react_native
 
 import com.facebook.react.bridge.*
 import re.notifica.Notificare
@@ -14,7 +14,7 @@ class NotificareModule(reactContext: ReactApplicationContext) : ReactContextBase
 
   override fun initialize() {
     super.initialize()
-    
+
     NotificareModuleEventManager.setup(reactApplicationContext)
     Notificare.intentReceiver = NotificareModuleReceiver::class.java
   }

@@ -1,4 +1,4 @@
-package com.reactnativenotificare
+package re.notifica.react_native
 
 import re.notifica.NotificareIntentReceiver
 import re.notifica.NotificareLogger
