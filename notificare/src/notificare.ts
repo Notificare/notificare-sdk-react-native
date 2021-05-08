@@ -1,7 +1,7 @@
 import { EmitterSubscription, NativeEventEmitter, NativeModules } from 'react-native';
 import type { NotificareApplication, NotificareDevice, NotificareNotification } from './models';
 import type { Nullable } from './utils';
-import NotificareDeviceManager from './notificare_device_manager';
+import NotificareDeviceManager from './notificare-device-manager';
 
 const { NotificareModule } = NativeModules;
 
