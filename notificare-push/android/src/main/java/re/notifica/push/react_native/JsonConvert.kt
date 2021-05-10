@@ -57,7 +57,9 @@ internal object JsonConvert {
     while (iterator.hasNext()) {
       val key = iterator.next() as String
       val value = jsonObject[key]
-      if (value is Float || value is Double) {
+      if (value is Boolean) {
+        writableMap.putBoolean(key, jsonObject.getBoolean(key))
+      } else if (value is Float || value is Double) {
         writableMap.putDouble(key, jsonObject.getDouble(key))
       } else if (value is Number) {
         writableMap.putInt(key, jsonObject.getInt(key))
@@ -81,6 +83,7 @@ internal object JsonConvert {
 
     for (i in 0 until jsonArray.length()) {
       when (jsonArray[i]) {
+        is Boolean -> writableArray.pushBoolean(jsonArray.getBoolean(i))
         is Float, is Double -> writableArray.pushDouble(jsonArray.getDouble(i))
         is Number -> writableArray.pushInt(jsonArray.getInt(i))
         is String -> writableArray.pushString(jsonArray.getString(i))

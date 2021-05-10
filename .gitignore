@@ -62,3 +62,7 @@ lib/
 # Notificare configs
 notificare-services.json
 NotificareServices.plist
+
+# Push providers
+google-services.json
+agconnect-services.json
