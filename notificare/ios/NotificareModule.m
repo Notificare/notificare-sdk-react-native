@@ -25,7 +25,7 @@ RCT_EXTERN_METHOD(launch:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(unlaunch:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
+                  reject:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(getApplication:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
