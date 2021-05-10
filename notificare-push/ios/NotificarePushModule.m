@@ -3,6 +3,18 @@
 
 @interface RCT_EXTERN_MODULE(NotificarePushModule, RCTEventEmitter)
 
+RCT_EXTERN_METHOD(setAuthorizationOptions:(NSArray *)options
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(setCategoryOptions:(NSArray *)options
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(setPresentationOptions:(NSArray *)options
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
 RCT_EXTERN_METHOD(isRemoteNotificationsEnabled:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
