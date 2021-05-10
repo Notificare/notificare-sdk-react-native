@@ -67,7 +67,8 @@ class NotificareModule: RCTEventEmitter {
     
     @objc
     func setUseAdvancedLogging(_ useAdvancedLogging: Bool, resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
-        resolve(Notificare.shared.isReady)
+        Notificare.shared.useAdvancedLogging = useAdvancedLogging
+        resolve(nil)
     }
     
     @objc
