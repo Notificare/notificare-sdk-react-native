@@ -58,6 +58,118 @@ class NotificarePushModule: RCTEventEmitter {
     // MARK: - Notificare Push
 
     @objc
+    func setAuthorizationOptions(_ options: [String], resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+        var authorizationOptions: UNAuthorizationOptions = []
+
+        options.forEach { option in
+            if option == "alert" {
+                authorizationOptions = [authorizationOptions, .alert]
+            }
+            
+            if option == "badge" {
+                authorizationOptions = [authorizationOptions, .badge]
+            }
+            
+            if option == "sound" {
+                authorizationOptions = [authorizationOptions, .sound]
+            }
+            
+            if option == "carPlay" {
+                authorizationOptions = [authorizationOptions, .carPlay]
+            }
+            
+            if #available(iOS 12.0, *) {
+                if option == "providesAppNotificationSettings" {
+                    authorizationOptions = [authorizationOptions, .providesAppNotificationSettings]
+                }
+                
+                if option == "provisional" {
+                    authorizationOptions = [authorizationOptions, .provisional]
+                }
+                
+                if option == "criticalAlert" {
+                    authorizationOptions = [authorizationOptions, .criticalAlert]
+                }
+            }
+            
+            if #available(iOS 13.0, *) {
+                if option == "announcement" {
+                    authorizationOptions = [authorizationOptions, .announcement]
+                }
+            }
+        }
+        
+        NotificarePush.shared.authorizationOptions = authorizationOptions
+        resolve(nil)
+    }
+    
+    @objc
+    func setCategoryOptions(_ options: [String], resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+        var categoryOptions: UNNotificationCategoryOptions = []
+        
+        options.forEach { option in
+            if option == "customDismissAction" {
+                categoryOptions = [categoryOptions, .customDismissAction]
+            }
+            
+            if option == "allowInCarPlay" {
+                categoryOptions = [categoryOptions, .allowInCarPlay]
+            }
+            
+            if #available(iOS 11.0, *) {
+                if option == "hiddenPreviewsShowTitle" {
+                    categoryOptions = [categoryOptions, .hiddenPreviewsShowTitle]
+                }
+                
+                if option == "hiddenPreviewsShowSubtitle" {
+                    categoryOptions = [categoryOptions, .hiddenPreviewsShowSubtitle]
+                }
+            }
+            
+            if #available(iOS 13.0, *) {
+                if option == "allowAnnouncement" {
+                    categoryOptions = [categoryOptions, .allowAnnouncement]
+                }
+            }
+        }
+        
+        NotificarePush.shared.categoryOptions = categoryOptions
+        resolve(nil)
+    }
+    
+    @objc
+    func setPresentationOptions(_ options: [String], resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+        var presentationOptions: UNNotificationPresentationOptions = []
+        
+        options.forEach { option in
+            if #available(iOS 14.0, *) {
+                if option == "banner" || option == "alert" {
+                    presentationOptions = [presentationOptions, .banner]
+                }
+                
+                if option == "list" {
+                    presentationOptions = [presentationOptions, .list]
+                }
+            } else {
+                if option == "alert" {
+                    presentationOptions = [presentationOptions, .alert]
+                }
+            }
+            
+            if option == "badge" {
+                presentationOptions = [presentationOptions, .badge]
+            }
+            
+            if option == "sound" {
+                presentationOptions = [presentationOptions, .sound]
+            }
+        }
+        
+        NotificarePush.shared.presentationOptions = presentationOptions
+        resolve(nil)
+    }
+    
+    @objc
     func isRemoteNotificationsEnabled(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         resolve(NotificarePush.shared.isRemoteNotificationsEnabled)
     }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { Alert, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
-import NotificarePush from 'react-native-notificare-push';
+import { NotificarePush } from 'react-native-notificare-push';
 import { Notificare } from 'react-native-notificare';
 import { TextButton } from './components/text-button';
 
