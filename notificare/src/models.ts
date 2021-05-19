@@ -29,6 +29,7 @@ export interface NotificareUserDataField {
 export interface NotificareActionCategory {
   readonly type: string;
   readonly name: string;
+  readonly actions: NotificareNotificationAction[];
 }
 
 export interface NotificareDevice {
