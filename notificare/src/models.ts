@@ -45,7 +45,7 @@ export interface NotificareDevice {
   readonly region: string;
   readonly transport: string;
   readonly dnd: Nullable<NotificareDoNotDisturb>;
-  readonly userData: Nullable<Record<string, string>>;
+  readonly userData: Record<string, string>;
   readonly lastRegistered: string; // ISO string
   readonly allowedUI: boolean;
   readonly bluetoothEnabled: boolean;

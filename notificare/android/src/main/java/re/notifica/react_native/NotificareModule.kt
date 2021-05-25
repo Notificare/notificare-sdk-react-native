@@ -256,9 +256,9 @@ class NotificareModule(reactContext: ReactApplicationContext) : ReactContextBase
 
   @ReactMethod
   fun fetchUserData(promise: Promise) {
-    Notificare.deviceManager.fetchUserData(object : NotificareCallback<NotificareUserData?> {
-      override fun onSuccess(result: NotificareUserData?) {
-        val userData = result?.let { userData ->
+    Notificare.deviceManager.fetchUserData(object : NotificareCallback<NotificareUserData> {
+      override fun onSuccess(result: NotificareUserData) {
+        val userData = result.let { userData ->
           Arguments.createMap().apply {
             userData.forEach {
               putString(it.key, it.value)
