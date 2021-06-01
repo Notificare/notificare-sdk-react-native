@@ -134,8 +134,9 @@ dependencies {
   api 'com.facebook.react:react-native:+'
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-  api 're.notifica:core:3.0.0-alpha.1'
-  api 're.notifica:push:3.0.0-alpha.1'
-  implementation 're.notifica:push-fcm:3.0.0-alpha.1'
-  implementation 're.notifica:push-hms:3.0.0-alpha.1'
+  def notificare_version = '3.0.0-alpha.1'
+  api "re.notifica:notificare:$notificare_version"
+  api "re.notifica:notificare-push:$notificare_version"
+  implementation "re.notifica:notificare-push-fcm:$notificare_version"
+  implementation "re.notifica:notificare-push-hms:$notificare_version"
 }
