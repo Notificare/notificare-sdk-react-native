@@ -23,6 +23,11 @@ class NotificarePushModule(reactContext: ReactApplicationContext) : ReactContext
   }
 
   @ReactMethod
+  fun isAllowedUI(promise: Promise) {
+    promise.resolve(NotificarePush.allowedUI)
+  }
+
+  @ReactMethod
   fun enableRemoteNotifications(promise: Promise) {
     NotificarePush.enableRemoteNotifications()
     promise.resolve(null)

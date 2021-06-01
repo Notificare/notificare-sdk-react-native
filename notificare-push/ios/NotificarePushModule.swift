@@ -175,6 +175,11 @@ class NotificarePushModule: RCTEventEmitter {
     }
     
     @objc
+    func isAllowedUI(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+        resolve(NotificarePush.shared.allowedUI)
+    }
+    
+    @objc
     func enableRemoteNotifications(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         NotificarePush.shared.enableRemoteNotifications { result in
             switch result {

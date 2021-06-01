@@ -18,6 +18,9 @@ RCT_EXTERN_METHOD(setPresentationOptions:(NSArray *)options
 RCT_EXTERN_METHOD(isRemoteNotificationsEnabled:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(isAllowedUI:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
 RCT_EXTERN_METHOD(enableRemoteNotifications:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 

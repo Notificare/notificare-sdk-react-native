@@ -37,6 +37,10 @@ export class NotificarePush {
     return await NotificarePushModule.isRemoteNotificationsEnabled();
   }
 
+  static async isAllowedUI(): Promise<boolean> {
+    return await NotificarePushModule.isAllowedUI();
+  }
+
   static async enableRemoteNotifications(): Promise<void> {
     await NotificarePushModule.enableRemoteNotifications();
   }
