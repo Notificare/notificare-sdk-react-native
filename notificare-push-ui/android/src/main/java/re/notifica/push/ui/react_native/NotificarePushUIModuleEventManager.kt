@@ -4,7 +4,7 @@ import com.facebook.react.bridge.ReactContext
 import com.facebook.react.modules.core.DeviceEventManagerModule
 import re.notifica.NotificareLogger
 
-object NotificarePushModuleEventManager {
+object NotificarePushUIModuleEventManager {
 
   private var eventEmitter: DeviceEventManagerModule.RCTDeviceEventEmitter? = null
   private val eventQueue = mutableListOf<Event>()
