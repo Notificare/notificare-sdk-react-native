@@ -3472,11 +3472,11 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4:
 
 "react-native-notificare-push@file:../../notificare-push/react-native-notificare-push-v3.0.0-alpha.1.tgz":
   version "3.0.0-alpha.1"
-  resolved "file:../../notificare-push/react-native-notificare-push-v3.0.0-alpha.1.tgz#3a378df497c92e5596744926fd528d1451b29307"
+  resolved "file:../../notificare-push/react-native-notificare-push-v3.0.0-alpha.1.tgz#7bb9c9f00c65a8d124ac1449c5aa72154dc242f8"
 
 "react-native-notificare@file:../../notificare/react-native-notificare-v3.0.0-alpha.1.tgz":
   version "3.0.0-alpha.1"
-  resolved "file:../../notificare/react-native-notificare-v3.0.0-alpha.1.tgz#da09aef3cb084ec43e851cee8772cf4b1d466067"
+  resolved "file:../../notificare/react-native-notificare-v3.0.0-alpha.1.tgz#041b0ffb5c9414d38c01b2ff475b593e14f081c1"
 
 react-native@0.63.4:
   version "0.63.4"
