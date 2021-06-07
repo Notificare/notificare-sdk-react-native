@@ -1,5 +1,7 @@
 package re.notifica.react_native
 
+import android.app.Activity
+import android.content.Intent
 import com.facebook.react.bridge.*
 import re.notifica.Notificare
 import re.notifica.NotificareCallback
@@ -8,7 +10,8 @@ import re.notifica.models.NotificareDoNotDisturb
 import re.notifica.models.NotificareNotification
 import re.notifica.models.NotificareUserData
 
-class NotificareModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class NotificareModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext),
+  ActivityEventListener {
 
   override fun getName(): String = "NotificareModule"
 
@@ -17,7 +20,33 @@ class NotificareModule(reactContext: ReactApplicationContext) : ReactContextBase
 
     NotificareModuleEventManager.setup(reactApplicationContext)
     Notificare.intentReceiver = NotificareModuleReceiver::class.java
+
+    // Listen to incoming intents.
+    reactApplicationContext.addActivityEventListener(this)
+
+    val intent = reactApplicationContext.currentActivity?.intent
+    if (intent != null) onNewIntent(intent)
   }
+
+  // region ActivityEventListener
+
+  override fun onActivityResult(activity: Activity?, requestCode: Int, resultCode: Int, data: Intent?) {}
+
+  override fun onNewIntent(intent: Intent) {
+    // Try handling the test device intent.
+    if (Notificare.handleTestDeviceIntent(intent)) return
+
+    // Try handling the dynamic link intent.
+    val activity = currentActivity
+    if (activity != null && Notificare.handleDynamicLinkIntent(activity, intent)) return
+
+    val url = intent.data?.toString()
+    if (url != null) {
+      NotificareModuleEventManager.dispatchEvent("url_opened", url)
+    }
+  }
+
+  // endregion
 
   // region Notificare
 

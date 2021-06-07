@@ -13,6 +13,8 @@ class NotificareModule: RCTEventEmitter {
         super.init()
         
         Notificare.shared.delegate = self
+        
+        _ = NotificareSwizzler.addInterceptor(self)
     }
     
     override class func requiresMainQueueSetup() -> Bool {
@@ -37,6 +39,7 @@ class NotificareModule: RCTEventEmitter {
         return [
             "ready",
             "device_registered",
+            "url_opened",
         ]
     }
     
@@ -343,5 +346,28 @@ extension NotificareModule: NotificareDelegate {
         } catch {
             NotificareLogger.error("Failed to emit the device_registered event.\n\(error)")
         }
+    }
+}
+
+extension NotificareModule: NotificareAppDelegateInterceptor {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        if Notificare.shared.handleTestDeviceUrl(url) {
+            return true
+        }
+        
+        if Notificare.shared.handleDynamicLinkUrl(url) {
+            return true
+        }
+        
+        dispatchEvent("url_opened", payload: url.absoluteString)
+        return true
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        guard let url = userActivity.webpageURL else {
+            return false
+        }
+        
+        return Notificare.shared.handleDynamicLinkUrl(url)
     }
 }

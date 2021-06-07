@@ -57,4 +57,8 @@ export class Notificare {
   static onDeviceRegistered(callback: (device: NotificareDevice) => void): EmitterSubscription {
     return this.eventEmitter.addListener('device_registered', callback);
   }
+
+  static onUrlOpened(callback: (url: string) => void): EmitterSubscription {
+    return this.eventEmitter.addListener('url_opened', callback);
+  }
 }
