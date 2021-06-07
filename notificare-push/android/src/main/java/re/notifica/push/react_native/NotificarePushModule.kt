@@ -1,12 +1,12 @@
 package re.notifica.push.react_native
 
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContextBaseJavaModule
-import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.Promise
+import android.app.Activity
+import android.content.Intent
+import com.facebook.react.bridge.*
 import re.notifica.push.NotificarePush
 
-class NotificarePushModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class NotificarePushModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext),
+  ActivityEventListener {
 
   override fun getName(): String = "NotificarePushModule"
 
@@ -15,7 +15,23 @@ class NotificarePushModule(reactContext: ReactApplicationContext) : ReactContext
 
     NotificarePushModuleEventManager.setup(reactApplicationContext)
     NotificarePush.intentReceiver = NotificarePushModuleReceiver::class.java
+
+    // Listen to incoming intents.
+    reactApplicationContext.addActivityEventListener(this)
+
+    val intent = reactApplicationContext.currentActivity?.intent
+    if (intent != null) onNewIntent(intent)
   }
+
+  // region ActivityEventListener
+
+  override fun onActivityResult(activity: Activity?, requestCode: Int, resultCode: Int, data: Intent?) {}
+
+  override fun onNewIntent(intent: Intent) {
+    NotificarePush.handleTrampolineIntent(intent)
+  }
+
+  // endregion
 
   @ReactMethod
   fun isRemoteNotificationsEnabled(promise: Promise) {

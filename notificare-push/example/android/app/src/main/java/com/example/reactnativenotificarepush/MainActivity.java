@@ -1,11 +1,6 @@
 package com.example.reactnativenotificarepush;
 
-import android.content.Intent;
-import android.os.Bundle;
-
 import com.facebook.react.ReactActivity;
-
-import re.notifica.push.NotificarePush;
 
 public class MainActivity extends ReactActivity {
 
@@ -18,15 +13,4 @@ public class MainActivity extends ReactActivity {
     return "NotificarePushExample";
   }
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    NotificarePush.INSTANCE.handleTrampolineIntent(getIntent());
-  }
-
-  @Override
-  public void onNewIntent(Intent intent) {
-    super.onNewIntent(intent);
-    NotificarePush.INSTANCE.handleTrampolineIntent(intent);
-  }
 }
