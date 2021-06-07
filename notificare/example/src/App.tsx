@@ -221,6 +221,9 @@ export default function App() {
         console.log(`Device = ${device.id}`);
         console.log(JSON.stringify(device, null, 2));
       }),
+      Notificare.onUrlOpened((url) => {
+        console.log(`URL opened = ${url}`);
+      }),
     ];
 
     // Remove event subscriptions on un-mount.
