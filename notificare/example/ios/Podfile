@@ -9,7 +9,6 @@ target 'NotificareExample' do
   use_react_native!(:path => config["reactNativePath"])
 
   pod 'react-native-notificare', :path => '../..'
-  pod 'Notificare/NotificareKit', :git => 'git@github.com:Notificare/notificare-sdk-ios.git', :branch => 'develop'
 
   # Enables Flipper.
   #
