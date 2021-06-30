@@ -66,3 +66,6 @@ NotificareServices.plist
 # Push providers
 google-services.json
 agconnect-services.json
+
+# Packed libs
+react-native-notificare-*.tgz
