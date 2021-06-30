@@ -329,6 +329,20 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
+    
+    // MARK: - Notificare Device Manager
+    
+    @objc
+    func logCustom(_ event: String, data: [String: Any]?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        Notificare.shared.eventsManager.logCustom(event, data: data) { result in
+            switch result {
+            case .success:
+                resolve(nil)
+            case let .failure(error):
+                reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
+            }
+        }
+    }
 }
 
 extension NotificareModule: NotificareDelegate {

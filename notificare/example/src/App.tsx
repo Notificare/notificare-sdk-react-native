@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { Alert, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
-import Notificare from 'react-native-notificare';
+import { Notificare } from 'react-native-notificare';
 import { TextButton } from './components/text-button';
 
 export default function App() {
@@ -206,6 +206,25 @@ export default function App() {
     }
   };
 
+  const logCustomEvent = async () => {
+    try {
+      await Notificare.eventsManager.logCustom('CUSTOM_EVENT');
+
+      await Notificare.eventsManager.logCustom('CUSTOM_EVENT', {
+        color: 'blue',
+        lovesNotificare: true,
+        nested: {
+          works: true,
+          list: ['a', 'b', 'c'],
+        },
+      });
+
+      Alert.alert('', 'Done.');
+    } catch (e) {
+      Alert.alert(JSON.stringify(e));
+    }
+  };
+
   useEffect(() => {
     (async () => {
       await Notificare.setUseAdvancedLogging(true);
@@ -253,6 +272,7 @@ export default function App() {
           <TextButton text="Update user data" onPress={updateUserData} />
           <TextButton text="Clear user data" onPress={clearUserData} />
           <TextButton text="Fetch notification" onPress={fetchNotification} />
+          <TextButton text="Log custom event" onPress={logCustomEvent} />
         </View>
       </ScrollView>
     </SafeAreaView>

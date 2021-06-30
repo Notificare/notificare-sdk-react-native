@@ -94,4 +94,11 @@ RCT_EXTERN_METHOD(updateUserData:(NSDictionary *)userData
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
+// Events Manager
+
+RCT_EXTERN_METHOD(logCustom:(NSString *)event
+                  data:(NSDictionary *)data
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
 @end

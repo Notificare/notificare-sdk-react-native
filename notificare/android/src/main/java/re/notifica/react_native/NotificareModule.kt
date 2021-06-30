@@ -5,10 +5,7 @@ import android.content.Intent
 import com.facebook.react.bridge.*
 import re.notifica.Notificare
 import re.notifica.NotificareCallback
-import re.notifica.models.NotificareApplication
-import re.notifica.models.NotificareDoNotDisturb
-import re.notifica.models.NotificareNotification
-import re.notifica.models.NotificareUserData
+import re.notifica.models.*
 
 class NotificareModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext),
   ActivityEventListener {
@@ -335,7 +332,29 @@ class NotificareModule(reactContext: ReactApplicationContext) : ReactContextBase
 
   // endregion
 
+  // region Notificare Events Manager
+
+  @ReactMethod
+  fun logCustom(event: String, dataMap: ReadableMap?, promise: Promise) {
+    val data: NotificareEventData?
+
+    try {
+      data = dataMap?.toJson()?.let { json ->
+        val jsonStr = json.toString()
+        NotificareEvent.dataAdapter.fromJson(jsonStr)
+      }
+    } catch (e: Exception) {
+      promise.reject(DEFAULT_ERROR_CODE, e)
+      return
+    }
+
+    Notificare.eventsManager.logCustom(event, data)
+    promise.resolve(null)
+  }
+
+  // endregion
+
   companion object {
-    internal val DEFAULT_ERROR_CODE = "notificare_error"
+    internal const val DEFAULT_ERROR_CODE = "notificare_error"
   }
 }

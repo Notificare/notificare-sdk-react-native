@@ -4,7 +4,7 @@ import type { Nullable } from './utils';
 
 const { NotificareModule } = NativeModules;
 
-export default class NotificareDeviceManager {
+export class NotificareDeviceManager {
   static async getCurrentDevice(): Promise<Nullable<NotificareDevice>> {
     return await NotificareModule.getCurrentDevice();
   }

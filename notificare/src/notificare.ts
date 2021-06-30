@@ -1,7 +1,8 @@
 import { EmitterSubscription, NativeEventEmitter, NativeModules } from 'react-native';
 import type { NotificareApplication, NotificareDevice, NotificareNotification } from './models';
 import type { Nullable } from './utils';
-import NotificareDeviceManager from './notificare-device-manager';
+import { NotificareDeviceManager } from './notificare-device-manager';
+import { NotificareEventsManager } from './notificare-events-manager';
 
 const { NotificareModule } = NativeModules;
 
@@ -9,6 +10,7 @@ export class Notificare {
   private static eventEmitter = new NativeEventEmitter(NotificareModule);
 
   static readonly deviceManager = NotificareDeviceManager;
+  static readonly eventsManager = NotificareEventsManager;
 
   static async isConfigured(): Promise<boolean> {
     return await NotificareModule.getConfigured();
