@@ -38,6 +38,7 @@
     "bootstrap": "yarn example && yarn && yarn pods"
   },
   "keywords": [
+    "notificare",
     "react-native",
     "ios",
     "android"
