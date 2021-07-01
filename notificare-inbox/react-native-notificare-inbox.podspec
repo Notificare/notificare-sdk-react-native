@@ -11,10 +11,11 @@ Pod::Spec.new do |s|
   s.authors      = package["author"]
 
   s.platforms    = { :ios => "10.0" }
-  s.source       = { :git => "https://github.com/Notificare/notificare-sdk-react-native.git", :tag => "#{s.version}" }
+  s.swift_version = '5.0'
 
+  s.source       = { :path => '.' }
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
   s.dependency "React-Core"
-  s.dependency 'Notificare/NotificareInboxKit', '>= 3.0.0-alpha.1'
+  s.dependency 'Notificare/NotificareInboxKit', '3.0.0-alpha.1'
 end
