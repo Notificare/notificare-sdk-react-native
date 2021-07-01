@@ -12,24 +12,18 @@ export class NotificarePush {
   static async setAuthorizationOptions(options: string[]): Promise<void> {
     if (Platform.OS === 'ios') {
       await NotificarePushModule.setAuthorizationOptions(options);
-    } else {
-      console.warn('Setting the authorization options has no effect on this platform.');
     }
   }
 
   static async setCategoryOptions(options: string[]): Promise<void> {
     if (Platform.OS === 'ios') {
       await NotificarePushModule.setCategoryOptions(options);
-    } else {
-      console.warn('Setting the category options has no effect on this platform.');
     }
   }
 
   static async setPresentationOptions(options: string[]): Promise<void> {
     if (Platform.OS === 'ios') {
       await NotificarePushModule.setPresentationOptions(options);
-    } else {
-      console.warn('Setting the presentation options has no effect on this platform.');
     }
   }
 
