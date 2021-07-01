@@ -189,13 +189,13 @@ PODS:
     - React-jsi (= 0.63.4)
   - React-jsinspector (0.63.4)
   - react-native-notificare (3.0.0-alpha.1):
-    - Notificare/NotificareKit (>= 3.0.0-alpha.1)
+    - Notificare/NotificareKit (= 3.0.0-alpha.1)
     - React-Core
-  - react-native-notificare-inbox (0.1.0):
-    - Notificare/NotificareInboxKit (>= 3.0.0-alpha.1)
+  - react-native-notificare-inbox (3.0.0-alpha.1):
+    - Notificare/NotificareInboxKit (= 3.0.0-alpha.1)
     - React-Core
   - react-native-notificare-push (3.0.0-alpha.1):
-    - Notificare/NotificarePushKit (>= 3.0.0-alpha.1)
+    - Notificare/NotificarePushKit (= 3.0.0-alpha.1)
     - React-Core
   - React-RCTActionSheet (0.63.4):
     - React-Core/RCTActionSheetHeaders (= 0.63.4)
@@ -385,9 +385,9 @@ SPEC CHECKSUMS:
   React-jsi: a0418934cf48f25b485631deb27c64dc40fb4c31
   React-jsiexecutor: 93bd528844ad21dc07aab1c67cb10abae6df6949
   React-jsinspector: 58aef7155bc9a9683f5b60b35eccea8722a4f53a
-  react-native-notificare: 29de0aed4e97be1d43137ac2fdd4c77a845cdc42
-  react-native-notificare-inbox: c9cb12392c3fbd94942e0b6083bafde3f110a461
-  react-native-notificare-push: a57a54c0597f31711ccf530f004a964b4b60ce19
+  react-native-notificare: dbce09ff079080dbaee82e8b05f313b08f40ed9d
+  react-native-notificare-inbox: 651099e6d39eed1e45f7b5bdc81868f2f88e6d63
+  react-native-notificare-push: e92a1027636ed25b4945341894f1035d4b37697c
   React-RCTActionSheet: 89a0ca9f4a06c1f93c26067af074ccdce0f40336
   React-RCTAnimation: 1bde3ecc0c104c55df246eda516e0deb03c4e49b
   React-RCTBlob: a97d378b527740cc667e03ebfa183a75231ab0f0

@@ -11,8 +11,8 @@
   "dependencies": {
     "react": "16.13.1",
     "react-native": "0.63.4",
-    "react-native-notificare": "/Users/hpinhal/Developer/notificare/sdks/notificare-sdk-react-native/notificare/react-native-notificare-v3.0.0-alpha.1.tgz",
-    "react-native-notificare-push": "/Users/hpinhal/Developer/notificare/sdks/notificare-sdk-react-native/notificare-push/react-native-notificare-push-v3.0.0-alpha.1.tgz"
+    "react-native-notificare": "../../notificare/react-native-notificare-3.0.0-alpha.1.tgz",
+    "react-native-notificare-push": "../../notificare-push/react-native-notificare-push-3.0.0-alpha.1.tgz"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

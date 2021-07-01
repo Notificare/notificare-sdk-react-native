@@ -7901,9 +7901,9 @@ react-native-builder-bob@^0.18.1:
   optionalDependencies:
     jetifier "^1.6.6"
 
-react-native-notificare@/Users/hpinhal/Developer/notificare/sdks/notificare-sdk-react-native/notificare/react-native-notificare-v3.0.0-alpha.1.tgz:
+react-native-notificare@../notificare/react-native-notificare-3.0.0-alpha.1.tgz:
   version "3.0.0-alpha.1"
-  resolved "/Users/hpinhal/Developer/notificare/sdks/notificare-sdk-react-native/notificare/react-native-notificare-v3.0.0-alpha.1.tgz#da09aef3cb084ec43e851cee8772cf4b1d466067"
+  resolved "../notificare/react-native-notificare-3.0.0-alpha.1.tgz#d4aa95d6e3de2b449cb85bcabf9a37a187becefd"
 
 react-native@0.63.4:
   version "0.63.4"

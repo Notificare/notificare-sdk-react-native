@@ -3470,13 +3470,13 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-native-notificare-push@/Users/hpinhal/Developer/notificare/sdks/notificare-sdk-react-native/notificare-push/react-native-notificare-push-v3.0.0-alpha.1.tgz:
+react-native-notificare-push@../../notificare-push/react-native-notificare-push-3.0.0-alpha.1.tgz:
   version "3.0.0-alpha.1"
-  resolved "/Users/hpinhal/Developer/notificare/sdks/notificare-sdk-react-native/notificare-push/react-native-notificare-push-v3.0.0-alpha.1.tgz#3a378df497c92e5596744926fd528d1451b29307"
+  resolved "../../notificare-push/react-native-notificare-push-3.0.0-alpha.1.tgz#1eeeccf4717596cc1dafc0702577cdcaafd00e58"
 
-"react-native-notificare@file:../../notificare/react-native-notificare-v3.0.0-alpha.1.tgz":
+react-native-notificare@../../notificare/react-native-notificare-3.0.0-alpha.1.tgz:
   version "3.0.0-alpha.1"
-  resolved "file:../../notificare/react-native-notificare-v3.0.0-alpha.1.tgz#da09aef3cb084ec43e851cee8772cf4b1d466067"
+  resolved "../../notificare/react-native-notificare-3.0.0-alpha.1.tgz#d4aa95d6e3de2b449cb85bcabf9a37a187becefd"
 
 react-native@0.63.4:
   version "0.63.4"
