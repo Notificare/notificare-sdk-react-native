@@ -28,7 +28,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { multiply } from 'react-native-notificare-geo';
+import { multiply } from 'react-native-notificare-loyalty';
 
 const Section: React.FC<{
   title: string;

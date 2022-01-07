@@ -8,6 +8,7 @@ const packages = [
   'react-native-notificare-authentication',
   'react-native-notificare-geo',
   'react-native-notificare-inbox',
+  'react-native-notificare-loyalty',
   'react-native-notificare-push',
   'react-native-notificare-push-ui',
 ].map((name) => require(path.resolve(__dirname, '..', name, 'package.json')));
