@@ -1,0 +1,14 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "app:metro": "lerna run start --scope sample --stream",
+    "app:android": "lerna run android --scope sample --stream",
+    "app:android:studio": "studio packages/sample/android",
+    "app:ios": "lerna run ios --scope sample --stream",
+    "app:ios:xcode": "open packages/sample/ios/sample.xcworkspace"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}
