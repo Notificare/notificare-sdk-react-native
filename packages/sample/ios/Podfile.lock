@@ -74,6 +74,7 @@ PODS:
   - glog (0.3.5)
   - libevent (2.1.12)
   - Notificare/NotificareKit (3.0.0-beta.1)
+  - Notificare/NotificarePushKit (3.0.0-beta.1)
   - OpenSSL-Universal (1.1.180)
   - RCT-Folly (2021.06.28.00-v2):
     - boost
@@ -278,6 +279,10 @@ PODS:
   - react-native-notificare (3.0.0):
     - Notificare/NotificareKit (= 3.0.0-beta.1)
     - React-Core
+  - react-native-notificare-push (3.0.0):
+    - Notificare/NotificareKit (= 3.0.0-beta.1)
+    - Notificare/NotificarePushKit (= 3.0.0-beta.1)
+    - React-Core
   - React-perflogger (0.66.4)
   - React-RCTActionSheet (0.66.4):
     - React-Core/RCTActionSheetHeaders (= 0.66.4)
@@ -390,6 +395,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-awesome-boilerplate (from `../../react-native-awesome-boilerplate`)
   - react-native-notificare (from `../../react-native-notificare`)
+  - react-native-notificare-push (from `../../react-native-notificare-push`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -461,6 +467,8 @@ EXTERNAL SOURCES:
     :path: "../../react-native-awesome-boilerplate"
   react-native-notificare:
     :path: "../../react-native-notificare"
+  react-native-notificare-push:
+    :path: "../../react-native-notificare-push"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -522,6 +530,7 @@ SPEC CHECKSUMS:
   React-logger: 933f80c97c633ee8965d609876848148e3fef438
   react-native-awesome-boilerplate: 151bac4c5d19c562393a234fa4940d89f3edd9d4
   react-native-notificare: 2f188ef9a92978b1d6a3baaea9e8be1981cb699d
+  react-native-notificare-push: f5eb3b7b443dbd7c438ee33826b3f8cbff4d2beb
   React-perflogger: 93075d8931c32cd1fce8a98c15d2d5ccc4d891bd
   React-RCTActionSheet: 7d3041e6761b4f3044a37079ddcb156575fb6d89
   React-RCTAnimation: 743e88b55ac62511ae5c2e22803d4f503f2a3a13
@@ -537,6 +546,6 @@ SPEC CHECKSUMS:
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 41c283a335c67962d590885699edf80f6ea679c2
+PODFILE CHECKSUM: 77b30d28b2ebe8f3db60aae64e79e601d4fd2135
 
 COCOAPODS: 1.11.2

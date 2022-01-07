@@ -7,3 +7,6 @@ project(':react_native_awesome_boilerplate').projectDir = new File(rootProject.p
 
 include ':react_native_notificare'
 project(':react_native_notificare').projectDir = new File(rootProject.projectDir, '../../react-native-notificare/android')
+
+include ':react_native_notificare_push'
+project(':react_native_notificare_push').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-push/android')

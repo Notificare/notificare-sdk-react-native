@@ -59,7 +59,8 @@
     "baseUrl": "./",
     "paths": {
       "react-native-awesome-boilerplate": ["../react-native-awesome-boilerplate/src/index"],
-      "react-native-notificare": ["../react-native-notificare/src/index"]
+      "react-native-notificare": ["../react-native-notificare/src/index"],
+      "react-native-notificare-push": ["../react-native-notificare-push/src/index"]
     }
   },
   "exclude": [

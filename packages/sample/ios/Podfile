@@ -14,6 +14,7 @@ target 'sample' do
 
   pod 'react-native-awesome-boilerplate', :path => '../../react-native-awesome-boilerplate'
   pod 'react-native-notificare', :path => '../../react-native-notificare'
+  pod 'react-native-notificare-push', :path => '../../react-native-notificare-push'
 
   # Enables Flipper.
   #
