@@ -230,6 +230,7 @@ dependencies {
     implementation project(':react_native_notificare_loyalty')
     implementation project(':react_native_notificare_push')
     implementation project(':react_native_notificare_push_ui')
+    implementation project(':react_native_notificare_scannables')
 }
 
 // Run this once to be able to run the application with BUCK

@@ -11,6 +11,7 @@ const packages = [
   'react-native-notificare-loyalty',
   'react-native-notificare-push',
   'react-native-notificare-push-ui',
+  'react-native-notificare-scannables',
 ].map((name) => require(path.resolve(__dirname, '..', name, 'package.json')));
 
 module.exports = {

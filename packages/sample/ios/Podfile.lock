@@ -81,6 +81,7 @@ PODS:
   - Notificare/NotificareLoyaltyKit (3.0.0-beta.1)
   - Notificare/NotificarePushKit (3.0.0-beta.1)
   - Notificare/NotificarePushUIKit (3.0.0-beta.1)
+  - Notificare/NotificareScannablesKit (3.0.0-beta.1)
   - OpenSSL-Universal (1.1.180)
   - RCT-Folly (2021.06.28.00-v2):
     - boost
@@ -313,6 +314,10 @@ PODS:
     - Notificare/NotificareKit (= 3.0.0-beta.1)
     - Notificare/NotificarePushUIKit (= 3.0.0-beta.1)
     - React-Core
+  - react-native-notificare-scannables (3.0.0):
+    - Notificare/NotificareKit (= 3.0.0-beta.1)
+    - Notificare/NotificareScannablesKit (= 3.0.0-beta.1)
+    - React-Core
   - React-perflogger (0.66.4)
   - React-RCTActionSheet (0.66.4):
     - React-Core/RCTActionSheetHeaders (= 0.66.4)
@@ -432,6 +437,7 @@ DEPENDENCIES:
   - react-native-notificare-loyalty (from `../../react-native-notificare-loyalty`)
   - react-native-notificare-push (from `../../react-native-notificare-push`)
   - react-native-notificare-push-ui (from `../../react-native-notificare-push-ui`)
+  - react-native-notificare-scannables (from `../../react-native-notificare-scannables`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -517,6 +523,8 @@ EXTERNAL SOURCES:
     :path: "../../react-native-notificare-push"
   react-native-notificare-push-ui:
     :path: "../../react-native-notificare-push-ui"
+  react-native-notificare-scannables:
+    :path: "../../react-native-notificare-scannables"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -585,6 +593,7 @@ SPEC CHECKSUMS:
   react-native-notificare-loyalty: 896c951d811ebc3dc8a9ba3040ee01930a7bafd4
   react-native-notificare-push: f5eb3b7b443dbd7c438ee33826b3f8cbff4d2beb
   react-native-notificare-push-ui: 446aab88de14dd585b4fd5abe622dc95f90d83d2
+  react-native-notificare-scannables: 022609bb5ac9ee22930d04dd2c494d9534ed8cd6
   React-perflogger: 93075d8931c32cd1fce8a98c15d2d5ccc4d891bd
   React-RCTActionSheet: 7d3041e6761b4f3044a37079ddcb156575fb6d89
   React-RCTAnimation: 743e88b55ac62511ae5c2e22803d4f503f2a3a13
@@ -600,6 +609,6 @@ SPEC CHECKSUMS:
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: af60bfcfb8b2a618d6f401d1e83c8dac3c328254
+PODFILE CHECKSUM: 4858df5c02c6769e4267b468405bfed677c58212
 
 COCOAPODS: 1.11.2

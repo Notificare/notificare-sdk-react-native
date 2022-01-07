@@ -21,6 +21,7 @@ target 'sample' do
   pod 'react-native-notificare-loyalty', :path => '../../react-native-notificare-loyalty'
   pod 'react-native-notificare-push', :path => '../../react-native-notificare-push'
   pod 'react-native-notificare-push-ui', :path => '../../react-native-notificare-push-ui'
+  pod 'react-native-notificare-scannables', :path => '../../react-native-notificare-scannables'
 
   # Enables Flipper.
   #

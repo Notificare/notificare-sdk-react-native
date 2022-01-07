@@ -19,6 +19,7 @@ import re.notifica.inbox.react_native.NotificareInboxPackage;
 import re.notifica.loyalty.react_native.NotificareLoyaltyPackage;
 import re.notifica.push.react_native.NotificarePushPackage;
 import re.notifica.push.ui.react_native.NotificarePushUIPackage;
+import re.notifica.scannables.react_native.NotificareScannablesPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -44,6 +45,7 @@ public class MainApplication extends Application implements ReactApplication {
           packages.add(new NotificareLoyaltyPackage());
           packages.add(new NotificarePushPackage());
           packages.add(new NotificarePushUIPackage());
+          packages.add(new NotificareScannablesPackage());
           return packages;
         }
 

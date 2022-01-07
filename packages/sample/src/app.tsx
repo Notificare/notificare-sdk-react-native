@@ -28,7 +28,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { multiply } from 'react-native-notificare-loyalty';
+import { multiply } from 'react-native-notificare-scannables';
 
 const Section: React.FC<{
   title: string;
