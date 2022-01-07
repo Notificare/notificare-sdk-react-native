@@ -13,6 +13,7 @@ import java.util.List;
 import re.notifica.react_native_awesome_boilerplate.AwesomeBoilerplatePackage;
 import re.notifica.react_native.NotificarePackage;
 import re.notifica.assets.react_native.NotificareAssetsPackage;
+import re.notifica.authentication.react_native.NotificareAuthenticationPackage;
 import re.notifica.inbox.react_native.NotificareInboxPackage;
 import re.notifica.push.react_native.NotificarePushPackage;
 import re.notifica.push.ui.react_native.NotificarePushUIPackage;
@@ -35,6 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
           packages.add(new AwesomeBoilerplatePackage());
           packages.add(new NotificarePackage());
           packages.add(new NotificareAssetsPackage());
+          packages.add(new NotificareAuthenticationPackage());
           packages.add(new NotificareInboxPackage());
           packages.add(new NotificarePushPackage());
           packages.add(new NotificarePushUIPackage());

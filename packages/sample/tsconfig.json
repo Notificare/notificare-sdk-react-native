@@ -61,6 +61,7 @@
       "react-native-awesome-boilerplate": ["../react-native-awesome-boilerplate/src/index"],
       "react-native-notificare": ["../react-native-notificare/src/index"],
       "react-native-notificare-assets": ["../react-native-notificare-assets/src/index"],
+      "react-native-notificare-authentication": ["../react-native-notificare-authentication/src/index"],
       "react-native-notificare-inbox": ["../react-native-notificare-inbox/src/index"],
       "react-native-notificare-push": ["../react-native-notificare-push/src/index"],
       "react-native-notificare-push-ui": ["../react-native-notificare-push/src/index"]

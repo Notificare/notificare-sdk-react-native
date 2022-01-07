@@ -74,6 +74,7 @@ PODS:
   - glog (0.3.5)
   - libevent (2.1.12)
   - Notificare/NotificareAssetsKit (3.0.0-beta.1)
+  - Notificare/NotificareAuthenticationKit (3.0.0-beta.1)
   - Notificare/NotificareInboxKit (3.0.0-beta.1)
   - Notificare/NotificareKit (3.0.0-beta.1)
   - Notificare/NotificarePushKit (3.0.0-beta.1)
@@ -286,6 +287,10 @@ PODS:
     - Notificare/NotificareAssetsKit (= 3.0.0-beta.1)
     - Notificare/NotificareKit (= 3.0.0-beta.1)
     - React-Core
+  - react-native-notificare-authentication (3.0.0):
+    - Notificare/NotificareAuthenticationKit (= 3.0.0-beta.1)
+    - Notificare/NotificareKit (= 3.0.0-beta.1)
+    - React-Core
   - react-native-notificare-inbox (3.0.0):
     - Notificare/NotificareInboxKit (= 3.0.0-beta.1)
     - Notificare/NotificareKit (= 3.0.0-beta.1)
@@ -411,6 +416,7 @@ DEPENDENCIES:
   - react-native-awesome-boilerplate (from `../../react-native-awesome-boilerplate`)
   - react-native-notificare (from `../../react-native-notificare`)
   - react-native-notificare-assets (from `../../react-native-notificare-assets`)
+  - react-native-notificare-authentication (from `../../react-native-notificare-authentication`)
   - react-native-notificare-inbox (from `../../react-native-notificare-inbox`)
   - react-native-notificare-push (from `../../react-native-notificare-push`)
   - react-native-notificare-push-ui (from `../../react-native-notificare-push-ui`)
@@ -487,6 +493,8 @@ EXTERNAL SOURCES:
     :path: "../../react-native-notificare"
   react-native-notificare-assets:
     :path: "../../react-native-notificare-assets"
+  react-native-notificare-authentication:
+    :path: "../../react-native-notificare-authentication"
   react-native-notificare-inbox:
     :path: "../../react-native-notificare-inbox"
   react-native-notificare-push:
@@ -555,6 +563,7 @@ SPEC CHECKSUMS:
   react-native-awesome-boilerplate: 151bac4c5d19c562393a234fa4940d89f3edd9d4
   react-native-notificare: 2f188ef9a92978b1d6a3baaea9e8be1981cb699d
   react-native-notificare-assets: 72cd4d8e09d0b7f9418508373920e59aec24967f
+  react-native-notificare-authentication: e63e7e7f8b3669ea4cde36b6ab9068049923ab7f
   react-native-notificare-inbox: 65dadb922a01e4dc06b355bd1031c5e07619488a
   react-native-notificare-push: f5eb3b7b443dbd7c438ee33826b3f8cbff4d2beb
   react-native-notificare-push-ui: 446aab88de14dd585b4fd5abe622dc95f90d83d2
@@ -573,6 +582,6 @@ SPEC CHECKSUMS:
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 09e8297efc4ca4232ab2449416529764427588dd
+PODFILE CHECKSUM: ce41e16f83ba84a45b2e90f23d68afdbf7eedd54
 
 COCOAPODS: 1.11.2

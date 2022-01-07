@@ -28,7 +28,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { multiply } from 'react-native-notificare-assets';
+import { multiply } from 'react-native-notificare-authentication';
 
 const Section: React.FC<{
   title: string;
