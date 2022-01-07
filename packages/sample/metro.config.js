@@ -15,6 +15,7 @@ const packages = [
   'react-native-notificare',
   'react-native-notificare-inbox',
   'react-native-notificare-push',
+  'react-native-notificare-push-ui',
 ].map((name) => require(path.resolve(__dirname, '..', name, 'package.json')));
 
 // An array with the unique names of peer dependencies.
