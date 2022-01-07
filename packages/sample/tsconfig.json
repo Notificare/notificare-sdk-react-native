@@ -58,7 +58,8 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
     "baseUrl": "./",
     "paths": {
-      "react-native-awesome-boilerplate": ["../react-native-awesome-boilerplate/src/index"]
+      "react-native-awesome-boilerplate": ["../react-native-awesome-boilerplate/src/index"],
+      "react-native-notificare": ["../react-native-notificare/src/index"]
     }
   },
   "exclude": [

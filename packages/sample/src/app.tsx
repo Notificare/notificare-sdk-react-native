@@ -28,7 +28,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { multiply } from 'react-native-awesome-boilerplate';
+import { multiply } from 'react-native-notificare';
 
 const Section: React.FC<{
   title: string;

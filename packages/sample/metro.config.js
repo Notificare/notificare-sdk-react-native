@@ -12,6 +12,7 @@ const escape = require('escape-string-regexp');
 // Aliased packages
 const packages = [
   'react-native-awesome-boilerplate',
+  'react-native-notificare',
 ].map((name) => require(path.resolve(__dirname, '..', name, 'package.json')));
 
 // An array with the unique names of peer dependencies.

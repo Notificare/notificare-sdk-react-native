@@ -3,6 +3,7 @@ const path = require('path');
 // Aliased packages
 const packages = [
   'react-native-awesome-boilerplate',
+  'react-native-notificare',
 ].map((name) => require(path.resolve(__dirname, '..', name, 'package.json')));
 
 module.exports = {

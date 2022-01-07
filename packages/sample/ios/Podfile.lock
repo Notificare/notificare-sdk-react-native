@@ -73,6 +73,7 @@ PODS:
   - fmt (6.2.1)
   - glog (0.3.5)
   - libevent (2.1.12)
+  - Notificare/NotificareKit (3.0.0-beta.1)
   - OpenSSL-Universal (1.1.180)
   - RCT-Folly (2021.06.28.00-v2):
     - boost
@@ -274,6 +275,9 @@ PODS:
     - glog
   - react-native-awesome-boilerplate (3.0.0):
     - React-Core
+  - react-native-notificare (3.0.0):
+    - Notificare/NotificareKit (= 3.0.0-beta.1)
+    - React-Core
   - React-perflogger (0.66.4)
   - React-RCTActionSheet (0.66.4):
     - React-Core/RCTActionSheetHeaders (= 0.66.4)
@@ -385,6 +389,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-awesome-boilerplate (from `../../react-native-awesome-boilerplate`)
+  - react-native-notificare (from `../../react-native-notificare`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -413,6 +418,7 @@ SPEC REPOS:
     - FlipperKit
     - fmt
     - libevent
+    - Notificare
     - OpenSSL-Universal
     - YogaKit
 
@@ -453,6 +459,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-awesome-boilerplate:
     :path: "../../react-native-awesome-boilerplate"
+  react-native-notificare:
+    :path: "../../react-native-notificare"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -498,6 +506,7 @@ SPEC CHECKSUMS:
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 5337263514dd6f09803962437687240c5dc39aa4
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
+  Notificare: 6c4fbf7eba673eed860f42852a6accf7ddbf6542
   OpenSSL-Universal: 1aa4f6a6ee7256b83db99ec1ccdaa80d10f9af9b
   RCT-Folly: a21c126816d8025b547704b777a2ba552f3d9fa9
   RCTRequired: 4bf86c70714490bca4bf2696148638284622644b
@@ -512,6 +521,7 @@ SPEC CHECKSUMS:
   React-jsinspector: d0374f7509d407d2264168b6d0fad0b54e300b85
   React-logger: 933f80c97c633ee8965d609876848148e3fef438
   react-native-awesome-boilerplate: 151bac4c5d19c562393a234fa4940d89f3edd9d4
+  react-native-notificare: 2f188ef9a92978b1d6a3baaea9e8be1981cb699d
   React-perflogger: 93075d8931c32cd1fce8a98c15d2d5ccc4d891bd
   React-RCTActionSheet: 7d3041e6761b4f3044a37079ddcb156575fb6d89
   React-RCTAnimation: 743e88b55ac62511ae5c2e22803d4f503f2a3a13
@@ -527,6 +537,6 @@ SPEC CHECKSUMS:
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 472e08e17dc76a4ff0010a397fddb2c7a238683b
+PODFILE CHECKSUM: 41c283a335c67962d590885699edf80f6ea679c2
 
 COCOAPODS: 1.11.2

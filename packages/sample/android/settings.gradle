@@ -4,3 +4,6 @@ include ':app'
 
 include ':react_native_awesome_boilerplate'
 project(':react_native_awesome_boilerplate').projectDir = new File(rootProject.projectDir, '../../react-native-awesome-boilerplate/android')
+
+include ':react_native_notificare'
+project(':react_native_notificare').projectDir = new File(rootProject.projectDir, '../../react-native-notificare/android')
