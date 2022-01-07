@@ -13,6 +13,7 @@ const escape = require('escape-string-regexp');
 const packages = [
   'react-native-awesome-boilerplate',
   'react-native-notificare',
+  'react-native-notificare-inbox',
   'react-native-notificare-push',
 ].map((name) => require(path.resolve(__dirname, '..', name, 'package.json')));
 

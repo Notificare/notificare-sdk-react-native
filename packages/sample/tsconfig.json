@@ -60,6 +60,7 @@
     "paths": {
       "react-native-awesome-boilerplate": ["../react-native-awesome-boilerplate/src/index"],
       "react-native-notificare": ["../react-native-notificare/src/index"],
+      "react-native-notificare-inbox": ["../react-native-notificare-inbox/src/index"],
       "react-native-notificare-push": ["../react-native-notificare-push/src/index"]
     }
   },
