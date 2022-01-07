@@ -4,6 +4,7 @@ const path = require('path');
 const packages = [
   'react-native-awesome-boilerplate',
   'react-native-notificare',
+  'react-native-notificare-assets',
   'react-native-notificare-inbox',
   'react-native-notificare-push',
   'react-native-notificare-push-ui',
