@@ -125,6 +125,9 @@ def enableHermes = project.ext.react.get("enableHermes", false);
  */
 def nativeArchitectures = project.getProperties().get("reactNativeDebugArchitectures")
 
+def properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     ndkVersion rootProject.ext.ndkVersion
 
@@ -148,9 +151,15 @@ android {
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
+            storePassword properties.getProperty('keystore.debug.store.password')
+            keyAlias properties.getProperty('keystore.debug.key.alias')
+            keyPassword properties.getProperty('keystore.debug.key.password')
+        }
+        release {
+            storeFile file('release.keystore')
+            storePassword properties.getProperty('keystore.release.store.password')
+            keyAlias properties.getProperty('keystore.release.key.alias')
+            keyPassword properties.getProperty('keystore.release.key.password')
         }
     }
     buildTypes {
@@ -163,9 +172,7 @@ android {
             }
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
