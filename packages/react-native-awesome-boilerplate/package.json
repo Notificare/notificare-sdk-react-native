@@ -35,9 +35,9 @@
     "!**/__mocks__"
   ],
   "scripts": {
+    "build": "bob build",
     "typescript": "tsc --noEmit",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "build": "bob build",
     "prepare": "yarn build"
   },
   "peerDependencies": {

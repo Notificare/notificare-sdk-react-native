@@ -1396,9 +1396,9 @@ camelcase@^6.0.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001286:
-  version "1.0.30001296"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001296.tgz#d99f0f3bee66544800b93d261c4be55a35f1cec8"
-  integrity sha512-WfrtPEoNSoeATDlf4y3QvkwiELl9GyPLISV5GejTbbQRtQx4LhsXmc9IQ6XCL2d7UxCyEzToEZNMeqR79OUw8Q==
+  version "1.0.30001297"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001297.tgz#ea7776ccc4992956582cae5b8fea127fbebde430"
+  integrity sha512-6bbIbowYG8vFs/Lk4hU9jFt7NknGDleVAciK916tp6ft1j+D//ZwwL6LbF1wXMQ32DMSjeuUV8suhh6dlmFjcA==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -1718,9 +1718,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.4.17:
-  version "1.4.36"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.36.tgz#446c6184dbe5baeb5eae9a875490831e4bc5319a"
-  integrity sha512-MbLlbF39vKrXWlFEFpCgDHwdlz4O3LmHM5W4tiLRHjSmEUXjJjz8sZkMgWgvYxlZw3N1iDTmCEtOkkESb5TMCg==
+  version "1.4.37"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.37.tgz#eedd53cad229ae2d1632b958a92a3d7d7b27f553"
+  integrity sha512-XIvFB1omSAxYgHYX48sC+HR8i/p7lx7R+0cX9faElg1g++h9IilCrJ12+bQuY+d96Wp7zkBiJwMOv+AhLtLrTg==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -1926,9 +1926,9 @@ find-up@^4.1.0:
     path-exists "^4.0.0"
 
 flow-parser@0.*:
-  version "0.168.0"
-  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.168.0.tgz#e9c385499145828b42fd754d3528f4cb7d5c6edf"
-  integrity sha512-YMlc+6vvyDPqWKOpzmyifJXBbwlNdqznuy8YBHxX1/90F8d+NnhsxMe1u/ok5LNvNJVJ2TVMkWudu0BUKOSawA==
+  version "0.169.0"
+  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.169.0.tgz#4f77d61dd4241f8063f734ef1f71c684ec03ab52"
+  integrity sha512-X1DFb6wxXpZLLqM9NX0Wm+4xoN6xAyJn8OwuiHsV0JJvLfD18Z+wbgJ1lM7ykTVINdu8v7Mu0gIzWMvnhKWBkA==
 
 flow-parser@^0.121.0:
   version "0.121.0"

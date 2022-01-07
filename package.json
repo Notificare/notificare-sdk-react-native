@@ -6,9 +6,15 @@
     "app:android": "lerna run android --scope sample --stream",
     "app:android:studio": "studio packages/sample/android",
     "app:ios": "lerna run ios --scope sample --stream",
-    "app:ios:xcode": "open packages/sample/ios/sample.xcworkspace"
+    "app:ios:pods": "lerna run pods --scope sample --stream",
+    "app:ios:xcode": "open packages/sample/ios/sample.xcworkspace",
+    "lint": "lerna run lint"
   },
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "@react-native-community/eslint-config": "^3.0.0",
+    "eslint": "^7.32.0",
+    "lerna": "^4.0.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.4"
   }
 }
