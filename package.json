@@ -9,6 +9,7 @@
     "app:ios:pods": "lerna run pods --scope sample --stream",
     "app:ios:xcode": "open packages/sample/ios/sample.xcworkspace",
     "lint": "lerna run lint",
+    "typescript": "lerna run typescript",
     "prepare": "husky install"
   },
   "devDependencies": {
