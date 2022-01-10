@@ -1,4 +1,4 @@
-package com.sample;
+package re.notifica.demo;
 
 import android.app.Application;
 import android.content.Context;
@@ -82,7 +82,7 @@ public class MainApplication extends Application implements ReactApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.sample.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("re.notifica.demo.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);

@@ -8,122 +8,71 @@
  * @format
  */
 
-import React from 'react';
-import {
-  Button,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import React, { FC, useEffect, useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Provider as PaperProvider, Snackbar } from 'react-native-paper';
+import { HomePage } from './pages/home-page';
+import { InboxPage } from './pages/inbox-page';
+import { Notificare } from 'react-native-notificare';
+import { SnackbarInfo } from './utils/snackbar';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const Stack = createNativeStackNavigator();
 
-import { multiply } from 'react-native-notificare-scannables';
+export const App: FC = () => {
+  const [snackbarInfo, setSnackbarInfo] = useState<SnackbarInfo>({
+    visible: false,
+  });
 
-const Section: React.FC<{
-  title: string;
-}> = ({ children, title }) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}
-      >
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}
-      >
-        {children}
-      </Text>
-    </View>
-  );
-};
+  useEffect(() => {
+    const subscriptions = [
+      Notificare.onReady((application) => {
+        console.log('=== ON READY ===');
+        console.log(JSON.stringify(application, null, 2));
 
-const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+        setSnackbarInfo({
+          visible: true,
+          label: `Notificare is ready: ${application.name}`,
+        });
+      }),
+      Notificare.onDeviceRegistered((device) => {
+        console.log('=== DEVICE REGISTERED ===');
+        console.log(JSON.stringify(device, null, 2));
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+        setSnackbarInfo({
+          visible: true,
+          label: `Device registered: ${device.id}`,
+        });
+      }),
+      Notificare.onUrlOpened((url) => {
+        console.log('=== URL OPENED ===');
+        console.log(JSON.stringify(url, null, 2));
+
+        setSnackbarInfo({
+          visible: true,
+          label: `URL opened: ${url}`,
+        });
+      }),
+    ];
+
+    return () => subscriptions.forEach((s) => s.remove());
+  });
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}
+    <PaperProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomePage} />
+          <Stack.Screen name="Inbox" component={InboxPage} />
+        </Stack.Navigator>
+      </NavigationContainer>
+
+      <Snackbar
+        visible={snackbarInfo.visible}
+        onDismiss={() => setSnackbarInfo({ visible: false })}
       >
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}
-        >
-          <Button
-            title="Click me"
-            onPress={async () => {
-              const result = await multiply(10, 10);
-              console.log(`result = ${result}`);
-            }}
-          />
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        {snackbarInfo.label}
+      </Snackbar>
+    </PaperProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;

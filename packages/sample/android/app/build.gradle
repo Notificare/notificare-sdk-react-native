@@ -1,4 +1,7 @@
-apply plugin: "com.android.application"
+apply plugin: 'com.android.application'
+apply plugin: 're.notifica.gradle.notificare-services'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.huawei.agconnect'
 
 import com.android.build.OutputFile
 
@@ -134,11 +137,11 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.sample"
+        applicationId "re.notifica.demo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "3.0.0"
     }
     splits {
         abi {
