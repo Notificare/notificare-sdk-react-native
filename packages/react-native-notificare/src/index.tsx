@@ -1,22 +1,10 @@
-import { NativeModules, Platform } from 'react-native';
+import { Notificare } from './notificare';
 
-const LINKING_ERROR =
-  `The package 'react-native-notificare' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+export * from './notificare';
 
-const NotificareModule = NativeModules.NotificareModule
-  ? NativeModules.NotificareModule
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+export * from './models/notificare-application';
+export * from './models/notificare-device';
+export * from './models/notificare-do-not-disturb';
+export * from './models/notificare-notification';
 
-export function multiply(a: number, b: number): Promise<number> {
-  return NotificareModule.multiply(a, b);
-}
+export default Notificare;

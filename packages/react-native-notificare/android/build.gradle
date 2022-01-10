@@ -43,6 +43,13 @@ android {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
   }
+  kotlinOptions {
+    jvmTarget = '1.8'
+    freeCompilerArgs += [
+      '-Xexplicit-api=strict',
+      '-Xopt-in=re.notifica.InternalNotificareApi',
+    ]
+  }
 }
 
 repositories {
@@ -109,4 +116,7 @@ repositories {
 dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
+
+  def notificare_version = '3.0.0-beta.1'
+  api "re.notifica:notificare:$notificare_version"
 }
