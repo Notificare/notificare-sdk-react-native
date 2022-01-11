@@ -49,12 +49,12 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     // endregion
 
     @ReactMethod
-    public fun addListener(eventName: String) {
+    public fun addListener(@Suppress("UNUSED_PARAMETER") eventName: String) {
         // Keep: Required for RN built in Event Emitter Calls.
     }
 
     @ReactMethod
-    public fun removeListeners(count: Int) {
+    public fun removeListeners(@Suppress("UNUSED_PARAMETER") count: Int) {
         // Keep: Required for RN built in Event Emitter Calls.
     }
 
