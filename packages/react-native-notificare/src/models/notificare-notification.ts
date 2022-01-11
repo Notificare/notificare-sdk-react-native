@@ -10,6 +10,7 @@ export interface NotificareNotification {
   readonly actions: NotificareNotificationAction[];
   readonly attachments: NotificareNotificationAttachment[];
   readonly extra: Record<string, any>;
+  readonly targetContentIdentifier?: string;
 }
 
 export interface NotificareNotificationContent {
