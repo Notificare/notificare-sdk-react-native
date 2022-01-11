@@ -17,6 +17,7 @@ import { InboxPage } from './pages/inbox-page';
 import { Notificare } from 'react-native-notificare';
 import { SnackbarInfo } from './utils/snackbar';
 import { NotificarePush } from 'react-native-notificare-push';
+import { NotificarePushUI } from 'react-native-notificare-push-ui';
 
 const Stack = createNativeStackNavigator();
 
@@ -83,18 +84,20 @@ export const App: FC = () => {
         console.log('=== UNKNOWN NOTIFICATION RECEIVED ===');
         console.log(JSON.stringify(notification, null, 2));
       }),
-      NotificarePush.onNotificationOpened((notification) => {
+      NotificarePush.onNotificationOpened(async (notification) => {
         console.log('=== NOTIFICATION OPENED ===');
         console.log(JSON.stringify(notification, null, 2));
 
-        // TODO present it
+        await NotificarePushUI.presentNotification(notification);
       }),
-      NotificarePush.onNotificationActionOpened(({ notification, action }) => {
-        console.log('=== NOTIFICATION ACTION OPENED ===');
-        console.log(JSON.stringify({ notification, action }, null, 2));
+      NotificarePush.onNotificationActionOpened(
+        async ({ notification, action }) => {
+          console.log('=== NOTIFICATION ACTION OPENED ===');
+          console.log(JSON.stringify({ notification, action }, null, 2));
 
-        // TODO present it
-      }),
+          await NotificarePushUI.presentAction(notification, action);
+        }
+      ),
       NotificarePush.onNotificationSettingsChanged((granted) => {
         console.log('=== NOTIFICATION SETTINGS CHANGED ===');
         console.log(JSON.stringify(granted, null, 2));
@@ -107,6 +110,53 @@ export const App: FC = () => {
         console.log('=== FAILED TO REGISTER FOR REMOTE NOTIFICATIONS ===');
         console.log(JSON.stringify(error, null, 2));
       }),
+      //
+      // Notificare Push UI events
+      //
+      NotificarePushUI.onNotificationWillPresent((notification) => {
+        console.log('=== NOTIFICATION WILL PRESENT ===');
+        console.log(JSON.stringify(notification, null, 2));
+      }),
+      NotificarePushUI.onNotificationPresented((notification) => {
+        console.log('=== NOTIFICATION PRESENTED ===');
+        console.log(JSON.stringify(notification, null, 2));
+      }),
+      NotificarePushUI.onNotificationFinishedPresenting((notification) => {
+        console.log('=== NOTIFICATION FINISHED PRESENTING ===');
+        console.log(JSON.stringify(notification, null, 2));
+      }),
+      NotificarePushUI.onNotificationFailedToPresent((notification) => {
+        console.log('=== NOTIFICATION FAILED TO PRESENT ===');
+        console.log(JSON.stringify(notification, null, 2));
+      }),
+      NotificarePushUI.onNotificationUrlClicked(({ notification, url }) => {
+        console.log('=== NOTIFICATION URL CLICKED ===');
+        console.log(JSON.stringify({ notification, url }, null, 2));
+      }),
+      NotificarePushUI.onActionWillExecute(({ notification, action }) => {
+        console.log('=== ACTION WILL EXECUTE ===');
+        console.log(JSON.stringify({ notification, action }, null, 2));
+      }),
+      NotificarePushUI.onActionExecuted(({ notification, action }) => {
+        console.log('=== ACTION EXECUTED ===');
+        console.log(JSON.stringify({ notification, action }, null, 2));
+      }),
+      NotificarePushUI.onActionNotExecuted(({ notification, action }) => {
+        console.log('=== ACTION NOT EXECUTED ===');
+        console.log(JSON.stringify({ notification, action }, null, 2));
+      }),
+      NotificarePushUI.onActionFailedToExecute(
+        ({ notification, action, error }) => {
+          console.log('=== ACTION FAILED TO EXECUTE ===');
+          console.log(JSON.stringify({ notification, action, error }, null, 2));
+        }
+      ),
+      NotificarePushUI.onCustomActionReceived(
+        ({ notification, action, url }) => {
+          console.log('=== CUSTOM ACTION RECEIVED ===');
+          console.log(JSON.stringify({ notification, action, url }, null, 2));
+        }
+      ),
     ];
 
     return () => subscriptions.forEach((s) => s.remove());
