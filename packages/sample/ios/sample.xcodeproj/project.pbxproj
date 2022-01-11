@@ -36,6 +36,7 @@
 		F247A368278867AB0053298B /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		F247A36A278867FE0053298B /* NotificareServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NotificareServices.plist; path = sample/NotificareServices.plist; sourceTree = "<group>"; };
 		F247A36B278867FE0053298B /* NotificareOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NotificareOptions.plist; path = sample/NotificareOptions.plist; sourceTree = "<group>"; };
+		F28B88C4278DD95E00549CA3 /* sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = sample.entitlements; path = sample/sample.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +54,7 @@
 		13B07FAE1A68108700A75B9A /* sample */ = {
 			isa = PBXGroup;
 			children = (
+				F28B88C4278DD95E00549CA3 /* sample.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -299,6 +301,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = sample/sample.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y47BY73NFN;
 				ENABLE_BITCODE = NO;
@@ -328,6 +331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = sample/sample.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y47BY73NFN;
 				INFOPLIST_FILE = sample/Info.plist;

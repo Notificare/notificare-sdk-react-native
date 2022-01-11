@@ -3,6 +3,7 @@ import React, { FC, useState } from 'react';
 import { Notificare } from 'react-native-notificare';
 import { Button, Snackbar } from 'react-native-paper';
 import { SnackbarInfo } from '../utils/snackbar';
+import { NotificarePush } from 'react-native-notificare-push';
 
 export const HomePage: FC = () => {
   const [snackbarInfo, setSnackbarInfo] = useState<SnackbarInfo>({
@@ -233,7 +234,7 @@ export const HomePage: FC = () => {
   // Events
   //
 
-  async function onLogCustomEvent() {
+  async function onLogCustomEventClicked() {
     try {
       await Notificare.events().logCustom('CUSTOM_EVENT');
 
@@ -242,6 +243,48 @@ export const HomePage: FC = () => {
         number: 10,
       });
 
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onHasRemoteNotificationEnabledClicked() {
+    try {
+      const enabled = await NotificarePush.hasRemoteNotificationsEnabled();
+      setSnackbarInfo({ visible: true, label: JSON.stringify(enabled) });
+
+      console.log('=== HAS REMOTE NOTIFICATIONS ENABLED ===');
+      console.log(JSON.stringify(enabled, null, 2));
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onAllowedUIClicked() {
+    try {
+      const allowed = await NotificarePush.allowedUI();
+      setSnackbarInfo({ visible: true, label: JSON.stringify(allowed) });
+
+      console.log('=== ALLOWED UI ===');
+      console.log(JSON.stringify(allowed, null, 2));
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onEnableRemoteNotificationsClicked() {
+    try {
+      await NotificarePush.enableRemoteNotifications();
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onDisableRemoteNotificationsClicked() {
+    try {
+      await NotificarePush.disableRemoteNotifications();
       setSnackbarInfo({ visible: true, label: 'Done.' });
     } catch (e) {
       setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
@@ -296,7 +339,19 @@ export const HomePage: FC = () => {
           </Button>
 
           <Text style={styles.title}>Events</Text>
-          <Button onPress={onLogCustomEvent}>Log custom event</Button>
+          <Button onPress={onLogCustomEventClicked}>Log custom event</Button>
+
+          <Text style={styles.title}>Push</Text>
+          <Button onPress={onHasRemoteNotificationEnabledClicked}>
+            Has remote notifications enabled
+          </Button>
+          <Button onPress={onAllowedUIClicked}>Allowed UI</Button>
+          <Button onPress={onEnableRemoteNotificationsClicked}>
+            Enable remote notifications
+          </Button>
+          <Button onPress={onDisableRemoteNotificationsClicked}>
+            Disable remote notifications
+          </Button>
         </View>
       </ScrollView>
 
