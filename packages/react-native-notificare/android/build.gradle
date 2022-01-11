@@ -56,6 +56,9 @@ repositories {
   google()
   mavenCentral()
 
+  maven { url 'https://maven.notifica.re/releases' }
+  maven { url 'https://maven.notifica.re/prereleases' }
+
   def found = false
   def defaultDir = null
   def androidSourcesName = 'React Native sources'
