@@ -5,6 +5,7 @@ import { Button, Snackbar } from 'react-native-paper';
 import { SnackbarInfo } from '../utils/snackbar';
 import { NotificarePush } from 'react-native-notificare-push';
 import { useNavigation } from '@react-navigation/native';
+import { NotificareAssets } from 'react-native-notificare-assets';
 
 export const HomePage: FC = () => {
   const navigation = useNavigation();
@@ -298,6 +299,18 @@ export const HomePage: FC = () => {
     navigation.navigate('Inbox');
   }
 
+  async function onFetchAssetsClicked() {
+    try {
+      const assets = await NotificareAssets.fetch('LANDSCAPES');
+      setSnackbarInfo({ visible: true, label: JSON.stringify(assets) });
+
+      console.log('=== FETCH ASSETS ===');
+      console.log(JSON.stringify(assets, null, 2));
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
   return (
     <>
       <ScrollView>
@@ -362,6 +375,9 @@ export const HomePage: FC = () => {
 
           <Text style={styles.title}>Inbox</Text>
           <Button onPress={onOpenInboxClicked}>Open the inbox</Button>
+
+          <Text style={styles.title}>Assets</Text>
+          <Button onPress={onFetchAssetsClicked}>Fetch assets</Button>
         </View>
       </ScrollView>
 
