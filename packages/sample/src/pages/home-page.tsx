@@ -6,6 +6,7 @@ import { SnackbarInfo } from '../utils/snackbar';
 import { NotificarePush } from 'react-native-notificare-push';
 import { useNavigation } from '@react-navigation/native';
 import { NotificareAssets } from 'react-native-notificare-assets';
+import { NotificareScannables } from 'react-native-notificare-scannables';
 
 export const HomePage: FC = () => {
   const navigation = useNavigation();
@@ -311,6 +312,20 @@ export const HomePage: FC = () => {
     }
   }
 
+  async function onStartScannableSessionClicked() {
+    try {
+      await NotificareScannables.startScannableSession();
+
+      // if (await NotificareScannables.canStartNfcScannableSession()) {
+      //   await NotificareScannables.startNfcScannableSession();
+      // } else {
+      //   await NotificareScannables.startQrCodeScannableSession();
+      // }
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
   return (
     <>
       <ScrollView>
@@ -378,6 +393,11 @@ export const HomePage: FC = () => {
 
           <Text style={styles.title}>Assets</Text>
           <Button onPress={onFetchAssetsClicked}>Fetch assets</Button>
+
+          <Text style={styles.title}>Scannables</Text>
+          <Button onPress={onStartScannableSessionClicked}>
+            Start scannable session
+          </Button>
         </View>
       </ScrollView>
 

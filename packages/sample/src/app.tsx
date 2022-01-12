@@ -19,6 +19,7 @@ import { SnackbarInfo } from './utils/snackbar';
 import { NotificarePush } from 'react-native-notificare-push';
 import { NotificarePushUI } from 'react-native-notificare-push-ui';
 import { NotificareInbox } from 'react-native-notificare-inbox';
+import { NotificareScannables } from 'react-native-notificare-scannables';
 
 const Stack = createNativeStackNavigator();
 
@@ -168,6 +169,21 @@ export const App: FC = () => {
       NotificareInbox.onBadgeUpdated((badge) => {
         console.log('=== BADGE UPDATED ===');
         console.log(JSON.stringify(badge, null, 2));
+      }),
+      //
+      // Notificare Scannables events
+      //
+      NotificareScannables.onScannableDetected(async (scannable) => {
+        console.log('=== SCANNABLE DETECTED ===');
+        console.log(JSON.stringify(scannable, null, 2));
+
+        if (scannable.notification != null) {
+          await NotificarePushUI.presentNotification(scannable.notification);
+        }
+      }),
+      NotificareScannables.onScannableSessionFailed((error) => {
+        console.log('=== SCANNABLE SESSION FAILED ===');
+        console.log(JSON.stringify(error, null, 2));
       }),
     ];
 
