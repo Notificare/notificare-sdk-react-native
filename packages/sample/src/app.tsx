@@ -18,6 +18,7 @@ import { Notificare } from 'react-native-notificare';
 import { SnackbarInfo } from './utils/snackbar';
 import { NotificarePush } from 'react-native-notificare-push';
 import { NotificarePushUI } from 'react-native-notificare-push-ui';
+import { NotificareInbox } from 'react-native-notificare-inbox';
 
 const Stack = createNativeStackNavigator();
 
@@ -157,6 +158,17 @@ export const App: FC = () => {
           console.log(JSON.stringify({ notification, action, url }, null, 2));
         }
       ),
+      //
+      // Notificare Inbox events
+      //
+      NotificareInbox.onInboxUpdated((items) => {
+        console.log('=== INBOX UPDATED ===');
+        console.log(JSON.stringify(items, null, 2));
+      }),
+      NotificareInbox.onBadgeUpdated((badge) => {
+        console.log('=== BADGE UPDATED ===');
+        console.log(JSON.stringify(badge, null, 2));
+      }),
     ];
 
     return () => subscriptions.forEach((s) => s.remove());

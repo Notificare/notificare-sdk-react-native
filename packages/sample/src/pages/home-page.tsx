@@ -4,8 +4,10 @@ import { Notificare } from 'react-native-notificare';
 import { Button, Snackbar } from 'react-native-paper';
 import { SnackbarInfo } from '../utils/snackbar';
 import { NotificarePush } from 'react-native-notificare-push';
+import { useNavigation } from '@react-navigation/native';
 
 export const HomePage: FC = () => {
+  const navigation = useNavigation();
   const [snackbarInfo, setSnackbarInfo] = useState<SnackbarInfo>({
     visible: false,
   });
@@ -291,6 +293,11 @@ export const HomePage: FC = () => {
     }
   }
 
+  async function onOpenInboxClicked() {
+    // @ts-ignore
+    navigation.navigate('Inbox');
+  }
+
   return (
     <>
       <ScrollView>
@@ -352,6 +359,9 @@ export const HomePage: FC = () => {
           <Button onPress={onDisableRemoteNotificationsClicked}>
             Disable remote notifications
           </Button>
+
+          <Text style={styles.title}>Inbox</Text>
+          <Button onPress={onOpenInboxClicked}>Open the inbox</Button>
         </View>
       </ScrollView>
 

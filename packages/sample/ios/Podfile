@@ -23,6 +23,8 @@ target 'sample' do
   pod 'react-native-notificare-push-ui', :path => '../../react-native-notificare-push-ui'
   pod 'react-native-notificare-scannables', :path => '../../react-native-notificare-scannables'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   # Enables Flipper.
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
