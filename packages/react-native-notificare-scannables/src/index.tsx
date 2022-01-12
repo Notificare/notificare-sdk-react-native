@@ -1,22 +1,7 @@
-import { NativeModules, Platform } from 'react-native';
+import { NotificareScannables } from './notificare-scannables';
 
-const LINKING_ERROR =
-  `The package 'react-native-notificare-scannables' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+export * from './notificare-scannables';
 
-const NotificareScannablesModule = NativeModules.NotificareScannablesModule
-  ? NativeModules.NotificareScannablesModule
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+export * from './models/notificare-scannable';
 
-export function multiply(a: number, b: number): Promise<number> {
-  return NotificareScannablesModule.multiply(a, b);
-}
+export default NotificareScannables;
