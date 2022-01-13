@@ -1,22 +1,11 @@
-import { NativeModules, Platform } from 'react-native';
+import { NotificareGeo } from './notificare-geo';
 
-const LINKING_ERROR =
-  `The package 'react-native-notificare-geo' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+export * from './notificare-geo';
 
-const NotificareGeoModule = NativeModules.NotificareGeoModule
-  ? NativeModules.NotificareGeoModule
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+export * from './models/notificare-beacon';
+export * from './models/notificare-heading';
+export * from './models/notificare-location';
+export * from './models/notificare-region';
+export * from './models/notificare-visit';
 
-export function multiply(a: number, b: number): Promise<number> {
-  return NotificareGeoModule.multiply(a, b);
-}
+export default NotificareGeo;
