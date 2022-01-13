@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { FC, useState } from 'react';
 import { Notificare } from 'react-native-notificare';
 import { Button, Snackbar } from 'react-native-paper';
@@ -8,6 +8,13 @@ import { useNavigation } from '@react-navigation/native';
 import { NotificareAssets } from 'react-native-notificare-assets';
 import { NotificareScannables } from 'react-native-notificare-scannables';
 import { NotificareLoyalty } from 'react-native-notificare-loyalty';
+import { NotificareGeo } from 'react-native-notificare-geo';
+import {
+  check,
+  Permission,
+  PERMISSIONS,
+  request,
+} from 'react-native-permissions';
 
 export const HomePage: FC = () => {
   const navigation = useNavigation();
@@ -340,8 +347,98 @@ export const HomePage: FC = () => {
       await NotificareLoyalty.present(pass);
     } catch (e) {
       setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
-      console.log(e);
     }
+  }
+
+  async function onEnableLocationUpdatesClicked() {
+    try {
+      if (!(await ensureForegroundLocationPermission())) return;
+      if (!(await ensureBackgroundLocationPermission())) return;
+      if (Platform.OS === 'android') {
+        if (!(await ensureBluetoothScanPermission())) return;
+      }
+
+      await NotificareGeo.enableLocationUpdates();
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onDisableLocationUpdatesClicked() {
+    try {
+      await NotificareGeo.disableLocationUpdates();
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onViewRangingBeaconsClicked() {
+    // @ts-ignore
+    navigation.navigate('Beacons');
+  }
+
+  async function ensureForegroundLocationPermission(): Promise<boolean> {
+    const permission: Permission = Platform.select({
+      android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+      ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
+    })!;
+
+    let status = await check(permission);
+    if (status === 'granted') return true;
+
+    status = await request(permission, {
+      title: 'Sample',
+      message:
+        'We need access to foreground location in order to show relevant content.',
+      buttonPositive: 'OK',
+    });
+
+    return status === 'granted';
+  }
+
+  async function ensureBackgroundLocationPermission(): Promise<boolean> {
+    const permission: Permission = Platform.select({
+      android:
+        Platform.Version >= 29 // Android Q+
+          ? PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION
+          : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+      ios: PERMISSIONS.IOS.LOCATION_ALWAYS,
+    })!;
+
+    let status = await check(permission);
+    console.log(status);
+
+    if (status === 'granted') return true;
+
+    status = await request(permission, {
+      title: 'Sample',
+      message:
+        'We need access to background location in order to show relevant content.',
+      buttonPositive: 'OK',
+    });
+
+    return status === 'granted';
+  }
+
+  async function ensureBluetoothScanPermission(): Promise<boolean> {
+    if (Platform.OS === 'android') {
+      if (Platform.Version < 31) return true;
+
+      let status = await check(PERMISSIONS.ANDROID.BLUETOOTH_SCAN);
+      if (status === 'granted') return true;
+
+      status = await request(PERMISSIONS.ANDROID.BLUETOOTH_SCAN, {
+        title: 'Sample',
+        message:
+          'We need access to bluetooth scan in order to show relevant content.',
+        buttonPositive: 'OK',
+      });
+
+      return status === 'granted';
+    }
+
+    return false;
   }
 
   return (
@@ -419,6 +516,17 @@ export const HomePage: FC = () => {
 
           <Text style={styles.title}>Loyalty</Text>
           <Button onPress={onFetchPassClicked}>Fetch pass</Button>
+
+          <Text style={styles.title}>Geo</Text>
+          <Button onPress={onEnableLocationUpdatesClicked}>
+            Enable location updates
+          </Button>
+          <Button onPress={onDisableLocationUpdatesClicked}>
+            Disable location updates
+          </Button>
+          <Button onPress={onViewRangingBeaconsClicked}>
+            View ranging beacons
+          </Button>
         </View>
       </ScrollView>
 

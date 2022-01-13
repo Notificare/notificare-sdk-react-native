@@ -20,6 +20,8 @@ import { NotificarePush } from 'react-native-notificare-push';
 import { NotificarePushUI } from 'react-native-notificare-push-ui';
 import { NotificareInbox } from 'react-native-notificare-inbox';
 import { NotificareScannables } from 'react-native-notificare-scannables';
+import { NotificareGeo } from 'react-native-notificare-geo';
+import { BeaconsPage } from './pages/beacons-page';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,6 +53,10 @@ export const App: FC = () => {
 
         if (await NotificarePush.hasRemoteNotificationsEnabled()) {
           await NotificarePush.enableRemoteNotifications();
+        }
+
+        if (await NotificareGeo.hasLocationServicesEnabled()) {
+          await NotificareGeo.enableLocationUpdates();
         }
       }),
       Notificare.onDeviceRegistered((device) => {
@@ -185,6 +191,41 @@ export const App: FC = () => {
         console.log('=== SCANNABLE SESSION FAILED ===');
         console.log(JSON.stringify(error, null, 2));
       }),
+      //
+      // Notificare Geo events
+      //
+      NotificareGeo.onLocationUpdated((location) => {
+        console.log('=== LOCATION UPDATED ===');
+        console.log(JSON.stringify(location, null, 2));
+      }),
+      NotificareGeo.onRegionEntered((region) => {
+        console.log('=== REGION ENTERED ===');
+        console.log(JSON.stringify(region, null, 2));
+      }),
+      NotificareGeo.onRegionExited((region) => {
+        console.log('=== REGION EXITED ===');
+        console.log(JSON.stringify(region, null, 2));
+      }),
+      NotificareGeo.onBeaconEntered((beacon) => {
+        console.log('=== BEACON ENTERED ===');
+        console.log(JSON.stringify(beacon, null, 2));
+      }),
+      NotificareGeo.onBeaconExited((beacon) => {
+        console.log('=== BEACON EXITED ===');
+        console.log(JSON.stringify(beacon, null, 2));
+      }),
+      NotificareGeo.onBeaconsRanged(({ region, beacons }) => {
+        console.log('=== BEACONS RANGED ===');
+        console.log(JSON.stringify({ region, beacons }, null, 2));
+      }),
+      NotificareGeo.onVisit((visit) => {
+        console.log('=== VISIT ===');
+        console.log(JSON.stringify(visit, null, 2));
+      }),
+      NotificareGeo.onHeadingUpdated((heading) => {
+        console.log('=== HEADING UPDATED ===');
+        console.log(JSON.stringify(heading, null, 2));
+      }),
     ];
 
     return () => subscriptions.forEach((s) => s.remove());
@@ -196,6 +237,7 @@ export const App: FC = () => {
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={HomePage} />
           <Stack.Screen name="Inbox" component={InboxPage} />
+          <Stack.Screen name="Beacons" component={BeaconsPage} />
         </Stack.Navigator>
       </NavigationContainer>
 
