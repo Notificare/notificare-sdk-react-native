@@ -7,6 +7,7 @@ import { NotificarePush } from 'react-native-notificare-push';
 import { useNavigation } from '@react-navigation/native';
 import { NotificareAssets } from 'react-native-notificare-assets';
 import { NotificareScannables } from 'react-native-notificare-scannables';
+import { NotificareLoyalty } from 'react-native-notificare-loyalty';
 
 export const HomePage: FC = () => {
   const navigation = useNavigation();
@@ -326,6 +327,23 @@ export const HomePage: FC = () => {
     }
   }
 
+  async function onFetchPassClicked() {
+    try {
+      const pass = await NotificareLoyalty.fetchPassBySerial(
+        '520d974e-b3d5-4d30-93b4-259f9d4bfa1d'
+      );
+      setSnackbarInfo({ visible: true, label: JSON.stringify(pass) });
+
+      console.log('=== FETCH PASS ===');
+      console.log(JSON.stringify(pass, null, 2));
+
+      await NotificareLoyalty.present(pass);
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+      console.log(e);
+    }
+  }
+
   return (
     <>
       <ScrollView>
@@ -398,6 +416,9 @@ export const HomePage: FC = () => {
           <Button onPress={onStartScannableSessionClicked}>
             Start scannable session
           </Button>
+
+          <Text style={styles.title}>Loyalty</Text>
+          <Button onPress={onFetchPassClicked}>Fetch pass</Button>
         </View>
       </ScrollView>
 
