@@ -15,6 +15,7 @@ import {
   PERMISSIONS,
   request,
 } from 'react-native-permissions';
+import { NotificareAuthentication } from 'react-native-notificare-authentication';
 
 export const HomePage: FC = () => {
   const navigation = useNavigation();
@@ -441,6 +442,193 @@ export const HomePage: FC = () => {
     return false;
   }
 
+  //
+  // Authentication
+  //
+
+  async function onIsLoggedInClicked() {
+    try {
+      const result = await NotificareAuthentication.isLoggedIn();
+      setSnackbarInfo({ visible: true, label: JSON.stringify(result) });
+
+      console.log('=== IS LOGGED IN ===');
+      console.log(JSON.stringify(result, null, 2));
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onCreateAccountClicked() {
+    try {
+      await NotificareAuthentication.createAccount(
+        'helder+3@notifica.re',
+        '123456',
+        'Helder Pinhal'
+      );
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onLoginClicked() {
+    try {
+      await NotificareAuthentication.login('helder@notifica.re', '123456');
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onLogoutClicked() {
+    try {
+      await NotificareAuthentication.logout();
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onFetchUserDetailsClicked() {
+    try {
+      const result = await NotificareAuthentication.fetchUserDetails();
+      setSnackbarInfo({ visible: true, label: JSON.stringify(result) });
+
+      console.log('=== FETCH USER DETAILS ===');
+      console.log(JSON.stringify(result, null, 2));
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onFetchUserPreferencesClicked() {
+    try {
+      const result = await NotificareAuthentication.fetchUserPreferences();
+      setSnackbarInfo({ visible: true, label: JSON.stringify(result) });
+
+      console.log('=== FETCH USER PREFERENCES ===');
+      console.log(JSON.stringify(result, null, 2));
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onFetchUserSegmentsClicked() {
+    try {
+      const result = await NotificareAuthentication.fetchUserSegments();
+      setSnackbarInfo({ visible: true, label: JSON.stringify(result) });
+
+      console.log('=== FETCH USER SEGMENTS ===');
+      console.log(JSON.stringify(result, null, 2));
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onSendPasswordResetClicked() {
+    try {
+      await NotificareAuthentication.sendPasswordReset('helder@notifica.re');
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onResetPasswordClicked() {
+    try {
+      await NotificareAuthentication.resetPassword('helder@notifica.re', '---');
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onChangePasswordClicked() {
+    try {
+      await NotificareAuthentication.changePassword('123456');
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onValidateUserClicked() {
+    try {
+      await NotificareAuthentication.validateUser('---');
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onGeneratePushEmailClicked() {
+    try {
+      const result = await NotificareAuthentication.generatePushEmailAddress();
+      setSnackbarInfo({ visible: true, label: JSON.stringify(result) });
+
+      console.log('=== GENERATE PUSH EMAIL ===');
+      console.log(JSON.stringify(result, null, 2));
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onAddUserSegmentClicked() {
+    try {
+      const segments = await NotificareAuthentication.fetchUserSegments();
+
+      await NotificareAuthentication.addUserSegment(segments[0]);
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onRemoveUserSegmentClicked() {
+    try {
+      const segments = await NotificareAuthentication.fetchUserSegments();
+
+      await NotificareAuthentication.removeUserSegment(segments[0]);
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onAddUserSegmentToPreferenceClicked() {
+    try {
+      const preferences = await NotificareAuthentication.fetchUserPreferences();
+
+      const preference = preferences[0];
+      const option = preference.options[0];
+
+      await NotificareAuthentication.addUserSegmentToPreference(
+        preference,
+        option
+      );
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onRemoveUserSegmentFromPreferenceClicked() {
+    try {
+      const preferences = await NotificareAuthentication.fetchUserPreferences();
+
+      const preference = preferences[0];
+      const option = preference.options[0];
+
+      await NotificareAuthentication.removeUserSegmentFromPreference(
+        preference,
+        option
+      );
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
   return (
     <>
       <ScrollView>
@@ -526,6 +714,40 @@ export const HomePage: FC = () => {
           </Button>
           <Button onPress={onViewRangingBeaconsClicked}>
             View ranging beacons
+          </Button>
+
+          <Text style={styles.title}>Authentication</Text>
+          <Button onPress={onIsLoggedInClicked}>Am I logged in?</Button>
+          <Button onPress={onCreateAccountClicked}>Create an account</Button>
+          <Button onPress={onLoginClicked}>Login</Button>
+          <Button onPress={onLogoutClicked}>Logout</Button>
+          <Button onPress={onFetchUserDetailsClicked}>
+            Fetch user details
+          </Button>
+          <Button onPress={onFetchUserPreferencesClicked}>
+            Fetch user preferences
+          </Button>
+          <Button onPress={onFetchUserSegmentsClicked}>
+            Fetch user segments
+          </Button>
+          <Button onPress={onSendPasswordResetClicked}>
+            Send password reset
+          </Button>
+          <Button onPress={onResetPasswordClicked}>Reset password</Button>
+          <Button onPress={onChangePasswordClicked}>Change password</Button>
+          <Button onPress={onValidateUserClicked}>Validate user</Button>
+          <Button onPress={onGeneratePushEmailClicked}>
+            Generate push email
+          </Button>
+          <Button onPress={onAddUserSegmentClicked}>Add user segment</Button>
+          <Button onPress={onRemoveUserSegmentClicked}>
+            Remove user segment
+          </Button>
+          <Button onPress={onAddUserSegmentToPreferenceClicked}>
+            Add user segment to preference
+          </Button>
+          <Button onPress={onRemoveUserSegmentFromPreferenceClicked}>
+            Remove user segment from preference
           </Button>
         </View>
       </ScrollView>

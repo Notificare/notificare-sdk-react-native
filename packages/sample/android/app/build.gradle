@@ -143,6 +143,11 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "3.0.0"
+
+      manifestPlaceholders = [
+          googleMapsApiKey: properties.getProperty('google.maps.key'),
+          notificareApplicationId: properties.getProperty('notificare.application.id')
+      ]
     }
     splits {
         abi {

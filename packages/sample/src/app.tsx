@@ -22,6 +22,7 @@ import { NotificareInbox } from 'react-native-notificare-inbox';
 import { NotificareScannables } from 'react-native-notificare-scannables';
 import { NotificareGeo } from 'react-native-notificare-geo';
 import { BeaconsPage } from './pages/beacons-page';
+import { NotificareAuthentication } from 'react-native-notificare-authentication';
 
 const Stack = createNativeStackNavigator();
 
@@ -225,6 +226,29 @@ export const App: FC = () => {
       NotificareGeo.onHeadingUpdated((heading) => {
         console.log('=== HEADING UPDATED ===');
         console.log(JSON.stringify(heading, null, 2));
+      }),
+      //
+      // Notificare Authentication events
+      //
+      NotificareAuthentication.onPasswordResetTokenReceived(async (token) => {
+        console.log('=== PASSWORD RESET TOKEN RECEIVED ===');
+        console.log(JSON.stringify(token, null, 2));
+
+        try {
+          await NotificareAuthentication.resetPassword('123456', token);
+        } catch (e) {
+          setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+        }
+      }),
+      NotificareAuthentication.onValidateUserTokenReceived(async (token) => {
+        console.log('=== VALIDATE USER TOKEN RECEIVED ===');
+        console.log(JSON.stringify(token, null, 2));
+
+        try {
+          await NotificareAuthentication.validateUser(token);
+        } catch (e) {
+          setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+        }
       }),
     ];
 
