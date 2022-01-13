@@ -1,22 +1,7 @@
-import { NativeModules, Platform } from 'react-native';
+import { NotificareLoyalty } from './notificare-loyalty';
 
-const LINKING_ERROR =
-  `The package 'react-native-notificare-loyalty' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+export * from './notificare-loyalty';
 
-const NotificareLoyaltyModule = NativeModules.NotificareLoyaltyModule
-  ? NativeModules.NotificareLoyaltyModule
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+export * from './models/notificare-pass';
 
-export function multiply(a: number, b: number): Promise<number> {
-  return NotificareLoyaltyModule.multiply(a, b);
-}
+export default NotificareLoyalty;
