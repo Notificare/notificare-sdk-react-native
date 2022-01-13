@@ -10,7 +10,6 @@ import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import re.notifica.react_native_awesome_boilerplate.AwesomeBoilerplatePackage;
 import re.notifica.react_native.NotificarePackage;
 import re.notifica.assets.react_native.NotificareAssetsPackage;
 import re.notifica.authentication.react_native.NotificareAuthenticationPackage;
@@ -36,7 +35,6 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
-          packages.add(new AwesomeBoilerplatePackage());
           packages.add(new NotificarePackage());
           packages.add(new NotificareAssetsPackage());
           packages.add(new NotificareAuthenticationPackage());

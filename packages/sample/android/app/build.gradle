@@ -230,7 +230,6 @@ dependencies {
         implementation jscFlavor
     }
 
-    implementation project(':react_native_awesome_boilerplate')
     implementation project(':react_native_notificare')
     implementation project(':react_native_notificare_assets')
     implementation project(':react_native_notificare_authentication')

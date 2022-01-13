@@ -11,7 +11,6 @@ const escape = require('escape-string-regexp');
 
 // Aliased packages
 const packages = [
-  'react-native-awesome-boilerplate',
   'react-native-notificare',
   'react-native-notificare-assets',
   'react-native-notificare-authentication',

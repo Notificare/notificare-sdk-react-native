@@ -12,7 +12,6 @@ target 'sample' do
     :hermes_enabled => false
   )
 
-  pod 'react-native-awesome-boilerplate', :path => '../../react-native-awesome-boilerplate'
   pod 'react-native-notificare', :path => '../../react-native-notificare'
   pod 'react-native-notificare-assets', :path => '../../react-native-notificare-assets'
   pod 'react-native-notificare-geo', :path => '../../react-native-notificare-geo'

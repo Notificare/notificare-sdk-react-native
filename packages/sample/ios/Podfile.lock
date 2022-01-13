@@ -287,8 +287,6 @@ PODS:
   - React-jsinspector (0.66.4)
   - React-logger (0.66.4):
     - glog
-  - react-native-awesome-boilerplate (3.0.0):
-    - React-Core
   - react-native-notificare (3.0.0):
     - Notificare/NotificareKit (= 3.0.0-beta.1)
     - React-Core
@@ -446,7 +444,6 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
-  - react-native-awesome-boilerplate (from `../../react-native-awesome-boilerplate`)
   - react-native-notificare (from `../../react-native-notificare`)
   - react-native-notificare-assets (from `../../react-native-notificare-assets`)
   - react-native-notificare-authentication (from `../../react-native-notificare-authentication`)
@@ -533,8 +530,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
-  react-native-awesome-boilerplate:
-    :path: "../../react-native-awesome-boilerplate"
   react-native-notificare:
     :path: "../../react-native-notificare"
   react-native-notificare-assets:
@@ -623,7 +618,6 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 94ce921e1d8ce7023366873ec371f3441383b396
   React-jsinspector: d0374f7509d407d2264168b6d0fad0b54e300b85
   React-logger: 933f80c97c633ee8965d609876848148e3fef438
-  react-native-awesome-boilerplate: 151bac4c5d19c562393a234fa4940d89f3edd9d4
   react-native-notificare: 2f188ef9a92978b1d6a3baaea9e8be1981cb699d
   react-native-notificare-assets: 72cd4d8e09d0b7f9418508373920e59aec24967f
   react-native-notificare-authentication: e63e7e7f8b3669ea4cde36b6ab9068049923ab7f
@@ -652,6 +646,6 @@ SPEC CHECKSUMS:
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: c297feb7b582b5a6e60cf6f8b59a1f73d4807c9e
+PODFILE CHECKSUM: caa722457abd754797217eccfcaa8894b3e15529
 
 COCOAPODS: 1.11.2
