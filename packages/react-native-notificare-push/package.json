@@ -38,6 +38,8 @@
     "build": "bob build",
     "typescript": "tsc --noEmit",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "pack": "npm pack",
+    "prepack": "yarn build",
     "prepare": "yarn build"
   },
   "peerDependencies": {

@@ -9,8 +9,9 @@
     "app:ios:pods": "lerna run pods --scope sample --stream",
     "app:ios:xcode": "open packages/sample/ios/sample.xcworkspace",
     "lint": "lerna run lint",
-    "typescript": "lerna run typescript",
-    "prepare": "husky install"
+    "pack": "lerna run pack",
+    "prepare": "husky install",
+    "typescript": "lerna run typescript"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.0.1",
