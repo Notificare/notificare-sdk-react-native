@@ -1,3 +1,5 @@
-## 3.0.0-alpha.1
+# CHANGELOG
 
-* TODO: Describe initial release.
+## 3.0.0
+
+Please check our [migration guide](./MIGRATION.md) before adopting the v3.x generation.
