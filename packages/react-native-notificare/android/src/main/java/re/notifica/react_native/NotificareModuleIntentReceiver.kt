@@ -15,6 +15,10 @@ internal class NotificareModuleIntentReceiver : NotificareIntentReceiver() {
         }
     }
 
+    override fun onUnlaunched(context: Context) {
+        EventBroker.dispatchEvent("unlaunched", null)
+    }
+
     override fun onDeviceRegistered(context: Context, device: NotificareDevice) {
         try {
             EventBroker.dispatchEvent("device_registered", device.toJson().toReactMap())

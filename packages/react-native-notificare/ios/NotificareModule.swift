@@ -7,7 +7,7 @@ private let DEFAULT_ERROR_CODE = "notificare_error"
 class NotificareModule: RCTEventEmitter {
     
     private var hasListeners = false
-    private var eventQueue = [(name: String, payload: Any)]()
+    private var eventQueue = [(name: String, payload: Any?)]()
     
     override init() {
         super.init()
@@ -38,12 +38,13 @@ class NotificareModule: RCTEventEmitter {
     override func supportedEvents() -> [String] {
         return [
             "ready",
+            "unlaunched",
             "device_registered",
             "url_opened",
         ]
     }
     
-    private func dispatchEvent(_ name: String, payload: Any) {
+    private func dispatchEvent(_ name: String, payload: Any?) {
         if hasListeners {
             sendEvent(withName: name, body: payload)
         } else {
@@ -64,15 +65,19 @@ class NotificareModule: RCTEventEmitter {
     }
     
     @objc
-    func launch(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
-        Notificare.shared.launch()
-        resolve(nil)
+    func launch(_ resolve: @escaping RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+        onMainThread {
+            Notificare.shared.launch()
+            resolve(nil)
+        }
     }
     
     @objc
-    func unlaunch(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
-        Notificare.shared.unlaunch()
-        resolve(nil)
+    func unlaunch(_ resolve: @escaping RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+        onMainThread {
+            Notificare.shared.unlaunch()
+            resolve(nil)
+        }
     }
     
     @objc
@@ -330,6 +335,10 @@ extension NotificareModule: NotificareDelegate {
         }
     }
     
+    func notificareDidUnlaunch(_ notificare: Notificare) {
+        dispatchEvent("unlaunched", payload: nil)
+    }
+    
     func notificare(_ notificare: Notificare, didRegisterDevice device: NotificareDevice) {
         do {
             dispatchEvent("device_registered", payload: try device.toJson())
@@ -359,5 +368,11 @@ extension NotificareModule: NotificareAppDelegateInterceptor {
         }
         
         return Notificare.shared.handleDynamicLinkUrl(url)
+    }
+}
+
+private func onMainThread(_ action: @escaping () -> Void) {
+    DispatchQueue.main.async {
+        action()
     }
 }

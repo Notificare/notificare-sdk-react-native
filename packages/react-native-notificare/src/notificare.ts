@@ -88,6 +88,10 @@ export class Notificare {
     return this.eventEmitter.addListener('ready', callback);
   }
 
+  public static onUnlaunched(callback: () => void): EmitterSubscription {
+    return this.eventEmitter.addListener('unlaunched', callback);
+  }
+
   public static onDeviceRegistered(
     callback: (device: NotificareDevice) => void
   ): EmitterSubscription {
