@@ -44,8 +44,8 @@
     "prepack": "yarn build; yarn docs:replace-symbolic-links",
     "postpack": "yarn docs:create-symbolic-links",
     "prepare": "yarn build",
-    "docs:create-symbolic-links": "rm README.md LICENSE CHANGELOG.md MIGRATION.md; ln -s ../../README.md ../../LICENSE ../../CHANGELOG.md ../../MIGRATION.md .",
-    "docs:replace-symbolic-links": "rm README.md LICENSE CHANGELOG.md MIGRATION.md; cp ../../README.md ../../LICENSE ../../CHANGELOG.md ../../MIGRATION.md ."
+    "docs:create-symbolic-links": "rm README.md CHANGELOG.md MIGRATION.md; ln -s ../../README.md ../../CHANGELOG.md ../../MIGRATION.md .",
+    "docs:replace-symbolic-links": "rm README.md CHANGELOG.md MIGRATION.md; cp ../../README.md ../../CHANGELOG.md ../../MIGRATION.md ."
   },
   "peerDependencies": {
     "react": "*",
