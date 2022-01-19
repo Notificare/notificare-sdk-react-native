@@ -60,6 +60,14 @@ export const App: FC = () => {
           await NotificareGeo.enableLocationUpdates();
         }
       }),
+      Notificare.onUnlaunched(() => {
+        console.log('=== ON UNLAUNCHED ===');
+
+        setSnackbarInfo({
+          visible: true,
+          label: `Notificare has finished un-launching.`,
+        });
+      }),
       Notificare.onDeviceRegistered((device) => {
         console.log('=== DEVICE REGISTERED ===');
         console.log(JSON.stringify(device, null, 2));
