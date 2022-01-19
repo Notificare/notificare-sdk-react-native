@@ -27,6 +27,8 @@
     "ios",
     "cpp",
     "react-native-notificare-push.podspec",
+    "CHANGELOG.md",
+    "MIGRATION.md",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build",
@@ -39,8 +41,11 @@
     "typescript": "tsc --noEmit",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "pack": "npm pack",
-    "prepack": "yarn build",
-    "prepare": "yarn build"
+    "prepack": "yarn build; yarn docs:replace-symbolic-links",
+    "postpack": "yarn docs:create-symbolic-links",
+    "prepare": "yarn build",
+    "docs:create-symbolic-links": "rm README.md LICENSE CHANGELOG.md MIGRATION.md; ln -s ../../README.md ../../LICENSE ../../CHANGELOG.md ../../MIGRATION.md .",
+    "docs:replace-symbolic-links": "rm README.md LICENSE CHANGELOG.md MIGRATION.md; cp ../../README.md ../../LICENSE ../../CHANGELOG.md ../../MIGRATION.md ."
   },
   "peerDependencies": {
     "react": "*",
