@@ -35,7 +35,7 @@ export class NotificareLoyalty {
     return await NativeModule.fetchPassByBarcode(barcode);
   }
 
-  public static async present(pass: NotificarePass): Promise<NotificarePass> {
-    return await NativeModule.present(pass);
+  public static async present(pass: NotificarePass): Promise<void> {
+    await NativeModule.present(pass);
   }
 }
