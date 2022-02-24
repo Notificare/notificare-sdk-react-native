@@ -24,7 +24,7 @@ buildscript {
         maven { url 'https://maven.notifica.re/releases' }
     }
     dependencies {
-        classpath 're.notifica.gradle:notificare-services:1.0.0'
+        classpath 're.notifica.gradle:notificare-services:1.0.1'
     }
 }
 
@@ -56,15 +56,15 @@ We have moved to several new packages. Here's all the dependencies available:
 ```json
 {
   "dependencies": {
-    "react-native-notificare": "3.0.0-beta.2",
-    "react-native-notificare-assets": "3.0.0-beta.2",
-    "react-native-notificare-authentication": "3.0.0-beta.2",
-    "react-native-notificare-geo": "3.0.0-beta.2",
-    "react-native-notificare-inbox": "3.0.0-beta.2",
-    "react-native-notificare-loyalty": "3.0.0-beta.2",
-    "react-native-notificare-push": "3.0.0-beta.2",
-    "react-native-notificare-push-ui": "3.0.0-beta.2",
-    "react-native-notificare-scannables": "3.0.0-beta.2"
+    "react-native-notificare": "3.0.0",
+    "react-native-notificare-assets": "3.0.0",
+    "react-native-notificare-authentication": "3.0.0",
+    "react-native-notificare-geo": "3.0.0",
+    "react-native-notificare-inbox": "3.0.0",
+    "react-native-notificare-loyalty": "3.0.0",
+    "react-native-notificare-push": "3.0.0",
+    "react-native-notificare-push-ui": "3.0.0",
+    "react-native-notificare-scannables": "3.0.0"
   }
 }
 ```
@@ -80,10 +80,10 @@ In the hypothetical scenario where you have an app that wants to add push notifi
 ```json
 {
   "dependencies": {
-    "react-native-notificare": "3.0.0-beta.2",
-    "react-native-notificare-inbox": "3.0.0-beta.2",
-    "react-native-notificare-push": "3.0.0-beta.2",
-    "react-native-notificare-push-ui": "3.0.0-beta.2"
+    "react-native-notificare": "3.0.0",
+    "react-native-notificare-inbox": "3.0.0",
+    "react-native-notificare-push": "3.0.0",
+    "react-native-notificare-push-ui": "3.0.0"
   }
 }
 ```
