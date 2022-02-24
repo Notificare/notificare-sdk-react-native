@@ -2,7 +2,7 @@
 
 # Notificare React Native SDK
 
-[![GitHub release](https://img.shields.io/github/v/release/notificare/notificare-sdk-react-native?include_prereleases)](https://github.com/notificare/notificare-sdk-react-native/releases)
+[![GitHub release](https://img.shields.io/github/v/release/notificare/notificare-sdk-react-native)](https://github.com/notificare/notificare-sdk-react-native/releases)
 [![License](https://img.shields.io/github/license/notificare/notificare-sdk-react-native)](https://github.com/notificare/notificare-sdk-react-native/blob/main/LICENSE)
 
 The Notificare React Native SDK makes it quick and easy to communicate efficiently with many of the Notificare API services and enables you to seamlessly integrate our various features, from Push Notifications to Contextualised Storage.
@@ -14,7 +14,6 @@ Table of contents
 =================
 
 * [Features](#features)
-* [Releases](#releases)
 * [Installation](#installation)
   * [Requirements](#requirements)
   * [Configuration](#configuration)
