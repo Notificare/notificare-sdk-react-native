@@ -114,7 +114,7 @@ public class NotificareGeoModule(reactContext: ReactApplicationContext) : ReactC
                 beacons.forEach { pushMap(it.toJson().toReactMap()) }
             })
 
-            EventBroker.dispatchEvent("beacons_ranged", payload.toJson().toReactMap())
+            EventBroker.dispatchEvent("beacons_ranged", payload)
         } catch (e: Exception) {
             NotificareLogger.error("Failed to emit the beacons_ranged event.", e)
         }
