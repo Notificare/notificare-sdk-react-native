@@ -104,6 +104,15 @@ export class NotificarePush {
     return this.eventEmitter.addListener('notification_opened', callback);
   }
 
+  public static onUnknownNotificationOpened(
+    callback: (notification: Record<string, any>) => void
+  ): EmitterSubscription {
+    return this.eventEmitter.addListener(
+      'unknown_notification_opened',
+      callback
+    );
+  }
+
   public static onNotificationActionOpened(
     callback: (data: {
       notification: NotificareNotification;
@@ -112,6 +121,19 @@ export class NotificarePush {
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
       'notification_action_opened',
+      callback
+    );
+  }
+
+  public static onUnknownNotificationActionOpened(
+    callback: (data: {
+      notification: Record<string, any>;
+      action: string;
+      responseText: string | null;
+    }) => void
+  ): EmitterSubscription {
+    return this.eventEmitter.addListener(
+      'unknown_notification_action_opened',
       callback
     );
   }
