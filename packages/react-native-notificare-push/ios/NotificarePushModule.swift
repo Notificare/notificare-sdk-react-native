@@ -40,7 +40,9 @@ class NotificarePushModule: RCTEventEmitter {
             "system_notification_received",
             "unknown_notification_received",
             "notification_opened",
+            "unknown_notification_opened",
             "notification_action_opened",
+            "unknown_notification_action_opened",
             "notification_settings_changed",
             "should_open_notification_settings",
             "failed_to_register_for_remote_notifications",
@@ -231,6 +233,10 @@ extension NotificarePushModule: NotificarePushDelegate {
         }
     }
     
+    func notificare(_ notificarePush: NotificarePush, didOpenUnknownNotification userInfo: [AnyHashable : Any]) {
+        dispatchEvent("unknown_notification_opened", payload: userInfo)
+    }
+    
     func notificare(_ notificarePush: NotificarePush, didOpenAction action: NotificareNotification.Action, for notification: NotificareNotification) {
         do {
             let payload = [
@@ -244,9 +250,18 @@ extension NotificarePushModule: NotificarePushDelegate {
         }
     }
     
-    //    func notificare(_ notificarePush: NotificarePush, didReceiveUnknownAction action: String, for notification: [AnyHashable : Any], responseText: String?) {
-    //
-    //    }
+    func notificare(_ notificarePush: NotificarePush, didOpenUnknownAction action: String, for notification: [AnyHashable : Any], responseText: String?) {
+        var payload: [String: Any] = [
+            "notification": notification,
+            "action": action,
+        ]
+        
+        if let responseText = responseText {
+            payload["responseText"] = responseText
+        }
+        
+        dispatchEvent("unknown_notification_action_opened", payload: payload)
+    }
     
     func notificare(_ notificarePush: NotificarePush, didChangeNotificationSettings granted: Bool) {
         dispatchEvent("notification_settings_changed", payload: granted)

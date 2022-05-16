@@ -115,6 +115,14 @@ export const App: FC = () => {
           await NotificarePushUI.presentAction(notification, action);
         }
       ),
+      NotificarePush.onUnknownNotificationOpened((notification) => {
+        console.log('=== UNKNOWN NOTIFICATION OPENED ===');
+        console.log(JSON.stringify(notification, null, 2));
+      }),
+      NotificarePush.onUnknownNotificationActionOpened((data) => {
+        console.log('=== UNKNOWN NOTIFICATION ACTION OPENED ===');
+        console.log(JSON.stringify(data, null, 2));
+      }),
       NotificarePush.onNotificationSettingsChanged((granted) => {
         console.log('=== NOTIFICATION SETTINGS CHANGED ===');
         console.log(JSON.stringify(granted, null, 2));
