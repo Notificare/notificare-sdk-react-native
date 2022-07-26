@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="re.notifica.demo">
+  package="re.notifica.sample.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

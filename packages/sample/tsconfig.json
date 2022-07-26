@@ -64,6 +64,7 @@
       "react-native-notificare-geo": ["../react-native-notificare-geo/src/index"],
       "react-native-notificare-inbox": ["../react-native-notificare-inbox/src/index"],
       "react-native-notificare-loyalty": ["../react-native-notificare-loyalty/src/index"],
+      "react-native-notificare-monetize": ["../react-native-notificare-monetize/src/index"],
       "react-native-notificare-push": ["../react-native-notificare-push/src/index"],
       "react-native-notificare-push-ui": ["../react-native-notificare-push-ui/src/index"],
       "react-native-notificare-scannables": ["../react-native-notificare-scannables/src/index"]

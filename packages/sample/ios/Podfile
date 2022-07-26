@@ -18,6 +18,7 @@ target 'sample' do
   pod 'react-native-notificare-authentication', :path => '../../react-native-notificare-authentication'
   pod 'react-native-notificare-inbox', :path => '../../react-native-notificare-inbox'
   pod 'react-native-notificare-loyalty', :path => '../../react-native-notificare-loyalty'
+  pod 'react-native-notificare-monetize', :path => '../../react-native-notificare-monetize'
   pod 'react-native-notificare-push', :path => '../../react-native-notificare-push'
   pod 'react-native-notificare-push-ui', :path => '../../react-native-notificare-push-ui'
   pod 'react-native-notificare-scannables', :path => '../../react-native-notificare-scannables'

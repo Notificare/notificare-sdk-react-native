@@ -8,6 +8,7 @@ const packages = [
   'react-native-notificare-geo',
   'react-native-notificare-inbox',
   'react-native-notificare-loyalty',
+  'react-native-notificare-monetize',
   'react-native-notificare-push',
   'react-native-notificare-push-ui',
   'react-native-notificare-scannables',
