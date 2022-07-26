@@ -16,6 +16,7 @@ import {
   request,
 } from 'react-native-permissions';
 import { NotificareAuthentication } from 'react-native-notificare-authentication';
+import { NotificareMonetize } from 'react-native-notificare-monetize';
 
 export const HomePage: FC = () => {
   const navigation = useNavigation();
@@ -629,6 +630,56 @@ export const HomePage: FC = () => {
     }
   }
 
+  //
+  // Monetize
+  //
+
+  async function onRefreshMonetizeClicked() {
+    try {
+      await NotificareMonetize.refresh();
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onGetProductsClicked() {
+    try {
+      const products = await NotificareMonetize.getProducts();
+      setSnackbarInfo({ visible: true, label: JSON.stringify(products) });
+
+      console.log('=== PRODUCTS ===');
+      console.log(JSON.stringify(products, null, 2));
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onGetPurchasesClicked() {
+    try {
+      const products = await NotificareMonetize.getPurchases();
+      setSnackbarInfo({ visible: true, label: JSON.stringify(products) });
+
+      console.log('=== PURCHASES ===');
+      console.log(JSON.stringify(products, null, 2));
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onStartPurchaseClicked() {
+    try {
+      const products = await NotificareMonetize.getProducts();
+
+      if (products.length > 0) {
+        await NotificareMonetize.startPurchaseFlow(products[0]);
+        setSnackbarInfo({ visible: true, label: 'Done.' });
+      }
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
   return (
     <>
       <ScrollView>
@@ -749,6 +800,12 @@ export const HomePage: FC = () => {
           <Button onPress={onRemoveUserSegmentFromPreferenceClicked}>
             Remove user segment from preference
           </Button>
+
+          <Text style={styles.title}>Monetize</Text>
+          <Button onPress={onRefreshMonetizeClicked}>Refresh</Button>
+          <Button onPress={onGetProductsClicked}>Get products</Button>
+          <Button onPress={onGetPurchasesClicked}>Get purchases</Button>
+          <Button onPress={onStartPurchaseClicked}>Start purchase</Button>
         </View>
       </ScrollView>
 

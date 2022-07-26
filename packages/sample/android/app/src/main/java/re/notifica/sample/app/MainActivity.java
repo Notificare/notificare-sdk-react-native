@@ -1,4 +1,4 @@
-package re.notifica.demo;
+package re.notifica.sample.app;
 
 import android.os.Bundle;
 

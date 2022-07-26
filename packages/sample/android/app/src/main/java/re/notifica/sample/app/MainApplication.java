@@ -1,4 +1,4 @@
-package re.notifica.demo;
+package re.notifica.sample.app;
 
 import android.app.Application;
 import android.content.Context;
@@ -10,6 +10,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import re.notifica.monetize.react_native.NotificareMonetizePackage;
 import re.notifica.react_native.NotificarePackage;
 import re.notifica.assets.react_native.NotificareAssetsPackage;
 import re.notifica.authentication.react_native.NotificareAuthenticationPackage;
@@ -41,6 +42,7 @@ public class MainApplication extends Application implements ReactApplication {
           packages.add(new NotificareGeoPackage());
           packages.add(new NotificareInboxPackage());
           packages.add(new NotificareLoyaltyPackage());
+          packages.add(new NotificareMonetizePackage());
           packages.add(new NotificarePushPackage());
           packages.add(new NotificarePushUIPackage());
           packages.add(new NotificareScannablesPackage());
@@ -80,7 +82,7 @@ public class MainApplication extends Application implements ReactApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("re.notifica.demo.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("re.notifica.sample.app.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);

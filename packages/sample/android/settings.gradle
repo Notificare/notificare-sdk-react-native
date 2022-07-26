@@ -20,6 +20,9 @@ project(':react_native_notificare_inbox').projectDir = new File(rootProject.proj
 include ':react_native_notificare_loyalty'
 project(':react_native_notificare_loyalty').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-loyalty/android')
 
+include ':react_native_notificare_monetize'
+project(':react_native_notificare_monetize').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-monetize/android')
+
 include ':react_native_notificare_push'
 project(':react_native_notificare_push').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-push/android')
 
