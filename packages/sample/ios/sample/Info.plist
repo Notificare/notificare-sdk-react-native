@@ -24,6 +24,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NFCReaderUsageDescription</key>
+	<string>We will need access to the device's NFC reader to unlock new content.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -35,12 +37,27 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>We will need access to the device's camera to reply to notifications or scan QR codes.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We will need to make use of your location to present relevant information about offers around you.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We will need to make use of your location to present relevant information about offers around you.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>We will need to make use of your location to present relevant information about offers around you.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>We will need to make use of your location to present relevant information about offers around you.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We will need access to the device's microphone to reply to notifications.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We may need to access your photos to reply to notifications.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>MaterialIcons.ttf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
-    <string>location</string>
-    <string>remote-notification</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -56,25 +73,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>MaterialIcons.ttf</string>
-	</array>
-  <key>NFCReaderUsageDescription</key>
-  <string>We will need access to the device's NFC reader to unlock new content.</string>
-  <key>NSCameraUsageDescription</key>
-  <string>We will need access to the device's camera to reply to notifications or scan QR codes.</string>
-  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-  <string>We will need to make use of your location to present relevant information about offers around you.</string>
-  <key>NSLocationAlwaysUsageDescription</key>
-  <string>We will need to make use of your location to present relevant information about offers around you.</string>
-  <key>NSLocationUsageDescription</key>
-  <string>We will need to make use of your location to present relevant information about offers around you.</string>
-  <key>NSLocationWhenInUseUsageDescription</key>
-  <string>We will need to make use of your location to present relevant information about offers around you.</string>
-  <key>NSMicrophoneUsageDescription</key>
-  <string>We will need access to the device's microphone to reply to notifications.</string>
-  <key>NSPhotoLibraryUsageDescription</key>
-  <string>We may need to access your photos to reply to notifications.</string>
 </dict>
 </plist>

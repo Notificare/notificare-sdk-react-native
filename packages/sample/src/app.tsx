@@ -23,6 +23,7 @@ import { NotificareScannables } from 'react-native-notificare-scannables';
 import { NotificareGeo } from 'react-native-notificare-geo';
 import { BeaconsPage } from './pages/beacons-page';
 import { NotificareAuthentication } from 'react-native-notificare-authentication';
+import { NotificareMonetize } from 'react-native-notificare-monetize';
 
 const Stack = createNativeStackNavigator();
 
@@ -265,6 +266,39 @@ export const App: FC = () => {
         } catch (e) {
           setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
         }
+      }),
+      //
+      // Notificare Monetize
+      //
+      NotificareMonetize.onBillingSetupFinished(() => {
+        console.log('=== BILLING SETUP FINISHED ===');
+      }),
+      NotificareMonetize.onBillingSetupFailed(({ code, message }) => {
+        console.log('=== BILLING SETUP FAILED ===');
+        console.log(JSON.stringify({ code, message }, null, 2));
+      }),
+      NotificareMonetize.onProductsUpdated((products) => {
+        console.log('=== PRODUCTS UPDATED ===');
+        console.log(JSON.stringify(products, null, 2));
+      }),
+      NotificareMonetize.onPurchasesUpdated((purchases) => {
+        console.log('=== PURCHASES UPDATED ===');
+        console.log(JSON.stringify(purchases, null, 2));
+      }),
+      NotificareMonetize.onPurchaseFinished((purchase) => {
+        console.log('=== PURCHASE FINISHED ===');
+        console.log(JSON.stringify(purchase, null, 2));
+      }),
+      NotificareMonetize.onPurchaseRestored((purchase) => {
+        console.log('=== PURCHASE RESTORED ===');
+        console.log(JSON.stringify(purchase, null, 2));
+      }),
+      NotificareMonetize.onPurchaseCanceled(() => {
+        console.log('=== PURCHASE CANCELED ===');
+      }),
+      NotificareMonetize.onPurchaseFailed(({ code, message, errorMessage }) => {
+        console.log('=== PURCHASE FAILED ===');
+        console.log(JSON.stringify({ code, message, errorMessage }, null, 2));
       }),
     ];
 
