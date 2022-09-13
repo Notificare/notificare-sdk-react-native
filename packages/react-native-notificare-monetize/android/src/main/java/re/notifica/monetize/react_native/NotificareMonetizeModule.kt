@@ -47,6 +47,7 @@ public class NotificareMonetizeModule(reactContext: ReactApplicationContext) :
         super.initialize()
 
         EventBroker.setup(reactApplicationContext)
+        Notificare.monetize().addListener(this)
 
         onMainThread {
             Notificare.monetize().observableProducts.observeForever(productsObserver)
@@ -56,6 +57,8 @@ public class NotificareMonetizeModule(reactContext: ReactApplicationContext) :
 
     override fun invalidate() {
         super.invalidate()
+
+        Notificare.monetize().removeListener(this)
 
         onMainThread {
             Notificare.monetize().observableProducts.removeObserver(productsObserver)
