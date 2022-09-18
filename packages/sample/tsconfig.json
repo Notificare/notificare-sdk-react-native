@@ -62,6 +62,7 @@
       "react-native-notificare-assets": ["../react-native-notificare-assets/src/index"],
       "react-native-notificare-authentication": ["../react-native-notificare-authentication/src/index"],
       "react-native-notificare-geo": ["../react-native-notificare-geo/src/index"],
+      "react-native-notificare-in-app-messaging": ["../react-native-notificare-in-app-messaging/src/index"],
       "react-native-notificare-inbox": ["../react-native-notificare-inbox/src/index"],
       "react-native-notificare-loyalty": ["../react-native-notificare-loyalty/src/index"],
       "react-native-notificare-monetize": ["../react-native-notificare-monetize/src/index"],

@@ -17,6 +17,7 @@ import {
 } from 'react-native-permissions';
 import { NotificareAuthentication } from 'react-native-notificare-authentication';
 import { NotificareMonetize } from 'react-native-notificare-monetize';
+import { NotificareInAppMessaging } from 'react-native-notificare-in-app-messaging';
 
 export const HomePage: FC = () => {
   const navigation = useNavigation();
@@ -680,6 +681,37 @@ export const HomePage: FC = () => {
     }
   }
 
+  //
+  // In-App Messaging
+  //
+
+  async function onCheckSuppressedStateClicked() {
+    try {
+      const suppressed = await NotificareInAppMessaging.hasMessagesSuppressed();
+      setSnackbarInfo({ visible: true, label: `Suppressed = ${suppressed}` });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onSuppressMessagesClicked() {
+    try {
+      await NotificareInAppMessaging.setMessagesSuppressed(true);
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
+  async function onUnSuppressMessagesClicked() {
+    try {
+      await NotificareInAppMessaging.setMessagesSuppressed(false);
+      setSnackbarInfo({ visible: true, label: 'Done.' });
+    } catch (e) {
+      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
+    }
+  }
+
   return (
     <>
       <ScrollView>
@@ -806,6 +838,15 @@ export const HomePage: FC = () => {
           <Button onPress={onGetProductsClicked}>Get products</Button>
           <Button onPress={onGetPurchasesClicked}>Get purchases</Button>
           <Button onPress={onStartPurchaseClicked}>Start purchase</Button>
+
+          <Text style={styles.title}>In-App Messaging</Text>
+          <Button onPress={onCheckSuppressedStateClicked}>
+            Check suppressed state
+          </Button>
+          <Button onPress={onSuppressMessagesClicked}>Suppress messages</Button>
+          <Button onPress={onUnSuppressMessagesClicked}>
+            Un-suppress messages
+          </Button>
         </View>
       </ScrollView>
 
