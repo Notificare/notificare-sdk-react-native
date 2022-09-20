@@ -35,13 +35,13 @@ public class NotificareAuthenticationModule(reactContext: ReactApplicationContex
     override fun onNewIntent(intent: Intent) {
         val passwordResetToken = Notificare.authentication().parsePasswordResetToken(intent)
         if (passwordResetToken != null) {
-            EventBroker.dispatchEvent("password_reset_token_received", passwordResetToken)
+            EventBroker.dispatchEvent("re.notifica.authentication.password_reset_token_received", passwordResetToken)
             return
         }
 
         val validateUserToken = Notificare.authentication().parseValidateUserToken(intent)
         if (validateUserToken != null) {
-            EventBroker.dispatchEvent("validate_user_token_received", validateUserToken)
+            EventBroker.dispatchEvent("re.notifica.authentication.validate_user_token_received", validateUserToken)
             return
         }
     }
@@ -328,7 +328,11 @@ public class NotificareAuthenticationModule(reactContext: ReactApplicationContex
     }
 
     @ReactMethod
-    public fun removeUserSegmentFromPreference(preferenceData: ReadableMap, segmentData: ReadableMap, promise: Promise) {
+    public fun removeUserSegmentFromPreference(
+        preferenceData: ReadableMap,
+        segmentData: ReadableMap,
+        promise: Promise
+    ) {
         val preference: NotificareUserPreference
 
         try {
