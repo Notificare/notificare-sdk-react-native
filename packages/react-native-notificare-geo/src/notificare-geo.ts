@@ -57,31 +57,46 @@ export class NotificareGeo {
   public static onLocationUpdated(
     callback: (location: NotificareLocation) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('location_updated', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.geo.location_updated',
+      callback
+    );
   }
 
   public static onRegionEntered(
     callback: (region: NotificareRegion) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('region_entered', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.geo.region_entered',
+      callback
+    );
   }
 
   public static onRegionExited(
     callback: (region: NotificareRegion) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('region_exited', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.geo.region_exited',
+      callback
+    );
   }
 
   public static onBeaconEntered(
     callback: (beacon: NotificareBeacon) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('beacon_entered', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.geo.beacon_entered',
+      callback
+    );
   }
 
   public static onBeaconExited(
     callback: (beacon: NotificareBeacon) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('beacon_exited', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.geo.beacon_exited',
+      callback
+    );
   }
 
   public static onBeaconsRanged(
@@ -90,18 +105,24 @@ export class NotificareGeo {
       beacons: NotificareBeacon[];
     }) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('beacons_ranged', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.geo.beacons_ranged',
+      callback
+    );
   }
 
   public static onVisit(
     callback: (visit: NotificareVisit) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('visit', callback);
+    return this.eventEmitter.addListener('re.notifica.geo.visit', callback);
   }
 
   public static onHeadingUpdated(
     callback: (heading: NotificareHeading) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('heading_updated', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.geo.heading_updated',
+      callback
+    );
   }
 }
