@@ -15,7 +15,7 @@ public class NotificarePushModule(reactContext: ReactApplicationContext) : React
     private val allowedUIObserver = Observer<Boolean> { allowedUI ->
         if (allowedUI == null) return@Observer
 
-        EventBroker.dispatchEvent("notification_settings_changed", allowedUI)
+        EventBroker.dispatchEvent("re.notifica.push.notification_settings_changed", allowedUI)
     }
 
     override fun getName(): String = "NotificarePushModule"
