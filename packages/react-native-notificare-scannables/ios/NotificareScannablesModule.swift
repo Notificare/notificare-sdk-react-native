@@ -43,8 +43,8 @@ class NotificareScannablesModule: RCTEventEmitter {
     
     override func supportedEvents() -> [String] {
         return [
-            "scannable_detected",
-            "scannable_session_failed",
+            "re.notifica.push.scannables.scannable_detected",
+            "re.notifica.push.scannables.scannable_session_failed",
         ]
     }
     
@@ -118,13 +118,13 @@ class NotificareScannablesModule: RCTEventEmitter {
 extension NotificareScannablesModule: NotificareScannablesDelegate {
     func notificare(_ notificareScannables: NotificareScannables, didDetectScannable scannable: NotificareScannable) {
         do {
-            dispatchEvent("scannable_detected", payload: try scannable.toJson())
+            dispatchEvent("re.notifica.scannables.scannable_detected", payload: try scannable.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the scannable_detected event.", error: error)
+            NotificareLogger.error("Failed to emit the re.notifica.scannables.scannable_detected event.", error: error)
         }
     }
     
     func notificare(_ notificareScannables: NotificareScannables, didInvalidateScannerSession error: Error) {
-        dispatchEvent("scannable_session_failed", payload: error.localizedDescription)
+        dispatchEvent("re.notifica.scannables.scannable_session_failed", payload: error.localizedDescription)
     }
 }

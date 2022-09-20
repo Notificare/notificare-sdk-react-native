@@ -22,9 +22,9 @@ public class NotificareMonetizeModule(reactContext: ReactApplicationContext) :
             val arguments = Arguments.createArray()
             products.forEach { arguments.pushMap(it.toJson().toReactMap()) }
 
-            EventBroker.dispatchEvent("products_updated", arguments)
+            EventBroker.dispatchEvent("re.notifica.monetize.products_updated", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the products_updated event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.monetize.products_updated event.", e)
         }
     }
 
@@ -35,9 +35,9 @@ public class NotificareMonetizeModule(reactContext: ReactApplicationContext) :
             val arguments = Arguments.createArray()
             purchases.forEach { arguments.pushMap(it.toJson().toReactMap()) }
 
-            EventBroker.dispatchEvent("purchases_updated", arguments)
+            EventBroker.dispatchEvent("re.notifica.monetize.purchases_updated", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the purchases_updated event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.monetize.purchases_updated event.", e)
         }
     }
 
@@ -142,9 +142,9 @@ public class NotificareMonetizeModule(reactContext: ReactApplicationContext) :
 
     override fun onBillingSetupFinished() {
         try {
-            EventBroker.dispatchEvent("billing_setup_finished", null)
+            EventBroker.dispatchEvent("re.notifica.monetize.billing_setup_finished", null)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the billing_setup_failed event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.monetize.billing_setup_failed event.", e)
         }
     }
 
@@ -155,33 +155,33 @@ public class NotificareMonetizeModule(reactContext: ReactApplicationContext) :
                 putString("message", message)
             }
 
-            EventBroker.dispatchEvent("billing_setup_failed", arguments)
+            EventBroker.dispatchEvent("re.notifica.monetize.billing_setup_failed", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the billing_setup_failed event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.monetize.billing_setup_failed event.", e)
         }
     }
 
     override fun onPurchaseFinished(purchase: NotificarePurchase) {
         try {
-            EventBroker.dispatchEvent("purchase_finished", purchase.toJson().toReactMap())
+            EventBroker.dispatchEvent("re.notifica.monetize.purchase_finished", purchase.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the purchase_finished event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.monetize.purchase_finished event.", e)
         }
     }
 
     override fun onPurchaseRestored(purchase: NotificarePurchase) {
         try {
-            EventBroker.dispatchEvent("purchase_restored", purchase.toJson().toReactMap())
+            EventBroker.dispatchEvent("re.notifica.monetize.purchase_restored", purchase.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the purchase_restored event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.monetize.purchase_restored event.", e)
         }
     }
 
     override fun onPurchaseCanceled() {
         try {
-            EventBroker.dispatchEvent("purchase_canceled", null)
+            EventBroker.dispatchEvent("re.notifica.monetize.purchase_canceled", null)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the purchase_canceled event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.monetize.purchase_canceled event.", e)
         }
     }
 
@@ -192,9 +192,9 @@ public class NotificareMonetizeModule(reactContext: ReactApplicationContext) :
                 putString("message", message)
             }
 
-            EventBroker.dispatchEvent("purchase_failed", arguments)
+            EventBroker.dispatchEvent("re.notifica.monetize.purchase_failed", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the purchase_failed event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.monetize.purchase_failed event.", e)
         }
     }
 

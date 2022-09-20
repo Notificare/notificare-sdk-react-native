@@ -36,14 +36,14 @@ class NotificareGeoModule: RCTEventEmitter {
     
     override func supportedEvents() -> [String] {
         return [
-            "location_updated",
-            "region_entered",
-            "region_exited",
-            "beacon_entered",
-            "beacon_exited",
-            "beacons_ranged",
-            "visit",
-            "heading_updated",
+            "re.notifica.geo.location_updated",
+            "re.notifica.geo.region_entered",
+            "re.notifica.geo.region_exited",
+            "re.notifica.geo.beacon_entered",
+            "re.notifica.geo.beacon_exited",
+            "re.notifica.geo.beacons_ranged",
+            "re.notifica.geo.visit",
+            "re.notifica.geo.heading_updated",
         ]
     }
     
@@ -85,41 +85,41 @@ extension NotificareGeoModule: NotificareGeoDelegate {
         guard let location = locations.first else { return }
         
         do {
-            dispatchEvent("location_updated", payload: try location.toJson())
+            dispatchEvent("re.notifica.geo.location_updated", payload: try location.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the location_updated event.", error: error)
+            NotificareLogger.error("Failed to emit the re.notifica.geo.location_updated event.", error: error)
         }
     }
     
     func notificare(_ notificareGeo: NotificareGeo, didEnter region: NotificareRegion) {
         do {
-            dispatchEvent("region_entered", payload: try region.toJson())
+            dispatchEvent("re.notifica.geo.region_entered", payload: try region.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the region_entered event.", error: error)
+            NotificareLogger.error("Failed to emit the re.notifica.geo.region_entered event.", error: error)
         }
     }
     
     func notificare(_ notificareGeo: NotificareGeo, didExit region: NotificareRegion) {
         do {
-            dispatchEvent("region_exited", payload: try region.toJson())
+            dispatchEvent("re.notifica.geo.region_exited", payload: try region.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the region_exited event.", error: error)
+            NotificareLogger.error("Failed to emit the re.notifica.geo.region_exited event.", error: error)
         }
     }
     
     func notificare(_ notificareGeo: NotificareGeo, didEnter beacon: NotificareBeacon) {
         do {
-            dispatchEvent("beacon_entered", payload: try beacon.toJson())
+            dispatchEvent("re.notifica.geo.beacon_entered", payload: try beacon.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the beacon_entered event.", error: error)
+            NotificareLogger.error("Failed to emit the re.notifica.geo.beacon_entered event.", error: error)
         }
     }
     
     func notificare(_ notificareGeo: NotificareGeo, didExit beacon: NotificareBeacon) {
         do {
-            dispatchEvent("beacon_exited", payload: try beacon.toJson())
+            dispatchEvent("re.notifica.geo.beacon_exited", payload: try beacon.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the beacon_exited event.", error: error)
+            NotificareLogger.error("Failed to emit the re.notifica.geo.beacon_exited event.", error: error)
         }
     }
     
@@ -130,25 +130,25 @@ extension NotificareGeoModule: NotificareGeoDelegate {
                 "beacons": try beacons.map { try $0.toJson() },
             ]
             
-            dispatchEvent("beacons_ranged", payload: payload)
+            dispatchEvent("re.notifica.geo.beacons_ranged", payload: payload)
         } catch {
-            NotificareLogger.error("Failed to emit the beacons_ranged event.", error: error)
+            NotificareLogger.error("Failed to emit the re.notifica.geo.beacons_ranged event.", error: error)
         }
     }
     
     func notificare(_ notificareGeo: NotificareGeo, didVisit visit: NotificareVisit) {
         do {
-            dispatchEvent("visit", payload: try visit.toJson())
+            dispatchEvent("re.notifica.geo.visit", payload: try visit.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the visit event.", error: error)
+            NotificareLogger.error("Failed to emit the re.notifica.geo.visit event.", error: error)
         }
     }
     
     func notificare(_ notificareGeo: NotificareGeo, didUpdateHeading heading: NotificareHeading) {
         do {
-            dispatchEvent("heading_updated", payload: try heading.toJson())
+            dispatchEvent("re.notifica.geo.heading_updated", payload: try heading.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the heading_updated event.", error: error)
+            NotificareLogger.error("Failed to emit the re.notifica.geo.heading_updated event.", error: error)
         }
     }
 }

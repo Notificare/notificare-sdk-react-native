@@ -36,8 +36,8 @@ class NotificareInboxModule: RCTEventEmitter {
     
     override func supportedEvents() -> [String] {
         return [
-            "inbox_updated",
-            "badge_updated",
+            "re.notifica.inbox.inbox_updated",
+            "re.notifica.inbox.badge_updated",
         ]
     }
     
@@ -168,9 +168,9 @@ class NotificareInboxModule: RCTEventEmitter {
 extension NotificareInboxModule: NotificareInboxDelegate {
     func notificare(_ notificareInbox: NotificareInbox, didUpdateInbox items: [NotificareInboxItem]) {
         do {
-            dispatchEvent("inbox_updated", payload: try items.map { try $0.toJson() })
+            dispatchEvent("re.notifica.inbox.inbox_updated", payload: try items.map { try $0.toJson() })
         } catch {
-            NotificareLogger.error("Failed to emit the inbox_updated event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.inbox.inbox_updated event.", error: error)
         }
     }
     

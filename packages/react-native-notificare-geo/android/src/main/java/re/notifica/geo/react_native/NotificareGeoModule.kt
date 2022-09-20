@@ -68,41 +68,41 @@ public class NotificareGeoModule(reactContext: ReactApplicationContext) : ReactC
 
     override fun onLocationUpdated(location: NotificareLocation) {
         try {
-            EventBroker.dispatchEvent("location_updated", location.toJson().toReactMap())
+            EventBroker.dispatchEvent("re.notifica.geo.location_updated", location.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the location_updated event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.geo.location_updated event.", e)
         }
     }
 
     override fun onRegionEntered(region: NotificareRegion) {
         try {
-            EventBroker.dispatchEvent("region_entered", region.toJson().toReactMap())
+            EventBroker.dispatchEvent("re.notifica.geo.region_entered", region.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the region_entered event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.geo.region_entered event.", e)
         }
     }
 
     override fun onRegionExited(region: NotificareRegion) {
         try {
-            EventBroker.dispatchEvent("region_exited", region.toJson().toReactMap())
+            EventBroker.dispatchEvent("re.notifica.geo.region_exited", region.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the region_exited event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.geo.region_exited event.", e)
         }
     }
 
     override fun onBeaconEntered(beacon: NotificareBeacon) {
         try {
-            EventBroker.dispatchEvent("beacon_entered", beacon.toJson().toReactMap())
+            EventBroker.dispatchEvent("re.notifica.geo.beacon_entered", beacon.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the beacon_entered event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.geo.beacon_entered event.", e)
         }
     }
 
     override fun onBeaconExited(beacon: NotificareBeacon) {
         try {
-            EventBroker.dispatchEvent("beacon_exited", beacon.toJson().toReactMap())
+            EventBroker.dispatchEvent("re.notifica.geo.beacon_exited", beacon.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the beacon_exited event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.geo.beacon_exited event.", e)
         }
     }
 
@@ -114,9 +114,9 @@ public class NotificareGeoModule(reactContext: ReactApplicationContext) : ReactC
                 beacons.forEach { pushMap(it.toJson().toReactMap()) }
             })
 
-            EventBroker.dispatchEvent("beacons_ranged", payload)
+            EventBroker.dispatchEvent("re.notifica.geo.beacons_ranged", payload)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the beacons_ranged event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.geo.beacons_ranged event.", e)
         }
     }
 

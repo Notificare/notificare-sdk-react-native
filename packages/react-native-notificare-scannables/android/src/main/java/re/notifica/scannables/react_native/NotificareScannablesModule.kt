@@ -104,17 +104,17 @@ public class NotificareScannablesModule(reactContext: ReactApplicationContext) :
 
     override fun onScannableDetected(scannable: NotificareScannable) {
         try {
-            EventBroker.dispatchEvent("scannable_detected", scannable.toJson().toReactMap())
+            EventBroker.dispatchEvent("re.notifica.scannables.scannable_detected", scannable.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the scannable_detected event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.scannables.scannable_detected event.", e)
         }
     }
 
     override fun onScannableSessionError(error: Exception) {
         try {
-            EventBroker.dispatchEvent("scannable_session_failed", error.localizedMessage)
+            EventBroker.dispatchEvent("re.notifica.scannables.scannable_session_failed", error.localizedMessage)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the scannable_session_failed event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.scannables.scannable_session_failed event.", e)
         }
     }
 

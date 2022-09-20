@@ -36,14 +36,14 @@ class NotificareMonetizeModule: RCTEventEmitter {
 
     override func supportedEvents() -> [String] {
         return [
-            "billing_setup_finished",
-            "billing_setup_failed",
-            "products_updated",
-            "purchases_updated",
-            "purchase_finished",
-            "purchase_restored",
-            "purchase_canceled",
-            "purchase_failed",
+            "re.notifica.monetize.billing_setup_finished",
+            "re.notifica.monetize.billing_setup_failed",
+            "re.notifica.monetize.products_updated",
+            "re.notifica.monetize.purchases_updated",
+            "re.notifica.monetize.purchase_finished",
+            "re.notifica.monetize.purchase_restored",
+            "re.notifica.monetize.purchase_canceled",
+            "re.notifica.monetize.purchase_failed",
         ]
     }
 
@@ -103,41 +103,41 @@ class NotificareMonetizeModule: RCTEventEmitter {
 extension NotificareMonetizeModule: NotificareMonetizeDelegate {
     func notificare(_ notificareMonetize: NotificareMonetize, didUpdateProducts products: [NotificareProduct]) {
         do {
-            dispatchEvent("products_updated", payload: try products.map { try $0.toJson() })
+            dispatchEvent("re.notifica.monetize.products_updated", payload: try products.map { try $0.toJson() })
         } catch {
-            NotificareLogger.error("Failed to emit the products_updated event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.monetize.products_updated event.", error: error)
         }
     }
     
     func notificare(_ notificareMonetize: NotificareMonetize, didUpdatePurchases purchases: [NotificarePurchase]) {
         do {
-            dispatchEvent("purchases_updated", payload: try purchases.map { try $0.toJson() })
+            dispatchEvent("re.notifica.monetize.purchases_updated", payload: try purchases.map { try $0.toJson() })
         } catch {
-            NotificareLogger.error("Failed to emit the purchases_updated event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.monetize.purchases_updated event.", error: error)
         }
     }
     
     func notificare(_ notificareMonetize: NotificareMonetize, didFinishPurchase purchase: NotificarePurchase) {
         do {
-            dispatchEvent("purchase_finished", payload: try purchase.toJson())
+            dispatchEvent("re.notifica.monetize.purchase_finished", payload: try purchase.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the purchase_finished event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.monetize.purchase_finished event.", error: error)
         }
     }
     
     func notificare(_ notificareMonetize: NotificareMonetize, didRestorePurchase purchase: NotificarePurchase) {
         do {
-            dispatchEvent("purchase_restored", payload: try purchase.toJson())
+            dispatchEvent("re.notifica.monetize.purchase_restored", payload: try purchase.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the purchase_restored event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.monetize.purchase_restored event.", error: error)
         }
     }
     
     func notificareDidCancelPurchase(_ notificareMonetize: NotificareMonetize) {
-        dispatchEvent("purchase_canceled", payload: nil)
+        dispatchEvent("re.notifica.monetize.purchase_canceled", payload: nil)
     }
     
     func notificare(_ notificareMonetize: NotificareMonetize, didFailToPurchase error: Error) {
-        dispatchEvent("purchase_failed", payload: ["errorMessage": error.localizedDescription])
+        dispatchEvent("re.notifica.monetize.purchase_failed", payload: ["errorMessage": error.localizedDescription])
     }
 }

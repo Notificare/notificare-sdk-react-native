@@ -42,7 +42,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
 
         val url = intent.data?.toString()
         if (url != null) {
-            EventBroker.dispatchEvent("url_opened", url)
+            EventBroker.dispatchEvent("re.notifica.url_opened", url)
         }
     }
 

@@ -57,12 +57,18 @@ export class NotificareScannables {
   public static onScannableDetected(
     callback: (scannable: NotificareScannable) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('scannable_detected', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.scannables.scannable_detected',
+      callback
+    );
   }
 
   public static onScannableSessionFailed(
     callback: (error: string | null) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('scannable_session_failed', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.scannables.scannable_session_failed',
+      callback
+    );
   }
 }

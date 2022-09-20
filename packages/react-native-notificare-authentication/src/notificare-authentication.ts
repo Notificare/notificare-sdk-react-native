@@ -126,7 +126,7 @@ export class NotificareAuthentication {
     callback: (token: string) => void
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
-      'password_reset_token_received',
+      're.notifica.authentication.password_reset_token_received',
       callback
     );
   }
@@ -135,7 +135,7 @@ export class NotificareAuthentication {
     callback: (token: string) => void
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
-      'validate_user_token_received',
+      're.notifica.authentication.validate_user_token_received',
       callback
     );
   }
