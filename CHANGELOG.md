@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 3.4.0-beta.2
+
+- Add in-app messaging module
+- Ensure event names are globally unique
+
 ## 3.3.0
 
 - Add monetise module
