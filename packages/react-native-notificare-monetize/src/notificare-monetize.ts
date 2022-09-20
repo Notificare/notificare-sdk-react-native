@@ -55,19 +55,28 @@ export class NotificareMonetize {
   public static onProductsUpdated(
     callback: (products: NotificareProduct[]) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('products_updated', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.monetize.products_updated',
+      callback
+    );
   }
 
   public static onPurchasesUpdated(
     callback: (purchases: NotificarePurchase[]) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('purchases_updated', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.monetize.purchases_updated',
+      callback
+    );
   }
 
   public static onBillingSetupFinished(
     callback: () => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('billing_setup_finished', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.monetize.billing_setup_finished',
+      callback
+    );
   }
 
   public static onBillingSetupFailed(
@@ -76,23 +85,35 @@ export class NotificareMonetize {
       readonly message: string;
     }) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('billing_setup_failed', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.monetize.billing_setup_failed',
+      callback
+    );
   }
 
   public static onPurchaseFinished(
     callback: (purchase: NotificarePurchase) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('purchase_finished', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.monetize.purchase_finished',
+      callback
+    );
   }
 
   public static onPurchaseRestored(
     callback: (purchase: NotificarePurchase) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('purchase_restored', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.monetize.purchase_restored',
+      callback
+    );
   }
 
   public static onPurchaseCanceled(callback: () => void): EmitterSubscription {
-    return this.eventEmitter.addListener('purchase_canceled', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.monetize.purchase_canceled',
+      callback
+    );
   }
 
   public static onPurchaseFailed(
@@ -102,6 +123,9 @@ export class NotificareMonetize {
       readonly errorMessage?: string | null;
     }) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('purchase_failed', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.monetize.purchase_failed',
+      callback
+    );
   }
 }
