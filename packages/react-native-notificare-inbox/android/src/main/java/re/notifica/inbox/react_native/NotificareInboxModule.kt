@@ -25,16 +25,16 @@ public class NotificareInboxModule(reactContext: ReactApplicationContext) : Reac
                 payload.pushMap(it.toJson().toReactMap())
             }
 
-            EventBroker.dispatchEvent("inbox_updated", payload)
+            EventBroker.dispatchEvent("re.notifica.inbox.inbox_updated", payload)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the inbox_updated event.", e)
+            NotificareLogger.error("Failed to emit the re.notifica.inbox.inbox_updated event.", e)
         }
     }
 
     private val badgeObserver = Observer<Int> { badge ->
         if (badge == null) return@Observer
 
-        EventBroker.dispatchEvent("badge_updated", badge)
+        EventBroker.dispatchEvent("re.notifica.inbox.badge_updated", badge)
     }
 
     override fun getName(): String = "NotificareInboxModule"
