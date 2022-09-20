@@ -10,6 +10,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import re.notifica.iam.react_native.NotificareInAppMessagingPackage;
 import re.notifica.monetize.react_native.NotificareMonetizePackage;
 import re.notifica.react_native.NotificarePackage;
 import re.notifica.assets.react_native.NotificareAssetsPackage;
@@ -40,6 +41,7 @@ public class MainApplication extends Application implements ReactApplication {
           packages.add(new NotificareAssetsPackage());
           packages.add(new NotificareAuthenticationPackage());
           packages.add(new NotificareGeoPackage());
+          packages.add(new NotificareInAppMessagingPackage());
           packages.add(new NotificareInboxPackage());
           packages.add(new NotificareLoyaltyPackage());
           packages.add(new NotificareMonetizePackage());

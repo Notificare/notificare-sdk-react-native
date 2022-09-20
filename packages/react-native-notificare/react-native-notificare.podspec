@@ -17,5 +17,5 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
   s.dependency 'React-Core'
-  s.dependency 'Notificare/NotificareKit', '3.3.0'
+  s.dependency 'Notificare/NotificareKit', '3.4.0-beta.2'
 end

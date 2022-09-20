@@ -77,14 +77,17 @@ export class NotificarePush {
   public static onNotificationReceived(
     callback: (notification: NotificareNotification) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('notification_received', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.push.notification_received',
+      callback
+    );
   }
 
   public static onSystemNotificationReceived(
     callback: (notification: NotificareSystemNotification) => void
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
-      'system_notification_received',
+      're.notifica.push.system_notification_received',
       callback
     );
   }
@@ -93,7 +96,7 @@ export class NotificarePush {
     callback: (notification: Record<string, any>) => void
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
-      'unknown_notification_received',
+      're.notifica.push.unknown_notification_received',
       callback
     );
   }
@@ -101,14 +104,17 @@ export class NotificarePush {
   public static onNotificationOpened(
     callback: (notification: NotificareNotification) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('notification_opened', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.push.notification_opened',
+      callback
+    );
   }
 
   public static onUnknownNotificationOpened(
     callback: (notification: Record<string, any>) => void
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
-      'unknown_notification_opened',
+      're.notifica.push.unknown_notification_opened',
       callback
     );
   }
@@ -120,7 +126,7 @@ export class NotificarePush {
     }) => void
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
-      'notification_action_opened',
+      're.notifica.push.notification_action_opened',
       callback
     );
   }
@@ -133,7 +139,7 @@ export class NotificarePush {
     }) => void
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
-      'unknown_notification_action_opened',
+      're.notifica.push.unknown_notification_action_opened',
       callback
     );
   }
@@ -142,7 +148,7 @@ export class NotificarePush {
     callback: (granted: boolean) => void
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
-      'notification_settings_changed',
+      're.notifica.push.notification_settings_changed',
       callback
     );
   }
@@ -151,7 +157,7 @@ export class NotificarePush {
     callback: (notification: NotificareNotification | null) => void
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
-      'should_open_notification_settings',
+      're.notifica.push.should_open_notification_settings',
       callback
     );
   }
@@ -160,7 +166,7 @@ export class NotificarePush {
     callback: (error: string) => void
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
-      'failed_to_register_for_remote_notifications',
+      're.notifica.push.failed_to_register_for_remote_notifications',
       callback
     );
   }

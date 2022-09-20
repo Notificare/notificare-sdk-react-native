@@ -234,6 +234,7 @@ dependencies {
     implementation project(':react_native_notificare_assets')
     implementation project(':react_native_notificare_authentication')
     implementation project(':react_native_notificare_geo')
+    implementation project(':react_native_notificare_in_app_messaging')
     implementation project(':react_native_notificare_inbox')
     implementation project(':react_native_notificare_loyalty')
     implementation project(':react_native_notificare_monetize')

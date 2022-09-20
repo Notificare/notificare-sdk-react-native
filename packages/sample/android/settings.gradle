@@ -14,6 +14,9 @@ project(':react_native_notificare_authentication').projectDir = new File(rootPro
 include ':react_native_notificare_geo'
 project(':react_native_notificare_geo').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-geo/android')
 
+include ':react_native_notificare_in_app_messaging'
+project(':react_native_notificare_in_app_messaging').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-in-app-messaging/android')
+
 include ':react_native_notificare_inbox'
 project(':react_native_notificare_inbox').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-inbox/android')
 

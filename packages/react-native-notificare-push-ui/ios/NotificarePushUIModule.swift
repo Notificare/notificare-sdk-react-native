@@ -36,16 +36,16 @@ class NotificarePushUIModule: RCTEventEmitter {
     
     override func supportedEvents() -> [String] {
         return [
-            "notification_will_present",
-            "notification_presented",
-            "notification_finished_presenting",
-            "notification_failed_to_present",
-            "notification_url_clicked",
-            "action_will_execute",
-            "action_executed",
-            "action_not_executed",
-            "action_failed_to_execute",
-            "custom_action_received",
+            "re.notifica.push.ui.notification_will_present",
+            "re.notifica.push.ui.notification_presented",
+            "re.notifica.push.ui.notification_finished_presenting",
+            "re.notifica.push.ui.notification_failed_to_present",
+            "re.notifica.push.ui.notification_url_clicked",
+            "re.notifica.push.ui.action_will_execute",
+            "re.notifica.push.ui.action_executed",
+            "re.notifica.push.ui.action_not_executed",
+            "re.notifica.push.ui.action_failed_to_execute",
+            "re.notifica.push.ui.custom_action_received",
         ]
     }
     
@@ -184,77 +184,77 @@ extension NotificareNotification {
 extension NotificarePushUIModule: NotificarePushUIDelegate {
     public func notificare(_ notificarePushUI: NotificarePushUI, willPresentNotification notification: NotificareNotification) {
         do {
-            dispatchEvent("notification_will_present", payload: try notification.toJson())
+            dispatchEvent("re.notifica.push.ui.notification_will_present", payload: try notification.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the notification_will_present event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_will_present event.", error: error)
         }
     }
     
     public func notificare(_ notificarePushUI: NotificarePushUI, didPresentNotification notification: NotificareNotification) {
         do {
-            dispatchEvent("notification_presented", payload: try notification.toJson())
+            dispatchEvent("re.notifica.push.ui.notification_presented", payload: try notification.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the notification_presented event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_presented event.", error: error)
         }
     }
     
     public func notificare(_ notificarePushUI: NotificarePushUI, didFinishPresentingNotification notification: NotificareNotification) {
         do {
-            dispatchEvent("notification_finished_presenting", payload: try notification.toJson())
+            dispatchEvent("re.notifica.push.ui.notification_finished_presenting", payload: try notification.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the notification_finished_presenting event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_finished_presenting event.", error: error)
         }
     }
     
     public func notificare(_ notificarePushUI: NotificarePushUI, didFailToPresentNotification notification: NotificareNotification) {
         do {
-            dispatchEvent("notification_failed_to_present", payload: try notification.toJson())
+            dispatchEvent("re.notifica.push.ui.notification_failed_to_present", payload: try notification.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the notification_failed_to_present event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_failed_to_present event.", error: error)
         }
     }
     
     public func notificare(_ notificarePushUI: NotificarePushUI, didClickURL url: URL, in notification: NotificareNotification) {
         do {
-            dispatchEvent("notification_url_clicked", payload: [
+            dispatchEvent("re.notifica.push.ui.notification_url_clicked", payload: [
                 "notification": try notification.toJson(),
                 "url": url.absoluteString,
             ])
         } catch {
-            NotificareLogger.error("Failed to emit the notification_url_clicked event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_url_clicked event.", error: error)
         }
     }
     
     public func notificare(_ notificarePushUI: NotificarePushUI, willExecuteAction action: NotificareNotification.Action, for notification: NotificareNotification) {
         do {
-            dispatchEvent("action_will_execute", payload: [
+            dispatchEvent("re.notifica.push.ui.action_will_execute", payload: [
                 "notification": try notification.toJson(),
                 "action": try action.toJson(),
             ])
         } catch {
-            NotificareLogger.error("Failed to emit the action_will_execute event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.ui.action_will_execute event.", error: error)
         }
     }
     
     public func notificare(_ notificarePushUI: NotificarePushUI, didExecuteAction action: NotificareNotification.Action, for notification: NotificareNotification) {
         do {
-            dispatchEvent("action_executed", payload: [
+            dispatchEvent("re.notifica.push.ui.action_executed", payload: [
                 "notification": try notification.toJson(),
                 "action": try action.toJson(),
             ])
         } catch {
-            NotificareLogger.error("Failed to emit the action_executed event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.ui.action_executed event.", error: error)
         }
     }
     
     public func notificare(_ notificarePushUI: NotificarePushUI, didNotExecuteAction action: NotificareNotification.Action, for notification: NotificareNotification) {
         do {
-            dispatchEvent("action_not_executed", payload: [
+            dispatchEvent("re.notifica.push.ui.action_not_executed", payload: [
                 "notification": try notification.toJson(),
                 "action": try action.toJson(),
             ])
         } catch {
-            NotificareLogger.error("Failed to emit the action_not_executed event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.ui.action_not_executed event.", error: error)
         }
     }
     
@@ -269,21 +269,21 @@ extension NotificarePushUIModule: NotificarePushUIDelegate {
                 payload["error"] = error.localizedDescription
             }
             
-            dispatchEvent("action_failed_to_execute", payload: payload)
+            dispatchEvent("re.notifica.push.ui.action_failed_to_execute", payload: payload)
         } catch {
-            NotificareLogger.error("Failed to emit the action_failed_to_execute event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.ui.action_failed_to_execute event.", error: error)
         }
     }
     
     public func notificare(_ notificarePushUI: NotificarePushUI, shouldPerformSelectorWithURL url: URL, in action: NotificareNotification.Action, for notification: NotificareNotification) {
         do {
-            dispatchEvent("custom_action_received", payload: [
+            dispatchEvent("re.notifica.push.ui.custom_action_received", payload: [
                 "notification": try notification.toJson(),
                 "action": try action.toJson(),
                 "url": url.absoluteString,
             ])
         } catch {
-            NotificareLogger.error("Failed to emit the custom_action_received event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.ui.custom_action_received event.", error: error)
         }
     }
 }

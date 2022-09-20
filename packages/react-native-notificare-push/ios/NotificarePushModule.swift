@@ -36,16 +36,16 @@ class NotificarePushModule: RCTEventEmitter {
     
     override func supportedEvents() -> [String] {
         return [
-            "notification_received",
-            "system_notification_received",
-            "unknown_notification_received",
-            "notification_opened",
-            "unknown_notification_opened",
-            "notification_action_opened",
-            "unknown_notification_action_opened",
-            "notification_settings_changed",
-            "should_open_notification_settings",
-            "failed_to_register_for_remote_notifications",
+            "re.notifica.push.notification_received",
+            "re.notifica.push.system_notification_received",
+            "re.notifica.push.unknown_notification_received",
+            "re.notifica.push.notification_opened",
+            "re.notifica.push.unknown_notification_opened",
+            "re.notifica.push.notification_action_opened",
+            "re.notifica.push.unknown_notification_action_opened",
+            "re.notifica.push.notification_settings_changed",
+            "re.notifica.push.should_open_notification_settings",
+            "re.notifica.push.failed_to_register_for_remote_notifications",
         ]
     }
     
@@ -207,34 +207,34 @@ class NotificarePushModule: RCTEventEmitter {
 extension NotificarePushModule: NotificarePushDelegate {
     func notificare(_ notificarePush: NotificarePush, didReceiveNotification notification: NotificareNotification) {
         do {
-            dispatchEvent("notification_received", payload: try notification.toJson())
+            dispatchEvent("re.notifica.push.notification_received", payload: try notification.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the notification_received event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.notification_received event.", error: error)
         }
     }
     
     func notificare(_ notificarePush: NotificarePush, didReceiveSystemNotification notification: NotificareSystemNotification) {
         do {
-            dispatchEvent("system_notification_received", payload: try notification.toJson())
+            dispatchEvent("re.notifica.push.system_notification_received", payload: try notification.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the system_notification_received event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.system_notification_received event.", error: error)
         }
     }
     
     func notificare(_ notificarePush: NotificarePush, didReceiveUnknownNotification userInfo: [AnyHashable : Any]) {
-        dispatchEvent("unknown_notification_received", payload: userInfo)
+        dispatchEvent("re.notifica.push.unknown_notification_received", payload: userInfo)
     }
     
     func notificare(_ notificarePush: NotificarePush, didOpenNotification notification: NotificareNotification) {
         do {
-            dispatchEvent("notification_opened", payload: try notification.toJson())
+            dispatchEvent("re.notifica.push.notification_opened", payload: try notification.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the notification_opened event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.notification_opened event.", error: error)
         }
     }
     
     func notificare(_ notificarePush: NotificarePush, didOpenUnknownNotification userInfo: [AnyHashable : Any]) {
-        dispatchEvent("unknown_notification_opened", payload: userInfo)
+        dispatchEvent("re.notifica.push.unknown_notification_opened", payload: userInfo)
     }
     
     func notificare(_ notificarePush: NotificarePush, didOpenAction action: NotificareNotification.Action, for notification: NotificareNotification) {
@@ -244,9 +244,9 @@ extension NotificarePushModule: NotificarePushDelegate {
                 "action": try action.toJson(),
             ]
             
-            dispatchEvent("notification_action_opened", payload: payload)
+            dispatchEvent("re.notifica.push.notification_action_opened", payload: payload)
         } catch {
-            NotificareLogger.error("Failed to emit the notification_action_opened event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.notification_action_opened event.", error: error)
         }
     }
     
@@ -260,22 +260,22 @@ extension NotificarePushModule: NotificarePushDelegate {
             payload["responseText"] = responseText
         }
         
-        dispatchEvent("unknown_notification_action_opened", payload: payload)
+        dispatchEvent("re.notifica.push.unknown_notification_action_opened", payload: payload)
     }
     
     func notificare(_ notificarePush: NotificarePush, didChangeNotificationSettings granted: Bool) {
-        dispatchEvent("notification_settings_changed", payload: granted)
+        dispatchEvent("re.notifica.push.notification_settings_changed", payload: granted)
     }
     
     func notificare(_ notificarePush: NotificarePush, shouldOpenSettings notification: NotificareNotification?) {
         do {
-            dispatchEvent("should_open_notification_settings", payload: try notification?.toJson())
+            dispatchEvent("re.notifica.push.should_open_notification_settings", payload: try notification?.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the should_open_notification_settings event.\n\(error)")
+            NotificareLogger.error("Failed to emit the re.notifica.push.should_open_notification_settings event.", error: error)
         }
     }
     
     func notificare(_ notificarePush: NotificarePush, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        dispatchEvent("failed_to_register_for_remote_notifications", payload: error.localizedDescription)
+        dispatchEvent("re.notifica.push.failed_to_register_for_remote_notifications", payload: error.localizedDescription)
     }
 }

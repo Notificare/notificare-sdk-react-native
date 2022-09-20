@@ -36,8 +36,8 @@ class NotificareAuthenticationModule: RCTEventEmitter {
     
     override func supportedEvents() -> [String] {
         return [
-            "password_reset_token_received",
-            "validate_user_token_received",
+            "re.notifica.authentication.password_reset_token_received",
+            "re.notifica.authentication.validate_user_token_received",
         ]
     }
     
@@ -350,12 +350,12 @@ extension NotificareAuthenticationModule: NotificareAppDelegateInterceptor {
         }
         
         if let token = Notificare.shared.authentication().parsePasswordResetToken(url) {
-            dispatchEvent("password_reset_token_received", payload: token)
+            dispatchEvent("re.notifica.authentication.password_reset_token_received", payload: token)
             return true
         }
         
         if let token = Notificare.shared.authentication().parseValidateUserToken(url) {
-            dispatchEvent("validate_user_token_received", payload: token)
+            dispatchEvent("re.notifica.authentication.validate_user_token_received", payload: token)
             return true
         }
         

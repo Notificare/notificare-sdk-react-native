@@ -1,0 +1,72 @@
+{
+  "name": "react-native-notificare-in-app-messaging",
+  "version": "3.4.0-beta.2",
+  "description": "Notificare In-App Messaging React Native module.",
+  "author": "Notificare <info@notifica.re> (https://notificare.com)",
+  "license": "MIT",
+  "homepage": "https://github.com/notificare/notificare-sdk-react-native#readme",
+  "repository": "https://github.com/notificare/notificare-sdk-react-native",
+  "bugs": {
+    "url": "https://github.com/notificare/notificare-sdk-react-native/issues"
+  },
+  "keywords": [
+    "notificare",
+    "react-native",
+    "ios",
+    "android"
+  ],
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "types": "lib/typescript/index.d.ts",
+  "react-native": "src/index",
+  "source": "src/index",
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "react-native-notificare-in-app-messaging.podspec",
+    "CHANGELOG.md",
+    "MIGRATION.md",
+    "!lib/typescript/example",
+    "!android/build",
+    "!ios/build",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
+  ],
+  "scripts": {
+    "build": "bob build",
+    "typescript": "tsc --noEmit",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "pack": "npm pack",
+    "prepack": "yarn build; yarn docs:replace-symbolic-links",
+    "postpack": "yarn docs:create-symbolic-links",
+    "prepare": "yarn build",
+    "docs:create-symbolic-links": "rm README.md CHANGELOG.md MIGRATION.md; ln -s ../../README.md ../../CHANGELOG.md ../../MIGRATION.md .",
+    "docs:replace-symbolic-links": "rm README.md CHANGELOG.md MIGRATION.md; cp ../../README.md ../../CHANGELOG.md ../../MIGRATION.md ."
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "react-native-notificare": "3.4.0-beta.2"
+  },
+  "devDependencies": {
+    "@types/react-native": "^0.66.4",
+    "react": "17.0.2",
+    "react-native": "0.67.4",
+    "react-native-builder-bob": "^0.18.0",
+    "react-native-notificare": "3.4.0-beta.2",
+    "typescript": "^4.5.0"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
+  }
+}

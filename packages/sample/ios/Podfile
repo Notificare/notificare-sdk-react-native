@@ -16,6 +16,7 @@ target 'sample' do
   pod 'react-native-notificare-assets', :path => '../../react-native-notificare-assets'
   pod 'react-native-notificare-geo', :path => '../../react-native-notificare-geo'
   pod 'react-native-notificare-authentication', :path => '../../react-native-notificare-authentication'
+  pod 'react-native-notificare-in-app-messaging', :path => '../../react-native-notificare-in-app-messaging'
   pod 'react-native-notificare-inbox', :path => '../../react-native-notificare-inbox'
   pod 'react-native-notificare-loyalty', :path => '../../react-native-notificare-loyalty'
   pod 'react-native-notificare-monetize', :path => '../../react-native-notificare-monetize'
@@ -39,5 +40,17 @@ target 'sample' do
   post_install do |installer|
     react_native_post_install(installer)
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
+
+
+    # Workaround for Xcode 14 build error
+    # fix: Signing for "React-Core-AccessibilityResources" requires a development team.
+    # https://github.com/CocoaPods/CocoaPods/issues/8891
+    installer.pods_project.targets.each do |target|
+      if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+        target.build_configurations.each do |config|
+            config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+        end
+      end
+    end
   end
 end

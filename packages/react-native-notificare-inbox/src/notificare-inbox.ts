@@ -72,12 +72,18 @@ export class NotificareInbox {
   public static onInboxUpdated(
     callback: (items: NotificareInboxItem[]) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('inbox_updated', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.inbox.inbox_updated',
+      callback
+    );
   }
 
   public static onBadgeUpdated(
     callback: (badge: number) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('badge_updated', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.inbox.badge_updated',
+      callback
+    );
   }
 }

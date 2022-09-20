@@ -85,22 +85,25 @@ export class Notificare {
   public static onReady(
     callback: (application: NotificareApplication) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('ready', callback);
+    return this.eventEmitter.addListener('re.notifica.ready', callback);
   }
 
   public static onUnlaunched(callback: () => void): EmitterSubscription {
-    return this.eventEmitter.addListener('unlaunched', callback);
+    return this.eventEmitter.addListener('re.notifica.unlaunched', callback);
   }
 
   public static onDeviceRegistered(
     callback: (device: NotificareDevice) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('device_registered', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.device_registered',
+      callback
+    );
   }
 
   public static onUrlOpened(
     callback: (url: string) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('url_opened', callback);
+    return this.eventEmitter.addListener('re.notifica.url_opened', callback);
   }
 }

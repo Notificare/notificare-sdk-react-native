@@ -37,10 +37,10 @@ class NotificareModule: RCTEventEmitter {
     
     override func supportedEvents() -> [String] {
         return [
-            "ready",
-            "unlaunched",
-            "device_registered",
-            "url_opened",
+            "re.notifica.ready",
+            "re.notifica.unlaunched",
+            "re.notifica.device_registered",
+            "re.notifica.url_opened",
         ]
     }
     
@@ -329,21 +329,21 @@ class NotificareModule: RCTEventEmitter {
 extension NotificareModule: NotificareDelegate {
     func notificare(_ notificare: Notificare, onReady application: NotificareApplication) {
         do {
-            dispatchEvent("ready", payload: try application.toJson())
+            dispatchEvent("re.notifica.ready", payload: try application.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the ready event.", error: error)
+            NotificareLogger.error("Failed to emit the re.notifica.ready event.", error: error)
         }
     }
     
     func notificareDidUnlaunch(_ notificare: Notificare) {
-        dispatchEvent("unlaunched", payload: nil)
+        dispatchEvent("re.notifica.unlaunched", payload: nil)
     }
     
     func notificare(_ notificare: Notificare, didRegisterDevice device: NotificareDevice) {
         do {
-            dispatchEvent("device_registered", payload: try device.toJson())
+            dispatchEvent("re.notifica.device_registered", payload: try device.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the device_registered event.", error: error)
+            NotificareLogger.error("Failed to emit the re.notifica.device_registered event.", error: error)
         }
     }
 }
@@ -358,7 +358,7 @@ extension NotificareModule: NotificareAppDelegateInterceptor {
             return true
         }
         
-        dispatchEvent("url_opened", payload: url.absoluteString)
+        dispatchEvent("re.notifica.url_opened", payload: url.absoluteString)
         return true
     }
     

@@ -24,6 +24,7 @@ import { NotificareGeo } from 'react-native-notificare-geo';
 import { BeaconsPage } from './pages/beacons-page';
 import { NotificareAuthentication } from 'react-native-notificare-authentication';
 import { NotificareMonetize } from 'react-native-notificare-monetize';
+import { NotificareInAppMessaging } from 'react-native-notificare-in-app-messaging';
 
 const Stack = createNativeStackNavigator();
 
@@ -299,6 +300,29 @@ export const App: FC = () => {
       NotificareMonetize.onPurchaseFailed(({ code, message, errorMessage }) => {
         console.log('=== PURCHASE FAILED ===');
         console.log(JSON.stringify({ code, message, errorMessage }, null, 2));
+      }),
+      //
+      // Notificare In-App Messaging
+      //
+      NotificareInAppMessaging.onMessagePresented((message) => {
+        console.log('=== ON MESSAGE PRESENTED ===');
+        console.log(JSON.stringify(message, null, 2));
+      }),
+      NotificareInAppMessaging.onMessageFinishedPresenting((message) => {
+        console.log('=== ON MESSAGE FINISHED PRESENTING ===');
+        console.log(JSON.stringify(message, null, 2));
+      }),
+      NotificareInAppMessaging.onMessageFailedToPresent((message) => {
+        console.log('=== ON MESSAGE FAILED TO PRESENT ===');
+        console.log(JSON.stringify(message, null, 2));
+      }),
+      NotificareInAppMessaging.onActionExecuted((data) => {
+        console.log('=== ON ACTION EXECUTED ===');
+        console.log(JSON.stringify(data, null, 2));
+      }),
+      NotificareInAppMessaging.onActionFailedToExecute((data) => {
+        console.log('=== ON ACTION FAILED TO EXECUTE ===');
+        console.log(JSON.stringify(data, null, 2));
       }),
     ];
 
