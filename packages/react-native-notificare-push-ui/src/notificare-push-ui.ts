@@ -53,20 +53,26 @@ export class NotificarePushUI {
   static onNotificationWillPresent(
     callback: (notification: NotificareNotification) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('notification_will_present', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.push.ui.notification_will_present',
+      callback
+    );
   }
 
   static onNotificationPresented(
     callback: (notification: NotificareNotification) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('notification_presented', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.push.ui.notification_presented',
+      callback
+    );
   }
 
   static onNotificationFinishedPresenting(
     callback: (notification: NotificareNotification) => void
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
-      'notification_finished_presenting',
+      're.notifica.push.ui.notification_finished_presenting',
       callback
     );
   }
@@ -75,7 +81,7 @@ export class NotificarePushUI {
     callback: (notification: NotificareNotification) => void
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
-      'notification_failed_to_present',
+      're.notifica.push.ui.notification_failed_to_present',
       callback
     );
   }
@@ -86,7 +92,10 @@ export class NotificarePushUI {
       url: string;
     }) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('notification_url_clicked', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.push.ui.notification_url_clicked',
+      callback
+    );
   }
 
   static onActionWillExecute(
@@ -95,7 +104,10 @@ export class NotificarePushUI {
       action: NotificareNotificationAction;
     }) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('action_will_execute', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.push.ui.action_will_execute',
+      callback
+    );
   }
 
   static onActionExecuted(
@@ -104,7 +116,10 @@ export class NotificarePushUI {
       action: NotificareNotificationAction;
     }) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('action_executed', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.push.ui.action_executed',
+      callback
+    );
   }
 
   static onActionNotExecuted(
@@ -113,7 +128,10 @@ export class NotificarePushUI {
       action: NotificareNotificationAction;
     }) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('action_not_executed', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.push.ui.action_not_executed',
+      callback
+    );
   }
 
   static onActionFailedToExecute(
@@ -123,7 +141,10 @@ export class NotificarePushUI {
       error?: string;
     }) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('action_failed_to_execute', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.push.ui.action_failed_to_execute',
+      callback
+    );
   }
 
   static onCustomActionReceived(
@@ -133,6 +154,9 @@ export class NotificarePushUI {
       url: string;
     }) => void
   ): EmitterSubscription {
-    return this.eventEmitter.addListener('custom_action_received', callback);
+    return this.eventEmitter.addListener(
+      're.notifica.push.ui.custom_action_received',
+      callback
+    );
   }
 }
