@@ -175,6 +175,6 @@ extension NotificareInboxModule: NotificareInboxDelegate {
     }
     
     func notificare(_ notificareInbox: NotificareInbox, didUpdateBadge badge: Int) {
-        dispatchEvent("badge_updated", payload: badge)
+        dispatchEvent("re.notifica.inbox.badge_updated", payload: badge)
     }
 }

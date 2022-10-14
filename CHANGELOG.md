@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 3.4.0-beta.3
+
+#### Native changes
+
+##### iOS
+
+- Add option to preserve existing notification categories
+
 ## 3.4.0-beta.2
 
 - Add in-app messaging module

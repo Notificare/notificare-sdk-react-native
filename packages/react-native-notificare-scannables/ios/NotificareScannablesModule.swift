@@ -43,8 +43,8 @@ class NotificareScannablesModule: RCTEventEmitter {
     
     override func supportedEvents() -> [String] {
         return [
-            "re.notifica.push.scannables.scannable_detected",
-            "re.notifica.push.scannables.scannable_session_failed",
+            "re.notifica.scannables.scannable_detected",
+            "re.notifica.scannables.scannable_session_failed",
         ]
     }
     

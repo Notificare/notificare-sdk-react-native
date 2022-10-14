@@ -1,0 +1,170 @@
+desc <<-DESC
+Updates the versions of the native libraries.
+
+#### Options
+* `version`: The version of the native libraries.
+* `platform`: The platform to update. Leave blank to update both.
+
+#### Examples
+```sh
+bundle exec fastlane update_native_libraries version:3.4.0
+bundle exec fastlane update_native_libraries version:3.4.0 platform:android
+bundle exec fastlane update_native_libraries version:3.4.0 platform:ios
+```
+DESC
+lane :update_native_libraries do |options|
+  version = options[:version]
+  platform = options[:platform]
+
+  if version.nil?
+    UI.user_error!("Missing required 'version' parameter.")
+  end
+
+  if platform.nil? || platform.downcase == 'android'
+    UI.message('Updating native Android libraries.')
+    update_native_android_libraries(version)
+  end
+
+  if platform.nil? || platform.downcase == 'ios'
+    UI.message('Updating native iOS libraries.')
+    update_native_ios_libraries(version)
+  end
+end
+
+desc <<-DESC
+Updates the version of each package.
+
+#### Options
+* `version`: The new version for the libraries.
+
+#### Examples
+```sh
+bundle exec fastlane bump version:3.4.0
+```
+DESC
+lane :bump do |options|
+  version = options[:version]
+
+  if version.nil?
+    UI.user_error!("Missing required 'version' parameter.")
+  end
+
+  # Lerna version
+  files = Dir['../lerna.json']
+  regex = /"version": ".*",/
+  replacement = "\"version\": \"#{version}\","
+  files.each { |file| update_file(file, regex, replacement) }
+
+  # Package version
+  files = Dir['../packages/react-native-notificare*/package.json']
+  regex = /"version": ".*",/
+  replacement = "\"version\": \"#{version}\","
+  files.each { |file| update_file(file, regex, replacement) }
+
+  # Package core dependencies
+  files = Dir['../packages/react-native-notificare*/package.json']
+  regex = /"react-native-notificare": ".*"/
+  replacement = "\"react-native-notificare\": \"#{version}\""
+  files.each { |file| update_file(file, regex, replacement) }
+end
+
+desc <<-DESC
+Updates the lockfile of each package and sample app pods.
+
+#### Examples
+```sh
+bundle exec fastlane update_sample
+```
+DESC
+lane :update_sample do
+  UI.message('Bootstrapping packages.')
+  bootstrap_packages
+
+  UI.message('Updating Cocoapods repo.')
+  update_pod_repo
+
+  UI.message('Updating app pods.')
+  update_pods
+end
+
+desc <<-DESC
+Validates and publishes each Flutter package.
+
+#### Options
+* `dry_run`: Only run in validation mode.
+
+#### Examples
+```sh
+bundle exec fastlane publish
+bundle exec fastlane publish dry_run:true
+```
+DESC
+lane :publish do |options|
+  dry_run = options[:dry_run] ||= false
+
+  if dry_run
+    directories = Dir["../packages/react-native-notificare*"]
+
+    directories.each do |directory|
+      UI.message("Validating '#{directory}' package.")
+      stream_shell_command("cd #{directory} && npm publish --dry-run")
+    end
+
+    next # skip doing the rest of this lane
+  end
+
+  ensure_git_status_clean unless dry_run
+
+  UI.message("Publishing packages.")
+  stream_shell_command("lerna publish from-package")
+end
+
+
+def update_file(path, regex, replacement)
+  file = File.read(path)
+  new_content = file.gsub(regex, replacement)
+  File.open(path, 'w') { |line| line.puts new_content }
+end
+
+def update_native_android_libraries(version)
+  files = Dir['../packages/react-native-notificare*/android/build.gradle']
+  regex = /def notificare_version = '.*'/
+  replacement = "def notificare_version = '#{version}'"
+
+  files.each { |file| update_file(file, regex, replacement) }
+end
+
+def update_native_ios_libraries(version)
+  files = Dir['../packages/react-native-notificare*/*.podspec']
+  regex = /notificare_version = '.*'/
+  replacement = "notificare_version = '#{version}'"
+
+  files.each { |file| update_file(file, regex, replacement) }
+end
+
+def bootstrap_packages
+  stream_shell_command("lerna clean -y")
+  stream_shell_command("lerna bootstrap")
+end
+
+def update_pod_repo
+  stream_shell_command("cd ../packages/sample/ios && pod repo update")
+end
+
+def update_pods
+  stream_shell_command("cd ../packages/sample/ios && pod update")
+end
+
+def stream_shell_command(command)
+  success = IO.popen(command) do |io|
+    while line = io.gets
+      puts line.chomp
+    end
+
+    io.close
+
+    $?.success?
+  end
+
+  UI.user_error!("Failed to execute shell script '#{command}'") unless success
+end
