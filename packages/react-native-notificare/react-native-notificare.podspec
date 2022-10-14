@@ -1,6 +1,7 @@
 require "json"
 
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
+notificare_version = '3.4.0-beta.2'
 
 Pod::Spec.new do |s|
   s.name         = "react-native-notificare"
@@ -17,5 +18,5 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
   s.dependency 'React-Core'
-  s.dependency 'Notificare/NotificareKit', '3.4.0-beta.2'
+  s.dependency 'Notificare/NotificareKit', notificare_version
 end

@@ -69,3 +69,9 @@ agconnect-services.json
 
 # Packed libs
 react-native-notificare-*.tgz
+
+# fastlane specific
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
