@@ -47,7 +47,7 @@ Table of contents
 ### Requirements
 
 * Android 6 (API level 23) and above
-* iOS 10 and above
+* iOS 11 and above
 
 ### Configuration
 
