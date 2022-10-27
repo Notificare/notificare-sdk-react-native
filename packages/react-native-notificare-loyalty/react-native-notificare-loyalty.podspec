@@ -1,7 +1,7 @@
 require "json"
 
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
-notificare_version = '3.4.0-beta.3'
+notificare_version = '3.4.0'
 
 Pod::Spec.new do |s|
   s.name         = "react-native-notificare-loyalty"
