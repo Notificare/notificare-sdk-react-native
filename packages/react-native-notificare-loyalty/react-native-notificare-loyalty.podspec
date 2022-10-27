@@ -1,7 +1,7 @@
 require "json"
 
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
-notificare_version = '3.4.0-beta.3'
+notificare_version = '3.4.0'
 
 Pod::Spec.new do |s|
   s.name         = "react-native-notificare-loyalty"
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.license      = package["license"]
   s.authors      = package["author"]
 
-  s.platforms    = { :ios => "10.0" }
+  s.platforms    = { :ios => "11.0" }
   s.swift_version = '5.0'
 
   s.source       = { :git => "https://github.com/notificare/notificare-sdk-react-native.git", :tag => "#{s.version}" }

@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 3.4.0
+
+#### Important changes since 3.3.0
+
+- In-app messaging module
+- Add option to preserve existing notification categories
+- Drop support for iOS 10
+
 ## 3.4.0-beta.3
 
 #### Native changes
