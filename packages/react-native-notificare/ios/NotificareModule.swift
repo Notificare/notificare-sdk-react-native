@@ -359,7 +359,7 @@ extension NotificareModule: NotificareAppDelegateInterceptor {
         }
         
         dispatchEvent("re.notifica.url_opened", payload: url.absoluteString)
-        return true
+        return false
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
