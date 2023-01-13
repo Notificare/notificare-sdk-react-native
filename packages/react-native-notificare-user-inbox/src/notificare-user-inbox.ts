@@ -44,7 +44,7 @@ export class NotificareUserInbox {
   }
 
   public static async markAsRead(item: NotificareUserInboxItem): Promise<void> {
-    return await NativeModule.open(item);
+    return await NativeModule.markAsRead(item);
   }
 
   public static async remove(item: NotificareUserInboxItem): Promise<void> {
