@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Upcoming release
+- Add user-level inbox module
+- Allow a context evaluation upon un-suppressing in-app messages
+- Include the delivery mechanism for notification received events
+
 ## 3.4.2
 
 - Preserve deep link propagation
