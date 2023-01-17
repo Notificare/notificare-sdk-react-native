@@ -38,9 +38,15 @@ export class NotificareInAppMessaging {
   }
 
   public static async setMessagesSuppressed(
-    suppressed: boolean
+    suppressed: boolean,
+    evaluateContext?: boolean
   ): Promise<void> {
-    await NativeModule.setMessagesSuppressed(suppressed);
+    const data = {
+      suppressed: suppressed,
+      evaluateContext: evaluateContext,
+    };
+
+    await NativeModule.setMessagesSuppressed(data);
   }
 
   //
