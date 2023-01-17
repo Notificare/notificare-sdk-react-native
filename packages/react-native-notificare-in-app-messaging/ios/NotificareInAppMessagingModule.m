@@ -6,7 +6,7 @@
 RCT_EXTERN_METHOD(hasMessagesSuppressed:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(setMessagesSuppressed:(NSDictionary)data
+RCT_EXTERN_METHOD(setMessagesSuppressed:(NSDictionary *)data
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
