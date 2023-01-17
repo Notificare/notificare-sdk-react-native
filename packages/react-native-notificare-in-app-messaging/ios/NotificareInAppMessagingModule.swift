@@ -57,9 +57,13 @@ class NotificareInAppMessagingModule: RCTEventEmitter {
     @objc func hasMessagesSuppressed(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         resolve(Notificare.shared.inAppMessaging().hasMessagesSuppressed)
     }
-
-    @objc func setMessagesSuppressed(_ suppressed: Bool, resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
-        Notificare.shared.inAppMessaging().hasMessagesSuppressed = suppressed
+    
+    @objc func setMessagesSuppressed(_ data: [String: Any], resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+        let suppressed = data["suppressed"] as! Bool
+        let evaluateContext = data["evaluateContext"] as? Bool ?? false
+        
+        Notificare.shared.inAppMessaging().setMessagesSuppressed(suppressed, evaluateContext: evaluateContext)
+        
         resolve(nil)
     }
 }

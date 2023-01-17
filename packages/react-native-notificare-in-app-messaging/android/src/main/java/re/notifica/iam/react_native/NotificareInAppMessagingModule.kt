@@ -43,8 +43,18 @@ public class NotificareInAppMessagingModule(reactContext: ReactApplicationContex
     }
 
     @ReactMethod
-    public fun setMessagesSuppressed(suppressed: Boolean, promise: Promise) {
-        Notificare.inAppMessaging().hasMessagesSuppressed = suppressed
+    public fun setMessagesSuppressed(data: ReadableMap, promise: Promise) {
+        val arguments = data.toJson()
+        val suppressed = arguments.getBoolean("suppressed")
+        val evaluateContext =
+            if (!arguments.isNull("evaluateContext")) {
+                arguments.getBoolean("evaluateContext")
+            } else {
+                false
+            }
+
+        Notificare.inAppMessaging().setMessagesSuppressed(suppressed, evaluateContext)
+
         promise.resolve(null)
     }
 
