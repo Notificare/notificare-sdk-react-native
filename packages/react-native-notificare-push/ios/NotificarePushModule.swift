@@ -37,6 +37,7 @@ class NotificarePushModule: RCTEventEmitter {
     override func supportedEvents() -> [String] {
         return [
             "re.notifica.push.notification_received",
+            "re.notifica.push.notification_info_received",
             "re.notifica.push.system_notification_received",
             "re.notifica.push.unknown_notification_received",
             "re.notifica.push.notification_opened",
@@ -210,6 +211,19 @@ extension NotificarePushModule: NotificarePushDelegate {
             dispatchEvent("re.notifica.push.notification_received", payload: try notification.toJson())
         } catch {
             NotificareLogger.error("Failed to emit the re.notifica.push.notification_received event.", error: error)
+        }
+    }
+    
+    func notificare(_ notificarePush: NotificarePush, didReceiveNotification notification: NotificareNotification, deliveryMechanism: NotificareNotificationDeliveryMechanism) {
+        do {
+            let payload: [String: Any] = [
+                "notification": try notification.toJson(),
+                "deliveryMechanism": deliveryMechanism.rawValue,
+            ]
+            
+            dispatchEvent("re.notifica.push.notification_info_received", payload: payload)
+        } catch {
+            NotificareLogger.error("Failed to emit the re.notifica.push.notification_info_received event.", error: error)
         }
     }
     

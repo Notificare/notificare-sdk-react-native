@@ -9,6 +9,7 @@ import type {
   NotificareNotification,
   NotificareNotificationAction,
 } from 'react-native-notificare';
+import type { NotificareNotificationDeliveryMechanism } from './models/notificare-notification-delivery-mechanism';
 
 const LINKING_ERROR =
   `The package 'react-native-notificare-push' doesn't seem to be linked. Make sure: \n\n` +
@@ -74,11 +75,26 @@ export class NotificarePush {
   // Events
   //
 
+  /**
+   * @deprecated Listen to onNotificationInfoReceived(notification, deliveryMechanism) instead.
+   */
   public static onNotificationReceived(
     callback: (notification: NotificareNotification) => void
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
       're.notifica.push.notification_received',
+      callback
+    );
+  }
+
+  public static onNotificationInfoReceived(
+    callback: (data: {
+      notification: NotificareNotification;
+      deliveryMechanism: NotificareNotificationDeliveryMechanism;
+    }) => void
+  ): EmitterSubscription {
+    return this.eventEmitter.addListener(
+      're.notifica.push.notification_info_received',
       callback
     );
   }
