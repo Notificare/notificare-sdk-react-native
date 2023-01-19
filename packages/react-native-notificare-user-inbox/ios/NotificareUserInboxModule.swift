@@ -16,15 +16,10 @@ class NotificareUserInboxModule: NSObject {
         do {
             let response = try Notificare.shared.userInbox().parseResponse(json: json)
             
-            do {
-                let payload = try response.toJson()
-                resolve(payload)
-            } catch {
-                reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
-            }
+            let payload = try response.toJson()
+            resolve(payload)
         } catch {
             reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
-            return
         }
     }
     
@@ -33,15 +28,10 @@ class NotificareUserInboxModule: NSObject {
         do {
             let response = try Notificare.shared.userInbox().parseResponse(string: json)
             
-            do {
-                let payload = try response.toJson()
-                resolve(payload)
-            } catch {
-                reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
-            }
+            let payload = try response.toJson()
+            resolve(payload)
         } catch {
             reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
-            return
         }
     }
     
