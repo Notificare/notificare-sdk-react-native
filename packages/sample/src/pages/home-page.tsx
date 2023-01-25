@@ -290,6 +290,7 @@ export const HomePage: FC = () => {
 
   async function onEnableRemoteNotificationsClicked() {
     try {
+      if (!(await ensureNotificationsPermission())) return;
       await NotificarePush.enableRemoteNotifications();
       setSnackbarInfo({ visible: true, label: 'Done.' });
     } catch (e) {
@@ -304,6 +305,26 @@ export const HomePage: FC = () => {
     } catch (e) {
       setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
     }
+  }
+
+  async function ensureNotificationsPermission(): Promise<boolean> {
+    if (Platform.OS === 'ios') return true;
+
+    if (Platform.Version < 33) return true;
+
+    const permission = PERMISSIONS.ANDROID.POST_NOTIFICATIONS;
+
+    let status = await check(permission);
+    if (status === 'granted') return true;
+
+    status = await request(permission, {
+      title: 'Sample',
+      message:
+        'We need access to notifications in order to show relevant content.',
+      buttonPositive: 'OK',
+    });
+
+    return status === 'granted';
   }
 
   async function onOpenInboxClicked() {
