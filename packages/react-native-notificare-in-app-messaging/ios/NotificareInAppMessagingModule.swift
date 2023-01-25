@@ -59,7 +59,11 @@ class NotificareInAppMessagingModule: RCTEventEmitter {
     }
     
     @objc func setMessagesSuppressed(_ data: [String: Any], resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
-        let suppressed = data["suppressed"] as! Bool
+        guard let suppressed = data["suppressed"] as? Bool else {
+            reject(DEFAULT_ERROR_CODE, "Missing 'suppressed' parameter.", nil)
+            return
+        }
+        
         let evaluateContext = data["evaluateContext"] as? Bool ?? false
         
         Notificare.shared.inAppMessaging().setMessagesSuppressed(suppressed, evaluateContext: evaluateContext)
