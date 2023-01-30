@@ -34,3 +34,6 @@ project(':react_native_notificare_push_ui').projectDir = new File(rootProject.pr
 
 include ':react_native_notificare_scannables'
 project(':react_native_notificare_scannables').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-scannables/android')
+
+include ':react_native_notificare_user_inbox'
+project(':react_native_notificare_user_inbox').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-user-inbox/android')
