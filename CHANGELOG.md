@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Upcoming release
+## 3.5.0
 
 - Add user-level inbox module
 - Allow a context evaluation upon un-suppressing in-app messages
