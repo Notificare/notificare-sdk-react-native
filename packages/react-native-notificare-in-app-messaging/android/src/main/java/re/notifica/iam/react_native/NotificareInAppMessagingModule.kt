@@ -43,8 +43,24 @@ public class NotificareInAppMessagingModule(reactContext: ReactApplicationContex
     }
 
     @ReactMethod
-    public fun setMessagesSuppressed(suppressed: Boolean, promise: Promise) {
-        Notificare.inAppMessaging().hasMessagesSuppressed = suppressed
+    public fun setMessagesSuppressed(data: ReadableMap, promise: Promise) {
+        val arguments = data.toJson()
+        val suppressed = try {
+            arguments.getBoolean("suppressed")
+        } catch (e: Exception) {
+            promise.reject(DEFAULT_ERROR_CODE, e)
+            return
+        }
+
+        val evaluateContext =
+            if (!arguments.isNull("evaluateContext")) {
+                arguments.getBoolean("evaluateContext")
+            } else {
+                false
+            }
+
+        Notificare.inAppMessaging().setMessagesSuppressed(suppressed, evaluateContext)
+
         promise.resolve(null)
     }
 
@@ -109,4 +125,8 @@ public class NotificareInAppMessagingModule(reactContext: ReactApplicationContex
     }
 
     // endregion
+
+    public companion object {
+        internal const val DEFAULT_ERROR_CODE = "notificare_error"
+    }
 }

@@ -5,15 +5,31 @@ import com.facebook.react.bridge.Arguments
 import re.notifica.internal.NotificareLogger
 import re.notifica.models.NotificareNotification
 import re.notifica.push.NotificarePushIntentReceiver
+import re.notifica.push.models.NotificareNotificationDeliveryMechanism
 import re.notifica.push.models.NotificareSystemNotification
 import re.notifica.push.models.NotificareUnknownNotification
 
 internal class NotificarePushModuleIntentReceiver : NotificarePushIntentReceiver() {
-    override fun onNotificationReceived(context: Context, notification: NotificareNotification) {
+    override fun onNotificationReceived(
+        context: Context,
+        notification: NotificareNotification,
+        deliveryMechanism: NotificareNotificationDeliveryMechanism
+    ) {
+        // Continue emitting the legacy event to preserve backwards compatibility.
         try {
             EventBroker.dispatchEvent("re.notifica.push.notification_received", notification.toJson().toReactMap())
         } catch (e: Exception) {
             NotificareLogger.error("Failed to emit the re.notifica.push.notification_received event.", e)
+        }
+
+        try {
+            val arguments = Arguments.createMap()
+            arguments.putMap("notification", notification.toJson().toReactMap())
+            arguments.putString("deliveryMechanism", deliveryMechanism.rawValue)
+
+            EventBroker.dispatchEvent("re.notifica.push.notification_info_received", arguments)
+        } catch (e: Exception) {
+            NotificareLogger.error("Failed to emit the re.notifica.push.notification_info_received event.", e)
         }
     }
 
