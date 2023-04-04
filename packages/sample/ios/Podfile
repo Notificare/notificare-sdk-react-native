@@ -54,3 +54,7 @@ target 'sample' do
     end
   end
 end
+
+target 'NotificationServiceExtension' do
+  pod 'Notificare/NotificareNotificationServiceExtensionKit', '>= 3.5.0'
+end

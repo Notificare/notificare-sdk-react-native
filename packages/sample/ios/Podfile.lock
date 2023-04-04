@@ -81,6 +81,7 @@ PODS:
   - Notificare/NotificareKit (3.5.0)
   - Notificare/NotificareLoyaltyKit (3.5.0)
   - Notificare/NotificareMonetizeKit (3.5.0)
+  - Notificare/NotificareNotificationServiceExtensionKit (3.5.0)
   - Notificare/NotificarePushKit (3.5.0)
   - Notificare/NotificarePushUIKit (3.5.0)
   - Notificare/NotificareScannablesKit (3.5.0)
@@ -437,6 +438,7 @@ DEPENDENCIES:
   - FlipperKit/FlipperKitUserDefaultsPlugin (= 0.99.0)
   - FlipperKit/SKIOSNetworkPlugin (= 0.99.0)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - Notificare/NotificareNotificationServiceExtensionKit (>= 3.5.0)
   - OpenSSL-Universal (= 1.1.180)
   - Permission-LocationAccuracy (from `../node_modules/react-native-permissions/ios/LocationAccuracy`)
   - Permission-LocationAlways (from `../node_modules/react-native-permissions/ios/LocationAlways`)
@@ -665,6 +667,6 @@ SPEC CHECKSUMS:
   Yoga: 099a946cbf84c9b32ffdc4278d72db26710ecf92
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 3ef5075d9717bed4f09fdbca24820b4170ed7fc8
+PODFILE CHECKSUM: d5f819659022be2dddb6af91039576b600e71723
 
 COCOAPODS: 1.11.3
