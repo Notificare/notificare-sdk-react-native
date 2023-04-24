@@ -33,6 +33,23 @@ bundle exec fastlane update_native_libraries version:3.4.0 platform:ios
 ```
 
 
+### update_android_gradle_plugin
+
+```sh
+[bundle exec] fastlane update_android_gradle_plugin
+```
+
+Updates the Android Gradle Plugin version of each package.
+
+#### Options
+* `version`: The new version for the Android Gradle Plugin.
+
+#### Examples
+```sh
+bundle exec fastlane update_android_gradle_plugin version:7.4.2
+```
+
+
 ### bump
 
 ```sh
@@ -70,7 +87,7 @@ bundle exec fastlane update_sample
 [bundle exec] fastlane publish
 ```
 
-Validates and publishes each Flutter package.
+Validates and publishes each package.
 
 #### Options
 * `dry_run`: Only run in validation mode.
