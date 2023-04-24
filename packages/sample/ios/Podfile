@@ -1,56 +1,74 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '11.0'
+platform :ios, min_ios_version_supported
+prepare_react_native_project!
+
+# If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
+# because `react-native-flipper` depends on (FlipperKit,...) that will be excluded
+#
+# To fix this you can also exclude `react-native-flipper` using a `react-native.config.js`
+# ```js
+# module.exports = {
+#   dependencies: {
+#     ...(process.env.NO_FLIPPER ? { 'react-native-flipper': { platforms: { ios: null } } } : {}),
+# ```
+flipper_config = ENV['NO_FLIPPER'] == "1" ? FlipperConfiguration.disabled : FlipperConfiguration.enabled
+
+linkage = ENV['USE_FRAMEWORKS']
+if linkage != nil
+  Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
+  use_frameworks! :linkage => linkage.to_sym
+end
 
 target 'sample' do
   config = use_native_modules!
 
+  # Flags change depending on the env values.
+  flags = get_default_flags()
+
   use_react_native!(
     :path => config[:reactNativePath],
-    # to enable hermes on iOS, change `false` to `true` and then install pods
-    :hermes_enabled => false
+    # Hermes is now enabled by default. Disable by setting this flag to false.
+    # Upcoming versions of React Native may rely on get_default_flags(), but
+    # we make it explicit here to aid in the React Native upgrade process.
+    :hermes_enabled => flags[:hermes_enabled],
+    :fabric_enabled => flags[:fabric_enabled],
+    # Enables Flipper.
+    #
+    # Note that if you have use_frameworks! enabled, Flipper will not work and
+    # you should disable the next line.
+    :flipper_configuration => flipper_config,
+    # An absolute path to your application root.
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  pod 'react-native-notificare', :path => '../../react-native-notificare'
-  pod 'react-native-notificare-assets', :path => '../../react-native-notificare-assets'
-  pod 'react-native-notificare-geo', :path => '../../react-native-notificare-geo'
-  pod 'react-native-notificare-authentication', :path => '../../react-native-notificare-authentication'
-  pod 'react-native-notificare-in-app-messaging', :path => '../../react-native-notificare-in-app-messaging'
-  pod 'react-native-notificare-inbox', :path => '../../react-native-notificare-inbox'
-  pod 'react-native-notificare-loyalty', :path => '../../react-native-notificare-loyalty'
-  pod 'react-native-notificare-monetize', :path => '../../react-native-notificare-monetize'
-  pod 'react-native-notificare-push', :path => '../../react-native-notificare-push'
-  pod 'react-native-notificare-push-ui', :path => '../../react-native-notificare-push-ui'
-  pod 'react-native-notificare-scannables', :path => '../../react-native-notificare-scannables'
+    pod 'react-native-notificare', :path => '../../react-native-notificare'
+    pod 'react-native-notificare-assets', :path => '../../react-native-notificare-assets'
+    pod 'react-native-notificare-geo', :path => '../../react-native-notificare-geo'
+    pod 'react-native-notificare-authentication', :path => '../../react-native-notificare-authentication'
+    pod 'react-native-notificare-in-app-messaging', :path => '../../react-native-notificare-in-app-messaging'
+    pod 'react-native-notificare-inbox', :path => '../../react-native-notificare-inbox'
+    pod 'react-native-notificare-loyalty', :path => '../../react-native-notificare-loyalty'
+    pod 'react-native-notificare-monetize', :path => '../../react-native-notificare-monetize'
+    pod 'react-native-notificare-push', :path => '../../react-native-notificare-push'
+    pod 'react-native-notificare-push-ui', :path => '../../react-native-notificare-push-ui'
+    pod 'react-native-notificare-scannables', :path => '../../react-native-notificare-scannables'
 
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+    pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  permissions_path = '../node_modules/react-native-permissions/ios'
-  pod 'Permission-LocationAccuracy', :path => "#{permissions_path}/LocationAccuracy"
-  pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways"
-  pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
-
-  # Enables Flipper.
-  #
-  # Note that if you have use_frameworks! enabled, Flipper will not work and
-  # you should disable the next line.
-  use_flipper!()
+    permissions_path = '../node_modules/react-native-permissions/ios'
+    pod 'Permission-LocationAccuracy', :path => "#{permissions_path}/LocationAccuracy"
+    pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways"
+    pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
 
   post_install do |installer|
-    react_native_post_install(installer)
+    react_native_post_install(
+      installer,
+      # Set `mac_catalyst_enabled` to `true` in order to apply patches
+      # necessary for Mac Catalyst builds
+      :mac_catalyst_enabled => false
+    )
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
-
-
-    # Workaround for Xcode 14 build error
-    # fix: Signing for "React-Core-AccessibilityResources" requires a development team.
-    # https://github.com/CocoaPods/CocoaPods/issues/8891
-    installer.pods_project.targets.each do |target|
-      if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
-        target.build_configurations.each do |config|
-            config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
-        end
-      end
-    end
   end
 end
