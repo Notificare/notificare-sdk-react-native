@@ -32,6 +32,31 @@ lane :update_native_libraries do |options|
 end
 
 desc <<-DESC
+Updates the Android Gradle Plugin version of each package.
+
+#### Options
+* `version`: The new version for the Android Gradle Plugin.
+
+#### Examples
+```sh
+bundle exec fastlane update_android_gradle_plugin version:7.4.2
+```
+DESC
+lane :update_android_gradle_plugin do |options|
+  version = options[:version]
+
+  if version.nil?
+    UI.user_error!("Missing required 'version' parameter.")
+  end
+
+  files = Dir['../packages/react-native-notificare*/android/build.gradle']
+  regex = /classpath 'com.android.tools.build:gradle:.*'/
+  replacement = "classpath 'com.android.tools.build:gradle:#{version}'"
+
+  files.each { |file| update_file(file, regex, replacement) }
+end
+
+desc <<-DESC
 Updates the version of each package.
 
 #### Options
@@ -88,7 +113,7 @@ lane :update_sample do
 end
 
 desc <<-DESC
-Validates and publishes each Flutter package.
+Validates and publishes each package.
 
 #### Options
 * `dry_run`: Only run in validation mode.
