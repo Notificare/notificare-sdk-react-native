@@ -584,18 +584,6 @@ export const HomePage: FC = () => {
     }
   }
 
-  async function onGeneratePushEmailClicked() {
-    try {
-      const result = await NotificareAuthentication.generatePushEmailAddress();
-      setSnackbarInfo({ visible: true, label: JSON.stringify(result) });
-
-      console.log('=== GENERATE PUSH EMAIL ===');
-      console.log(JSON.stringify(result, null, 2));
-    } catch (e) {
-      setSnackbarInfo({ visible: true, label: JSON.stringify(e) });
-    }
-  }
-
   async function onAddUserSegmentClicked() {
     try {
       const segments = await NotificareAuthentication.fetchUserSegments();
@@ -840,9 +828,6 @@ export const HomePage: FC = () => {
           <Button onPress={onResetPasswordClicked}>Reset password</Button>
           <Button onPress={onChangePasswordClicked}>Change password</Button>
           <Button onPress={onValidateUserClicked}>Validate user</Button>
-          <Button onPress={onGeneratePushEmailClicked}>
-            Generate push email
-          </Button>
           <Button onPress={onAddUserSegmentClicked}>Add user segment</Button>
           <Button onPress={onRemoveUserSegmentClicked}>
             Remove user segment

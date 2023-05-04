@@ -13,6 +13,7 @@ import {
 import { InboxItem } from '../components/inbox-item';
 import { NotificarePushUI } from 'react-native-notificare-push-ui';
 import { useNavigation } from '@react-navigation/native';
+// @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export const InboxPage: FC = () => {
