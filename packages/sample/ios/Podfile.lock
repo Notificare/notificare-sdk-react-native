@@ -78,7 +78,6 @@ PODS:
   - hermes-engine/Pre-built (0.71.6)
   - libevent (2.1.12)
   - Notificare/NotificareAssetsKit (3.5.1)
-  - Notificare/NotificareAuthenticationKit (3.5.1)
   - Notificare/NotificareGeoKit (3.5.1)
   - Notificare/NotificareInAppMessagingKit (3.5.1)
   - Notificare/NotificareInboxKit (3.5.1)
@@ -353,10 +352,6 @@ PODS:
     - Notificare/NotificareAssetsKit (= 3.5.1)
     - Notificare/NotificareKit (= 3.5.1)
     - React-Core
-  - react-native-notificare-authentication (3.5.1):
-    - Notificare/NotificareAuthenticationKit (= 3.5.1)
-    - Notificare/NotificareKit (= 3.5.1)
-    - React-Core
   - react-native-notificare-geo (3.5.1):
     - Notificare/NotificareGeoKit (= 3.5.1)
     - Notificare/NotificareKit (= 3.5.1)
@@ -542,7 +537,6 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-notificare (from `../../react-native-notificare`)
   - react-native-notificare-assets (from `../../react-native-notificare-assets`)
-  - react-native-notificare-authentication (from `../../react-native-notificare-authentication`)
   - react-native-notificare-geo (from `../../react-native-notificare-geo`)
   - react-native-notificare-in-app-messaging (from `../../react-native-notificare-in-app-messaging`)
   - react-native-notificare-inbox (from `../../react-native-notificare-inbox`)
@@ -640,8 +634,6 @@ EXTERNAL SOURCES:
     :path: "../../react-native-notificare"
   react-native-notificare-assets:
     :path: "../../react-native-notificare-assets"
-  react-native-notificare-authentication:
-    :path: "../../react-native-notificare-authentication"
   react-native-notificare-geo:
     :path: "../../react-native-notificare-geo"
   react-native-notificare-in-app-messaging:
@@ -735,7 +727,6 @@ SPEC CHECKSUMS:
   React-logger: 9332c3e7b4ef007a0211c0a9868253aac3e1da82
   react-native-notificare: 72d51438d4f7180bd915626a2daa6c02f02a178b
   react-native-notificare-assets: 6c1e088b02d7e95220e4d3a3320f01648679c146
-  react-native-notificare-authentication: 7d98a4d499aa8ebac07a3a341fa024db9f1b4d1c
   react-native-notificare-geo: 572fe6e466389b1ac09312cc7db0b16426e4d9f1
   react-native-notificare-in-app-messaging: 1f1d2830ff29079aa03a5980e20b5e6fd30e7c73
   react-native-notificare-inbox: 75ca61794924f1d0a5b80b51de798b7a697ecc81
@@ -765,6 +756,6 @@ SPEC CHECKSUMS:
   Yoga: ba09b6b11e6139e3df8229238aa794205ca6a02a
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: a9fce0db5257e878bc528aedb22bd0e02c0ae9ca
+PODFILE CHECKSUM: c25dc11e2736022b5667a090912c19e9920dc203
 
 COCOAPODS: 1.12.1

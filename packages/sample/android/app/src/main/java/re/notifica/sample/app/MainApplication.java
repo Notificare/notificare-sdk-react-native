@@ -14,7 +14,6 @@ import re.notifica.inbox.user.react_native.NotificareUserInboxPackage;
 import re.notifica.monetize.react_native.NotificareMonetizePackage;
 import re.notifica.react_native.NotificarePackage;
 import re.notifica.assets.react_native.NotificareAssetsPackage;
-import re.notifica.authentication.react_native.NotificareAuthenticationPackage;
 import re.notifica.geo.react_native.NotificareGeoPackage;
 import re.notifica.inbox.react_native.NotificareInboxPackage;
 import re.notifica.loyalty.react_native.NotificareLoyaltyPackage;
@@ -39,7 +38,6 @@ public class MainApplication extends Application implements ReactApplication {
           // packages.add(new MyReactNativePackage());
           packages.add(new NotificarePackage());
           packages.add(new NotificareAssetsPackage());
-          packages.add(new NotificareAuthenticationPackage());
           packages.add(new NotificareGeoPackage());
           packages.add(new NotificareInAppMessagingPackage());
           packages.add(new NotificareInboxPackage());
