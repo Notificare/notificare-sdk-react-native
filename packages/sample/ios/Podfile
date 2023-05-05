@@ -46,7 +46,6 @@ target 'sample' do
     pod 'react-native-notificare', :path => '../../react-native-notificare'
     pod 'react-native-notificare-assets', :path => '../../react-native-notificare-assets'
     pod 'react-native-notificare-geo', :path => '../../react-native-notificare-geo'
-    pod 'react-native-notificare-authentication', :path => '../../react-native-notificare-authentication'
     pod 'react-native-notificare-in-app-messaging', :path => '../../react-native-notificare-in-app-messaging'
     pod 'react-native-notificare-inbox', :path => '../../react-native-notificare-inbox'
     pod 'react-native-notificare-loyalty', :path => '../../react-native-notificare-loyalty'

@@ -4,7 +4,6 @@ const path = require('path');
 const packages = [
   'react-native-notificare',
   'react-native-notificare-assets',
-  'react-native-notificare-authentication',
   'react-native-notificare-geo',
   'react-native-notificare-in-app-messaging',
   'react-native-notificare-inbox',
