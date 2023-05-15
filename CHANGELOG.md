@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Upcoming release
+## 3.5.2
 
 #### Native changes
 

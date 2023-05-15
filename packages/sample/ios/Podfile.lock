@@ -345,42 +345,42 @@ PODS:
   - React-jsinspector (0.71.6)
   - React-logger (0.71.6):
     - glog
-  - react-native-notificare (3.5.1):
+  - react-native-notificare (3.5.2):
     - Notificare/NotificareKit (= 3.5.2)
     - React-Core
-  - react-native-notificare-assets (3.5.1):
+  - react-native-notificare-assets (3.5.2):
     - Notificare/NotificareAssetsKit (= 3.5.2)
     - Notificare/NotificareKit (= 3.5.2)
     - React-Core
-  - react-native-notificare-geo (3.5.1):
+  - react-native-notificare-geo (3.5.2):
     - Notificare/NotificareGeoKit (= 3.5.2)
     - Notificare/NotificareKit (= 3.5.2)
     - React-Core
-  - react-native-notificare-in-app-messaging (3.5.1):
+  - react-native-notificare-in-app-messaging (3.5.2):
     - Notificare/NotificareInAppMessagingKit (= 3.5.2)
     - Notificare/NotificareKit (= 3.5.2)
     - React-Core
-  - react-native-notificare-inbox (3.5.1):
+  - react-native-notificare-inbox (3.5.2):
     - Notificare/NotificareInboxKit (= 3.5.2)
     - Notificare/NotificareKit (= 3.5.2)
     - React-Core
-  - react-native-notificare-loyalty (3.5.1):
+  - react-native-notificare-loyalty (3.5.2):
     - Notificare/NotificareKit (= 3.5.2)
     - Notificare/NotificareLoyaltyKit (= 3.5.2)
     - React-Core
-  - react-native-notificare-monetize (3.5.1):
+  - react-native-notificare-monetize (3.5.2):
     - Notificare/NotificareKit (= 3.5.2)
     - Notificare/NotificareMonetizeKit (= 3.5.2)
     - React-Core
-  - react-native-notificare-push (3.5.1):
+  - react-native-notificare-push (3.5.2):
     - Notificare/NotificareKit (= 3.5.2)
     - Notificare/NotificarePushKit (= 3.5.2)
     - React-Core
-  - react-native-notificare-push-ui (3.5.1):
+  - react-native-notificare-push-ui (3.5.2):
     - Notificare/NotificareKit (= 3.5.2)
     - Notificare/NotificarePushUIKit (= 3.5.2)
     - React-Core
-  - react-native-notificare-scannables (3.5.1):
+  - react-native-notificare-scannables (3.5.2):
     - Notificare/NotificareKit (= 3.5.2)
     - Notificare/NotificareScannablesKit (= 3.5.2)
     - React-Core
@@ -725,16 +725,16 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 7894956638ff3e00819dd3f9f6f4a84da38f2409
   React-jsinspector: d5ce2ef3eb8fd30c28389d0bc577918c70821bd6
   React-logger: 9332c3e7b4ef007a0211c0a9868253aac3e1da82
-  react-native-notificare: 011f3e587240e3095d40948f2af3dfa45ebd84a3
-  react-native-notificare-assets: bb89a15348ffd365d430c52282d67fe7a5b3354d
-  react-native-notificare-geo: f84ea71278daa2ff11ff36323de2a749118897f5
-  react-native-notificare-in-app-messaging: 12867b5166c7a03e32f85c8eec7fd435b65acd3e
-  react-native-notificare-inbox: 05508ce1027620ce5618e34793877b14a0361857
-  react-native-notificare-loyalty: 5d4e6f802001f77b240fb04b37a2a3d11c5a8540
-  react-native-notificare-monetize: 31f22028ded324305f5894bf3f68ccc5d3046b65
-  react-native-notificare-push: 3feb3ca7051dd9e185d1c99a6e17d80f3746a03c
-  react-native-notificare-push-ui: 57ea13939e402273793db0b1899c1ded2d92a5d1
-  react-native-notificare-scannables: c7c17cb07c1a235aa2aea829dd42fc0955234647
+  react-native-notificare: 453e6e9be4225a2aefe8cf1f46c3443b51e31c66
+  react-native-notificare-assets: 1b833f0ac38ea260eb15a8dfd7025d927e7c9541
+  react-native-notificare-geo: 4ee00d0c650f0a71748433eee00f5e3da0964125
+  react-native-notificare-in-app-messaging: de63bc9998358f0c5c8df69f33e5d1f532d80a58
+  react-native-notificare-inbox: c6d9e93d9a6826cd75b5db11904d1cc7f846bb81
+  react-native-notificare-loyalty: 804909e275990775ada82607d2e7e60c01c63563
+  react-native-notificare-monetize: bc473fca9616157f4a7d4f7babc1b061df510bbd
+  react-native-notificare-push: 443411b42480a6fe5e761c27465862b935534240
+  react-native-notificare-push-ui: 40db37d4850916fb0a8af78042da09d4254a1a1c
+  react-native-notificare-scannables: bb46bf35d369c5c2362085bc362a9410dd7dc986
   react-native-safe-area-context: f5549f36508b1b7497434baa0cd97d7e470920d4
   React-perflogger: 43392072a5b867a504e2b4857606f8fc5a403d7f
   React-RCTActionSheet: c7b67c125bebeda9fb19fc7b200d85cb9d6899c4
