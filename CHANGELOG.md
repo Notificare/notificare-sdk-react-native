@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## Upcoming release
+
+#### Native changes
+
+##### Android
+
+- Prevent multiple configurations from taking place
+- Add broadcast receiver for geo events
+- Start monitoring nearest regions immediately after upgrading to background location
+- Correctly track device on initial application open event
+
+##### iOS
+
+- Emit the didChangeNotificationSettings event when disabling remote notifications
+- Add opt-in flag to prevent file access restrictions for Core Data
+- Prevent push registration race condition when enabling remote notifications
+- Correctly track device on initial application open event
+
 ## 3.5.1
 
 #### Native changes
