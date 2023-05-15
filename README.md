@@ -59,7 +59,6 @@ yarn add react-native-notificare
 
 # Optional modules
 yarn add react-native-notificare-assets
-yarn add react-native-notificare-authentication
 yarn add react-native-notificare-geo
 yarn add react-native-notificare-in-app-messaging
 yarn add react-native-notificare-inbox

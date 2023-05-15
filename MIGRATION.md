@@ -58,7 +58,6 @@ We have moved to several new packages. Here's all the dependencies available:
   "dependencies": {
     "react-native-notificare": "3.0.0",
     "react-native-notificare-assets": "3.0.0",
-    "react-native-notificare-authentication": "3.0.0",
     "react-native-notificare-geo": "3.0.0",
     "react-native-notificare-inbox": "3.0.0",
     "react-native-notificare-loyalty": "3.0.0",
