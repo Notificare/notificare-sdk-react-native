@@ -1,19 +1,9 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
-import React, { FC, useEffect, useState } from 'react';
+import React, { createContext, FC, useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider as PaperProvider, Snackbar } from 'react-native-paper';
-import { HomePage } from './pages/home-page';
-import { InboxPage } from './pages/inbox-page';
+import { HomeView } from './pages/home/home_view';
+import { InboxView } from './pages/inbox/inbox_view';
 import { Notificare } from 'react-native-notificare';
 import { SnackbarInfo } from './utils/snackbar';
 import { NotificarePush } from 'react-native-notificare-push';
@@ -21,16 +11,40 @@ import { NotificarePushUI } from 'react-native-notificare-push-ui';
 import { NotificareInbox } from 'react-native-notificare-inbox';
 import { NotificareScannables } from 'react-native-notificare-scannables';
 import { NotificareGeo } from 'react-native-notificare-geo';
-import { BeaconsPage } from './pages/beacons-page';
+import { BeaconsView } from './pages/beacons/beacons_view';
 import { NotificareMonetize } from 'react-native-notificare-monetize';
 import { NotificareInAppMessaging } from 'react-native-notificare-in-app-messaging';
+import { DeviceView } from './pages/device/device_view';
+import { TagsView } from './pages/tags/tags_view';
+import { AssetsView } from './pages/assets/assets_view';
+import { CustomEventView } from './pages/events/custom_events_view';
+import { MonetizeView } from './pages/monetize/monetize_view';
+import { ScannablesView } from './pages/scannables/scannables_view';
+import { snackbarStyles } from './styles/styles_snackbar';
 
 const Stack = createNativeStackNavigator();
 
+const mainContext = createContext({
+  isReady: false,
+  notificationsSettingsGranted: false,
+  badge: 0,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  addSnackbarInfoMessage: (info: SnackbarInfo) => {},
+});
+
+export default mainContext;
+
 export const App: FC = () => {
+  const [isReady, setIsReady] = useState(false);
+  const [notificationsSettingsGranted, setNotificationsSettingsGranted] =
+    useState(false);
+  const [badge, setBadge] = useState(0);
   const [snackbarInfo, setSnackbarInfo] = useState<SnackbarInfo>({
-    visible: false,
+    type: 'idle',
   });
+  const [snackbarInfoMessages, setSnackbarInfoMessages] = useState<
+    SnackbarInfo[]
+  >([]);
 
   useEffect(function launch() {
     (async () => {
@@ -45,12 +59,14 @@ export const App: FC = () => {
       // Notificare events
       //
       Notificare.onReady(async (application) => {
+        setIsReady(true);
+        setBadge(await NotificareInbox.getBadge());
         console.log('=== ON READY ===');
         console.log(JSON.stringify(application, null, 2));
 
         setSnackbarInfo({
-          visible: true,
-          label: `Notificare is ready: ${application.name}`,
+          message: `Notificare is ready: ${application.name}`,
+          type: 'idle',
         });
 
         if (await NotificarePush.hasRemoteNotificationsEnabled()) {
@@ -62,38 +78,42 @@ export const App: FC = () => {
         }
       }),
       Notificare.onUnlaunched(() => {
+        setIsReady(false);
         console.log('=== ON UNLAUNCHED ===');
 
-        setSnackbarInfo({
-          visible: true,
-          label: `Notificare has finished un-launching.`,
+        addSnackbarInfoMessage({
+          message: `Notificare has finished un-launching.`,
+          type: 'idle',
         });
       }),
       Notificare.onDeviceRegistered((device) => {
         console.log('=== DEVICE REGISTERED ===');
         console.log(JSON.stringify(device, null, 2));
 
-        setSnackbarInfo({
-          visible: true,
-          label: `Device registered: ${device.id}`,
+        addSnackbarInfoMessage({
+          message: `Device registered: ${device.id}`,
+          type: 'idle',
         });
       }),
       Notificare.onUrlOpened((url) => {
         console.log('=== URL OPENED ===');
         console.log(JSON.stringify(url, null, 2));
 
-        setSnackbarInfo({
-          visible: true,
-          label: `URL opened: ${url}`,
+        addSnackbarInfoMessage({
+          message: `URL opened: ${url}`,
+          type: 'idle',
         });
       }),
       //
       // Notificare Push events
       //
-      NotificarePush.onNotificationReceived((notification) => {
-        console.log('=== NOTIFICATION RECEIVED ===');
-        console.log(JSON.stringify(notification, null, 2));
-      }),
+      NotificarePush.onNotificationInfoReceived(
+        ({ notification, deliveryMechanism }) => {
+          console.log('=== NOTIFICATION RECEIVED ===');
+          console.log(JSON.stringify(notification, null, 2));
+          console.log(deliveryMechanism);
+        }
+      ),
       NotificarePush.onSystemNotificationReceived((notification) => {
         console.log('=== SYSTEM NOTIFICATION RECEIVED ===');
         console.log(JSON.stringify(notification, null, 2));
@@ -125,6 +145,8 @@ export const App: FC = () => {
         console.log(JSON.stringify(data, null, 2));
       }),
       NotificarePush.onNotificationSettingsChanged((granted) => {
+        setNotificationsSettingsGranted(granted);
+
         console.log('=== NOTIFICATION SETTINGS CHANGED ===');
         console.log(JSON.stringify(granted, null, 2));
       }),
@@ -190,7 +212,9 @@ export const App: FC = () => {
         console.log('=== INBOX UPDATED ===');
         console.log(JSON.stringify(items, null, 2));
       }),
-      NotificareInbox.onBadgeUpdated((badge) => {
+      NotificareInbox.onBadgeUpdated((result) => {
+        setBadge(result);
+
         console.log('=== BADGE UPDATED ===');
         console.log(JSON.stringify(badge, null, 2));
       }),
@@ -303,24 +327,80 @@ export const App: FC = () => {
     ];
 
     return () => subscriptions.forEach((s) => s.remove());
-  }, []);
+  });
+
+  useEffect(
+    function processActionStatusMessages() {
+      if (
+        snackbarInfoMessages.length > 0 &&
+        snackbarInfo.message === undefined
+      ) {
+        setSnackbarInfo(snackbarInfoMessages[0]);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [snackbarInfoMessages]
+  );
+
+  function addSnackbarInfoMessage(info: SnackbarInfo) {
+    if (snackbarInfoMessages.length > 0) {
+      snackbarInfoMessages.push(info);
+
+      return;
+    }
+
+    setSnackbarInfoMessages((prevState) => [...prevState, info]);
+  }
+
+  function removeSnackbarInfoMessages() {
+    setSnackbarInfoMessages((prevState) => prevState.slice(1));
+  }
+
+  function resetSnackbar() {
+    setSnackbarInfo({ type: 'idle' });
+
+    setTimeout(() => {
+      removeSnackbarInfoMessages();
+    }, 500);
+  }
 
   return (
     <PaperProvider>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomePage} />
-          <Stack.Screen name="Inbox" component={InboxPage} />
-          <Stack.Screen name="Beacons" component={BeaconsPage} />
-        </Stack.Navigator>
-      </NavigationContainer>
-
-      <Snackbar
-        visible={snackbarInfo.visible}
-        onDismiss={() => setSnackbarInfo({ visible: false })}
+      <mainContext.Provider
+        value={{
+          isReady,
+          notificationsSettingsGranted,
+          badge,
+          addSnackbarInfoMessage,
+        }}
       >
-        {snackbarInfo.label}
-      </Snackbar>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Sample">
+            <Stack.Screen name="Sample" component={HomeView} />
+            <Stack.Screen name="Device" component={DeviceView} />
+            <Stack.Screen name="Inbox" component={InboxView} />
+            <Stack.Screen name="Tags" component={TagsView} />
+            <Stack.Screen name="Beacons" component={BeaconsView} />
+            <Stack.Screen name="Scannables" component={ScannablesView} />
+            <Stack.Screen name="Assets" component={AssetsView} />
+            <Stack.Screen name="Monetize" component={MonetizeView} />
+            <Stack.Screen name="Custom Event" component={CustomEventView} />
+          </Stack.Navigator>
+        </NavigationContainer>
+
+        <Snackbar
+          visible={snackbarInfo.message !== undefined}
+          onDismiss={resetSnackbar}
+          style={[
+            snackbarInfo.type === 'idle' && snackbarStyles.standard,
+            snackbarInfo.type === 'success' && snackbarStyles.success,
+            snackbarInfo.type === 'error' && snackbarStyles.error,
+          ]}
+          duration={snackbarInfo.type === 'error' ? 3000 : 1500}
+        >
+          {snackbarInfo.message}
+        </Snackbar>
+      </mainContext.Provider>
     </PaperProvider>
   );
 };

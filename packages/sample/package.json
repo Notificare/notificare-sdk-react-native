@@ -13,6 +13,8 @@
   "dependencies": {
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
+    "@react-navigation/bottom-tabs": "^6.5.7",
+    "@react-native-community/checkbox": "^0.5.14",
     "moment": "^2.29.4",
     "react": "18.2.0",
     "react-native": "0.71.6",

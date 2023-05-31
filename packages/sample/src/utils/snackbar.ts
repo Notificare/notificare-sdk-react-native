@@ -1,4 +1,4 @@
 export interface SnackbarInfo {
-  visible: boolean;
-  label?: string;
+  message?: string;
+  type: 'idle' | 'success' | 'error';
 }

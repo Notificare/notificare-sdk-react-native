@@ -60,6 +60,7 @@ target 'sample' do
     pod 'Permission-LocationAccuracy', :path => "#{permissions_path}/LocationAccuracy"
     pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways"
     pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
+    pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications"
 
   post_install do |installer|
     react_native_post_install(
