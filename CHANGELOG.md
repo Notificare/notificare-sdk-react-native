@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 3.5.3
+
+#### Native changes
+
+##### Android
+
+- Explicit handling of Notificare Links in Deep Link notifications
+- Improve supported deep links validation
+- Stricter unlaunch flow
+
+##### iOS
+
+- Improve supported deep links validation
+- Fix debug symbols search paths
+- Stricter unlaunch flow
+
 ## 3.5.2
 
 #### Native changes
