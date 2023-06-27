@@ -4,8 +4,8 @@ import Card from '../../../components/card_view';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import mainContext from '../../../app';
-import { mainStyles } from '../../../styles/styles';
 import { Notificare } from 'react-native-notificare';
+import { mainStyles } from '../../../styles/styles';
 
 export const LaunchFlowCard = () => {
   const addSnackbarInfoMessage = useContext(mainContext).addSnackbarInfoMessage;

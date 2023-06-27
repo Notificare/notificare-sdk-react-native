@@ -197,7 +197,7 @@ export const GeoCardView = () => {
     navigation.navigate('Beacons');
   }
 
-  async function showLaunchFlowInfo() {
+  async function showLocationInfo() {
     try {
       const hasLocationServicesEnabled =
         await NotificareGeo.hasLocationServicesEnabled();
@@ -233,7 +233,7 @@ hasBluetoothEnabled: ${hasBluetoothEnabled}`,
       <View style={mainStyles.section_title_row}>
         <Text style={mainStyles.section_title}>Geo</Text>
 
-        <TouchableOpacity onPress={showLaunchFlowInfo}>
+        <TouchableOpacity onPress={showLocationInfo}>
           <Icon name="info" size={18} />
         </TouchableOpacity>
       </View>

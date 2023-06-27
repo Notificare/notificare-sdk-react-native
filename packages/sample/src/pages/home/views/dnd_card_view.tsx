@@ -22,7 +22,7 @@ export const DnDNotificationsCardView = () => {
         console.log(JSON.stringify(e));
 
         addSnackbarInfoMessage({
-          message: 'Error cleaning DnD.',
+          message: 'Error fetching DnD.',
           type: 'error',
         });
       }
