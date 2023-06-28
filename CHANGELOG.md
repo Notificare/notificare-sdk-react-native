@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Upcoming release
+## 3.5.4
 
 #### Native changes
 
