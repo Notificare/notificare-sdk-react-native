@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 3.5.4
+
+#### Native changes
+
+##### Android
+
+- Prevent queued events without an associated device
+- Prevent `logCustom` usage before Notificare becomes ready
+
+##### iOS
+
+- Prevent queued events without an associated device
+- Prevent `logCustom` usage before Notificare becomes ready
+
 ## 3.5.3
 
 #### Native changes
