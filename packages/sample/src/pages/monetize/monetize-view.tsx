@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MonetizeProductsView } from './views/monetize_products_view';
-import { MonetizePurchasesView } from './views/monetize_purchases_view';
+import { MonetizeProductsView } from './views/monetize-products-view';
+import { MonetizePurchasesView } from './views/monetize-purchases-view';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialIcons';
 

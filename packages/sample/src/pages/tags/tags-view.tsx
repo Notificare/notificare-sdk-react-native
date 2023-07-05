@@ -1,22 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import Card from '../../components/card_view';
+import Card from '../../components/card-view';
 import { mainStyles } from '../../styles/styles';
 import { Notificare } from 'react-native-notificare';
-import mainContext from '../../app';
+import { useSnackbarContext } from '../../contexts/snackbar';
 
 export const TagsView = () => {
-  const addSnackbarInfoMessage = useContext(mainContext).addSnackbarInfoMessage;
+  const { addSnackbarInfoMessage } = useSnackbarContext();
   const [tags, setTags] = useState<string[]>([]);
 
-  useEffect(function loadInitialData() {
-    (async () => {
-      await fetchTags();
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  async function fetchTags() {
+  const fetchTags = useCallback(async () => {
     try {
       const result = await Notificare.device().fetchTags();
       setTags(result);
@@ -35,7 +28,16 @@ export const TagsView = () => {
         type: 'error',
       });
     }
-  }
+  }, [addSnackbarInfoMessage]);
+
+  useEffect(
+    function loadInitialData() {
+      (async () => {
+        await fetchTags();
+      })();
+    },
+    [fetchTags]
+  );
 
   async function addTags() {
     try {

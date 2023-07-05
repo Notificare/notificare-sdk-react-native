@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   View,
@@ -6,17 +6,17 @@ import {
   ScrollView,
   TextInput,
 } from 'react-native';
-import Card from '../../components/card_view';
+import Card from '../../components/card-view';
 import { mainStyles } from '../../styles/styles';
 import {
   NotificareAsset,
   NotificareAssets,
 } from 'react-native-notificare-assets';
-import { AssetDetailsView } from './views/asset_details_view';
-import mainContext from '../../app';
+import { AssetDetailsView } from './views/asset-details-view';
+import { useSnackbarContext } from '../../contexts/snackbar';
 
 export const AssetsView = () => {
-  const addSnackbarInfoMessage = useContext(mainContext).addSnackbarInfoMessage;
+  const { addSnackbarInfoMessage } = useSnackbarContext();
   const [assetsGroup, setAssetsGroup] = useState('');
   const [assets, setAssets] = useState<NotificareAsset[]>([]);
 

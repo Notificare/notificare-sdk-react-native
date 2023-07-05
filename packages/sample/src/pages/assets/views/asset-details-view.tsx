@@ -1,10 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
-import Card from '../../../components/card_view';
+import Card from '../../../components/card-view';
 import { mainStyles } from '../../../styles/styles';
 import { NotificareAsset } from 'react-native-notificare-assets';
-import { AssetDataFieldView } from './asset_data_field_view';
-import { AssetUrlContentFieldView } from './asset_url_content_field_view';
+import { AssetDataFieldView } from './asset-data-field-view';
+import { AssetUrlContentFieldView } from './asset-url-content-field-view';
 
 export const AssetDetailsView = (props: { asset: NotificareAsset }) => {
   return (

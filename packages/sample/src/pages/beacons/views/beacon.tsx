@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Text, View } from 'react-native';
 import { NotificareBeacon } from 'react-native-notificare-geo';
-import { beaconDetailsStyles } from '../../../styles/styles_beacons';
+import { beaconDetailsStyles } from '../../../styles/styles-beacons';
 
 export const Beacon: FC<BeaconProps> = ({ beacon }) => {
   return (

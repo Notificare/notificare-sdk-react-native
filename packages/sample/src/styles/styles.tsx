@@ -84,24 +84,24 @@ export const mainStyles = StyleSheet.create({
   },
 
   divider: {
-    height: 0.5,
-    backgroundColor: 'black',
+    height: 1,
+    backgroundColor: '#00000026',
   },
 
   divider_margin: {
-    height: 0.5,
-    backgroundColor: 'black',
+    height: 1,
+    backgroundColor: '#00000026',
     marginLeft: 42,
   },
 
   vertical_divider: {
     width: 0.5,
-    backgroundColor: 'black',
+    backgroundColor: '#00000026',
   },
 
   data_field_divider: {
-    height: 0.5,
-    backgroundColor: 'black',
+    height: 1,
+    backgroundColor: '#00000026',
     marginLeft: 12,
   },
 

@@ -1,47 +1,45 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import Card from '../../../components/card_view';
+import Card from '../../../components/card-view';
 import { mainStyles } from '../../../styles/styles';
 import {
   NotificareMonetize,
   NotificareProduct,
 } from 'react-native-notificare-monetize';
 // @ts-ignore
-import { MonetizeDataFieldView } from './monetize_data_field_view';
-import mainContext from '../../../app';
+import { MonetizeDataFieldView } from './monetize-data-field-view';
+import { useSnackbarContext } from '../../../contexts/snackbar';
 
 export const MonetizeProductsView = () => {
-  const addSnackbarInfoMessage = useContext(mainContext).addSnackbarInfoMessage;
+  const { addSnackbarInfoMessage } = useSnackbarContext();
   const [products, setProducts] = useState<NotificareProduct[]>([]);
 
-  useEffect(function loadInitialData() {
-    (async () => {
-      await getProducts();
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useEffect(
+    function loadProducts() {
+      (async () => {
+        try {
+          const result = await NotificareMonetize.getProducts();
 
-  async function getProducts() {
-    try {
-      const result = await NotificareMonetize.getProducts();
+          setProducts(result);
+          console.log('=== Got products successfully ===');
 
-      setProducts(result);
-      console.log('=== Got products successfully ===');
+          addSnackbarInfoMessage({
+            message: 'Got products successfully.',
+            type: 'success',
+          });
+        } catch (e) {
+          console.log('=== Error getting product ===');
+          console.log(JSON.stringify(e));
 
-      addSnackbarInfoMessage({
-        message: 'Got products successfully.',
-        type: 'success',
-      });
-    } catch (e) {
-      console.log('=== Error getting product ===');
-      console.log(JSON.stringify(e));
-
-      addSnackbarInfoMessage({
-        message: 'Error getting product.',
-        type: 'error',
-      });
-    }
-  }
+          addSnackbarInfoMessage({
+            message: 'Error getting product.',
+            type: 'error',
+          });
+        }
+      })();
+    },
+    [addSnackbarInfoMessage]
+  );
 
   async function purchase(product: NotificareProduct) {
     try {

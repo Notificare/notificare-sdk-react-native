@@ -7,7 +7,7 @@ import {
   NotificareRegion,
 } from 'react-native-notificare-geo';
 import { Beacon } from './views/beacon';
-import { beaconsStyles } from '../../styles/styles_beacons';
+import { beaconsStyles } from '../../styles/styles-beacons';
 
 export const BeaconsView: FC = () => {
   const navigation = useNavigation();

@@ -1,15 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Text, View, TouchableOpacity, Alert } from 'react-native';
-import Card from '../../../components/card_view';
+import Card from '../../../components/card-view';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import mainContext from '../../../app';
 import { Notificare } from 'react-native-notificare';
 import { mainStyles } from '../../../styles/styles';
+import { useSnackbarContext } from '../../../contexts/snackbar';
 
-export const LaunchFlowCard = () => {
-  const addSnackbarInfoMessage = useContext(mainContext).addSnackbarInfoMessage;
-  const isReady = useContext(mainContext).isReady;
+type LaunchFlowCardProps = {
+  isReady: boolean;
+};
+
+export const LaunchFlowCard = (props: LaunchFlowCardProps) => {
+  const { addSnackbarInfoMessage } = useSnackbarContext();
 
   async function launchNotificare() {
     try {
@@ -79,8 +82,11 @@ isReadyInfo: ${isReadyStatus}`,
       <Card>
         <View style={mainStyles.flex_row}>
           <TouchableOpacity
-            style={[mainStyles.button, !isReady && mainStyles.button_disabled]}
-            disabled={!isReady}
+            style={[
+              mainStyles.button,
+              !props.isReady && mainStyles.button_disabled,
+            ]}
+            disabled={!props.isReady}
             onPress={unlaunchNotificare}
           >
             <Text>Unlaunch</Text>
@@ -89,8 +95,11 @@ isReadyInfo: ${isReadyStatus}`,
           <View style={mainStyles.vertical_divider} />
 
           <TouchableOpacity
-            style={[mainStyles.button, isReady && mainStyles.button_disabled]}
-            disabled={isReady}
+            style={[
+              mainStyles.button,
+              props.isReady && mainStyles.button_disabled,
+            ]}
+            disabled={props.isReady}
             onPress={launchNotificare}
           >
             <Text>Launch</Text>

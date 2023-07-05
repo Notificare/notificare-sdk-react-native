@@ -7,13 +7,7 @@ import {
   FlatList,
   Pressable,
 } from 'react-native';
-import React, {
-  FC,
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from 'react';
+import React, { FC, useEffect, useLayoutEffect, useState } from 'react';
 import {
   NotificareInbox,
   NotificareInboxItem,
@@ -23,34 +17,36 @@ import { NotificarePushUI } from 'react-native-notificare-push-ui';
 import { useNavigation } from '@react-navigation/native';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { inboxStyles } from '../../styles/styles_inbox';
-import mainContext from '../../app';
-import { bottomSheetStyles } from '../../styles/styles_bottom_sheet';
+import { inboxStyles } from '../../styles/styles-inbox';
+import { bottomSheetStyles } from '../../styles/styles-bottom-sheet';
+import { useSnackbarContext } from '../../contexts/snackbar';
 
 export const InboxView: FC = () => {
-  const addSnackbarInfoMessage = useContext(mainContext).addSnackbarInfoMessage;
+  const { addSnackbarInfoMessage } = useSnackbarContext();
   const navigation = useNavigation();
   const [items, setItems] = useState<NotificareInboxItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<NotificareInboxItem | null>(
     null
   );
 
-  useEffect(function loadInboxItems() {
-    (async () => {
-      try {
-        setItems(await NotificareInbox.getItems());
-      } catch (e) {
-        console.log('=== Error getting inbox items ===');
-        console.log(JSON.stringify(e));
+  useEffect(
+    function loadInboxItems() {
+      (async () => {
+        try {
+          setItems(await NotificareInbox.getItems());
+        } catch (e) {
+          console.log('=== Error getting inbox items ===');
+          console.log(JSON.stringify(e));
 
-        addSnackbarInfoMessage({
-          message: 'Error getting inbox items.',
-          type: 'error',
-        });
-      }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+          addSnackbarInfoMessage({
+            message: 'Error getting inbox items.',
+            type: 'error',
+          });
+        }
+      })();
+    },
+    [addSnackbarInfoMessage]
+  );
 
   useEffect(function setupListeners() {
     const subscriptions = [NotificareInbox.onInboxUpdated(setItems)];
@@ -60,7 +56,6 @@ export const InboxView: FC = () => {
 
   useLayoutEffect(function setupToolbarActions() {
     navigation.setOptions({
-      // eslint-disable-next-line react/no-unstable-nested-components
       headerRight: () => (
         <>
           <Icon.Button

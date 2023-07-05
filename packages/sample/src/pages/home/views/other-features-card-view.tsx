@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Card from '../../../components/card_view';
+import Card from '../../../components/card-view';
 import { mainStyles } from '../../../styles/styles';
 import { useNavigation } from '@react-navigation/native';
 

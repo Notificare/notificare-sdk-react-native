@@ -3,7 +3,7 @@ import { NotificareInboxItem } from 'react-native-notificare-inbox';
 import { Image, Text, View } from 'react-native';
 import { NotificareNotificationAttachment } from 'react-native-notificare';
 import TimeAgo from 'react-native-timeago';
-import { inboxItemStyles } from '../../../styles/styles_inbox';
+import { inboxItemStyles } from '../../../styles/styles-inbox';
 
 export const InboxItem: FC<InboxItemProps> = ({ item }) => {
   return (

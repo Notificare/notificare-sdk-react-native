@@ -1,26 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import Card from '../../components/card_view';
+import Card from '../../components/card-view';
 import { mainStyles } from '../../styles/styles';
 import { Notificare } from 'react-native-notificare';
-import { DeviceDataFieldView } from './views/device_details_field_view';
-import mainContext from '../../app';
+import { DeviceDataFieldView } from './views/device-details-field-view';
+import { useSnackbarContext } from '../../contexts/snackbar';
 
 export const DeviceView = () => {
-  const addSnackbarInfoMessage = useContext(mainContext).addSnackbarInfoMessage;
+  const { addSnackbarInfoMessage } = useSnackbarContext();
   const [deviceData, setDeviceData] = useState<Record<string, string>>({});
   const [userData, setUserData] = useState<Record<string, string>>({});
 
-  useEffect(function loadInitialData() {
-    (async () => {
-      await getDeviceData();
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  async function getDeviceData() {
+  const loadDeviceData = useCallback(async () => {
     try {
       const currentDevice = await Notificare.device().getCurrentDevice();
+      console.log('=== Got device data successfully ===');
+
       if (currentDevice == null) {
         return;
       }
@@ -55,7 +50,16 @@ export const DeviceView = () => {
         type: 'error',
       });
     }
-  }
+  }, [addSnackbarInfoMessage]);
+
+  useEffect(
+    function loadInitialData() {
+      (async () => {
+        await loadDeviceData();
+      })();
+    },
+    [loadDeviceData]
+  );
 
   async function registerDeviceWithUser() {
     try {
@@ -67,7 +71,7 @@ export const DeviceView = () => {
         type: 'success',
       });
 
-      await getDeviceData();
+      await loadDeviceData();
     } catch (e) {
       console.log('=== Error registering device with user ===');
       console.log(JSON.stringify(e));
@@ -89,7 +93,7 @@ export const DeviceView = () => {
         type: 'success',
       });
 
-      await getDeviceData();
+      await loadDeviceData();
     } catch (e) {
       console.log('=== Error registering device as anonymous ===');
       console.log(JSON.stringify(e));
@@ -111,7 +115,7 @@ export const DeviceView = () => {
         type: 'success',
       });
 
-      await getDeviceData();
+      await loadDeviceData();
     } catch (e) {
       console.log('=== Error updating preferred language ===');
       console.log(JSON.stringify(e));
@@ -133,7 +137,7 @@ export const DeviceView = () => {
         type: 'success',
       });
 
-      await getDeviceData();
+      await loadDeviceData();
     } catch (e) {
       console.log('=== Error cleaning preferred language ===');
       console.log(JSON.stringify(e));
@@ -158,7 +162,7 @@ export const DeviceView = () => {
         type: 'success',
       });
 
-      await getDeviceData();
+      await loadDeviceData();
     } catch (e) {
       console.log('=== Error updating user data ===');
       console.log(JSON.stringify(e));

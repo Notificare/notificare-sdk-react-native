@@ -1,26 +1,34 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import Card from '../../components/card_view';
+import Card from '../../components/card-view';
 import { mainStyles } from '../../styles/styles';
 import { NotificareScannables } from 'react-native-notificare-scannables';
-import mainContext from '../../app';
+import { useSnackbarContext } from '../../contexts/snackbar';
 
 export const ScannablesView = () => {
-  const addSnackbarInfoMessage = useContext(mainContext).addSnackbarInfoMessage;
+  const { addSnackbarInfoMessage } = useSnackbarContext();
   const [isNfcAvailable, setIsNfcAvailable] = useState(false);
 
-  useEffect(function loadInitialData() {
-    (async () => {
-      try {
-        const canStartNfc =
-          await NotificareScannables.canStartNfcScannableSession();
-        setIsNfcAvailable(canStartNfc);
-      } catch (e) {
-        console.log('=== Error checking NFC availability ===');
-        console.log(JSON.stringify(e));
-      }
-    })();
-  }, []);
+  useEffect(
+    function checkNfcStatus() {
+      (async () => {
+        try {
+          const canStartNfc =
+            await NotificareScannables.canStartNfcScannableSession();
+          setIsNfcAvailable(canStartNfc);
+        } catch (e) {
+          console.log('=== Error checking NFC availability ===');
+          console.log(JSON.stringify(e));
+
+          addSnackbarInfoMessage({
+            message: 'Error checking NFC availability.',
+            type: 'error',
+          });
+        }
+      })();
+    },
+    [addSnackbarInfoMessage]
+  );
 
   async function startQrCodeScannableSession() {
     try {

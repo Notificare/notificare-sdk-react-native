@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Switch, Alert } from 'react-native';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Badge } from 'react-native-paper';
-import Card from '../../../components/card_view';
+import Card from '../../../components/card-view';
 import { mainStyles } from '../../../styles/styles';
 import { NotificarePush } from 'react-native-notificare-push';
 import {
@@ -11,38 +11,78 @@ import {
   requestNotifications,
 } from 'react-native-permissions';
 import { useNavigation } from '@react-navigation/native';
-import mainContext from '../../../app';
+import { NotificareInbox } from 'react-native-notificare-inbox';
+import { useSnackbarContext } from '../../../contexts/snackbar';
 
 export const RemoteNotificationsCardView = () => {
-  const addSnackbarInfoMessage = useContext(mainContext).addSnackbarInfoMessage;
-  const notificationsSettingsGranted =
-    useContext(mainContext).notificationsSettingsGranted;
-  const badge = useContext(mainContext).badge;
-  const navigation = useNavigation();
+  const { addSnackbarInfoMessage } = useSnackbarContext();
+  const [badge, setBadge] = useState(0);
   const [hasNotificationsEnabled, setHasNotificationsEnabled] = useState(false);
+  const navigation = useNavigation();
+
+  const checkNotificationsStatus = useCallback(async () => {
+    try {
+      const enabled =
+        (await NotificarePush.hasRemoteNotificationsEnabled()) &&
+        (await NotificarePush.allowedUI());
+
+      setHasNotificationsEnabled(enabled);
+    } catch (e) {
+      console.log('=== Error checking remote notifications status ===');
+      console.log(JSON.stringify(e));
+
+      addSnackbarInfoMessage({
+        message: 'Error checking remote notifications status.',
+        type: 'error',
+      });
+    }
+  }, [addSnackbarInfoMessage]);
 
   useEffect(
-    function checkNotificationsStatus() {
+    function setupListeners() {
+      const subscriptions = [
+        NotificareInbox.onBadgeUpdated((result) => {
+          setBadge(result);
+        }),
+
+        NotificarePush.onNotificationSettingsChanged(async (_) => {
+          await checkNotificationsStatus();
+        }),
+      ];
+
+      return () => subscriptions.forEach((s) => s.remove());
+    },
+    [checkNotificationsStatus]
+  );
+
+  useEffect(
+    function checkInitialStatus() {
+      (async () => {
+        await checkNotificationsStatus();
+      })();
+    },
+    [checkNotificationsStatus]
+  );
+
+  useEffect(
+    function getBadge() {
       (async () => {
         try {
-          const enabled =
-            (await NotificarePush.hasRemoteNotificationsEnabled()) &&
-            (await NotificarePush.allowedUI());
+          const result = await NotificareInbox.getBadge();
 
-          setHasNotificationsEnabled(enabled);
+          setBadge(result);
         } catch (e) {
-          console.log('=== Error checking remote notifications status ===');
+          console.log('=== Error getting badge ===');
           console.log(JSON.stringify(e));
 
           addSnackbarInfoMessage({
-            message: 'Error checking remote notifications status.',
+            message: 'Error getting badge.',
             type: 'error',
           });
         }
       })();
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [notificationsSettingsGranted]
+    [addSnackbarInfoMessage]
   );
 
   async function updateNotificationsStatus(enabled: boolean) {
@@ -103,7 +143,7 @@ export const RemoteNotificationsCardView = () => {
     return result.status === 'granted';
   }
 
-  async function showNotificationsInfo() {
+  async function showNotificationsStatusInfo() {
     try {
       const allowedUi = await NotificarePush.allowedUI();
       const hasRemoteNotificationsEnabled =
@@ -148,7 +188,7 @@ hasRemoteNotificationsEnabled: ${hasRemoteNotificationsEnabled}`,
       <View style={mainStyles.section_title_row}>
         <Text style={mainStyles.section_title}>Remote Notifications</Text>
 
-        <TouchableOpacity onPress={showNotificationsInfo}>
+        <TouchableOpacity onPress={showNotificationsStatusInfo}>
           <Icon name="info" size={18} />
         </TouchableOpacity>
       </View>

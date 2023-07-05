@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Card from '../../../components/card_view';
+import Card from '../../../components/card-view';
 import { mainStyles } from '../../../styles/styles';
 import {
   check,
@@ -19,44 +19,42 @@ import {
 } from 'react-native-permissions';
 import { NotificareGeo } from 'react-native-notificare-geo';
 import { useNavigation } from '@react-navigation/native';
-import mainContext from '../../../app';
+import { useSnackbarContext } from '../../../contexts/snackbar';
 
 export const GeoCardView = () => {
-  const addSnackbarInfoMessage = useContext(mainContext).addSnackbarInfoMessage;
-  const navigation = useNavigation();
+  const { addSnackbarInfoMessage } = useSnackbarContext();
   const [hasLocationEnabled, setHasLocationEnabled] = useState(false);
+  const navigation = useNavigation();
 
-  useEffect(function loadInitialData() {
-    (async () => {
-      await checkLocationStatus();
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useEffect(
+    function checkLocationStatus() {
+      (async () => {
+        try {
+          const permission: Permission = Platform.select({
+            android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+            ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
+          })!;
 
-  async function checkLocationStatus() {
-    try {
-      const permission: Permission = Platform.select({
-        android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-        ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
-      })!;
+          let status = await check(permission);
 
-      let status = await check(permission);
+          const enabled =
+            (await NotificareGeo.hasLocationServicesEnabled()) &&
+            status === 'granted';
 
-      const enabled =
-        (await NotificareGeo.hasLocationServicesEnabled()) &&
-        status === 'granted';
+          setHasLocationEnabled(enabled);
+        } catch (e) {
+          console.log('=== Error checking location status ===');
+          console.log(JSON.stringify(e));
 
-      setHasLocationEnabled(enabled);
-    } catch (e) {
-      console.log('=== Error checking location status ===');
-      console.log(JSON.stringify(e));
-
-      addSnackbarInfoMessage({
-        message: 'Error checking location status.',
-        type: 'error',
-      });
-    }
-  }
+          addSnackbarInfoMessage({
+            message: 'Error checking location status.',
+            type: 'error',
+          });
+        }
+      })();
+    },
+    [addSnackbarInfoMessage]
+  );
 
   async function updateLocationStatus(enabled: boolean) {
     setHasLocationEnabled(enabled);
@@ -197,7 +195,7 @@ export const GeoCardView = () => {
     navigation.navigate('Beacons');
   }
 
-  async function showLocationInfo() {
+  async function showLocationStatusInfo() {
     try {
       const hasLocationServicesEnabled =
         await NotificareGeo.hasLocationServicesEnabled();
@@ -233,7 +231,7 @@ hasBluetoothEnabled: ${hasBluetoothEnabled}`,
       <View style={mainStyles.section_title_row}>
         <Text style={mainStyles.section_title}>Geo</Text>
 
-        <TouchableOpacity onPress={showLocationInfo}>
+        <TouchableOpacity onPress={showLocationStatusInfo}>
           <Icon name="info" size={18} />
         </TouchableOpacity>
       </View>

@@ -1,14 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text, Switch } from 'react-native';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Card from '../../../components/card_view';
+import Card from '../../../components/card-view';
 import { mainStyles } from '../../../styles/styles';
 import { NotificareInAppMessaging } from 'react-native-notificare-in-app-messaging';
-import mainContext from '../../../app';
+import { useSnackbarContext } from '../../../contexts/snackbar';
 
 export const InAppMessagingCardView = () => {
-  const addSnackbarInfoMessage = useContext(mainContext).addSnackbarInfoMessage;
+  const { addSnackbarInfoMessage } = useSnackbarContext();
   const [evaluateContext, setEvaluateContext] = useState(false);
   const [suppressed, setSuppressed] = useState(false);
 

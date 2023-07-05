@@ -1,45 +1,43 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, ScrollView } from 'react-native';
-import Card from '../../../components/card_view';
+import Card from '../../../components/card-view';
 import { mainStyles } from '../../../styles/styles';
 import {
   NotificareMonetize,
   NotificarePurchase,
 } from 'react-native-notificare-monetize';
-import { MonetizeDataFieldView } from './monetize_data_field_view';
-import mainContext from '../../../app';
+import { MonetizeDataFieldView } from './monetize-data-field-view';
+import { useSnackbarContext } from '../../../contexts/snackbar';
 
 export const MonetizePurchasesView = () => {
-  const addSnackbarInfoMessage = useContext(mainContext).addSnackbarInfoMessage;
+  const { addSnackbarInfoMessage } = useSnackbarContext();
   const [purchases, setPurchases] = useState<NotificarePurchase[]>([]);
 
-  useEffect(function loadInitialData() {
-    (async () => {
-      await getPurchases();
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useEffect(
+    function loadPurchases() {
+      (async () => {
+        try {
+          const result = await NotificareMonetize.getPurchases();
+          setPurchases(result);
+          console.log('=== Got purchases successfully ===');
 
-  async function getPurchases() {
-    try {
-      const result = await NotificareMonetize.getPurchases();
-      setPurchases(result);
-      console.log('=== Got purchases successfully ===');
+          addSnackbarInfoMessage({
+            message: 'Got purchases successfully.',
+            type: 'success',
+          });
+        } catch (e) {
+          console.log('=== Error getting purchases ===');
+          console.log(JSON.stringify(e));
 
-      addSnackbarInfoMessage({
-        message: 'Got purchases successfully.',
-        type: 'success',
-      });
-    } catch (e) {
-      console.log('=== Error getting purchases ===');
-      console.log(JSON.stringify(e));
-
-      addSnackbarInfoMessage({
-        message: 'Error getting purchases.',
-        type: 'error',
-      });
-    }
-  }
+          addSnackbarInfoMessage({
+            message: 'Error getting purchases.',
+            type: 'error',
+          });
+        }
+      })();
+    },
+    [addSnackbarInfoMessage]
+  );
 
   return (
     <View style={mainStyles.main_view_container}>

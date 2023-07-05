@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   View,
@@ -6,14 +6,14 @@ import {
   ScrollView,
   TextInput,
 } from 'react-native';
-import Card from '../../components/card_view';
+import Card from '../../components/card-view';
 import { mainStyles } from '../../styles/styles';
 import { Notificare } from 'react-native-notificare';
 import CheckBox from '@react-native-community/checkbox';
-import mainContext from '../../app';
+import { useSnackbarContext } from '../../contexts/snackbar';
 
 export const CustomEventView = () => {
-  const addSnackbarInfoMessage = useContext(mainContext).addSnackbarInfoMessage;
+  const { addSnackbarInfoMessage } = useSnackbarContext();
   const [eventName, setEventName] = useState('');
   const [shouldIncludeDataFields, setShouldIncludeDataFields] = useState(false);
   const dataFields = {

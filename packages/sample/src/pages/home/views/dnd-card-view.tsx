@@ -1,34 +1,36 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Switch } from 'react-native';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Card from '../../../components/card_view';
+import Card from '../../../components/card-view';
 import { Notificare } from 'react-native-notificare';
 import { mainStyles } from '../../../styles/styles';
-import mainContext from '../../../app';
+import { useSnackbarContext } from '../../../contexts/snackbar';
 
 export const DnDNotificationsCardView = () => {
-  const addSnackbarInfoMessage = useContext(mainContext).addSnackbarInfoMessage;
+  const { addSnackbarInfoMessage } = useSnackbarContext();
   const [hasDndEnabled, setHasDndEnabled] = useState(false);
 
-  useEffect(function checkDndStatus() {
-    (async () => {
-      try {
-        const dnd = await Notificare.device().fetchDoNotDisturb();
-        setHasDndEnabled(dnd != null);
-        console.log('=== DnD fetched successfully ===');
-      } catch (e) {
-        console.log('=== Error fetching DnD ===');
-        console.log(JSON.stringify(e));
+  useEffect(
+    function checkDndStatus() {
+      (async () => {
+        try {
+          const dnd = await Notificare.device().fetchDoNotDisturb();
+          setHasDndEnabled(dnd != null);
+          console.log('=== DnD fetched successfully ===');
+        } catch (e) {
+          console.log('=== Error fetching DnD ===');
+          console.log(JSON.stringify(e));
 
-        addSnackbarInfoMessage({
-          message: 'Error fetching DnD.',
-          type: 'error',
-        });
-      }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+          addSnackbarInfoMessage({
+            message: 'Error fetching DnD.',
+            type: 'error',
+          });
+        }
+      })();
+    },
+    [addSnackbarInfoMessage]
+  );
 
   async function updateDndStatus(enabled: boolean) {
     setHasDndEnabled(enabled);
