@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import React, { FC, useEffect, useLayoutEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -6,9 +6,10 @@ import {
   NotificareGeo,
   NotificareRegion,
 } from 'react-native-notificare-geo';
-import { Beacon } from '../components/beacon';
+import { Beacon } from './views/beacon';
+import { beaconsStyles } from '../../styles/styles-beacons';
 
-export const BeaconsPage: FC = () => {
+export const BeaconsView: FC = () => {
   const navigation = useNavigation();
   const [data, setData] = useState<{
     region: NotificareRegion;
@@ -23,7 +24,7 @@ export const BeaconsPage: FC = () => {
 
   useLayoutEffect(
     function setupToolbarActions() {
-      navigation.setOptions({ title: data?.region?.name ?? '---' });
+      navigation.setOptions({ title: data?.region?.name ?? 'Beacons' });
     },
     [navigation, data]
   );
@@ -31,7 +32,7 @@ export const BeaconsPage: FC = () => {
   return (
     <>
       {(data == null || data.beacons.length === 0) && (
-        <View style={styles.emptyStateContainer}>
+        <View style={beaconsStyles.emptyStateContainer}>
           <Text>No beacons in range.</Text>
         </View>
       )}
@@ -45,11 +46,3 @@ export const BeaconsPage: FC = () => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  emptyStateContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
