@@ -1,0 +1,117 @@
+import React, { useEffect, useState } from 'react';
+import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import Card from '../../../components/card-view';
+import { mainStyles } from '../../../styles/styles';
+import {
+  NotificareMonetize,
+  NotificareProduct,
+} from 'react-native-notificare-monetize';
+// @ts-ignore
+import { MonetizeDataFieldView } from './monetize-data-field-view';
+import { useSnackbarContext } from '../../../contexts/snackbar';
+
+export const MonetizeProductsView = () => {
+  const { addSnackbarInfoMessage } = useSnackbarContext();
+  const [products, setProducts] = useState<NotificareProduct[]>([]);
+
+  useEffect(
+    function loadProducts() {
+      (async () => {
+        try {
+          const result = await NotificareMonetize.getProducts();
+
+          setProducts(result);
+          console.log('=== Got products successfully ===');
+
+          addSnackbarInfoMessage({
+            message: 'Got products successfully.',
+            type: 'success',
+          });
+        } catch (e) {
+          console.log('=== Error getting product ===');
+          console.log(JSON.stringify(e));
+
+          addSnackbarInfoMessage({
+            message: 'Error getting product.',
+            type: 'error',
+          });
+        }
+      })();
+    },
+    [addSnackbarInfoMessage]
+  );
+
+  async function purchase(product: NotificareProduct) {
+    try {
+      await NotificareMonetize.startPurchaseFlow(product);
+      console.log('=== Product purchased successfully ===');
+
+      addSnackbarInfoMessage({
+        message: 'Product purchased successfully.',
+        type: 'success',
+      });
+    } catch (e) {
+      console.log('=== Error purchasing product ===');
+      console.log(JSON.stringify(e));
+
+      addSnackbarInfoMessage({
+        message: 'Error purchasing product.',
+        type: 'error',
+      });
+    }
+  }
+
+  return (
+    <View style={mainStyles.main_view_container}>
+      {products.length === 0 ? (
+        <View style={mainStyles.empty_state_container}>
+          <Text>No products found</Text>
+        </View>
+      ) : (
+        <ScrollView>
+          {products.map((product) => {
+            return (
+              <View key={product.id}>
+                <View style={mainStyles.section_title_row} />
+
+                <Card>
+                  <MonetizeDataFieldView label={'ID'} value={product.id} />
+
+                  <View style={mainStyles.data_field_divider} />
+
+                  <MonetizeDataFieldView label={'Name'} value={product.name} />
+
+                  <View style={mainStyles.data_field_divider} />
+
+                  <MonetizeDataFieldView label={'Type'} value={product.type} />
+
+                  <View style={mainStyles.data_field_divider} />
+
+                  <MonetizeDataFieldView
+                    label={'Identifier'}
+                    value={product.identifier}
+                  />
+
+                  <View style={mainStyles.data_field_divider} />
+
+                  <MonetizeDataFieldView
+                    label={'Price'}
+                    value={product.storeDetails?.price.toString()}
+                  />
+
+                  <View style={mainStyles.divider} />
+
+                  <TouchableOpacity onPress={() => purchase(product)}>
+                    <View style={mainStyles.button}>
+                      <Text>Buy</Text>
+                    </View>
+                  </TouchableOpacity>
+                </Card>
+              </View>
+            );
+          })}
+        </ScrollView>
+      )}
+    </View>
+  );
+};

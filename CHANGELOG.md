@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.5.5
+
+- Fix race condition when processing the initial intent
+
 ## 3.5.4
 
 #### Native changes
