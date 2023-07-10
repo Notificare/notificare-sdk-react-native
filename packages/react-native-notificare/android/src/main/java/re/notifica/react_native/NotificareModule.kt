@@ -9,9 +9,12 @@ import re.notifica.ktx.device
 import re.notifica.ktx.events
 import re.notifica.models.*
 import com.facebook.react.bridge.ReactMethod
+import re.notifica.internal.NotificareLogger
 
 public class NotificareModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext),
     ActivityEventListener {
+
+    private var lifecycleEventListener: LifecycleEventListener? = null
 
     override fun getName(): String = "NotificareModule"
 
@@ -24,8 +27,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
         // Listen to incoming intents.
         reactApplicationContext.addActivityEventListener(this)
 
-        val intent = reactApplicationContext.currentActivity?.intent
-        if (intent != null) onNewIntent(intent)
+        processInitialIntent()
     }
 
     // region ActivityEventListener
@@ -33,17 +35,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent?) {}
 
     override fun onNewIntent(intent: Intent) {
-        // Try handling the test device intent.
-        if (Notificare.handleTestDeviceIntent(intent)) return
-
-        // Try handling the dynamic link intent.
-        val activity = currentActivity
-        if (activity != null && Notificare.handleDynamicLinkIntent(activity, intent)) return
-
-        val url = intent.data?.toString()
-        if (url != null) {
-            EventBroker.dispatchEvent("re.notifica.url_opened", url)
-        }
+        processIntent(intent)
     }
 
     // endregion
@@ -353,6 +345,55 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     // endregion
+
+    private fun processInitialIntent() {
+        val activity = currentActivity ?: run {
+            waitForActivityAndProcessInitialIntent()
+            return
+        }
+
+        activity.intent?.also { processIntent(it) }
+    }
+
+    private fun waitForActivityAndProcessInitialIntent() {
+        if (lifecycleEventListener != null) {
+            NotificareLogger.warning("Cannot await an Activity for more than one call.")
+            return
+        }
+
+        lifecycleEventListener = object : LifecycleEventListener {
+            override fun onHostResume() {
+                val activity = currentActivity
+
+                if (activity == null) {
+                    NotificareLogger.warning("Cannot process the initial intent when the host resumed without an activity.")
+                }
+
+                activity?.intent?.also { processIntent(it) }
+
+                lifecycleEventListener?.also { reactApplicationContext.removeLifecycleEventListener(it) }
+                lifecycleEventListener = null
+            }
+
+            override fun onHostPause() {}
+
+            override fun onHostDestroy() {}
+        }.also { reactApplicationContext.addLifecycleEventListener(it) }
+    }
+
+    private fun processIntent(intent: Intent) {
+        // Try handling the test device intent.
+        if (Notificare.handleTestDeviceIntent(intent)) return
+
+        // Try handling the dynamic link intent.
+        val activity = currentActivity
+        if (activity != null && Notificare.handleDynamicLinkIntent(activity, intent)) return
+
+        val url = intent.data?.toString()
+        if (url != null) {
+            EventBroker.dispatchEvent("re.notifica.url_opened", url)
+        }
+    }
 
     public companion object {
         internal const val DEFAULT_ERROR_CODE = "notificare_error"

@@ -7,10 +7,13 @@ import android.os.Looper
 import androidx.lifecycle.Observer
 import com.facebook.react.bridge.*
 import re.notifica.Notificare
+import re.notifica.internal.NotificareLogger
 import re.notifica.push.ktx.push
 
 public class NotificarePushModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext),
     ActivityEventListener {
+
+    private var lifecycleEventListener: LifecycleEventListener? = null
 
     private val allowedUIObserver = Observer<Boolean> { allowedUI ->
         if (allowedUI == null) return@Observer
@@ -33,8 +36,7 @@ public class NotificarePushModule(reactContext: ReactApplicationContext) : React
         // Listen to incoming intents.
         reactApplicationContext.addActivityEventListener(this)
 
-        val intent = reactApplicationContext.currentActivity?.intent
-        if (intent != null) onNewIntent(intent)
+        processInitialIntent()
     }
 
     override fun invalidate() {
@@ -50,7 +52,7 @@ public class NotificarePushModule(reactContext: ReactApplicationContext) : React
     override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent?) {}
 
     override fun onNewIntent(intent: Intent) {
-        Notificare.push().handleTrampolineIntent(intent)
+        processIntent(intent)
     }
 
     // endregion
@@ -90,6 +92,45 @@ public class NotificarePushModule(reactContext: ReactApplicationContext) : React
     }
 
     // endregion
+
+    private fun processInitialIntent() {
+        val activity = currentActivity ?: run {
+            waitForActivityAndProcessInitialIntent()
+            return
+        }
+
+        activity.intent?.also { processIntent(it) }
+    }
+
+    private fun waitForActivityAndProcessInitialIntent() {
+        if (lifecycleEventListener != null) {
+            NotificareLogger.warning("Cannot await an Activity for more than one call.")
+            return
+        }
+
+        lifecycleEventListener = object : LifecycleEventListener {
+            override fun onHostResume() {
+                val activity = currentActivity
+
+                if (activity == null) {
+                    NotificareLogger.warning("Cannot process the initial intent when the host resumed without an activity.")
+                }
+
+                activity?.intent?.also { processIntent(it) }
+
+                lifecycleEventListener?.also { reactApplicationContext.removeLifecycleEventListener(it) }
+                lifecycleEventListener = null
+            }
+
+            override fun onHostPause() {}
+
+            override fun onHostDestroy() {}
+        }.also { reactApplicationContext.addLifecycleEventListener(it) }
+    }
+
+    private fun processIntent(intent: Intent) {
+        Notificare.push().handleTrampolineIntent(intent)
+    }
 
     public companion object {
         internal fun onMainThread(action: () -> Unit) = Handler(Looper.getMainLooper()).post(action)
