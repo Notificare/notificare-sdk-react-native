@@ -127,19 +127,13 @@ android {
             keyAlias properties.getProperty('keystore.debug.key.alias')
             keyPassword properties.getProperty('keystore.debug.key.password')
         }
-        release {
-            storeFile file('release.keystore')
-            storePassword properties.getProperty('keystore.release.store.password')
-            keyAlias properties.getProperty('keystore.release.key.alias')
-            keyPassword properties.getProperty('keystore.release.key.password')
-        }
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
         }
         release {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
