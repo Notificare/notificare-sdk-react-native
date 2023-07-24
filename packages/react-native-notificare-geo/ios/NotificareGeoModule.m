@@ -9,6 +9,12 @@ RCT_EXTERN_METHOD(hasLocationServicesEnabled:(RCTPromiseResolveBlock)resolve
 RCT_EXTERN_METHOD(hasBluetoothEnabled:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(getMonitoredRegions:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(getEnteredRegions:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
 RCT_EXTERN_METHOD(enableLocationUpdates:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 

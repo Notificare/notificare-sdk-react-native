@@ -42,6 +42,14 @@ export class NotificareGeo {
     return await NativeModule.hasBluetoothEnabled();
   }
 
+  public static async getMonitoredRegions(): Promise<NotificareRegion[]> {
+    return await NativeModule.getMonitoredRegions();
+  }
+
+  public static async getEnteredRegions(): Promise<NotificareRegion[]> {
+    return await NativeModule.getEnteredRegions();
+  }
+
   public static async enableLocationUpdates(): Promise<void> {
     await NativeModule.enableLocationUpdates();
   }

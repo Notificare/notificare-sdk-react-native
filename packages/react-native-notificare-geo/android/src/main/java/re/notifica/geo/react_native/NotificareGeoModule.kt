@@ -51,6 +51,34 @@ public class NotificareGeoModule(reactContext: ReactApplicationContext) : ReactC
     }
 
     @ReactMethod
+    public fun getMonitoredRegions(promise: Promise) {
+        try {
+            val payload = Arguments.createArray()
+            Notificare.geo().monitoredRegions.forEach {
+                payload.pushMap(it.toJson().toReactMap())
+            }
+
+            promise.resolve(payload)
+        } catch (e: Exception) {
+            promise.reject(DEFAULT_ERROR_CODE, e)
+        }
+    }
+
+    @ReactMethod
+    public fun getEnteredRegions(promise: Promise) {
+        try {
+            val payload = Arguments.createArray()
+            Notificare.geo().enteredRegions.forEach {
+                payload.pushMap(it.toJson().toReactMap())
+            }
+
+            promise.resolve(payload)
+        } catch (e: Exception) {
+            promise.reject(DEFAULT_ERROR_CODE, e)
+        }
+    }
+
+    @ReactMethod
     public fun enableLocationUpdates(promise: Promise) {
         Notificare.geo().enableLocationUpdates()
         promise.resolve(null)
@@ -121,4 +149,8 @@ public class NotificareGeoModule(reactContext: ReactApplicationContext) : ReactC
     }
 
     // endregion
+
+    public companion object {
+        internal const val DEFAULT_ERROR_CODE = "notificare_error"
+    }
 }
