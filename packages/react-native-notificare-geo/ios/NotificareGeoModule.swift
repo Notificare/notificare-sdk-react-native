@@ -66,6 +66,26 @@ class NotificareGeoModule: RCTEventEmitter {
     func hasBluetoothEnabled(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         resolve(Notificare.shared.geo().hasBluetoothEnabled)
     }
+
+    @objc
+    func getMonitoredRegions(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+        do {
+            let payload = try Notificare.shared.geo().monitoredRegions.map { try $0.toJson() }
+            resolve(payload)
+        } catch {
+            reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
+        }
+    }
+
+    @objc
+    func getEnteredRegions(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+        do {
+            let payload = try Notificare.shared.geo().enteredRegions.map { try $0.toJson() }
+            resolve(payload)
+        } catch {
+            reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
+        }
+    }
     
     @objc
     func enableLocationUpdates(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
