@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## Upcoming release
+
+#### Native changes
+
+##### Android
+
+- Fix race condition when synchronising monitored regions
+
+##### iOS
+
+- Fix race condition when setting the database merge policy eagerly loads the data stores
+- Prevent fatal error when failing to open the databases
+
 ## 3.6.0
 
 - Allow checking which regions are being monitored
