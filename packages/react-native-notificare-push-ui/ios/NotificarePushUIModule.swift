@@ -216,10 +216,12 @@ extension NotificarePushUIModule: NotificarePushUIDelegate {
     
     public func notificare(_ notificarePushUI: NotificarePushUI, didClickURL url: URL, in notification: NotificareNotification) {
         do {
-            dispatchEvent("re.notifica.push.ui.notification_url_clicked", payload: [
+            let payload: [String: Any] = [
                 "notification": try notification.toJson(),
                 "url": url.absoluteString,
-            ])
+            ]
+
+            dispatchEvent("re.notifica.push.ui.notification_url_clicked", payload: payload)
         } catch {
             NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_url_clicked event.", error: error)
         }
@@ -277,11 +279,13 @@ extension NotificarePushUIModule: NotificarePushUIDelegate {
     
     public func notificare(_ notificarePushUI: NotificarePushUI, shouldPerformSelectorWithURL url: URL, in action: NotificareNotification.Action, for notification: NotificareNotification) {
         do {
-            dispatchEvent("re.notifica.push.ui.custom_action_received", payload: [
+            let payload: [String: Any] = [
                 "notification": try notification.toJson(),
                 "action": try action.toJson(),
                 "url": url.absoluteString,
-            ])
+            ]
+
+            dispatchEvent("re.notifica.push.ui.custom_action_received", payload: payload)
         } catch {
             NotificareLogger.error("Failed to emit the re.notifica.push.ui.custom_action_received event.", error: error)
         }
