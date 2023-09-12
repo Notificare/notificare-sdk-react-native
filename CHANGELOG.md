@@ -2,6 +2,8 @@
 
 ## Upcoming release
 
+- Fix custom action received event
+
 #### Native changes
 
 ##### Android
