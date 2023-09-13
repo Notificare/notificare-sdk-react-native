@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Upcoming release
+## 3.6.1
 
 - Fix custom action received event
 
