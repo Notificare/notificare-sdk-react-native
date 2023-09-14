@@ -66,7 +66,7 @@ body:
   - type: input
     attributes:
       label: React Native version
-      description: What version of Flutter are you testing with?
+      description: What version of React Native are you testing with?
       placeholder: e.g. 0.72
     validations:
       required: true
