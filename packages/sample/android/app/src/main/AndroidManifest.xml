@@ -46,6 +46,11 @@
         </intent-filter>
       </activity>
 
+      <activity
+        android:name="re.notifica.push.ui.NotificationActivity"
+        android:exported="false"
+        android:theme="@style/AppTheme.Translucent" />
+
       <meta-data
         android:name="re.notifica.debug_logging_enabled"
         android:value="true" />
