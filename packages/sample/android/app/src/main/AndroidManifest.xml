@@ -44,29 +44,12 @@
             android:pathPrefix="/testdevice"
             android:scheme="https" />
         </intent-filter>
-        <intent-filter android:autoVerify="true">
-          <action android:name="android.intent.action.VIEW" />
-
-          <category android:name="android.intent.category.DEFAULT" />
-          <category android:name="android.intent.category.BROWSABLE" />
-
-          <data
-            android:host="${notificareApplicationId}.applinks.notifica.re"
-            android:pathPrefix="/oauth/validate"
-            android:scheme="https" />
-        </intent-filter>
-        <intent-filter android:autoVerify="true">
-          <action android:name="android.intent.action.VIEW" />
-
-          <category android:name="android.intent.category.DEFAULT" />
-          <category android:name="android.intent.category.BROWSABLE" />
-
-          <data
-            android:host="${notificareApplicationId}.applinks.notifica.re"
-            android:pathPrefix="/oauth/resetpassword"
-            android:scheme="https" />
-        </intent-filter>
       </activity>
+
+      <activity
+        android:name="re.notifica.push.ui.NotificationActivity"
+        android:exported="false"
+        android:theme="@style/AppTheme.Translucent" />
 
       <meta-data
         android:name="re.notifica.debug_logging_enabled"
