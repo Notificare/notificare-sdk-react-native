@@ -1,5 +1,68 @@
 # CHANGELOG
 
+## Upcoming release
+
+- Fix serialization issue affecting map coordinates
+
+#### Native changes
+
+##### Android
+
+- Adjusted zoom level when presenting a single map marker
+- Fix Google Play Services Location minification issue
+
+###### Important changes since 3.6.1
+
+- Add manifest flag to disable the auto configuration
+- Automatically enable remote notifications during launch when possible
+- Automatically enable location updates during launch when possible
+- Prevent the `device_registered` event from invoking before the `ready` event
+- Fix warning when notification intents are handled by the broadcast receiver
+- Include proguard rule to work around the issue with Moshi in R8
+- Fix crash when presenting an in-app browser when the phone has none installed
+- Fix `getParcelableExtra` on API 33 in certain cases
+
+**Important notice:** Re-enabling remote notifications and location services is no longer required.
+You can safely remove the following piece of code as the SDK will automatically handle it for you during the launch flow.
+
+```kotlin
+override fun onReady(application: NotificareApplication) {
+    // This check is no longer necessary.
+    if (Notificare.push().hasRemoteNotificationsEnabled) {
+        Notificare.push().enableRemoteNotifications()
+    }
+
+    // This check is no longer necessary.
+    if (Notificare.geo().hasLocationServicesEnabled) {
+        Notificare.geo().enableLocationUpdates()
+    }
+}
+```
+
+##### iOS
+
+- Prevent the `device_registered` event from invoking before the `ready` event
+- Automatically enable remote notifications during launch when possible
+- Automatically enable location updates during launch when possible
+- Drop support for iOS 12.0
+
+**Important notice:** Re-enabling remote notifications and location services is no longer required.
+You can safely remove the following piece of code as the SDK will automatically handle it for you during the launch flow.
+
+```swift
+func notificare(_ notificare: Notificare, onReady application: NotificareApplication) {
+    // This check is no longer necessary.
+    if Notificare.shared.push().hasRemoteNotificationsEnabled {
+        Notificare.shared.push().enableRemoteNotifications { _ in }
+    }
+
+    // This check is no longer necessary.
+    if Notificare.shared.geo().hasLocationServicesEnabled {
+        Notificare.shared.geo().enableLocationUpdates()
+    }
+}
+```
+
 ## 3.6.1
 
 - Fix custom action received event
