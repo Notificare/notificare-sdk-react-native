@@ -25,6 +25,10 @@ def getExtOrIntegerDefault(name) {
 }
 
 android {
+  if (project.android.hasProperty("namespace")) {
+    namespace 're.notifica.iam.react_native'
+  }
+
   compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
   defaultConfig {
     minSdkVersion 23
