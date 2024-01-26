@@ -8,6 +8,7 @@
 
 ##### Android
 
+- Fix map loading conditionals leading to no camera updates
 - Adjusted zoom level when presenting a single map marker
 - Fix Google Play Services Location minification issue
 
