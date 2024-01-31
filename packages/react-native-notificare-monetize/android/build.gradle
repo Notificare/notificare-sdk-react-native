@@ -25,6 +25,10 @@ def getExtOrIntegerDefault(name) {
 }
 
 android {
+  if (project.android.hasProperty("namespace")) {
+    namespace 're.notifica.monetize.react_native'
+  }
+
   compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
   defaultConfig {
     minSdkVersion 23
@@ -44,7 +48,6 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
   }
   kotlinOptions {
-    jvmTarget = '1.8'
     freeCompilerArgs += [
       '-Xexplicit-api=strict',
       '-Xopt-in=re.notifica.InternalNotificareApi',
@@ -121,7 +124,7 @@ dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
 
-  def notificare_version = '3.6.1'
+  def notificare_version = '3.7.1'
   api "re.notifica:notificare:$notificare_version"
   api "re.notifica:notificare-monetize:$notificare_version"
   implementation "re.notifica:notificare-monetize-gms:$notificare_version"

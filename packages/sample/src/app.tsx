@@ -7,7 +7,6 @@ import { InboxView } from './pages/inbox/inbox-view';
 import { Notificare } from 'react-native-notificare';
 import { NotificarePush } from 'react-native-notificare-push';
 import { NotificarePushUI } from 'react-native-notificare-push-ui';
-import { NotificareGeo } from 'react-native-notificare-geo';
 import { BeaconsView } from './pages/beacons/beacons-view';
 import { DeviceView } from './pages/device/device-view';
 import { TagsView } from './pages/tags/tags-view';
@@ -31,16 +30,6 @@ export const App: FC = () => {
 
   useEffect(function setupListeners() {
     const subscriptions = [
-      Notificare.onReady(async (_) => {
-        if (await NotificarePush.hasRemoteNotificationsEnabled()) {
-          await NotificarePush.enableRemoteNotifications();
-        }
-
-        if (await NotificareGeo.hasLocationServicesEnabled()) {
-          await NotificareGeo.enableLocationUpdates();
-        }
-      }),
-
       NotificarePush.onNotificationOpened(async (notification) => {
         await NotificarePushUI.presentNotification(notification);
       }),

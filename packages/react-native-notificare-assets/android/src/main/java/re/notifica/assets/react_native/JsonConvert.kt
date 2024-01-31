@@ -16,11 +16,7 @@ internal object JsonConvert {
             when (readableMap.getType(key)) {
                 ReadableType.Null -> jsonObject.put(key, JSONObject.NULL)
                 ReadableType.Boolean -> jsonObject.put(key, readableMap.getBoolean(key))
-                ReadableType.Number -> try {
-                    jsonObject.put(key, readableMap.getInt(key))
-                } catch (e: Exception) {
-                    jsonObject.put(key, readableMap.getDouble(key))
-                }
+                ReadableType.Number -> jsonObject.put(key, readableMap.getDouble(key))
                 ReadableType.String -> jsonObject.put(key, readableMap.getString(key))
                 ReadableType.Map -> jsonObject.put(key, toJson(requireNotNull(readableMap.getMap(key))))
                 ReadableType.Array -> jsonObject.put(key, toJson(requireNotNull(readableMap.getArray(key))))
@@ -36,11 +32,7 @@ internal object JsonConvert {
             when (readableArray.getType(i)) {
                 ReadableType.Null -> jsonArray.put(JSONObject.NULL)
                 ReadableType.Boolean -> jsonArray.put(readableArray.getBoolean(i))
-                ReadableType.Number -> try {
-                    jsonArray.put(readableArray.getInt(i))
-                } catch (e: Exception) {
-                    jsonArray.put(readableArray.getDouble(i))
-                }
+                ReadableType.Number -> jsonArray.put(readableArray.getDouble(i))
                 ReadableType.String -> jsonArray.put(readableArray.getString(i))
                 ReadableType.Map -> jsonArray.put(toJson(requireNotNull(readableArray.getMap(i))))
                 ReadableType.Array -> jsonArray.put(toJson(requireNotNull(readableArray.getArray(i))))
