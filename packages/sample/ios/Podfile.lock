@@ -348,42 +348,42 @@ PODS:
   - React-jsinspector (0.71.14)
   - React-logger (0.71.14):
     - glog
-  - react-native-notificare (3.6.1):
+  - react-native-notificare (3.7.0):
     - Notificare/NotificareKit (= 3.7.0)
     - React-Core
-  - react-native-notificare-assets (3.6.1):
+  - react-native-notificare-assets (3.7.0):
     - Notificare/NotificareAssetsKit (= 3.7.0)
     - Notificare/NotificareKit (= 3.7.0)
     - React-Core
-  - react-native-notificare-geo (3.6.1):
+  - react-native-notificare-geo (3.7.0):
     - Notificare/NotificareGeoKit (= 3.7.0)
     - Notificare/NotificareKit (= 3.7.0)
     - React-Core
-  - react-native-notificare-in-app-messaging (3.6.1):
+  - react-native-notificare-in-app-messaging (3.7.0):
     - Notificare/NotificareInAppMessagingKit (= 3.7.0)
     - Notificare/NotificareKit (= 3.7.0)
     - React-Core
-  - react-native-notificare-inbox (3.6.1):
+  - react-native-notificare-inbox (3.7.0):
     - Notificare/NotificareInboxKit (= 3.7.0)
     - Notificare/NotificareKit (= 3.7.0)
     - React-Core
-  - react-native-notificare-loyalty (3.6.1):
+  - react-native-notificare-loyalty (3.7.0):
     - Notificare/NotificareKit (= 3.7.0)
     - Notificare/NotificareLoyaltyKit (= 3.7.0)
     - React-Core
-  - react-native-notificare-monetize (3.6.1):
+  - react-native-notificare-monetize (3.7.0):
     - Notificare/NotificareKit (= 3.7.0)
     - Notificare/NotificareMonetizeKit (= 3.7.0)
     - React-Core
-  - react-native-notificare-push (3.6.1):
+  - react-native-notificare-push (3.7.0):
     - Notificare/NotificareKit (= 3.7.0)
     - Notificare/NotificarePushKit (= 3.7.0)
     - React-Core
-  - react-native-notificare-push-ui (3.6.1):
+  - react-native-notificare-push-ui (3.7.0):
     - Notificare/NotificareKit (= 3.7.0)
     - Notificare/NotificarePushUIKit (= 3.7.0)
     - React-Core
-  - react-native-notificare-scannables (3.6.1):
+  - react-native-notificare-scannables (3.7.0):
     - Notificare/NotificareKit (= 3.7.0)
     - Notificare/NotificareScannablesKit (= 3.7.0)
     - React-Core
@@ -740,16 +740,16 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 94cfc1788637ceaf8841ef1f69b10cc0d62baadc
   React-jsinspector: 7bf923954b4e035f494b01ac16633963412660d7
   React-logger: 655ff5db8bd922acfbe76a4983ffab048916343e
-  react-native-notificare: d5abbaf6f4952d62e7a7dc94c0a4aef53c295e62
-  react-native-notificare-assets: d898296c342e31f3ba57221de4e7914a47e862b1
-  react-native-notificare-geo: 53766bd6aee10334d9d0be04a8c12d1df931c0b1
-  react-native-notificare-in-app-messaging: f049c90740b8aebcf270ed79a3b0fb8c85bce4ba
-  react-native-notificare-inbox: 7ef46e26a8f6a96be1c1ee3fd62e2597b8432492
-  react-native-notificare-loyalty: 74e5f8482ce17062609a3d4da89ac01171e968d3
-  react-native-notificare-monetize: 71ee352dc093f65513945c21ac273db46affd9ca
-  react-native-notificare-push: d9b7a0ad4368146c1220aa89f38bd0a9f585b21a
-  react-native-notificare-push-ui: a218c7a9783851300d49121cb4b912644c1cecab
-  react-native-notificare-scannables: 63487e765bfd64524c17d8fb8bca8f792c813b8f
+  react-native-notificare: 357f0c7e689597983bbcde01564f107ac8eed584
+  react-native-notificare-assets: 4748a4b704d6c9f4b1268bc68d3be4f5f68e7c48
+  react-native-notificare-geo: 63997a917c08adbd98101bb4674398b11602e36b
+  react-native-notificare-in-app-messaging: 239672c519039a459e5a800856cc22e7894ba64f
+  react-native-notificare-inbox: c8b546e8cbbc57a654625b907a3df3775230acee
+  react-native-notificare-loyalty: c91d76134e52c34243bdbe6b5002dcaf26650eae
+  react-native-notificare-monetize: cb40a3ebc69549f4eb97a9b3061f8f02d1e7bd18
+  react-native-notificare-push: 996fe4618e21e145ecf5a22401586a7d803bf8c1
+  react-native-notificare-push-ui: 73ad66a9cb23a5273fb733717dbf2a722f5f8d1a
+  react-native-notificare-scannables: b3926822449b74ab57c390c7eb383742d7e5aa0f
   react-native-safe-area-context: f5549f36508b1b7497434baa0cd97d7e470920d4
   React-perflogger: 4987ad83731c23d11813c84263963b0d3028c966
   React-RCTActionSheet: 5ad952b2a9740d87a5bd77280c4bc23f6f89ea0c
@@ -774,4 +774,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 1e4a1e2ac291f3b6dba3bc218b80045bc1ba6f24
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.0
