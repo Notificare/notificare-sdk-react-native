@@ -20,6 +20,7 @@
     "node_modules/",
     "packages/react-native-*/lib",
     "packages/sample/babel.config.js",
-    "packages/sample/metro.config.js"
+    "packages/sample/metro.config.js",
+    "packages/sample/jest.config.js"
   ]
 }
