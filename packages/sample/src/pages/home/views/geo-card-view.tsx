@@ -149,7 +149,7 @@ export const GeoCardView = () => {
   async function ensureBackgroundLocationPermission(): Promise<boolean> {
     const permission: Permission = Platform.select({
       android:
-        Platform.Version >= 29 // Android Q+
+        Number(Platform.Version) >= 29 // Android Q+
           ? PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION
           : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
       ios: PERMISSIONS.IOS.LOCATION_ALWAYS,
