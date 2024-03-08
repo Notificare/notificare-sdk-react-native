@@ -5,36 +5,36 @@ private let DEFAULT_ERROR_CODE = "notificare_error"
 
 @objc(NotificareModule)
 class NotificareModule: RCTEventEmitter {
-    
+
     private var hasListeners = false
     private var eventQueue = [(name: String, payload: Any?)]()
-    
+
     override init() {
         super.init()
-        
+
         Notificare.shared.delegate = self
-        
+
         _ = NotificareSwizzler.addInterceptor(self)
     }
-    
+
     override class func requiresMainQueueSetup() -> Bool {
         return true
     }
-    
+
     override func startObserving() {
         hasListeners = true
-        
+
         if !eventQueue.isEmpty {
             NotificareLogger.debug("Processing event queue with \(eventQueue.count) items.")
             eventQueue.forEach { sendEvent(withName: $0.name, body: $0.payload)}
             eventQueue.removeAll()
         }
     }
-    
+
     override func stopObserving() {
         hasListeners = false
     }
-    
+
     override func supportedEvents() -> [String] {
         return [
             "re.notifica.ready",
@@ -43,7 +43,7 @@ class NotificareModule: RCTEventEmitter {
             "re.notifica.url_opened",
         ]
     }
-    
+
     private func dispatchEvent(_ name: String, payload: Any?) {
         if hasListeners {
             sendEvent(withName: name, body: payload)
@@ -51,19 +51,19 @@ class NotificareModule: RCTEventEmitter {
             eventQueue.append((name: name, payload: payload))
         }
     }
-    
+
     // MARK: - Notificare
-    
+
     @objc
     func isConfigured(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         resolve(Notificare.shared.isConfigured)
     }
-    
+
     @objc
     func isReady(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         resolve(Notificare.shared.isReady)
     }
-    
+
     @objc
     func launch(_ resolve: @escaping RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         onMainThread {
@@ -71,7 +71,7 @@ class NotificareModule: RCTEventEmitter {
             resolve(nil)
         }
     }
-    
+
     @objc
     func unlaunch(_ resolve: @escaping RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         onMainThread {
@@ -79,7 +79,7 @@ class NotificareModule: RCTEventEmitter {
             resolve(nil)
         }
     }
-    
+
     @objc
     func getApplication(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         do {
@@ -89,7 +89,7 @@ class NotificareModule: RCTEventEmitter {
             reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
         }
     }
-    
+
     @objc
     func fetchApplication(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.fetchApplication { result in
@@ -106,7 +106,7 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
     @objc
     func fetchNotification(_ notificationId: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.fetchNotification(notificationId) { result in
@@ -123,9 +123,26 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
+    @objc
+    func fetchDynamicLink(_ url: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        Notificare.shared.fetchDynamicLink(url) { result in
+            switch result {
+            case let .success(dynamicLink):
+                do {
+                    let json = try dynamicLink.toJson()
+                    resolve(json)
+                } catch {
+                    reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
+                }
+            case let .failure(error):
+                reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
+            }
+        }
+    }
+
     // MARK: - Notificare device module
-    
+
     @objc
     func getCurrentDevice(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         do {
@@ -135,12 +152,12 @@ class NotificareModule: RCTEventEmitter {
             reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
         }
     }
-    
+
     @objc
     func getPreferredLanguage(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         resolve(Notificare.shared.device().preferredLanguage)
     }
-    
+
     @objc
     func updatePreferredLanguage(_ language: String?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().updatePreferredLanguage(language) { result in
@@ -152,7 +169,7 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
     @objc
     func register(_ userId: String?, userName: String?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().register(userId: userId, userName: userName) { result in
@@ -164,7 +181,7 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
     @objc
     func fetchTags(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().fetchTags { result in
@@ -176,7 +193,7 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
     @objc
     func addTag(_ tag: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().addTag(tag) { result in
@@ -188,7 +205,7 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
     @objc
     func addTags(_ tags: [String], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().addTags(tags) { result in
@@ -200,7 +217,7 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
     @objc
     func removeTag(_ tag: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().removeTag(tag) { result in
@@ -212,7 +229,7 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
     @objc
     func removeTags(_ tags: [String], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().removeTags(tags) { result in
@@ -224,7 +241,7 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
     @objc
     func clearTags(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().clearTags { result in
@@ -236,7 +253,7 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
     @objc
     func fetchDoNotDisturb(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().fetchDoNotDisturb { result in
@@ -253,18 +270,18 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
     @objc
     func updateDoNotDisturb(_ payload: [String: Any], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         let dnd: NotificareDoNotDisturb
-        
+
         do {
             dnd = try NotificareDoNotDisturb.fromJson(json: payload)
         } catch {
             reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
             return
         }
-        
+
         Notificare.shared.device().updateDoNotDisturb(dnd) { result in
             switch result {
             case .success:
@@ -274,7 +291,7 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
     @objc
     func clearDoNotDisturb(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().clearDoNotDisturb { result in
@@ -286,7 +303,7 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
     @objc
     func fetchUserData(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().fetchUserData { result in
@@ -298,7 +315,7 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
     @objc
     func updateUserData(_ userData: [String: String], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().updateUserData(userData) { result in
@@ -310,9 +327,9 @@ class NotificareModule: RCTEventEmitter {
             }
         }
     }
-    
+
     // MARK: - Notificare events module
-    
+
     @objc
     func logCustom(_ event: String, data: [String: Any]?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.events().logCustom(event, data: data) { result in
@@ -334,11 +351,11 @@ extension NotificareModule: NotificareDelegate {
             NotificareLogger.error("Failed to emit the re.notifica.ready event.", error: error)
         }
     }
-    
+
     func notificareDidUnlaunch(_ notificare: Notificare) {
         dispatchEvent("re.notifica.unlaunched", payload: nil)
     }
-    
+
     func notificare(_ notificare: Notificare, didRegisterDevice device: NotificareDevice) {
         do {
             dispatchEvent("re.notifica.device_registered", payload: try device.toJson())
@@ -353,24 +370,24 @@ extension NotificareModule: NotificareAppDelegateInterceptor {
         if Notificare.shared.handleTestDeviceUrl(url) {
             return true
         }
-        
+
         if Notificare.shared.handleDynamicLinkUrl(url) {
             return true
         }
-        
+
         dispatchEvent("re.notifica.url_opened", payload: url.absoluteString)
         return false
     }
-    
+
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         guard let url = userActivity.webpageURL else {
             return false
         }
-        
+
         if Notificare.shared.handleTestDeviceUrl(url) {
             return true
         }
-        
+
         return Notificare.shared.handleDynamicLinkUrl(url)
     }
 }
