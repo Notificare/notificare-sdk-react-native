@@ -57,6 +57,9 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 
+# Xcode Node env
+/ios/.xcode.env.local
+
 # Configuration files
 google-services.json
 agconnect-services.json
