@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 3.8.0
+
+- Add method to resolve Notificare Dynamic Links manually
+
+#### Native changes
+
+##### Android
+
+- Prevent processing location updates too close to the last known location
+- Fix race condition where geo triggers and region sessions were sent multiple times
+- Limit the amount of location points and ranged beacons in geo sessions
+
+##### iOS
+
+- Prevent processing location updates too close to the last known location
+- Fix race condition where geo triggers and region sessions were sent multiple times
+- Limit the amount of location points and ranged beacons in geo sessions
+- Improve polygon regions handling
+- Improve notifications UI
+
 ## 3.7.0
 
 - Fix serialization issue affecting map coordinates

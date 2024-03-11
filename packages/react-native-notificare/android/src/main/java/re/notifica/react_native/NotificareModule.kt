@@ -2,6 +2,7 @@ package re.notifica.react_native
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import com.facebook.react.bridge.*
 import re.notifica.Notificare
 import re.notifica.NotificareCallback
@@ -96,6 +97,21 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     public fun fetchNotification(id: String, promise: Promise) {
         Notificare.fetchNotification(id, object : NotificareCallback<NotificareNotification> {
             override fun onSuccess(result: NotificareNotification) {
+                promise.resolve(result.toJson().toReactMap())
+            }
+
+            override fun onFailure(e: Exception) {
+                promise.reject(DEFAULT_ERROR_CODE, e)
+            }
+        })
+    }
+
+    @ReactMethod
+    public fun fetchDynamicLink(url: String, promise: Promise) {
+        val uri = Uri.parse(url)
+
+        Notificare.fetchDynamicLink(uri, object : NotificareCallback<NotificareDynamicLink> {
+            override fun onSuccess(result: NotificareDynamicLink) {
                 promise.resolve(result.toJson().toReactMap())
             }
 
