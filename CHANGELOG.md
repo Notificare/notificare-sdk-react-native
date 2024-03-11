@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Upcoming release
+## 3.8.0
 
 - Add method to resolve Notificare Dynamic Links manually
 
