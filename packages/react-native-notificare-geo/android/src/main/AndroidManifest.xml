@@ -1,4 +1,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="re.notifica.geo.react_native">
+  package="re.notifica.geo.react_native">
+
+  <application>
+    <provider
+      android:authorities="${applicationId}.NotificareGeoModuleProvider"
+      android:name="re.notifica.geo.react_native.NotificareGeoModuleProvider"
+      android:exported="false" />
+
+    <receiver
+      android:name="re.notifica.geo.react_native.NotificareGeoModuleIntentReceiver"
+      android:exported="false" />
+
+    <service
+      android:name="re.notifica.geo.react_native.NotificareGeoModuleHeadlessService"
+      android:exported="false" />
+  </application>
 
 </manifest>
