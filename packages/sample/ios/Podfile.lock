@@ -16,16 +16,16 @@ PODS:
     - hermes-engine/Pre-built (= 0.73.5)
   - hermes-engine/Pre-built (0.73.5)
   - libevent (2.1.12)
-  - Notificare/NotificareAssetsKit (3.8.0)
-  - Notificare/NotificareGeoKit (3.8.0)
-  - Notificare/NotificareInAppMessagingKit (3.8.0)
-  - Notificare/NotificareInboxKit (3.8.0)
-  - Notificare/NotificareKit (3.8.0)
-  - Notificare/NotificareLoyaltyKit (3.8.0)
-  - Notificare/NotificareMonetizeKit (3.8.0)
-  - Notificare/NotificarePushKit (3.8.0)
-  - Notificare/NotificarePushUIKit (3.8.0)
-  - Notificare/NotificareScannablesKit (3.8.0)
+  - Notificare/NotificareAssetsKit (3.9.0)
+  - Notificare/NotificareGeoKit (3.9.0)
+  - Notificare/NotificareInAppMessagingKit (3.9.0)
+  - Notificare/NotificareInboxKit (3.9.0)
+  - Notificare/NotificareKit (3.9.0)
+  - Notificare/NotificareLoyaltyKit (3.9.0)
+  - Notificare/NotificareMonetizeKit (3.9.0)
+  - Notificare/NotificarePushKit (3.9.0)
+  - Notificare/NotificarePushUIKit (3.9.0)
+  - Notificare/NotificareScannablesKit (3.9.0)
   - RCT-Folly (2022.05.16.00):
     - boost
     - DoubleConversion
@@ -898,43 +898,43 @@ PODS:
     - glog
     - React-debug
   - react-native-notificare (3.8.0):
-    - Notificare/NotificareKit (= 3.8.0)
+    - Notificare/NotificareKit (= 3.9.0)
     - React-Core
   - react-native-notificare-assets (3.8.0):
-    - Notificare/NotificareAssetsKit (= 3.8.0)
-    - Notificare/NotificareKit (= 3.8.0)
+    - Notificare/NotificareAssetsKit (= 3.9.0)
+    - Notificare/NotificareKit (= 3.9.0)
     - React-Core
   - react-native-notificare-geo (3.8.0):
-    - Notificare/NotificareGeoKit (= 3.8.0)
-    - Notificare/NotificareKit (= 3.8.0)
+    - Notificare/NotificareGeoKit (= 3.9.0)
+    - Notificare/NotificareKit (= 3.9.0)
     - React-Core
   - react-native-notificare-in-app-messaging (3.8.0):
-    - Notificare/NotificareInAppMessagingKit (= 3.8.0)
-    - Notificare/NotificareKit (= 3.8.0)
+    - Notificare/NotificareInAppMessagingKit (= 3.9.0)
+    - Notificare/NotificareKit (= 3.9.0)
     - React-Core
   - react-native-notificare-inbox (3.8.0):
-    - Notificare/NotificareInboxKit (= 3.8.0)
-    - Notificare/NotificareKit (= 3.8.0)
+    - Notificare/NotificareInboxKit (= 3.9.0)
+    - Notificare/NotificareKit (= 3.9.0)
     - React-Core
   - react-native-notificare-loyalty (3.8.0):
-    - Notificare/NotificareKit (= 3.8.0)
-    - Notificare/NotificareLoyaltyKit (= 3.8.0)
+    - Notificare/NotificareKit (= 3.9.0)
+    - Notificare/NotificareLoyaltyKit (= 3.9.0)
     - React-Core
   - react-native-notificare-monetize (3.8.0):
-    - Notificare/NotificareKit (= 3.8.0)
-    - Notificare/NotificareMonetizeKit (= 3.8.0)
+    - Notificare/NotificareKit (= 3.9.0)
+    - Notificare/NotificareMonetizeKit (= 3.9.0)
     - React-Core
   - react-native-notificare-push (3.8.0):
-    - Notificare/NotificareKit (= 3.8.0)
-    - Notificare/NotificarePushKit (= 3.8.0)
+    - Notificare/NotificareKit (= 3.9.0)
+    - Notificare/NotificarePushKit (= 3.9.0)
     - React-Core
   - react-native-notificare-push-ui (3.8.0):
-    - Notificare/NotificareKit (= 3.8.0)
-    - Notificare/NotificarePushUIKit (= 3.8.0)
+    - Notificare/NotificareKit (= 3.9.0)
+    - Notificare/NotificarePushUIKit (= 3.9.0)
     - React-Core
   - react-native-notificare-scannables (3.8.0):
-    - Notificare/NotificareKit (= 3.8.0)
-    - Notificare/NotificareScannablesKit (= 3.8.0)
+    - Notificare/NotificareKit (= 3.9.0)
+    - Notificare/NotificareScannablesKit (= 3.9.0)
     - React-Core
   - react-native-safe-area-context (4.9.0):
     - React-Core
@@ -1336,7 +1336,7 @@ SPEC CHECKSUMS:
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
   hermes-engine: 1d1835b2cc54c381909d94d1b3c8e0a2f1a94a0e
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  Notificare: 02abf5759022434230603eb919fa0385ad8d749b
+  Notificare: fded090a688e6ba2f8c7cd62ddeb1691ad9b539d
   RCT-Folly: 7169b2b1c44399c76a47b5deaaba715eeeb476c0
   RCTRequired: 2544c0f1081a5fa12e108bb8cb40e5f4581ccd87
   RCTTypeSafety: 50efabe2b115c11ed03fbf3fd79e2f163ddb5d7c
@@ -1358,16 +1358,16 @@ SPEC CHECKSUMS:
   React-jsinspector: 32db5e364bcae8fca8cdf8891830636275add0c5
   React-logger: 0331362115f0f5b392bd7ed14636d1a3ea612479
   React-Mapbuffer: 7c35cd53a22d0be04d3f26f7881c7fb7dd230216
-  react-native-notificare: 400a6764e14c948e8ad6f988527e5d05f30a80b5
-  react-native-notificare-assets: 0ee1c6fdf657856c80b339de5982811f7bfe38bc
-  react-native-notificare-geo: b1b43fb8fd6277a25aab2f5e0a742c4f94732b04
-  react-native-notificare-in-app-messaging: 8f14a7214be43208c02225cf088452e943eaf9b4
-  react-native-notificare-inbox: f85c3835d2926eb4c0b4f71b8e721e434837401f
-  react-native-notificare-loyalty: 8421ae5f03461e241113fa99a7296d0ef491d2f3
-  react-native-notificare-monetize: 48c0bee38727a0b3a1c4f2ebd9f5aa5e633ec66f
-  react-native-notificare-push: 85249896ab83c5ca68188cc8f0a8d105d09c341b
-  react-native-notificare-push-ui: e21e0d5ab2bc988e7dc0b6d414a51b272d344fa9
-  react-native-notificare-scannables: 57e0d4192eff37ab7c48ffd9d4ee274f3ff041e0
+  react-native-notificare: b12b945c361c74001b3a3b58cd7bb1eed3c2d80e
+  react-native-notificare-assets: 60c2ba85bde5fcb555dbbdcbf99e6c124c2c8521
+  react-native-notificare-geo: 1bd0c22b78697875c6be52a068a0fcc60e17c01b
+  react-native-notificare-in-app-messaging: d471fa7f28a5a158730b328c4e59131105eabeb3
+  react-native-notificare-inbox: de03a764d6a5113aa1d276cb526d017b06921cbc
+  react-native-notificare-loyalty: 07c4d10ddee169aaa5ab84dcc2154afb115b5b6e
+  react-native-notificare-monetize: ee1ac7bc45aa73bb311166a19b0073d3a3bac306
+  react-native-notificare-push: 34e731f5eebcbf291185e914282bab028ea5e196
+  react-native-notificare-push-ui: e60133a1c32b191bfc3f9b2756e57fbef95c0bd9
+  react-native-notificare-scannables: 9703140bca0a8b0f790bb6c55ddf3ed0ac7cfbeb
   react-native-safe-area-context: b97eb6f9e3b7f437806c2ce5983f479f8eb5de4b
   React-nativeconfig: 1166714a4f7ea57a0df5c2cb44fbc70f98d580f9
   React-NativeModulesApple: 726664e9829eb5eed8170241000e46ead269a05f
