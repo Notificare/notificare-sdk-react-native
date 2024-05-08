@@ -85,6 +85,14 @@ export class Notificare {
     return await NativeModule.fetchDynamicLink(url);
   }
 
+  public static async canEvaluateDeferredLink(): Promise<boolean> {
+    return await NativeModule.canEvaluateDeferredLink();
+  }
+
+  public static async evaluateDeferredLink(): Promise<boolean> {
+    return await NativeModule.evaluateDeferredLink();
+  }
+
   //
   // Events
   //
