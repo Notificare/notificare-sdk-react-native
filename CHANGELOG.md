@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Upcoming release
+## 3.9.0
 
 - Add support for deferred links
 
