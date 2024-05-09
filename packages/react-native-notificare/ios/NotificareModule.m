@@ -29,6 +29,12 @@ RCT_EXTERN_METHOD(fetchDynamicLink:(NSString *)url
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(canEvaluateDeferredLink:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(evaluateDeferredLink:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
 // MARK: - Device module
 
 RCT_EXTERN_METHOD(getCurrentDevice:(RCTPromiseResolveBlock)resolve

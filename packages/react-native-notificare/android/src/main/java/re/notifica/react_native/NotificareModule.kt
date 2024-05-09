@@ -121,6 +121,32 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
         })
     }
 
+    @ReactMethod
+    public fun canEvaluateDeferredLink(promise: Promise) {
+        Notificare.canEvaluateDeferredLink(object : NotificareCallback<Boolean> {
+            override fun onSuccess(result: Boolean) {
+                promise.resolve(result)
+            }
+
+            override fun onFailure(e: Exception) {
+                promise.reject(DEFAULT_ERROR_CODE, e)
+            }
+        })
+    }
+
+    @ReactMethod
+    public fun evaluateDeferredLink(promise: Promise) {
+        Notificare.evaluateDeferredLink(object : NotificareCallback<Boolean> {
+            override fun onSuccess(result: Boolean) {
+                promise.resolve(result)
+            }
+
+            override fun onFailure(e: Exception) {
+                promise.reject(DEFAULT_ERROR_CODE, e)
+            }
+        })
+    }
+
     // endregion
 
     // region Notificare device module

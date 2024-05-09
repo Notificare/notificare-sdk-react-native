@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 3.9.0
+
+- Add support for deferred links
+
+#### Native changes
+
+##### iOS
+
+- Add privacy manifests
+- Code sign XCFrameworks
+
 ## 3.8.0
 
 - Add method to resolve Notificare Dynamic Links manually

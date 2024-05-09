@@ -141,6 +141,23 @@ class NotificareModule: RCTEventEmitter {
         }
     }
 
+    @objc
+    func canEvaluateDeferredLink(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+        resolve(Notificare.shared.canEvaluateDeferredLink)
+    }
+
+    @objc
+    func evaluateDeferredLink(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        Notificare.shared.evaluateDeferredLink { result in
+            switch result {
+            case let .success(evaluated):
+                resolve(evaluated)
+            case let .failure(error):
+                reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
+            }
+        }
+    }
+
     // MARK: - Notificare device module
 
     @objc
