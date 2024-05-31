@@ -4,21 +4,28 @@ import {
   NativeModules,
   Platform,
 } from 'react-native';
-import type { NotificareSystemNotification } from './models/notificare-system-notification';
 import type {
   NotificareNotification,
   NotificareNotificationAction,
 } from 'react-native-notificare';
+import type { NotificareSystemNotification } from './models/notificare-system-notification';
 import type { NotificareNotificationDeliveryMechanism } from './models/notificare-notification-delivery-mechanism';
 
 const LINKING_ERROR =
   `The package 'react-native-notificare-push' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+  '- You are not using Expo Go\n';
 
-const NativeModule = NativeModules.NotificarePushModule
-  ? NativeModules.NotificarePushModule
+// @ts-expect-error
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
+const NotificarePushModule = isTurboModuleEnabled
+  ? require('./NativeNotificarePushModule').default
+  : NativeModules.NotificarePushModule;
+
+const NativeModule = NotificarePushModule
+  ? NotificarePushModule
   : new Proxy(
       {},
       {
