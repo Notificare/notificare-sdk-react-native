@@ -1,16 +1,23 @@
 import { NativeModules, Platform } from 'react-native';
 import type { NotificareUserInboxResponse } from './models/notificare-user-inbox-response';
-import type { NotificareUserInboxItem } from './models/notificare-user-inbox-item';
 import type { NotificareNotification } from 'react-native-notificare';
+import type { NotificareUserInboxItem } from './models/notificare-user-inbox-item';
 
 const LINKING_ERROR =
   `The package 'react-native-notificare-user-inbox' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+  '- You are not using Expo Go\n';
 
-const NativeModule = NativeModules.NotificareUserInboxModule
-  ? NativeModules.NotificareUserInboxModule
+// @ts-expect-error
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
+const NotificareUserInboxModule = isTurboModuleEnabled
+  ? require('./NativeNotificareUserInboxModule').default
+  : NativeModules.NotificareUserInboxModule;
+
+const NativeModule = NotificareUserInboxModule
+  ? NotificareUserInboxModule
   : new Proxy(
       {},
       {
@@ -32,7 +39,7 @@ export class NotificareUserInbox {
   }
 
   public static async parseResponseFromString(
-    json: String
+    json: string
   ): Promise<NotificareUserInboxResponse> {
     return await NativeModule.parseResponseFromString(json);
   }

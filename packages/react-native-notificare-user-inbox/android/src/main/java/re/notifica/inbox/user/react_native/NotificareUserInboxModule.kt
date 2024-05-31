@@ -1,19 +1,24 @@
 package re.notifica.inbox.user.react_native
 
-import com.facebook.react.bridge.*
+import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.ReadableMap
 import re.notifica.Notificare
 import re.notifica.NotificareCallback
 import re.notifica.inbox.user.ktx.userInbox
 import re.notifica.inbox.user.models.NotificareUserInboxItem
 import re.notifica.models.NotificareNotification
 
-public class NotificareUserInboxModule(reactContext: ReactApplicationContext) :
-    ReactContextBaseJavaModule(reactContext) {
+public class NotificareUserInboxModule internal constructor(context: ReactApplicationContext) :
+    NotificareUserInboxModuleSpec(context) {
 
-    override fun getName(): String = "NotificareUserInboxModule"
+    override fun getName(): String {
+        return NAME
+    }
 
     @ReactMethod
-    public fun parseResponseFromJson(data: ReadableMap, promise: Promise) {
+    override fun parseResponseFromJson(data: ReadableMap, promise: Promise) {
         try {
             val response = Notificare.userInbox().parseResponse(data.toJson())
             promise.resolve(response.toJson().toReactMap())
@@ -23,7 +28,7 @@ public class NotificareUserInboxModule(reactContext: ReactApplicationContext) :
     }
 
     @ReactMethod
-    public fun parseResponseFromString(json: String, promise: Promise) {
+    override fun parseResponseFromString(json: String, promise: Promise) {
         try {
             val response = Notificare.userInbox().parseResponse(json)
             promise.resolve(response.toJson().toReactMap())
@@ -33,7 +38,7 @@ public class NotificareUserInboxModule(reactContext: ReactApplicationContext) :
     }
 
     @ReactMethod
-    public fun open(data: ReadableMap, promise: Promise) {
+    override fun open(data: ReadableMap, promise: Promise) {
         val item: NotificareUserInboxItem
 
         try {
@@ -59,7 +64,7 @@ public class NotificareUserInboxModule(reactContext: ReactApplicationContext) :
     }
 
     @ReactMethod
-    public fun markAsRead(data: ReadableMap, promise: Promise) {
+    override fun markAsRead(data: ReadableMap, promise: Promise) {
         val item: NotificareUserInboxItem
 
         try {
@@ -81,7 +86,7 @@ public class NotificareUserInboxModule(reactContext: ReactApplicationContext) :
     }
 
     @ReactMethod
-    public fun remove(data: ReadableMap, promise: Promise) {
+    override fun remove(data: ReadableMap, promise: Promise) {
         val item: NotificareUserInboxItem
 
         try {
@@ -103,6 +108,7 @@ public class NotificareUserInboxModule(reactContext: ReactApplicationContext) :
     }
 
     public companion object {
+        internal const val NAME = "NotificareUserInboxModule"
         internal const val DEFAULT_ERROR_CODE = "notificare_error"
     }
 }
