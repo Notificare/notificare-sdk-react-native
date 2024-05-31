@@ -1,16 +1,22 @@
 package re.notifica.iam.react_native
 
-import com.facebook.react.bridge.*
+import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReadableMap
 import re.notifica.Notificare
 import re.notifica.iam.NotificareInAppMessaging
 import re.notifica.iam.ktx.inAppMessaging
 import re.notifica.iam.models.NotificareInAppMessage
 import re.notifica.internal.NotificareLogger
 
-public class NotificareInAppMessagingModule(reactContext: ReactApplicationContext) :
-    ReactContextBaseJavaModule(reactContext), NotificareInAppMessaging.MessageLifecycleListener {
+public class NotificareInAppMessagingModule internal constructor(context: ReactApplicationContext) :
+    NotificareInAppMessagingModuleSpec(context), NotificareInAppMessaging.MessageLifecycleListener {
 
-    override fun getName(): String = "NotificareInAppMessagingModule"
+    override fun getName(): String {
+        return NAME
+    }
 
     override fun initialize() {
         super.initialize()
@@ -26,24 +32,24 @@ public class NotificareInAppMessagingModule(reactContext: ReactApplicationContex
     }
 
     @ReactMethod
-    public fun addListener(@Suppress("UNUSED_PARAMETER") eventName: String) {
+    override fun addListener(eventName: String) {
         // Keep: Required for RN built in Event Emitter Calls.
     }
 
     @ReactMethod
-    public fun removeListeners(@Suppress("UNUSED_PARAMETER") count: Int) {
+    override fun removeListeners(count: Double) {
         // Keep: Required for RN built in Event Emitter Calls.
     }
 
     // region Notificare In-App Messaging
 
     @ReactMethod
-    public fun hasMessagesSuppressed(promise: Promise) {
+    override fun hasMessagesSuppressed(promise: Promise) {
         promise.resolve(Notificare.inAppMessaging().hasMessagesSuppressed)
     }
 
     @ReactMethod
-    public fun setMessagesSuppressed(data: ReadableMap, promise: Promise) {
+    override fun setMessagesSuppressed(data: ReadableMap, promise: Promise) {
         val arguments = data.toJson()
         val suppressed = try {
             arguments.getBoolean("suppressed")
@@ -127,6 +133,7 @@ public class NotificareInAppMessagingModule(reactContext: ReactApplicationContex
     // endregion
 
     public companion object {
+        internal const val NAME = "NotificareInAppMessagingModule"
         internal const val DEFAULT_ERROR_CODE = "notificare_error"
     }
 }

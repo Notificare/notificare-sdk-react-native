@@ -4,37 +4,41 @@ import NotificareInAppMessagingKit
 
 private let DEFAULT_ERROR_CODE = "notificare_error"
 
-@objc(NotificareInAppMessagingModule)
-class NotificareInAppMessagingModule: RCTEventEmitter {
+@objc public protocol NotificareInAppMessagingModuleDelegate {
+    func sendEvent(name: String, result: Any?)
+}
+
+@objc(NotificareInAppMessagingModuleImpl)
+public class NotificareInAppMessagingModuleImpl: NSObject {
+    @objc public weak var delegate: NotificareInAppMessagingModuleDelegate? = nil
 
     private var hasListeners = false
     private var eventQueue = [(name: String, payload: Any?)]()
 
-    override init() {
+    override public init() {
         super.init()
 
         Notificare.shared.inAppMessaging().delegate = self
     }
 
-    override class func requiresMainQueueSetup() -> Bool {
-        return true
-    }
-
-    override func startObserving() {
+    @objc
+    public func startObserving() {
         hasListeners = true
 
         if !eventQueue.isEmpty {
             NotificareLogger.debug("Processing event queue with \(eventQueue.count) items.")
-            eventQueue.forEach { sendEvent(withName: $0.name, body: $0.payload)}
+            eventQueue.forEach { delegate?.sendEvent(name: $0.name, result: $0.payload)}
             eventQueue.removeAll()
         }
     }
 
-    override func stopObserving() {
+    @objc
+    public func stopObserving() {
         hasListeners = false
     }
 
-    override func supportedEvents() -> [String] {
+    @objc
+    public func supportedEvents() -> [String] {
         return [
             "re.notifica.iam.message_presented",
             "re.notifica.iam.message_finished_presenting",
@@ -46,7 +50,7 @@ class NotificareInAppMessagingModule: RCTEventEmitter {
 
     private func dispatchEvent(_ name: String, payload: Any?) {
         if hasListeners {
-            sendEvent(withName: name, body: payload)
+            delegate?.sendEvent(name: name, result: payload)
         } else {
             eventQueue.append((name: name, payload: payload))
         }
@@ -54,26 +58,28 @@ class NotificareInAppMessagingModule: RCTEventEmitter {
 
     // MARK: - Notificare In-App Messaging
 
-    @objc func hasMessagesSuppressed(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+    @objc
+    public func hasMessagesSuppressed(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         resolve(Notificare.shared.inAppMessaging().hasMessagesSuppressed)
     }
-    
-    @objc func setMessagesSuppressed(_ data: [String: Any], resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+
+    @objc
+    public func setMessagesSuppressed(_ data: [String: Any], resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         guard let suppressed = data["suppressed"] as? Bool else {
             reject(DEFAULT_ERROR_CODE, "Missing 'suppressed' parameter.", nil)
             return
         }
-        
+
         let evaluateContext = data["evaluateContext"] as? Bool ?? false
-        
+
         Notificare.shared.inAppMessaging().setMessagesSuppressed(suppressed, evaluateContext: evaluateContext)
-        
+
         resolve(nil)
     }
 }
 
-extension NotificareInAppMessagingModule: NotificareInAppMessagingDelegate {
-    func notificare(_ notificare: NotificareInAppMessaging, didPresentMessage message: NotificareInAppMessage) {
+extension NotificareInAppMessagingModuleImpl: NotificareInAppMessagingDelegate {
+    public func notificare(_ notificare: NotificareInAppMessaging, didPresentMessage message: NotificareInAppMessage) {
         do {
             dispatchEvent("re.notifica.iam.message_presented", payload: try message.toJson())
         } catch {
@@ -81,7 +87,7 @@ extension NotificareInAppMessagingModule: NotificareInAppMessagingDelegate {
         }
     }
 
-    func notificare(_ notificare: NotificareInAppMessaging, didFinishPresentingMessage message: NotificareInAppMessage) {
+    public func notificare(_ notificare: NotificareInAppMessaging, didFinishPresentingMessage message: NotificareInAppMessage) {
         do {
             dispatchEvent("re.notifica.iam.message_finished_presenting", payload: try message.toJson())
         } catch {
@@ -89,7 +95,7 @@ extension NotificareInAppMessagingModule: NotificareInAppMessagingDelegate {
         }
     }
 
-    func notificare(_ notificare: NotificareInAppMessaging, didFailToPresentMessage message: NotificareInAppMessage) {
+    public func notificare(_ notificare: NotificareInAppMessaging, didFailToPresentMessage message: NotificareInAppMessage) {
         do {
             dispatchEvent("re.notifica.iam.message_failed_to_present", payload: try message.toJson())
         } catch {
@@ -97,7 +103,7 @@ extension NotificareInAppMessagingModule: NotificareInAppMessagingDelegate {
         }
     }
 
-    func notificare(_ notificare: NotificareInAppMessaging, didExecuteAction action: NotificareInAppMessage.Action, for message: NotificareInAppMessage) {
+    public func notificare(_ notificare: NotificareInAppMessaging, didExecuteAction action: NotificareInAppMessage.Action, for message: NotificareInAppMessage) {
         do {
             dispatchEvent("re.notifica.iam.action_executed", payload: [
                 "message": try message.toJson(),
@@ -108,7 +114,7 @@ extension NotificareInAppMessagingModule: NotificareInAppMessagingDelegate {
         }
     }
 
-    func notificare(_ notificare: NotificareInAppMessaging, didFailToExecuteAction action: NotificareInAppMessage.Action, for message: NotificareInAppMessage, error: Error?) {
+    public func notificare(_ notificare: NotificareInAppMessaging, didFailToExecuteAction action: NotificareInAppMessage.Action, for message: NotificareInAppMessage, error: Error?) {
         do {
             var payload: [String: Any] = [
                 "message": try message.toJson(),
