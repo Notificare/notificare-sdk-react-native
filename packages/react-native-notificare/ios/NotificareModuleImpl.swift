@@ -3,13 +3,19 @@ import NotificareKit
 
 private let DEFAULT_ERROR_CODE = "notificare_error"
 
-@objc(NotificareModule)
-class NotificareModule: RCTEventEmitter {
+@objc public protocol NotificareModuleDelegate {
+    func sendEvent(name: String, result: Any?)
+}
+
+@objc(NotificareModuleImpl)
+public class NotificareModuleImpl: NSObject {
+    @objc public static let shared = NotificareModuleImpl()
+    @objc public weak var delegate: NotificareModuleDelegate? = nil
 
     private var hasListeners = false
     private var eventQueue = [(name: String, payload: Any?)]()
 
-    override init() {
+    override public init() {
         super.init()
 
         Notificare.shared.delegate = self
@@ -17,25 +23,24 @@ class NotificareModule: RCTEventEmitter {
         _ = NotificareSwizzler.addInterceptor(self)
     }
 
-    override class func requiresMainQueueSetup() -> Bool {
-        return true
-    }
-
-    override func startObserving() {
+    @objc
+    public func startObserving() {
         hasListeners = true
 
         if !eventQueue.isEmpty {
             NotificareLogger.debug("Processing event queue with \(eventQueue.count) items.")
-            eventQueue.forEach { sendEvent(withName: $0.name, body: $0.payload)}
+            eventQueue.forEach { delegate?.sendEvent(name: $0.name, result: $0.payload)}
             eventQueue.removeAll()
         }
     }
 
-    override func stopObserving() {
+    @objc
+    public func stopObserving() {
         hasListeners = false
     }
 
-    override func supportedEvents() -> [String] {
+    @objc
+    public func supportedEvents() -> [String] {
         return [
             "re.notifica.ready",
             "re.notifica.unlaunched",
@@ -46,7 +51,7 @@ class NotificareModule: RCTEventEmitter {
 
     private func dispatchEvent(_ name: String, payload: Any?) {
         if hasListeners {
-            sendEvent(withName: name, body: payload)
+            delegate?.sendEvent(name: name, result: payload)
         } else {
             eventQueue.append((name: name, payload: payload))
         }
@@ -55,17 +60,17 @@ class NotificareModule: RCTEventEmitter {
     // MARK: - Notificare
 
     @objc
-    func isConfigured(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+    public func isConfigured(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         resolve(Notificare.shared.isConfigured)
     }
 
     @objc
-    func isReady(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+    public func isReady(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         resolve(Notificare.shared.isReady)
     }
 
     @objc
-    func launch(_ resolve: @escaping RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+    public func launch(_ resolve: @escaping RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         onMainThread {
             Notificare.shared.launch()
             resolve(nil)
@@ -73,7 +78,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func unlaunch(_ resolve: @escaping RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+    public func unlaunch(_ resolve: @escaping RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         onMainThread {
             Notificare.shared.unlaunch()
             resolve(nil)
@@ -81,7 +86,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func getApplication(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+    public func getApplication(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         do {
             let json = try Notificare.shared.application?.toJson()
             resolve(json)
@@ -91,7 +96,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func fetchApplication(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func fetchApplication(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.fetchApplication { result in
             switch result {
             case let .success(application):
@@ -108,7 +113,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func fetchNotification(_ notificationId: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func fetchNotification(_ notificationId: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.fetchNotification(notificationId) { result in
             switch result {
             case let .success(notification):
@@ -125,7 +130,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func fetchDynamicLink(_ url: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func fetchDynamicLink(_ url: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.fetchDynamicLink(url) { result in
             switch result {
             case let .success(dynamicLink):
@@ -142,12 +147,12 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func canEvaluateDeferredLink(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+    public func canEvaluateDeferredLink(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         resolve(Notificare.shared.canEvaluateDeferredLink)
     }
 
     @objc
-    func evaluateDeferredLink(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func evaluateDeferredLink(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.evaluateDeferredLink { result in
             switch result {
             case let .success(evaluated):
@@ -161,7 +166,7 @@ class NotificareModule: RCTEventEmitter {
     // MARK: - Notificare device module
 
     @objc
-    func getCurrentDevice(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+    public func getCurrentDevice(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         do {
             let json = try Notificare.shared.device().currentDevice?.toJson()
             resolve(json)
@@ -171,12 +176,12 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func getPreferredLanguage(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+    public func getPreferredLanguage(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         resolve(Notificare.shared.device().preferredLanguage)
     }
 
     @objc
-    func updatePreferredLanguage(_ language: String?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func updatePreferredLanguage(_ language: String?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().updatePreferredLanguage(language) { result in
             switch result {
             case .success:
@@ -188,7 +193,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func register(_ userId: String?, userName: String?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func registerUser(_ userId: String?, userName: String?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().register(userId: userId, userName: userName) { result in
             switch result {
             case .success:
@@ -200,7 +205,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func fetchTags(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func fetchTags(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().fetchTags { result in
             switch result {
             case let .success(tags):
@@ -212,7 +217,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func addTag(_ tag: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func addTag(_ tag: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().addTag(tag) { result in
             switch result {
             case .success:
@@ -224,7 +229,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func addTags(_ tags: [String], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func addTags(_ tags: [String], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().addTags(tags) { result in
             switch result {
             case .success:
@@ -236,7 +241,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func removeTag(_ tag: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func removeTag(_ tag: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().removeTag(tag) { result in
             switch result {
             case .success:
@@ -248,7 +253,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func removeTags(_ tags: [String], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func removeTags(_ tags: [String], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().removeTags(tags) { result in
             switch result {
             case .success:
@@ -260,7 +265,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func clearTags(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func clearTags(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().clearTags { result in
             switch result {
             case .success:
@@ -272,7 +277,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func fetchDoNotDisturb(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func fetchDoNotDisturb(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().fetchDoNotDisturb { result in
             switch result {
             case let .success(dnd):
@@ -289,7 +294,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func updateDoNotDisturb(_ payload: [String: Any], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func updateDoNotDisturb(_ payload: [String: Any], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         let dnd: NotificareDoNotDisturb
 
         do {
@@ -310,7 +315,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func clearDoNotDisturb(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func clearDoNotDisturb(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().clearDoNotDisturb { result in
             switch result {
             case .success:
@@ -322,7 +327,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func fetchUserData(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func fetchUserData(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().fetchUserData { result in
             switch result {
             case let .success(userData):
@@ -334,7 +339,7 @@ class NotificareModule: RCTEventEmitter {
     }
 
     @objc
-    func updateUserData(_ userData: [String: String], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func updateUserData(_ userData: [String: String], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().updateUserData(userData) { result in
             switch result {
             case .success:
@@ -348,7 +353,7 @@ class NotificareModule: RCTEventEmitter {
     // MARK: - Notificare events module
 
     @objc
-    func logCustom(_ event: String, data: [String: Any]?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func logCustom(_ event: String, data: [String: Any]?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.events().logCustom(event, data: data) { result in
             switch result {
             case .success:
@@ -360,8 +365,8 @@ class NotificareModule: RCTEventEmitter {
     }
 }
 
-extension NotificareModule: NotificareDelegate {
-    func notificare(_ notificare: Notificare, onReady application: NotificareApplication) {
+extension NotificareModuleImpl: NotificareDelegate {
+    public func notificare(_ notificare: Notificare, onReady application: NotificareApplication) {
         do {
             dispatchEvent("re.notifica.ready", payload: try application.toJson())
         } catch {
@@ -369,11 +374,11 @@ extension NotificareModule: NotificareDelegate {
         }
     }
 
-    func notificareDidUnlaunch(_ notificare: Notificare) {
+    public func notificareDidUnlaunch(_ notificare: Notificare) {
         dispatchEvent("re.notifica.unlaunched", payload: nil)
     }
 
-    func notificare(_ notificare: Notificare, didRegisterDevice device: NotificareDevice) {
+    public func notificare(_ notificare: Notificare, didRegisterDevice device: NotificareDevice) {
         do {
             dispatchEvent("re.notifica.device_registered", payload: try device.toJson())
         } catch {
@@ -382,8 +387,8 @@ extension NotificareModule: NotificareDelegate {
     }
 }
 
-extension NotificareModule: NotificareAppDelegateInterceptor {
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+extension NotificareModuleImpl: NotificareAppDelegateInterceptor {
+    public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         if Notificare.shared.handleTestDeviceUrl(url) {
             return true
         }
@@ -396,7 +401,7 @@ extension NotificareModule: NotificareAppDelegateInterceptor {
         return false
     }
 
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+    public func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         guard let url = userActivity.webpageURL else {
             return false
         }
