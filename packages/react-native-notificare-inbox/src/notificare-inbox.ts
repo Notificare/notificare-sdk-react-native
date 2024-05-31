@@ -11,10 +11,17 @@ const LINKING_ERROR =
   `The package 'react-native-notificare-inbox' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+  '- You are not using Expo Go\n';
 
-const NativeModule = NativeModules.NotificareInboxModule
-  ? NativeModules.NotificareInboxModule
+// @ts-expect-error
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
+const NotificareInboxModule = isTurboModuleEnabled
+  ? require('./NativeNotificareInboxModule').default
+  : NativeModules.NotificareInboxModule;
+
+const NativeModule = NotificareInboxModule
+  ? NotificareInboxModule
   : new Proxy(
       {},
       {
