@@ -4,37 +4,41 @@ import NotificarePushUIKit
 
 private let DEFAULT_ERROR_CODE = "notificare_error"
 
-@objc(NotificarePushUIModule)
-class NotificarePushUIModule: RCTEventEmitter {
-    
+@objc public protocol NotificarePushUIModuleDelegate {
+    func sendEvent(name: String, result: Any?)
+}
+
+@objc(NotificarePushUIModuleImpl)
+public class NotificarePushUIModuleImpl: NSObject {
+    @objc public weak var delegate: NotificarePushUIModuleDelegate? = nil
+
     private var hasListeners = false
     private var eventQueue = [(name: String, payload: Any?)]()
-    
-    override init() {
+
+    override public init() {
         super.init()
-        
+
         Notificare.shared.pushUI().delegate = self
     }
-    
-    override class func requiresMainQueueSetup() -> Bool {
-        return true
-    }
-    
-    override func startObserving() {
+
+    @objc
+    public func startObserving() {
         hasListeners = true
-        
+
         if !eventQueue.isEmpty {
             NotificareLogger.debug("Processing event queue with \(eventQueue.count) items.")
-            eventQueue.forEach { sendEvent(withName: $0.name, body: $0.payload)}
+            eventQueue.forEach { delegate?.sendEvent(name: $0.name, result: $0.payload)}
             eventQueue.removeAll()
         }
     }
-    
-    override func stopObserving() {
+
+    @objc
+    public func stopObserving() {
         hasListeners = false
     }
-    
-    override func supportedEvents() -> [String] {
+
+    @objc
+    public func supportedEvents() -> [String] {
         return [
             "re.notifica.push.ui.notification_will_present",
             "re.notifica.push.ui.notification_presented",
@@ -48,40 +52,40 @@ class NotificarePushUIModule: RCTEventEmitter {
             "re.notifica.push.ui.custom_action_received",
         ]
     }
-    
+
     private func dispatchEvent(_ name: String, payload: Any?) {
         if hasListeners {
-            sendEvent(withName: name, body: payload)
+            delegate?.sendEvent(name: name, result: payload)
         } else {
             eventQueue.append((name: name, payload: payload))
         }
     }
-    
+
     private var rootViewController: UIViewController? {
         get {
             UIApplication.shared.delegate?.window??.rootViewController
         }
     }
-    
+
     // MARK: - Notificare Push
-    
+
     @objc
-    func presentNotification(_ data: [String: Any], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func presentNotification(_ data: [String: Any], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         let notification: NotificareNotification
-        
+
         do {
             notification = try NotificareNotification.fromJson(json: data)
         } catch {
             reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
             return
         }
-        
+
         onMainThread {
             guard let rootViewController = self.rootViewController else {
                 reject(DEFAULT_ERROR_CODE, "Cannot present a notification with a nil root view controller.", nil)
                 return
             }
-            
+
             if notification.requiresViewController {
                 let navigationController = self.createNavigationController()
                 rootViewController.present(navigationController, animated: true) {
@@ -94,12 +98,12 @@ class NotificarePushUIModule: RCTEventEmitter {
             }
         }
     }
-    
+
     @objc
-    func presentAction(_ notificationData: [String: Any], action actionData: [String: Any], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func presentAction(_ notificationData: [String: Any], action actionData: [String: Any], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         let notification: NotificareNotification
         let action: NotificareNotification.Action
-        
+
         do {
             notification = try NotificareNotification.fromJson(json: notificationData)
             action = try NotificareNotification.Action.fromJson(json: actionData)
@@ -107,22 +111,22 @@ class NotificarePushUIModule: RCTEventEmitter {
             reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
             return
         }
-        
+
         onMainThread {
             guard let rootViewController = self.rootViewController else {
                 reject(DEFAULT_ERROR_CODE, "Cannot present a notification action with a nil root view controller.", nil)
                 return
             }
-            
+
             Notificare.shared.pushUI().presentAction(action, for: notification, in: rootViewController)
             resolve(nil)
         }
     }
-    
+
     private func createNavigationController() -> UINavigationController {
         let navigationController = UINavigationController()
         let theme = Notificare.shared.options?.theme(for: navigationController)
-        
+
         if let colorStr = theme?.backgroundColor {
             navigationController.view.backgroundColor = UIColor(hexString: colorStr)
         } else {
@@ -135,12 +139,12 @@ class NotificarePushUIModule: RCTEventEmitter {
 
         return navigationController
     }
-    
+
     @objc private func onCloseClicked() {
         guard let rootViewController = rootViewController else {
             return
         }
-        
+
         rootViewController.dismiss(animated: true, completion: nil)
     }
 }
@@ -156,13 +160,13 @@ extension NotificareNotification {
                     break
                 }
             }
-            
+
             return true
         }
     }
 }
 
-extension NotificarePushUIModule: NotificarePushUIDelegate {
+extension NotificarePushUIModuleImpl: NotificarePushUIDelegate {
     public func notificare(_ notificarePushUI: NotificarePushUI, willPresentNotification notification: NotificareNotification) {
         do {
             dispatchEvent("re.notifica.push.ui.notification_will_present", payload: try notification.toJson())
@@ -170,7 +174,7 @@ extension NotificarePushUIModule: NotificarePushUIDelegate {
             NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_will_present event.", error: error)
         }
     }
-    
+
     public func notificare(_ notificarePushUI: NotificarePushUI, didPresentNotification notification: NotificareNotification) {
         do {
             dispatchEvent("re.notifica.push.ui.notification_presented", payload: try notification.toJson())
@@ -178,7 +182,7 @@ extension NotificarePushUIModule: NotificarePushUIDelegate {
             NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_presented event.", error: error)
         }
     }
-    
+
     public func notificare(_ notificarePushUI: NotificarePushUI, didFinishPresentingNotification notification: NotificareNotification) {
         do {
             dispatchEvent("re.notifica.push.ui.notification_finished_presenting", payload: try notification.toJson())
@@ -186,7 +190,7 @@ extension NotificarePushUIModule: NotificarePushUIDelegate {
             NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_finished_presenting event.", error: error)
         }
     }
-    
+
     public func notificare(_ notificarePushUI: NotificarePushUI, didFailToPresentNotification notification: NotificareNotification) {
         do {
             dispatchEvent("re.notifica.push.ui.notification_failed_to_present", payload: try notification.toJson())
@@ -194,7 +198,7 @@ extension NotificarePushUIModule: NotificarePushUIDelegate {
             NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_failed_to_present event.", error: error)
         }
     }
-    
+
     public func notificare(_ notificarePushUI: NotificarePushUI, didClickURL url: URL, in notification: NotificareNotification) {
         do {
             let payload: [String: Any] = [
@@ -207,7 +211,7 @@ extension NotificarePushUIModule: NotificarePushUIDelegate {
             NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_url_clicked event.", error: error)
         }
     }
-    
+
     public func notificare(_ notificarePushUI: NotificarePushUI, willExecuteAction action: NotificareNotification.Action, for notification: NotificareNotification) {
         do {
             dispatchEvent("re.notifica.push.ui.action_will_execute", payload: [
@@ -218,7 +222,7 @@ extension NotificarePushUIModule: NotificarePushUIDelegate {
             NotificareLogger.error("Failed to emit the re.notifica.push.ui.action_will_execute event.", error: error)
         }
     }
-    
+
     public func notificare(_ notificarePushUI: NotificarePushUI, didExecuteAction action: NotificareNotification.Action, for notification: NotificareNotification) {
         do {
             dispatchEvent("re.notifica.push.ui.action_executed", payload: [
@@ -229,7 +233,7 @@ extension NotificarePushUIModule: NotificarePushUIDelegate {
             NotificareLogger.error("Failed to emit the re.notifica.push.ui.action_executed event.", error: error)
         }
     }
-    
+
     public func notificare(_ notificarePushUI: NotificarePushUI, didNotExecuteAction action: NotificareNotification.Action, for notification: NotificareNotification) {
         do {
             dispatchEvent("re.notifica.push.ui.action_not_executed", payload: [
@@ -240,24 +244,24 @@ extension NotificarePushUIModule: NotificarePushUIDelegate {
             NotificareLogger.error("Failed to emit the re.notifica.push.ui.action_not_executed event.", error: error)
         }
     }
-    
+
     public func notificare(_ notificarePushUI: NotificarePushUI, didFailToExecuteAction action: NotificareNotification.Action, for notification: NotificareNotification, error: Error?) {
         do {
             var payload: [String: Any] = [
                 "notification": try notification.toJson(),
                 "action": try action.toJson(),
             ]
-            
+
             if let error = error {
                 payload["error"] = error.localizedDescription
             }
-            
+
             dispatchEvent("re.notifica.push.ui.action_failed_to_execute", payload: payload)
         } catch {
             NotificareLogger.error("Failed to emit the re.notifica.push.ui.action_failed_to_execute event.", error: error)
         }
     }
-    
+
     public func notificare(_ notificarePushUI: NotificarePushUI, didReceiveCustomAction url: URL, in action: NotificareNotification.Action, for notification: NotificareNotification) {
         do {
             let payload: [String: Any] = [

@@ -13,10 +13,17 @@ const LINKING_ERROR =
   `The package 'react-native-notificare-push-ui' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+  '- You are not using Expo Go\n';
 
-const NativeModule = NativeModules.NotificarePushUIModule
-  ? NativeModules.NotificarePushUIModule
+// @ts-expect-error
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
+const NotificarePushUIModule = isTurboModuleEnabled
+  ? require('./NativeNotificarePushUIModule').default
+  : NativeModules.NotificarePushUIModule;
+
+const NativeModule = NotificarePushUIModule
+  ? NotificarePushUIModule
   : new Proxy(
       {},
       {

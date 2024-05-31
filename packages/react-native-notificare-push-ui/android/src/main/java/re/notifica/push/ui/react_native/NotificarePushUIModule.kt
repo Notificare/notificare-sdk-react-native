@@ -1,17 +1,19 @@
 package re.notifica.push.ui.react_native
 
 import android.net.Uri
-import com.facebook.react.bridge.*
+import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReadableMap
 import re.notifica.Notificare
 import re.notifica.internal.NotificareLogger
 import re.notifica.models.NotificareNotification
 import re.notifica.push.ui.NotificarePushUI
 import re.notifica.push.ui.ktx.pushUI
 
-public class NotificarePushUIModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext),
-    NotificarePushUI.NotificationLifecycleListener {
-
-    override fun getName(): String = "NotificarePushUIModule"
+public class NotificarePushUIModule internal constructor(context: ReactApplicationContext) :
+    NotificarePushUIModuleSpec(context), NotificarePushUI.NotificationLifecycleListener {
 
     override fun initialize() {
         super.initialize()
@@ -26,20 +28,24 @@ public class NotificarePushUIModule(reactContext: ReactApplicationContext) : Rea
         Notificare.pushUI().removeLifecycleListener(this)
     }
 
+    override fun getName(): String {
+        return NAME
+    }
+
     @ReactMethod
-    public fun addListener(@Suppress("UNUSED_PARAMETER") eventName: String) {
+    override fun addListener(eventName: String) {
         // Keep: Required for RN built in Event Emitter Calls.
     }
 
     @ReactMethod
-    public fun removeListeners(@Suppress("UNUSED_PARAMETER") count: Int) {
+    override fun removeListeners(count: Double) {
         // Keep: Required for RN built in Event Emitter Calls.
     }
 
     // region Notificare Push UI
 
     @ReactMethod
-    public fun presentNotification(data: ReadableMap, promise: Promise) {
+    override fun presentNotification(data: ReadableMap, promise: Promise) {
         val notification: NotificareNotification
 
         try {
@@ -59,7 +65,7 @@ public class NotificarePushUIModule(reactContext: ReactApplicationContext) : Rea
     }
 
     @ReactMethod
-    public fun presentAction(notificationData: ReadableMap, actionData: ReadableMap, promise: Promise) {
+    override fun presentAction(notificationData: ReadableMap, actionData: ReadableMap, promise: Promise) {
         val notification: NotificareNotification
         val action: NotificareNotification.Action
 
@@ -198,6 +204,7 @@ public class NotificarePushUIModule(reactContext: ReactApplicationContext) : Rea
     // endregion
 
     public companion object {
+        internal const val NAME = "NotificarePushUIModule"
         internal const val DEFAULT_ERROR_CODE = "notificare_error"
     }
 }
