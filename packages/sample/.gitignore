@@ -55,10 +55,10 @@ buck-out/
 *.jsbundle
 
 # CocoaPods
-/ios/Pods/
+**/Pods/
 
 # Xcode Node env
-/ios/.xcode.env.local
+**/.xcode.env.local
 
 # Configuration files
 google-services.json
