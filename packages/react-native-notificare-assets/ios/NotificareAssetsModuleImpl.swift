@@ -4,15 +4,11 @@ import NotificareAssetsKit
 
 private let DEFAULT_ERROR_CODE = "notificare_error"
 
-@objc(NotificareAssetsModule)
-class NotificareAssetsModule: NSObject {
-    
-    @objc class func requiresMainQueueSetup() -> Bool {
-        return true
-    }
-    
+@objc(NotificareAssetsModuleImpl)
+public class NotificareAssetsModuleImpl: NSObject {
+
     @objc
-    func fetch(_ group: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    public func fetch(_ group: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.assets().fetch(group: group) { result in
             switch result {
             case let .success(assets):
