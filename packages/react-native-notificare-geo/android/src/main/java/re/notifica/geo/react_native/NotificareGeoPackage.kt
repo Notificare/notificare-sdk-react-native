@@ -25,6 +25,7 @@ public class NotificareGeoPackage : TurboReactPackage() {
                 NotificareGeoModule.NAME,
                 false,  // canOverrideExistingModule
                 false,  // needsEagerInit
+                true,  // hasConstants
                 false,  // isCxxModule
                 isTurboModule // isTurboModule
             )

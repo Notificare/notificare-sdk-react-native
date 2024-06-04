@@ -25,6 +25,7 @@ public class NotificareScannablesPackage : TurboReactPackage() {
                 NotificareScannablesModule.NAME,
                 false,  // canOverrideExistingModule
                 false,  // needsEagerInit
+                true,  // hasConstants
                 false,  // isCxxModule
                 isTurboModule // isTurboModule
             )

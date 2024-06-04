@@ -25,6 +25,7 @@ public class NotificarePushUIPackage : TurboReactPackage() {
                 NotificarePushUIModule.NAME,
                 false,  // canOverrideExistingModule
                 false,  // needsEagerInit
+                true,  // hasConstants
                 false,  // isCxxModule
                 isTurboModule // isTurboModule
             )

@@ -25,6 +25,7 @@ public class NotificareUserInboxPackage : TurboReactPackage() {
                 NotificareUserInboxModule.NAME,
                 false,  // canOverrideExistingModule
                 false,  // needsEagerInit
+                true,  // hasConstants
                 false,  // isCxxModule
                 isTurboModule // isTurboModule
             )

@@ -25,6 +25,7 @@ public class NotificareInAppMessagingPackage : TurboReactPackage() {
                 NotificareInAppMessagingModule.NAME,
                 false,  // canOverrideExistingModule
                 false,  // needsEagerInit
+                true,  // hasConstants
                 false,  // isCxxModule
                 isTurboModule // isTurboModule
             )

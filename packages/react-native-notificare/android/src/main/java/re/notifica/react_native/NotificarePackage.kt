@@ -25,6 +25,7 @@ public class NotificarePackage : TurboReactPackage() {
                 NotificareModule.NAME,
                 false,  // canOverrideExistingModule
                 false,  // needsEagerInit
+                true,  // hasConstants
                 false,  // isCxxModule
                 isTurboModule // isTurboModule
             )
