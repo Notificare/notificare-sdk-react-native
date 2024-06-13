@@ -18,7 +18,6 @@ PODS:
   - Notificare/NotificarePushKit (3.9.0)
   - Notificare/NotificarePushUIKit (3.9.0)
   - Notificare/NotificareScannablesKit (3.9.0)
-  - Notificare/NotificareUserInboxKit (3.9.0)
   - RCT-Folly (2024.01.01.00):
     - boost
     - DoubleConversion
@@ -1157,29 +1156,6 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-user-inbox (3.9.0):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - Notificare/NotificareKit (= 3.9.0)
-    - Notificare/NotificareUserInboxKit (= 3.9.0)
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Codegen
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
-    - React-utils
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - Yoga
   - react-native-safe-area-context (4.10.1):
     - DoubleConversion
     - glog
@@ -1544,7 +1520,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNVectorIcons (10.0.3):
+  - RNVectorIcons (10.1.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1611,7 +1587,6 @@ DEPENDENCIES:
   - react-native-notificare-push (from `../../react-native-notificare-push`)
   - react-native-notificare-push-ui (from `../../react-native-notificare-push-ui`)
   - react-native-notificare-scannables (from `../../react-native-notificare-scannables`)
-  - react-native-notificare-user-inbox (from `../../react-native-notificare-user-inbox`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
@@ -1730,8 +1705,6 @@ EXTERNAL SOURCES:
     :path: "../../react-native-notificare-push-ui"
   react-native-notificare-scannables:
     :path: "../../react-native-notificare-scannables"
-  react-native-notificare-user-inbox:
-    :path: "../../react-native-notificare-user-inbox"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-nativeconfig:
@@ -1834,7 +1807,6 @@ SPEC CHECKSUMS:
   react-native-notificare-push: 6b0c252ec6e38b0d225d9069381bd6d54c5b0649
   react-native-notificare-push-ui: 9bd35a01720ef3cc341363065e7f3024974c271a
   react-native-notificare-scannables: f182099f726ce8bc12902874b8e95893a2184eae
-  react-native-notificare-user-inbox: efd6067bab258bfff16a4316bcfe20e9d1596027
   react-native-safe-area-context: 7f54ad0a774de306ab790c70d9d950321e5c5449
   React-nativeconfig: b0073a590774e8b35192fead188a36d1dca23dec
   React-NativeModulesApple: df46ff3e3de5b842b30b4ca8a6caae6d7c8ab09f
@@ -1862,10 +1834,10 @@ SPEC CHECKSUMS:
   RNCCheckbox: a3ca9978cb0846b981d28da4e9914bd437403d77
   RNPermissions: 5396c31670cedc549b87b0f31e2c63a577dfcb8e
   RNScreens: 63fe8222c172a79f5c30dd1aefaeb369c6eb57b6
-  RNVectorIcons: 59bac18d98eabffb158ff7a36cb25af062759391
+  RNVectorIcons: 933948590e598ec50433d6f207242e5a7c1d6b7d
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: b9a182ab00cf25926e7f79657d08c5d23c2d03b0
 
-PODFILE CHECKSUM: 7dfaa907fd2803b29b62919d85dfc2c5a19f643e
+PODFILE CHECKSUM: f91dcb4c7613acbd2bdde0b49e2c7397940b1051
 
 COCOAPODS: 1.15.2
