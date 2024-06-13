@@ -222,8 +222,8 @@ RCT_EXPORT_METHOD(logCustom:(NSString *)event
     [notificare stopObserving];
 }
 
-- (void)sendEventWithName:(NSString * _Nonnull)name result:(id _Nullable)result {
-    [self sendEventWithName:name body:result];
+- (void)broadcastEventWithName:(NSString * _Nonnull)name body:(id _Nullable)body {
+    [self sendEventWithName:name body:body];
 }
 
 @end

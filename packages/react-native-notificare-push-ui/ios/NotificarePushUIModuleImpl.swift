@@ -5,7 +5,7 @@ import NotificarePushUIKit
 private let DEFAULT_ERROR_CODE = "notificare_error"
 
 @objc public protocol NotificarePushUIModuleDelegate {
-    func sendEvent(name: String, result: Any?)
+    func broadcastEvent(name: String, body: Any?)
 }
 
 @objc(NotificarePushUIModuleImpl)
@@ -27,7 +27,7 @@ public class NotificarePushUIModuleImpl: NSObject {
 
         if !eventQueue.isEmpty {
             NotificareLogger.debug("Processing event queue with \(eventQueue.count) items.")
-            eventQueue.forEach { delegate?.sendEvent(name: $0.name, result: $0.payload)}
+            eventQueue.forEach { delegate?.broadcastEvent(name: $0.name, body: $0.payload)}
             eventQueue.removeAll()
         }
     }
@@ -55,7 +55,7 @@ public class NotificarePushUIModuleImpl: NSObject {
 
     private func dispatchEvent(_ name: String, payload: Any?) {
         if hasListeners {
-            delegate?.sendEvent(name: name, result: payload)
+            delegate?.broadcastEvent(name: name, body: payload)
         } else {
             eventQueue.append((name: name, payload: payload))
         }
