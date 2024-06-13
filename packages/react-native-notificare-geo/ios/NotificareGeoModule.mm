@@ -5,14 +5,14 @@
 @end
 
 @implementation NotificareGeoModule {
-    NotificareGeoModuleImpl *geo;
+    NotificareGeoPlugin *plugin;
 }
 
 - (instancetype)init {
     self = [super init];
     if(self) {
-        geo = [NotificareGeoModuleImpl new];
-        geo.delegate = self;
+        plugin = [NotificareGeoPlugin new];
+        plugin.delegate = self;
     }
     
     return self;
@@ -27,37 +27,37 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(hasLocationServicesEnabled:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [geo hasLocationServicesEnabled:resolve reject:reject];
+    [plugin hasLocationServicesEnabled:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(hasBluetoothEnabled:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [geo hasBluetoothEnabled:resolve reject:reject];
+    [plugin hasBluetoothEnabled:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(getMonitoredRegions:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [geo getMonitoredRegions:resolve reject:reject];
+    [plugin getMonitoredRegions:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(getEnteredRegions:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [geo getEnteredRegions:resolve reject:reject];
+    [plugin getEnteredRegions:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(enableLocationUpdates:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [geo enableLocationUpdates:resolve reject:reject];
+    [plugin enableLocationUpdates:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(disableLocationUpdates:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [geo disableLocationUpdates:resolve reject:reject];
+    [plugin disableLocationUpdates:resolve reject:reject];
 }
 
 // Don't compile this code when we build for the old architecture.
@@ -72,15 +72,15 @@ RCT_EXPORT_METHOD(disableLocationUpdates:(RCTPromiseResolveBlock)resolve
 // Event Emitter
 
 - (NSArray<NSString *> *)supportedEvents {
-    return [geo supportedEvents];
+    return [plugin supportedEvents];
 }
 
 - (void)startObserving {
-    [geo startObserving];
+    [plugin startObserving];
 }
 
 - (void)stopObserving {
-    [geo stopObserving];
+    [plugin stopObserving];
 }
 
 - (void)broadcastEventWithName:(NSString * _Nonnull)name body:(id _Nullable)body {

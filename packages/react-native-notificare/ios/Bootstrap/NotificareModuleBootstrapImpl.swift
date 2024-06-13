@@ -29,6 +29,6 @@ public class NotificareModuleBootstrapImpl: NSObject {
 
         // Force the plugin to load as soon as possible. Otherwise, the interceptor won't
         // be loaded in time to process incoming events on a cold start.
-        _ = NotificareModuleImpl.shared
+        _ = NotificarePlugin.shared
     }
 }

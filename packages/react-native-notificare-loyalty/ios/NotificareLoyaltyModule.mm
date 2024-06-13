@@ -2,13 +2,13 @@
 #import "react_native_notificare_loyalty-Swift.h"
 
 @implementation NotificareLoyaltyModule {
-    NotificareLoyaltyModuleImpl *loyalty;
+    NotificareLoyaltyPlugin *plugin;
 }
 
 - (instancetype)init {
     self = [super init];
     if(self) {
-        loyalty = [NotificareLoyaltyModuleImpl new];
+        plugin = [NotificareLoyaltyPlugin new];
     }
     return self;
 }
@@ -23,21 +23,21 @@ RCT_EXPORT_METHOD(fetchPassBySerial:(NSString *)serial
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [loyalty fetchPassBySerial:serial resolve:resolve reject:reject];
+    [plugin fetchPassBySerial:serial resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(fetchPassByBarcode:(NSString *)barcode
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [loyalty fetchPassByBarcode:barcode resolve:resolve reject:reject];
+    [plugin fetchPassByBarcode:barcode resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(present:(NSDictionary *)pass
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [loyalty present:pass resolve:resolve reject:reject];
+    [plugin present:pass resolve:resolve reject:reject];
 }
 
 // Don't compile this code when we build for the old architecture.

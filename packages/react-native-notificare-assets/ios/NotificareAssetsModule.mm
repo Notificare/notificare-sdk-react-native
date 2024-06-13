@@ -2,13 +2,13 @@
 #import "react_native_notificare_assets-Swift.h"
 
 @implementation NotificareAssetsModule {
-    NotificareAssetsModuleImpl *assets;
+    NotificareAssetsPlugin *plugin;
 }
 
 - (instancetype)init {
     self = [super init];
     if(self) {
-        assets = [NotificareAssetsModuleImpl new];
+        plugin = [NotificareAssetsPlugin new];
     }
     return self;
 }
@@ -23,7 +23,7 @@ RCT_EXPORT_METHOD(fetch:(NSString *)group
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [assets fetch:group resolve:resolve reject:reject];
+    [plugin fetch:group resolve:resolve reject:reject];
 }
 
 // Don't compile this code when we build for the old architecture.

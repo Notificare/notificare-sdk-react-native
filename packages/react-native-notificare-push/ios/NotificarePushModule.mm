@@ -5,14 +5,14 @@
 @end
 
 @implementation NotificarePushModule {
-    NotificarePushModuleImpl *push;
+    NotificarePushPlugin *plugin;
 }
 
 - (instancetype)init {
     self = [super init];
     if(self) {
-        push = [NotificarePushModuleImpl new];
-        push.delegate = self;
+        plugin = [NotificarePushPlugin new];
+        plugin.delegate = self;
     }
     
     return self;
@@ -28,45 +28,45 @@ RCT_EXPORT_METHOD(setAuthorizationOptions:(NSArray *)options
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [push setAuthorizationOptions:options resolve:resolve reject:reject];
+    [plugin setAuthorizationOptions:options resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(setCategoryOptions:(NSArray *)options
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [push setCategoryOptions:options resolve:resolve reject:reject];
+    [plugin setCategoryOptions:options resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(setPresentationOptions:(NSArray *)options
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [push setPresentationOptions:options resolve:resolve reject:reject];
+    [plugin setPresentationOptions:options resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(hasRemoteNotificationsEnabled:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [push hasRemoteNotificationsEnabled:resolve reject:reject];
+    [plugin hasRemoteNotificationsEnabled:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(allowedUI:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [push allowedUI:resolve reject:reject];
+    [plugin allowedUI:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(enableRemoteNotifications:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [push enableRemoteNotifications:resolve reject:reject];
+    [plugin enableRemoteNotifications:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(disableRemoteNotifications:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [push disableRemoteNotifications:resolve reject:reject];
+    [plugin disableRemoteNotifications:resolve reject:reject];
 }
 
 // Don't compile this code when we build for the old architecture.
@@ -81,15 +81,15 @@ RCT_EXPORT_METHOD(disableRemoteNotifications:(RCTPromiseResolveBlock)resolve
 // Event Emitter
 
 - (NSArray<NSString *> *)supportedEvents {
-    return [push supportedEvents];
+    return [plugin supportedEvents];
 }
 
 - (void)startObserving {
-    [push startObserving];
+    [plugin startObserving];
 }
 
 - (void)stopObserving {
-    [push stopObserving];
+    [plugin stopObserving];
 }
 
 - (void)broadcastEventWithName:(NSString * _Nonnull)name body:(id _Nullable)body {

@@ -2,13 +2,13 @@
 #import "react_native_notificare_user_inbox-Swift.h"
 
 @implementation NotificareUserInboxModule {
-    NotificareUserInboxModuleImpl *userInbox;
+    NotificareUserInboxPlugin *plugin;
 }
 
 - (instancetype)init {
   self = [super init];
   if(self) {
-      userInbox = [NotificareUserInboxModuleImpl new];
+      plugin = [NotificareUserInboxPlugin new];
   }
   return self;
 }
@@ -23,35 +23,35 @@ RCT_EXPORT_METHOD(parseResponseFromJson:(NSDictionary *)json
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [userInbox parseResponseFromJson:json resolve:resolve reject:reject];
+    [plugin parseResponseFromJson:json resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(parseResponseFromString:(NSString *)json
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [userInbox parseResponseFromString:json resolve:resolve reject:reject];
+    [plugin parseResponseFromString:json resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(open:(NSDictionary *)item
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [userInbox open:item resolve:resolve reject:reject];
+    [plugin open:item resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(markAsRead:(NSDictionary *)item
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [userInbox markAsRead:item resolve:resolve reject:reject];
+    [plugin markAsRead:item resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(remove:(NSDictionary *)item
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [userInbox remove:item resolve:resolve reject:reject];
+    [plugin remove:item resolve:resolve reject:reject];
 }
 
 // Don't compile this code when we build for the old architecture.

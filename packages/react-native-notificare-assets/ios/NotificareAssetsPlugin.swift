@@ -4,8 +4,8 @@ import NotificareAssetsKit
 
 private let DEFAULT_ERROR_CODE = "notificare_error"
 
-@objc(NotificareAssetsModuleImpl)
-public class NotificareAssetsModuleImpl: NSObject {
+@objc(NotificareAssetsPlugin)
+public class NotificareAssetsPlugin: NSObject {
 
     @objc
     public func fetch(_ group: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {

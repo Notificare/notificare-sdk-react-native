@@ -9,8 +9,8 @@ private let DEFAULT_ERROR_CODE = "notificare_error"
     func broadcastEvent(name: String, body: Any?)
 }
 
-@objc(NotificareScannablesModuleImpl)
-public class NotificareScannablesModuleImpl: NSObject {
+@objc(NotificareScannablesPlugin)
+public class NotificareScannablesPlugin: NSObject {
     @objc public weak var delegate: NotificareScannablesModuleDelegate? = nil
 
     private var hasListeners = false
@@ -119,7 +119,7 @@ public class NotificareScannablesModuleImpl: NSObject {
     }
 }
 
-extension NotificareScannablesModuleImpl: NotificareScannablesDelegate {
+extension NotificareScannablesPlugin: NotificareScannablesDelegate {
     public func notificare(_ notificareScannables: NotificareScannables, didDetectScannable scannable: NotificareScannable) {
         do {
             dispatchEvent("re.notifica.scannables.scannable_detected", payload: try scannable.toJson())

@@ -5,14 +5,14 @@
 @end
 
 @implementation NotificareInboxModule {
-    NotificareInboxModuleImpl *inbox;
+    NotificareInboxPlugin *plugin;
 }
 
 - (instancetype)init {
     self = [super init];
     if(self) {
-        inbox = [NotificareInboxModuleImpl new];
-        inbox.delegate = self;
+        plugin = [NotificareInboxPlugin new];
+        plugin.delegate = self;
     }
     
     return self;
@@ -27,52 +27,52 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(getItems:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [inbox getItems:resolve reject:reject];
+    [plugin getItems:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(getBadge:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [inbox getBadge:resolve reject:reject];
+    [plugin getBadge:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(refresh:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [inbox refresh:resolve reject:reject];
+    [plugin refresh:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(open:(NSDictionary *)item
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [inbox open:item resolve:resolve reject:reject];
+    [plugin open:item resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(markAsRead:(NSDictionary *)item
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [inbox markAsRead:item resolve:resolve reject:reject];
+    [plugin markAsRead:item resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(markAllAsRead:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [inbox markAllAsRead:resolve reject:reject];
+    [plugin markAllAsRead:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(remove:(NSDictionary *)item
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [inbox remove:item resolve:resolve reject:reject];
+    [plugin remove:item resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(clear:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [inbox clear:resolve reject:reject];
+    [plugin clear:resolve reject:reject];
 }
 
 // Don't compile this code when we build for the old architecture.
@@ -87,15 +87,15 @@ RCT_EXPORT_METHOD(clear:(RCTPromiseResolveBlock)resolve
 // Event Emitter
 
 - (NSArray<NSString *> *)supportedEvents {
-    return [inbox supportedEvents];
+    return [plugin supportedEvents];
 }
 
 - (void)startObserving {
-    [inbox startObserving];
+    [plugin startObserving];
 }
 
 - (void)stopObserving {
-    [inbox stopObserving];
+    [plugin stopObserving];
 }
 
 - (void)broadcastEventWithName:(NSString * _Nonnull)name body:(id _Nullable)body {

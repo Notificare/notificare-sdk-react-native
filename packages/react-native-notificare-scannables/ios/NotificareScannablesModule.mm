@@ -5,14 +5,14 @@
 @end
 
 @implementation NotificareScannablesModule {
-    NotificareScannablesModuleImpl *scannables;
+    NotificareScannablesPlugin *plugin;
 }
 
 - (instancetype)init {
     self = [super init];
     if(self) {
-        scannables = [NotificareScannablesModuleImpl new];
-        scannables.delegate = self;
+        plugin = [NotificareScannablesPlugin new];
+        plugin.delegate = self;
     }
     
     return self;
@@ -27,32 +27,32 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(canStartNfcScannableSession:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [scannables canStartNfcScannableSession:resolve reject:reject];
+    [plugin canStartNfcScannableSession:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(startScannableSession:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [scannables startScannableSession:resolve reject:reject];
+    [plugin startScannableSession:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(startNfcScannableSession:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [scannables startNfcScannableSession:resolve reject:reject];
+    [plugin startNfcScannableSession:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(startQrCodeScannableSession:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [scannables startQrCodeScannableSession:resolve reject:reject];
+    [plugin startQrCodeScannableSession:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(fetch:(NSString *)tag
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [scannables fetch:tag resolve:resolve reject:reject];
+    [plugin fetch:tag resolve:resolve reject:reject];
 }
 
 
@@ -68,15 +68,15 @@ RCT_EXPORT_METHOD(fetch:(NSString *)tag
 // Event Emitter
 
 - (NSArray<NSString *> *)supportedEvents {
-    return [scannables supportedEvents];
+    return [plugin supportedEvents];
 }
 
 - (void)startObserving {
-    [scannables startObserving];
+    [plugin startObserving];
 }
 
 - (void)stopObserving {
-    [scannables stopObserving];
+    [plugin stopObserving];
 }
 
 - (void)broadcastEventWithName:(NSString * _Nonnull)name body:(id _Nullable)body {

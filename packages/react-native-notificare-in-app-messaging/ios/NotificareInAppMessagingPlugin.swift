@@ -8,8 +8,8 @@ private let DEFAULT_ERROR_CODE = "notificare_error"
     func broadcastEvent(name: String, body: Any?)
 }
 
-@objc(NotificareInAppMessagingModuleImpl)
-public class NotificareInAppMessagingModuleImpl: NSObject {
+@objc(NotificareInAppMessagingPlugin)
+public class NotificareInAppMessagingPlugin: NSObject {
     @objc public weak var delegate: NotificareInAppMessagingModuleDelegate? = nil
 
     private var hasListeners = false
@@ -78,7 +78,7 @@ public class NotificareInAppMessagingModuleImpl: NSObject {
     }
 }
 
-extension NotificareInAppMessagingModuleImpl: NotificareInAppMessagingDelegate {
+extension NotificareInAppMessagingPlugin: NotificareInAppMessagingDelegate {
     public func notificare(_ notificare: NotificareInAppMessaging, didPresentMessage message: NotificareInAppMessage) {
         do {
             dispatchEvent("re.notifica.iam.message_presented", payload: try message.toJson())

@@ -8,8 +8,8 @@ private let DEFAULT_ERROR_CODE = "notificare_error"
     func broadcastEvent(name: String, body: Any?)
 }
 
-@objc(NotificarePushUIModuleImpl)
-public class NotificarePushUIModuleImpl: NSObject {
+@objc(NotificarePushUIPlugin)
+public class NotificarePushUIPlugin: NSObject {
     @objc public weak var delegate: NotificarePushUIModuleDelegate? = nil
 
     private var hasListeners = false
@@ -166,7 +166,7 @@ extension NotificareNotification {
     }
 }
 
-extension NotificarePushUIModuleImpl: NotificarePushUIDelegate {
+extension NotificarePushUIPlugin: NotificarePushUIDelegate {
     public func notificare(_ notificarePushUI: NotificarePushUI, willPresentNotification notification: NotificareNotification) {
         do {
             dispatchEvent("re.notifica.push.ui.notification_will_present", payload: try notification.toJson())

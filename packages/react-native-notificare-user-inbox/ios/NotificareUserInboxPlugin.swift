@@ -4,8 +4,8 @@ import NotificareUserInboxKit
 
 private let DEFAULT_ERROR_CODE = "notificare_error"
 
-@objc(NotificareUserInboxModuleImpl)
-public class NotificareUserInboxModuleImpl: NSObject {
+@objc(NotificareUserInboxPlugin)
+public class NotificareUserInboxPlugin: NSObject {
 
     @objc
     public func parseResponseFromJson(_ json: [String: Any], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {

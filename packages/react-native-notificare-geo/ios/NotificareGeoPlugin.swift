@@ -8,8 +8,8 @@ private let DEFAULT_ERROR_CODE = "notificare_error"
     func broadcastEvent(name: String, body: Any?)
 }
 
-@objc(NotificareGeoModuleImpl)
-public class NotificareGeoModuleImpl: NSObject {
+@objc(NotificareGeoPlugin)
+public class NotificareGeoPlugin: NSObject {
     @objc public weak var delegate: NotificareGeoModuleDelegate? = nil
 
     private var hasListeners = false
@@ -104,7 +104,7 @@ public class NotificareGeoModuleImpl: NSObject {
     }
 }
 
-extension NotificareGeoModuleImpl: NotificareGeoDelegate {
+extension NotificareGeoPlugin: NotificareGeoDelegate {
     public func notificare(_ notificareGeo: NotificareGeo, didUpdateLocations locations: [NotificareLocation]) {
         guard let location = locations.first else { return }
 

@@ -4,8 +4,8 @@ import NotificareLoyaltyKit
 
 private let DEFAULT_ERROR_CODE = "notificare_error"
 
-@objc(NotificareLoyaltyModuleImpl)
-public class NotificareLoyaltyModuleImpl: NSObject {
+@objc(NotificareLoyaltyPlugin)
+public class NotificareLoyaltyPlugin: NSObject {
 
     private var rootViewController: UIViewController? {
         get {

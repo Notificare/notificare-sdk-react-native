@@ -5,14 +5,14 @@
 @end
 
 @implementation NotificarePushUIModule {
-    NotificarePushUIModuleImpl *pushUI;
+    NotificarePushUIPlugin *plugin;
 }
 
 - (instancetype)init {
     self = [super init];
     if(self) {
-        pushUI = [NotificarePushUIModuleImpl new];
-        pushUI.delegate = self;
+        plugin = [NotificarePushUIPlugin new];
+        plugin.delegate = self;
     }
     
     return self;
@@ -28,7 +28,7 @@ RCT_EXPORT_METHOD(presentNotification:(NSDictionary *)notification
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [pushUI presentNotification:notification resolve:resolve reject:reject];
+    [plugin presentNotification:notification resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(presentAction:(NSDictionary *)notification
@@ -36,7 +36,7 @@ RCT_EXPORT_METHOD(presentAction:(NSDictionary *)notification
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [pushUI presentAction:notification action:action resolve:resolve reject:reject];
+    [plugin presentAction:notification action:action resolve:resolve reject:reject];
 }
 
 // Don't compile this code when we build for the old architecture.
@@ -51,15 +51,15 @@ RCT_EXPORT_METHOD(presentAction:(NSDictionary *)notification
 // Event Emitter
 
 - (NSArray<NSString *> *)supportedEvents {
-    return [pushUI supportedEvents];
+    return [plugin supportedEvents];
 }
 
 - (void)startObserving {
-    [pushUI startObserving];
+    [plugin startObserving];
 }
 
 - (void)stopObserving {
-    [pushUI stopObserving];
+    [plugin stopObserving];
 }
 
 - (void)broadcastEventWithName:(NSString * _Nonnull)name body:(id _Nullable)body {

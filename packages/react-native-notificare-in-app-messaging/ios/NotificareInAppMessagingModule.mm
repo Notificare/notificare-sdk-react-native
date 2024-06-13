@@ -5,14 +5,14 @@
 @end
 
 @implementation NotificareInAppMessagingModule {
-    NotificareInAppMessagingModuleImpl *iam;
+    NotificareInAppMessagingPlugin *plugin;
 }
 
 - (instancetype)init {
     self = [super init];
     if(self) {
-        iam = [NotificareInAppMessagingModuleImpl new];
-        iam.delegate = self;
+        plugin = [NotificareInAppMessagingPlugin new];
+        plugin.delegate = self;
     }
     
     return self;
@@ -27,14 +27,14 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(hasMessagesSuppressed:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [iam hasMessagesSuppressed:resolve reject:reject];
+    [plugin hasMessagesSuppressed:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(setMessagesSuppressed:(NSDictionary *)data
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [iam setMessagesSuppressed:data resolve:resolve reject:reject];
+    [plugin setMessagesSuppressed:data resolve:resolve reject:reject];
 }
 
 // Don't compile this code when we build for the old architecture.
@@ -49,15 +49,15 @@ RCT_EXPORT_METHOD(setMessagesSuppressed:(NSDictionary *)data
 // Event Emitter
 
 - (NSArray<NSString *> *)supportedEvents {
-    return [iam supportedEvents];
+    return [plugin supportedEvents];
 }
 
 - (void)startObserving {
-    [iam startObserving];
+    [plugin startObserving];
 }
 
 - (void)stopObserving {
-    [iam stopObserving];
+    [plugin stopObserving];
 }
 
 - (void)broadcastEventWithName:(NSString * _Nonnull)name body:(id _Nullable)body {

@@ -7,9 +7,9 @@ private let DEFAULT_ERROR_CODE = "notificare_error"
     func broadcastEvent(name: String, body: Any?)
 }
 
-@objc(NotificareModuleImpl)
-public class NotificareModuleImpl: NSObject {
-    @objc public static let shared = NotificareModuleImpl()
+@objc(NotificarePlugin)
+public class NotificarePlugin: NSObject {
+    @objc public static let shared = NotificarePlugin()
     @objc public weak var delegate: NotificareModuleDelegate? = nil
 
     private var hasListeners = false
@@ -365,7 +365,7 @@ public class NotificareModuleImpl: NSObject {
     }
 }
 
-extension NotificareModuleImpl: NotificareDelegate {
+extension NotificarePlugin: NotificareDelegate {
     public func notificare(_ notificare: Notificare, onReady application: NotificareApplication) {
         do {
             dispatchEvent("re.notifica.ready", payload: try application.toJson())
@@ -387,7 +387,7 @@ extension NotificareModuleImpl: NotificareDelegate {
     }
 }
 
-extension NotificareModuleImpl: NotificareAppDelegateInterceptor {
+extension NotificarePlugin: NotificareAppDelegateInterceptor {
     public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         if Notificare.shared.handleTestDeviceUrl(url) {
             return true

@@ -7,14 +7,14 @@
 @end
 
 @implementation NotificareModule {
-    NotificareModuleImpl *notificare;
+    NotificarePlugin *plugin;
 }
 
 - (instancetype)init {
     self = [super init];
     if(self) {
-        notificare = [NotificareModuleImpl shared];
-        notificare.delegate = self;
+        plugin = [NotificarePlugin shared];
+        plugin.delegate = self;
     }
     
     return self;
@@ -29,63 +29,63 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(isConfigured:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare isConfigured:resolve reject:reject];
+    [plugin isConfigured:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(isReady:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare isReady:resolve reject:reject];
+    [plugin isReady:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(launch:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare launch:resolve reject:reject];
+    [plugin launch:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(unlaunch:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare unlaunch:resolve reject:reject];
+    [plugin unlaunch:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(getApplication:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare getApplication:resolve reject:reject];
+    [plugin getApplication:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(fetchApplication:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare fetchApplication:resolve reject:reject];
+    [plugin fetchApplication:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(fetchNotification:(NSString *)notificationId
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare fetchNotification:notificationId resolve:resolve reject:reject];
+    [plugin fetchNotification:notificationId resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(fetchDynamicLink:(NSString *)url
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare fetchDynamicLink:url resolve:resolve reject:reject];
+    [plugin fetchDynamicLink:url resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(canEvaluateDeferredLink:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare canEvaluateDeferredLink:resolve reject:reject];
+    [plugin canEvaluateDeferredLink:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(evaluateDeferredLink:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare evaluateDeferredLink:resolve reject:reject];
+    [plugin evaluateDeferredLink:resolve reject:reject];
 }
 
 // MARK: - Device module
@@ -93,20 +93,20 @@ RCT_EXPORT_METHOD(evaluateDeferredLink:(RCTPromiseResolveBlock)resolve
 RCT_EXPORT_METHOD(getCurrentDevice:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare getCurrentDevice:resolve reject:reject];
+    [plugin getCurrentDevice:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(getPreferredLanguage:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare getPreferredLanguage:resolve reject:reject];
+    [plugin getPreferredLanguage:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(updatePreferredLanguage:(NSString *)language
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare updatePreferredLanguage:language resolve:resolve reject:reject];
+    [plugin updatePreferredLanguage:language resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(registerUser:(NSString *)userId
@@ -114,79 +114,79 @@ RCT_EXPORT_METHOD(registerUser:(NSString *)userId
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare registerUser:userId userName:userName resolve:resolve reject:reject];
+    [plugin registerUser:userId userName:userName resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(fetchTags:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare fetchTags:resolve reject:reject];
+    [plugin fetchTags:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(addTag:(NSString *)tag
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare addTag:tag resolve:resolve reject:reject];
+    [plugin addTag:tag resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(addTags:(NSArray *)tags
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare addTags:tags resolve:resolve reject:reject];
+    [plugin addTags:tags resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(removeTag:(NSString *)tag
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare removeTag:tag resolve:resolve reject:reject];
+    [plugin removeTag:tag resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(removeTags:(NSArray *)tags
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare removeTags:tags resolve:resolve reject:reject];
+    [plugin removeTags:tags resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(clearTags:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare clearTags:resolve reject:reject];
+    [plugin clearTags:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(fetchDoNotDisturb:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare fetchDoNotDisturb:resolve reject:reject];
+    [plugin fetchDoNotDisturb:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(updateDoNotDisturb:(NSDictionary *)dnd
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare updateDoNotDisturb:dnd resolve:resolve reject:reject];
+    [plugin updateDoNotDisturb:dnd resolve:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(clearDoNotDisturb:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare clearDoNotDisturb:resolve reject:reject];
+    [plugin clearDoNotDisturb:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(fetchUserData:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare fetchUserData:resolve reject:reject];
+    [plugin fetchUserData:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(updateUserData:(NSDictionary *)userData
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare updateUserData:userData resolve:resolve reject:reject];
+    [plugin updateUserData:userData resolve:resolve reject:reject];
 }
 
 // MARK: - Events module
@@ -196,7 +196,7 @@ RCT_EXPORT_METHOD(logCustom:(NSString *)event
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [notificare logCustom:event data:data resolve:resolve reject:reject];
+    [plugin logCustom:event data:data resolve:resolve reject:reject];
 }
 
 // Don't compile this code when we build for the old architecture.
@@ -211,15 +211,15 @@ RCT_EXPORT_METHOD(logCustom:(NSString *)event
 // Event Emitter
 
 - (NSArray<NSString *> *)supportedEvents {
-    return [notificare supportedEvents];
+    return [plugin supportedEvents];
 }
 
 - (void)startObserving {
-    [notificare startObserving];
+    [plugin startObserving];
 }
 
 - (void)stopObserving {
-    [notificare stopObserving];
+    [plugin stopObserving];
 }
 
 - (void)broadcastEventWithName:(NSString * _Nonnull)name body:(id _Nullable)body {
