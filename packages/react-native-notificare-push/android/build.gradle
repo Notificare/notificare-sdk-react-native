@@ -102,7 +102,6 @@ dependencies {
   api "re.notifica:notificare:$notificare_version"
   api "re.notifica:notificare-push:$notificare_version"
   implementation "re.notifica:notificare-push-gms:$notificare_version"
-  implementation "re.notifica:notificare-push-hms:$notificare_version"
 }
 
 if (isNewArchitectureEnabled()) {
