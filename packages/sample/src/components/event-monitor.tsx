@@ -5,7 +5,6 @@ import { NotificarePush } from 'react-native-notificare-push';
 import { NotificareGeo } from 'react-native-notificare-geo';
 import { NotificarePushUI } from 'react-native-notificare-push-ui';
 import { NotificareScannables } from 'react-native-notificare-scannables';
-import { NotificareMonetize } from 'react-native-notificare-monetize';
 import { NotificareInAppMessaging } from 'react-native-notificare-in-app-messaging';
 import { useSnackbarContext } from '../contexts/snackbar';
 
@@ -216,45 +215,6 @@ export function EventMonitor() {
           console.log('=== HEADING UPDATED ===');
           console.log(JSON.stringify(heading, null, 2));
         }),
-
-        //
-        // Notificare Monetize
-        //
-
-        NotificareMonetize.onBillingSetupFinished(() => {
-          console.log('=== BILLING SETUP FINISHED ===');
-        }),
-        NotificareMonetize.onBillingSetupFailed(({ code, message }) => {
-          console.log('=== BILLING SETUP FAILED ===');
-          console.log(JSON.stringify({ code, message }, null, 2));
-        }),
-        NotificareMonetize.onProductsUpdated((products) => {
-          console.log('=== PRODUCTS UPDATED ===');
-          console.log(JSON.stringify(products, null, 2));
-        }),
-        NotificareMonetize.onPurchasesUpdated((purchases) => {
-          console.log('=== PURCHASES UPDATED ===');
-          console.log(JSON.stringify(purchases, null, 2));
-        }),
-        NotificareMonetize.onPurchaseFinished((purchase) => {
-          console.log('=== PURCHASE FINISHED ===');
-          console.log(JSON.stringify(purchase, null, 2));
-        }),
-        NotificareMonetize.onPurchaseRestored((purchase) => {
-          console.log('=== PURCHASE RESTORED ===');
-          console.log(JSON.stringify(purchase, null, 2));
-        }),
-        NotificareMonetize.onPurchaseCanceled(() => {
-          console.log('=== PURCHASE CANCELED ===');
-        }),
-        NotificareMonetize.onPurchaseFailed(
-          ({ code, message, errorMessage }) => {
-            console.log('=== PURCHASE FAILED ===');
-            console.log(
-              JSON.stringify({ code, message, errorMessage }, null, 2)
-            );
-          }
-        ),
 
         //
         // Notificare In-App Messaging

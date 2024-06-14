@@ -19,11 +19,6 @@ export const OtherFeaturesCardView = () => {
     navigation.navigate('Assets');
   }
 
-  function onMonetizeClicked() {
-    // @ts-ignore
-    navigation.navigate('Monetize');
-  }
-
   function onCustomEventClicked() {
     // @ts-ignore
     navigation.navigate('Custom Event');
@@ -53,18 +48,6 @@ export const OtherFeaturesCardView = () => {
             <Icon name="folder" size={18} />
 
             <Text style={mainStyles.subtitle}>Assets</Text>
-
-            <Icon name="arrow-forward-ios" size={14} color="#00000026" />
-          </View>
-        </TouchableOpacity>
-
-        <View style={mainStyles.divider_margin} />
-
-        <TouchableOpacity onPress={onMonetizeClicked}>
-          <View style={mainStyles.row}>
-            <Icon name="shopping-bag" size={18} />
-
-            <Text style={mainStyles.subtitle}>Monetize</Text>
 
             <Icon name="arrow-forward-ios" size={14} color="#00000026" />
           </View>
