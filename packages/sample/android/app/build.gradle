@@ -116,7 +116,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 
@@ -125,18 +124,6 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-
-    implementation project(':react_native_notificare')
-    implementation project(':react_native_notificare_assets')
-    implementation project(':react_native_notificare_geo')
-    implementation project(':react_native_notificare_in_app_messaging')
-    implementation project(':react_native_notificare_inbox')
-    implementation project(':react_native_notificare_loyalty')
-    implementation project(':react_native_notificare_monetize')
-    implementation project(':react_native_notificare_push')
-    implementation project(':react_native_notificare_push_ui')
-    implementation project(':react_native_notificare_scannables')
-    implementation project(':react_native_notificare_user_inbox')
 }
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

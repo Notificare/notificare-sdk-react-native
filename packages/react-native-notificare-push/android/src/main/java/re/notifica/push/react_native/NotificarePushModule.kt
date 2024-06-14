@@ -5,13 +5,18 @@ import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.Observer
-import com.facebook.react.bridge.*
+import com.facebook.react.bridge.ActivityEventListener
+import com.facebook.react.bridge.LifecycleEventListener
+import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReadableArray
 import re.notifica.Notificare
 import re.notifica.internal.NotificareLogger
 import re.notifica.push.ktx.push
 
-public class NotificarePushModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext),
-    ActivityEventListener {
+public class NotificarePushModule internal constructor(context: ReactApplicationContext) :
+    NotificarePushModuleSpec(context), ActivityEventListener {
 
     private var lifecycleEventListener: LifecycleEventListener? = null
 
@@ -20,8 +25,6 @@ public class NotificarePushModule(reactContext: ReactApplicationContext) : React
 
         EventBroker.dispatchEvent("re.notifica.push.notification_settings_changed", allowedUI)
     }
-
-    override fun getName(): String = "NotificarePushModule"
 
     override fun initialize() {
         super.initialize()
@@ -57,36 +60,59 @@ public class NotificarePushModule(reactContext: ReactApplicationContext) : React
 
     // endregion
 
+    override fun getName(): String {
+        return NAME
+    }
+
     @ReactMethod
-    public fun addListener(@Suppress("UNUSED_PARAMETER") eventName: String) {
+    override fun addListener(eventName: String) {
         // Keep: Required for RN built in Event Emitter Calls.
     }
 
     @ReactMethod
-    public fun removeListeners(@Suppress("UNUSED_PARAMETER") count: Int) {
+    override fun removeListeners(count: Double) {
         // Keep: Required for RN built in Event Emitter Calls.
     }
+
+    // region iOS only methods (empty implementation)
+
+    @ReactMethod
+    override fun setAuthorizationOptions(options: ReadableArray, promise: Promise) {
+        // Keep: Required for RN generated methods with New Architecture.
+    }
+
+    @ReactMethod
+    override fun setCategoryOptions(options: ReadableArray, promise: Promise) {
+        // Keep: Required for RN generated methods with New Architecture.
+    }
+
+    @ReactMethod
+    override fun setPresentationOptions(options: ReadableArray, promise: Promise) {
+        // Keep: Required for RN generated methods with New Architecture.
+    }
+
+    // end region
 
     // region Notificare Push
 
     @ReactMethod
-    public fun hasRemoteNotificationsEnabled(promise: Promise) {
+    override fun hasRemoteNotificationsEnabled(promise: Promise) {
         promise.resolve(Notificare.push().hasRemoteNotificationsEnabled)
     }
 
     @ReactMethod
-    public fun allowedUI(promise: Promise) {
+    override fun allowedUI(promise: Promise) {
         promise.resolve(Notificare.push().allowedUI)
     }
 
     @ReactMethod
-    public fun enableRemoteNotifications(promise: Promise) {
+    override fun enableRemoteNotifications(promise: Promise) {
         Notificare.push().enableRemoteNotifications()
         promise.resolve(null)
     }
 
     @ReactMethod
-    public fun disableRemoteNotifications(promise: Promise) {
+    override fun disableRemoteNotifications(promise: Promise) {
         Notificare.push().disableRemoteNotifications()
         promise.resolve(null)
     }
@@ -133,6 +159,8 @@ public class NotificarePushModule(reactContext: ReactApplicationContext) : React
     }
 
     public companion object {
+        internal const val NAME = "NotificarePushModule"
+
         internal fun onMainThread(action: () -> Unit) = Handler(Looper.getMainLooper()).post(action)
     }
 }

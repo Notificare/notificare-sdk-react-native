@@ -1,9 +1,8 @@
 package re.notifica.scannables.react_native
 
-import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.Promise
 import re.notifica.Notificare
 import re.notifica.NotificareCallback
 import re.notifica.internal.NotificareLogger
@@ -12,10 +11,8 @@ import re.notifica.scannables.ktx.scannables
 import re.notifica.scannables.models.NotificareScannable
 import re.notifica.scannables.models.toJson
 
-public class NotificareScannablesModule(reactContext: ReactApplicationContext) :
-    ReactContextBaseJavaModule(reactContext), NotificareScannables.ScannableSessionListener {
-
-    override fun getName(): String = "NotificareScannablesModule"
+public class NotificareScannablesModule internal constructor(context: ReactApplicationContext) :
+    NotificareScannablesModuleSpec(context), NotificareScannables.ScannableSessionListener {
 
     override fun initialize() {
         super.initialize()
@@ -31,25 +28,29 @@ public class NotificareScannablesModule(reactContext: ReactApplicationContext) :
         Notificare.scannables().removeListener(this)
     }
 
+    override fun getName(): String {
+        return NAME
+    }
+
     @ReactMethod
-    public fun addListener(@Suppress("UNUSED_PARAMETER") eventName: String) {
+    override fun addListener(eventName: String) {
         // Keep: Required for RN built in Event Emitter Calls.
     }
 
     @ReactMethod
-    public fun removeListeners(@Suppress("UNUSED_PARAMETER") count: Int) {
+    override fun removeListeners(count: Double) {
         // Keep: Required for RN built in Event Emitter Calls.
     }
 
     // region NotificareScannables
 
     @ReactMethod
-    public fun canStartNfcScannableSession(promise: Promise) {
+    override fun canStartNfcScannableSession(promise: Promise) {
         promise.resolve(Notificare.scannables().canStartNfcScannableSession)
     }
 
     @ReactMethod
-    public fun startScannableSession(promise: Promise) {
+    override fun startScannableSession(promise: Promise) {
         val activity = currentActivity ?: run {
             promise.reject(DEFAULT_ERROR_CODE, "Cannot start a scannable session without an activity.")
             return
@@ -60,7 +61,7 @@ public class NotificareScannablesModule(reactContext: ReactApplicationContext) :
     }
 
     @ReactMethod
-    public fun startNfcScannableSession(promise: Promise) {
+    override fun startNfcScannableSession(promise: Promise) {
         val activity = currentActivity ?: run {
             promise.reject(DEFAULT_ERROR_CODE, "Cannot start a scannable session without an activity.")
             return
@@ -71,7 +72,7 @@ public class NotificareScannablesModule(reactContext: ReactApplicationContext) :
     }
 
     @ReactMethod
-    public fun startQrCodeScannableSession(promise: Promise) {
+    override fun startQrCodeScannableSession(promise: Promise) {
         val activity = currentActivity ?: run {
             promise.reject(DEFAULT_ERROR_CODE, "Cannot start a scannable session without an activity.")
             return
@@ -82,7 +83,7 @@ public class NotificareScannablesModule(reactContext: ReactApplicationContext) :
     }
 
     @ReactMethod
-    public fun fetch(tag: String, promise: Promise) {
+    override fun fetch(tag: String, promise: Promise) {
         Notificare.scannables().fetch(tag, object : NotificareCallback<NotificareScannable> {
             override fun onSuccess(result: NotificareScannable) {
                 try {
@@ -121,6 +122,7 @@ public class NotificareScannablesModule(reactContext: ReactApplicationContext) :
     // endregion
 
     public companion object {
+        internal const val NAME = "NotificareScannablesModule"
         internal const val DEFAULT_ERROR_CODE = "notificare_error"
     }
 }

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Upcoming release
+
+- Migrate to Turbo Modules with support for both the old and new architectures
+
 ## 3.9.0
 
 - Add support for deferred links

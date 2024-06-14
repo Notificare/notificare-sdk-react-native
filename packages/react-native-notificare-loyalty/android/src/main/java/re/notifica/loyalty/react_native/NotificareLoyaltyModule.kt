@@ -1,25 +1,25 @@
 package re.notifica.loyalty.react_native
 
-import com.facebook.react.bridge.*
+import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReadableMap
 import re.notifica.Notificare
 import re.notifica.NotificareCallback
 import re.notifica.loyalty.ktx.loyalty
 import re.notifica.loyalty.models.NotificarePass
-import re.notifica.models.NotificareNotification
 
-public class NotificareLoyaltyModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+public class NotificareLoyaltyModule internal constructor(context: ReactApplicationContext) :
+    NotificareLoyaltyModuleSpec(context) {
 
-    override fun getName(): String = "NotificareLoyaltyModule"
-
-    override fun initialize() {
-        super.initialize()
-
+    override fun getName(): String {
+        return NAME
     }
 
     // region Notificare Loyalty
 
     @ReactMethod
-    public fun fetchPassBySerial(serial: String, promise: Promise) {
+    override fun fetchPassBySerial(serial: String, promise: Promise) {
         Notificare.loyalty().fetchPassBySerial(serial, object : NotificareCallback<NotificarePass> {
             override fun onSuccess(result: NotificarePass) {
                 try {
@@ -36,7 +36,7 @@ public class NotificareLoyaltyModule(reactContext: ReactApplicationContext) : Re
     }
 
     @ReactMethod
-    public fun fetchPassByBarcode(barcode: String, promise: Promise) {
+    override fun fetchPassByBarcode(barcode: String, promise: Promise) {
         Notificare.loyalty().fetchPassByBarcode(barcode, object : NotificareCallback<NotificarePass> {
             override fun onSuccess(result: NotificarePass) {
                 try {
@@ -53,7 +53,7 @@ public class NotificareLoyaltyModule(reactContext: ReactApplicationContext) : Re
     }
 
     @ReactMethod
-    public fun present(data: ReadableMap, promise: Promise) {
+    override fun present(data: ReadableMap, promise: Promise) {
         val pass: NotificarePass
 
         try {
@@ -75,6 +75,7 @@ public class NotificareLoyaltyModule(reactContext: ReactApplicationContext) : Re
     // endregion
 
     public companion object {
+        internal const val NAME = "NotificareLoyaltyModule"
         internal const val DEFAULT_ERROR_CODE = "notificare_error"
     }
 }

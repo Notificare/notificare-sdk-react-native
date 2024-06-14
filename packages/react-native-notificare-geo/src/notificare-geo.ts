@@ -14,10 +14,17 @@ const LINKING_ERROR =
   `The package 'react-native-notificare-geo' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+  '- You are not using Expo Go\n';
 
-const NativeModule = NativeModules.NotificareGeoModule
-  ? NativeModules.NotificareGeoModule
+// @ts-expect-error
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
+const NotificareGeoModule = isTurboModuleEnabled
+  ? require('./NativeNotificareGeoModule').default
+  : NativeModules.NotificareGeoModule;
+
+const NativeModule = NotificareGeoModule
+  ? NotificareGeoModule
   : new Proxy(
       {},
       {
