@@ -4,6 +4,10 @@
 
 - Migrate to Turbo Modules with support for both the old and new architectures
 
+#### Breaking changes
+
+- Drops support for the monetize module.
+
 ## 3.9.0
 
 - Add support for deferred links

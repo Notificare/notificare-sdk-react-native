@@ -14,7 +14,6 @@ PODS:
   - Notificare/NotificareInboxKit (3.9.0)
   - Notificare/NotificareKit (3.9.0)
   - Notificare/NotificareLoyaltyKit (3.9.0)
-  - Notificare/NotificareMonetizeKit (3.9.0)
   - Notificare/NotificarePushKit (3.9.0)
   - Notificare/NotificarePushUIKit (3.9.0)
   - Notificare/NotificareScannablesKit (3.9.0)
@@ -1083,10 +1082,6 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-monetize (3.9.0):
-    - Notificare/NotificareKit (= 3.9.0)
-    - Notificare/NotificareMonetizeKit (= 3.9.0)
-    - React-Core
   - react-native-notificare-push (3.9.0):
     - DoubleConversion
     - glog
@@ -1583,7 +1578,6 @@ DEPENDENCIES:
   - react-native-notificare-in-app-messaging (from `../../react-native-notificare-in-app-messaging`)
   - react-native-notificare-inbox (from `../../react-native-notificare-inbox`)
   - react-native-notificare-loyalty (from `../../react-native-notificare-loyalty`)
-  - react-native-notificare-monetize (from `../../react-native-notificare-monetize`)
   - react-native-notificare-push (from `../../react-native-notificare-push`)
   - react-native-notificare-push-ui (from `../../react-native-notificare-push-ui`)
   - react-native-notificare-scannables (from `../../react-native-notificare-scannables`)
@@ -1697,8 +1691,6 @@ EXTERNAL SOURCES:
     :path: "../../react-native-notificare-inbox"
   react-native-notificare-loyalty:
     :path: "../../react-native-notificare-loyalty"
-  react-native-notificare-monetize:
-    :path: "../../react-native-notificare-monetize"
   react-native-notificare-push:
     :path: "../../react-native-notificare-push"
   react-native-notificare-push-ui:
@@ -1803,7 +1795,6 @@ SPEC CHECKSUMS:
   react-native-notificare-in-app-messaging: 636907bbfae9edcc4bf83140dcf8eae09bf2aff5
   react-native-notificare-inbox: dbfd2387ae507804f637af532776b404764a0dc3
   react-native-notificare-loyalty: 5ce38a5fce1060ce02c260ab5b8367e2c3e85e25
-  react-native-notificare-monetize: a611864c0d9fa670dc67e5940b58217b779a1752
   react-native-notificare-push: 6b0c252ec6e38b0d225d9069381bd6d54c5b0649
   react-native-notificare-push-ui: 9bd35a01720ef3cc341363065e7f3024974c271a
   react-native-notificare-scannables: f182099f726ce8bc12902874b8e95893a2184eae
@@ -1838,6 +1829,6 @@ SPEC CHECKSUMS:
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: b9a182ab00cf25926e7f79657d08c5d23c2d03b0
 
-PODFILE CHECKSUM: f91dcb4c7613acbd2bdde0b49e2c7397940b1051
+PODFILE CHECKSUM: c4f935c5953d279bd2e3d39a173d90b39a55f2cf
 
 COCOAPODS: 1.15.2
