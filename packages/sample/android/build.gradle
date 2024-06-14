@@ -15,7 +15,6 @@ buildscript {
         mavenCentral()
 
         maven { url 'https://maven.notifica.re/releases' }
-        maven { url 'https://developer.huawei.com/repo' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.1.1'
@@ -26,7 +25,6 @@ buildscript {
 
         classpath 're.notifica.gradle:notificare-services:1.0.1'
         classpath 'com.google.gms:google-services:4.3.14'
-        classpath 'com.huawei.agconnect:agcp:1.9.1.301'
     }
 }
 
@@ -38,7 +36,6 @@ allprojects {
 
         maven { url 'https://maven.notifica.re/releases' }
         maven { url 'https://maven.notifica.re/prereleases' }
-        maven { url 'https://developer.huawei.com/repo' }
 
         mavenLocal()
 
