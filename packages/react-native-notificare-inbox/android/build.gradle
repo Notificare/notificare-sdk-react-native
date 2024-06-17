@@ -123,7 +123,7 @@ dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
 
-  def notificare_version = '3.9.0'
+  def notificare_version = '3.9.1'
   api "re.notifica:notificare:$notificare_version"
   api "re.notifica:notificare-inbox:$notificare_version"
 }
