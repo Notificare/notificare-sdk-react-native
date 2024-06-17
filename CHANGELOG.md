@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 3.9.1
+
+- Preload images before showing in-app messages
+
+#### Native changes
+
+##### iOS
+
+- Fix `NotificarePass.type` decoding
+
 ## 3.9.0
 
 - Add support for deferred links
