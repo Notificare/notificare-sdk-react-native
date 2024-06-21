@@ -79,14 +79,28 @@ public class NotificareModule internal constructor(context: ReactApplicationCont
 
     @ReactMethod
     override fun launch(promise: Promise) {
-        Notificare.launch()
-        promise.resolve(null)
+        Notificare.launch(object : NotificareCallback<Unit> {
+            override fun onSuccess(result: Unit) {
+                promise.resolve(null)
+            }
+
+            override fun onFailure(e: Exception) {
+                promise.reject(DEFAULT_ERROR_CODE, e)
+            }
+        })
     }
 
     @ReactMethod
     override fun unlaunch(promise: Promise) {
-        Notificare.unlaunch()
-        promise.resolve(null)
+        Notificare.unlaunch(object : NotificareCallback<Unit> {
+            override fun onSuccess(result: Unit) {
+                promise.resolve(null)
+            }
+
+            override fun onFailure(e: Exception) {
+                promise.reject(DEFAULT_ERROR_CODE, e)
+            }
+        })
     }
 
     @ReactMethod
@@ -191,6 +205,19 @@ public class NotificareModule internal constructor(context: ReactApplicationCont
     @ReactMethod
     override fun registerUser(userId: String?, userName: String?, promise: Promise) {
         Notificare.device().register(userId, userName, object : NotificareCallback<Unit> {
+            override fun onSuccess(result: Unit) {
+                promise.resolve(null)
+            }
+
+            override fun onFailure(e: Exception) {
+                promise.reject(DEFAULT_ERROR_CODE, e)
+            }
+        })
+    }
+
+    @ReactMethod
+    override fun updateUser(userId: String?, userName: String?, promise: Promise) {
+        Notificare.device().updateUser(userId, userName, object : NotificareCallback<Unit> {
             override fun onSuccess(result: Unit) {
                 promise.resolve(null)
             }
