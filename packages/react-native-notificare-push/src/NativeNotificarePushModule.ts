@@ -15,8 +15,8 @@ export interface Spec extends TurboModule {
   // end region
 
   hasRemoteNotificationsEnabled(): Promise<boolean>;
-  transport(): Promise<NotificareTransport | null>;
-  subscriptionId(): Promise<string | null>;
+  getTransport(): Promise<NotificareTransport | null>;
+  getSubscriptionId(): Promise<string | null>;
   allowedUI(): Promise<boolean>;
   enableRemoteNotifications(): Promise<void>;
   disableRemoteNotifications(): Promise<void>;

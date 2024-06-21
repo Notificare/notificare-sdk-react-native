@@ -67,12 +67,12 @@ export class NotificarePush {
     return await NativeModule.hasRemoteNotificationsEnabled();
   }
 
-  public static async transport(): Promise<NotificareTransport | null> {
-    return await NativeModule.transport();
+  public static async getTransport(): Promise<NotificareTransport | null> {
+    return await NativeModule.getTransport();
   }
 
-  public static async subscriptionId(): Promise<string | null> {
-    return await NativeModule.subscriptionId();
+  public static async getSubscriptionId(): Promise<string | null> {
+    return await NativeModule.getSubscriptionId();
   }
 
   public static async allowedUI(): Promise<boolean> {

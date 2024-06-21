@@ -182,12 +182,12 @@ public class NotificarePushPlugin: NSObject {
     }
 
     @objc
-    public func transport(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+    public func getTransport(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         resolve(Notificare.shared.push().transport?.rawValue)
     }
 
     @objc
-    public func subscriptionId(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+    public func getSubscriptionId(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         resolve(Notificare.shared.push().subscriptionId)
     }
 

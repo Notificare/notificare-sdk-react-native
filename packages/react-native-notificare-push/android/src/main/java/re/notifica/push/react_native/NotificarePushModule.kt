@@ -102,12 +102,12 @@ public class NotificarePushModule internal constructor(context: ReactApplication
     }
 
     @ReactMethod
-    override fun transport(promise: Promise) {
+    override fun getTransport(promise: Promise) {
         promise.resolve(Notificare.push().transport?.rawValue)
     }
 
     @ReactMethod
-    override fun subscriptionId(promise: Promise) {
+    override fun getSubscriptionId(promise: Promise) {
         promise.resolve(Notificare.push().subscriptionId)
     }
 
