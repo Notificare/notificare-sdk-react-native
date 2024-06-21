@@ -90,6 +90,7 @@ repositories {
 
   maven { url 'https://maven.notifica.re/releases' }
   maven { url 'https://maven.notifica.re/prereleases' }
+  mavenLocal()
 }
 
 dependencies {
@@ -98,7 +99,7 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
 
-  def notificare_version = '3.9.0'
+  def notificare_version = '4.0.0-canary.1'
   api "re.notifica:notificare:$notificare_version"
   api "re.notifica:notificare-inbox:$notificare_version"
 }
