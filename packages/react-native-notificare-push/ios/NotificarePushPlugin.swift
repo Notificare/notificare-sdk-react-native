@@ -182,29 +182,41 @@ public class NotificarePushPlugin: NSObject {
     }
 
     @objc
+    public func transport(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+        resolve(Notificare.shared.push().transport?.rawValue)
+    }
+
+    @objc
+    public func subscriptionId(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+        resolve(Notificare.shared.push().subscriptionId)
+    }
+
+    @objc
     public func allowedUI(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
         resolve(Notificare.shared.push().allowedUI)
     }
 
     @objc
     public func enableRemoteNotifications(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
-        DispatchQueue.main.async {
-            Notificare.shared.push().enableRemoteNotifications { result in
-                switch result {
-                case .success:
-                    resolve(nil)
-                case let .failure(error):
-                    reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
-                }
+        Notificare.shared.push().enableRemoteNotifications { result in
+            switch result {
+            case .success:
+                resolve(nil)
+            case let .failure(error):
+                reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
             }
         }
     }
 
     @objc
-    public func disableRemoteNotifications(_ resolve: @escaping RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
-        DispatchQueue.main.async {
-            Notificare.shared.push().disableRemoteNotifications()
-            resolve(nil)
+    public func disableRemoteNotifications(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        Notificare.shared.push().disableRemoteNotifications { result in
+            switch result {
+            case .success:
+                resolve(nil)
+            case let .failure(error):
+                reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
+            }
         }
     }
 }
