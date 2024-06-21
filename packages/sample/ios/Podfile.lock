@@ -1614,7 +1614,7 @@ DEPENDENCIES:
 SPEC REPOS:
   "git@github.com:Notificare/notificare-cocoapods-specs.git":
     - Notificare
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - BEMCheckBox
     - SocketRocket
 
@@ -1830,6 +1830,6 @@ SPEC CHECKSUMS:
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: b9a182ab00cf25926e7f79657d08c5d23c2d03b0
 
-PODFILE CHECKSUM: 44dfe9f6f2c8bf346ea9ff646e9f76e675871ae8
+PODFILE CHECKSUM: 0a3e565c775d7322fbcf9912d589f8f2c901221a
 
 COCOAPODS: 1.15.2

@@ -58,23 +58,23 @@ export const DeviceView = () => {
   async function updateUser() {
     try {
       await Notificare.device().updateUser(
-        'helder@notifica.re',
-        'Helder Pinhal'
+        'notificarista@notifica.re',
+        'Notificarista'
       );
 
-      console.log('=== Updated user as Helder Pinhal successfully ===');
+      console.log('=== Updated user as Notificarista successfully ===');
       addSnackbarInfoMessage({
-        message: 'Updated user as Helder Pinhal successfully.',
+        message: 'Updated user as Notificarista successfully.',
         type: 'success',
       });
 
       await loadDeviceData();
     } catch (e) {
-      console.log('=== Error updating user as Helder Pinhal ===');
+      console.log('=== Error updating user as Notificarista ===');
       console.log(JSON.stringify(e));
 
       addSnackbarInfoMessage({
-        message: '=== Error updating user as Helder Pinhal ===',
+        message: 'Error updating user as Notificarista',
         type: 'error',
       });
     }
@@ -149,8 +149,8 @@ export const DeviceView = () => {
   async function updateUserData() {
     try {
       await Notificare.device().updateUserData({
-        firstName: 'Helder',
-        lastName: 'Pinhal',
+        firstName: 'FirstNameExample',
+        lastName: 'LastNameExample',
       });
       console.log('=== Updated user data successfully ===');
 
