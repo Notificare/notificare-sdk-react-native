@@ -10,6 +10,9 @@ end
 node_require('react-native/scripts/react_native_pods.rb')
 node_require('react-native-permissions/scripts/setup.rb')
 
+source 'https://github.com/CocoaPods/Specs.git'
+source 'git@github.com:Notificare/notificare-cocoapods-specs.git'
+
 platform :ios, '13.4'
 prepare_react_native_project!
 

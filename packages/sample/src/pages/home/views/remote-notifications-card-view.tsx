@@ -90,9 +90,10 @@ export const RemoteNotificationsCardView = () => {
 
     if (!enabled) {
       try {
+        console.log('=== Disabling remote notifications ===');
         await NotificarePush.disableRemoteNotifications();
-        console.log('=== Disabled remote notifications successfully ===');
 
+        console.log('=== Disabling remote notifications finished ===');
         addSnackbarInfoMessage({
           message: 'Disabled remote notifications successfully.',
           type: 'success',
@@ -112,9 +113,10 @@ export const RemoteNotificationsCardView = () => {
 
     try {
       if (await ensureNotificationsPermission()) {
+        console.log('=== Enabling remote notifications ===');
         await NotificarePush.enableRemoteNotifications();
-        console.log('=== Enabled remote notifications successfully ===');
 
+        console.log('=== Enabling remote notifications finished ===');
         addSnackbarInfoMessage({
           message: 'Enabled remote notifications successfully.',
           type: 'success',
@@ -148,11 +150,15 @@ export const RemoteNotificationsCardView = () => {
       const allowedUi = await NotificarePush.allowedUI();
       const hasRemoteNotificationsEnabled =
         await NotificarePush.hasRemoteNotificationsEnabled();
+      const transport = await NotificarePush.transport();
+      const subscriptionId = await NotificarePush.subscriptionId();
 
       Alert.alert(
         'Notifications Status',
         `allowedUi: ${allowedUi}
-hasRemoteNotificationsEnabled: ${hasRemoteNotificationsEnabled}`,
+hasRemoteNotificationsEnabled: ${hasRemoteNotificationsEnabled}
+transport: ${transport}
+subscriptionId: ${subscriptionId}`,
         [
           {
             text: 'Ok',

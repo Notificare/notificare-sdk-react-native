@@ -27,17 +27,11 @@ export const DeviceView = () => {
 
       currentDeviceData.ID = currentDevice.id;
       currentDeviceData['User Name'] = currentDevice.userName ?? '-';
-      currentDeviceData.Registered = currentDevice.lastRegistered;
       currentDeviceData.DnD =
         currentDevice.dnd != null
           ? `${currentDevice.dnd.start} : ${currentDevice.dnd.end}`
           : '-';
-      currentDeviceData.Region = currentDevice.region;
-      currentDeviceData.Language = currentDevice.language;
       currentDeviceData['Preferred Language'] = preferredLanguage ?? '-';
-      currentDeviceData.Transport = currentDevice.transport;
-      currentDeviceData['OS Version'] = currentDevice.osVersion;
-      currentDeviceData['SDK Version'] = currentDevice.sdkVersion;
 
       setDeviceData(currentDeviceData);
       setUserData(userDataResult);
@@ -61,45 +55,48 @@ export const DeviceView = () => {
     [loadDeviceData]
   );
 
-  async function registerDeviceWithUser() {
+  async function updateUser() {
     try {
-      await Notificare.device().register('helder@notifica.re', 'Helder Pinhal');
-      console.log('=== Registered device with user successfully ===');
+      await Notificare.device().updateUser(
+        'helder@notifica.re',
+        'Helder Pinhal'
+      );
 
+      console.log('=== Updated user as Helder Pinhal successfully ===');
       addSnackbarInfoMessage({
-        message: 'Registered device with user successfully.',
+        message: 'Updated user as Helder Pinhal successfully.',
         type: 'success',
       });
 
       await loadDeviceData();
     } catch (e) {
-      console.log('=== Error registering device with user ===');
+      console.log('=== Error updating user as Helder Pinhal ===');
       console.log(JSON.stringify(e));
 
       addSnackbarInfoMessage({
-        message: 'Error registering device with user.',
+        message: '=== Error updating user as Helder Pinhal ===',
         type: 'error',
       });
     }
   }
 
-  async function registerDeviceAsAnonymous() {
+  async function updateUserAsAnonymous() {
     try {
-      await Notificare.device().register(null, null);
-      console.log('=== Registered device as anonymous successfully ===');
+      await Notificare.device().updateUser(null, null);
+      console.log('=== Updated user as anonymous successfully ===');
 
       addSnackbarInfoMessage({
-        message: 'Registered device as anonymous successfully.',
+        message: 'Updated user as anonymous successfully.',
         type: 'success',
       });
 
       await loadDeviceData();
     } catch (e) {
-      console.log('=== Error registering device as anonymous ===');
+      console.log('=== Error updating user as anonymous ===');
       console.log(JSON.stringify(e));
 
       addSnackbarInfoMessage({
-        message: 'Error registering device as anonymous.',
+        message: 'Error updating user as anonymous.',
         type: 'error',
       });
     }
@@ -224,17 +221,17 @@ export const DeviceView = () => {
         </View>
 
         <Card>
-          <TouchableOpacity onPress={registerDeviceWithUser}>
+          <TouchableOpacity onPress={updateUser}>
             <View style={mainStyles.button}>
-              <Text>Register with User</Text>
+              <Text>Update User</Text>
             </View>
           </TouchableOpacity>
 
           <View style={mainStyles.divider} />
 
-          <TouchableOpacity onPress={registerDeviceAsAnonymous}>
+          <TouchableOpacity onPress={updateUserAsAnonymous}>
             <View style={mainStyles.button}>
-              <Text>Register as Anonymous</Text>
+              <Text>Update User as Anonymous</Text>
             </View>
           </TouchableOpacity>
         </Card>

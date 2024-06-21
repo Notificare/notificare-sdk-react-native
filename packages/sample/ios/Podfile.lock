@@ -8,15 +8,15 @@ PODS:
   - hermes-engine (0.74.1):
     - hermes-engine/Pre-built (= 0.74.1)
   - hermes-engine/Pre-built (0.74.1)
-  - Notificare/NotificareAssetsKit (3.9.0)
-  - Notificare/NotificareGeoKit (3.9.0)
-  - Notificare/NotificareInAppMessagingKit (3.9.0)
-  - Notificare/NotificareInboxKit (3.9.0)
-  - Notificare/NotificareKit (3.9.0)
-  - Notificare/NotificareLoyaltyKit (3.9.0)
-  - Notificare/NotificarePushKit (3.9.0)
-  - Notificare/NotificarePushUIKit (3.9.0)
-  - Notificare/NotificareScannablesKit (3.9.0)
+  - Notificare/NotificareAssetsKit (4.0.0-canary.1)
+  - Notificare/NotificareGeoKit (4.0.0-canary.1)
+  - Notificare/NotificareInAppMessagingKit (4.0.0-canary.1)
+  - Notificare/NotificareInboxKit (4.0.0-canary.1)
+  - Notificare/NotificareKit (4.0.0-canary.1)
+  - Notificare/NotificareLoyaltyKit (4.0.0-canary.1)
+  - Notificare/NotificarePushKit (4.0.0-canary.1)
+  - Notificare/NotificarePushUIKit (4.0.0-canary.1)
+  - Notificare/NotificareScannablesKit (4.0.0-canary.1)
   - RCT-Folly (2024.01.01.00):
     - boost
     - DoubleConversion
@@ -949,7 +949,7 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareKit (= 3.9.0)
+    - Notificare/NotificareKit (= 4.0.0-canary.1)
     - RCT-Folly (= 2024.01.01.00)
     - RCTRequired
     - RCTTypeSafety
@@ -971,8 +971,8 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareAssetsKit (= 3.9.0)
-    - Notificare/NotificareKit (= 3.9.0)
+    - Notificare/NotificareAssetsKit (= 4.0.0-canary.1)
+    - Notificare/NotificareKit (= 4.0.0-canary.1)
     - RCT-Folly (= 2024.01.01.00)
     - RCTRequired
     - RCTTypeSafety
@@ -994,8 +994,8 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareGeoKit (= 3.9.0)
-    - Notificare/NotificareKit (= 3.9.0)
+    - Notificare/NotificareGeoKit (= 4.0.0-canary.1)
+    - Notificare/NotificareKit (= 4.0.0-canary.1)
     - RCT-Folly (= 2024.01.01.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1017,8 +1017,8 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareInAppMessagingKit (= 3.9.0)
-    - Notificare/NotificareKit (= 3.9.0)
+    - Notificare/NotificareInAppMessagingKit (= 4.0.0-canary.1)
+    - Notificare/NotificareKit (= 4.0.0-canary.1)
     - RCT-Folly (= 2024.01.01.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1040,8 +1040,8 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareInboxKit (= 3.9.0)
-    - Notificare/NotificareKit (= 3.9.0)
+    - Notificare/NotificareInboxKit (= 4.0.0-canary.1)
+    - Notificare/NotificareKit (= 4.0.0-canary.1)
     - RCT-Folly (= 2024.01.01.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1063,8 +1063,8 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareKit (= 3.9.0)
-    - Notificare/NotificareLoyaltyKit (= 3.9.0)
+    - Notificare/NotificareKit (= 4.0.0-canary.1)
+    - Notificare/NotificareLoyaltyKit (= 4.0.0-canary.1)
     - RCT-Folly (= 2024.01.01.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1086,8 +1086,8 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareKit (= 3.9.0)
-    - Notificare/NotificarePushKit (= 3.9.0)
+    - Notificare/NotificareKit (= 4.0.0-canary.1)
+    - Notificare/NotificarePushKit (= 4.0.0-canary.1)
     - RCT-Folly (= 2024.01.01.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1109,8 +1109,8 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareKit (= 3.9.0)
-    - Notificare/NotificarePushUIKit (= 3.9.0)
+    - Notificare/NotificareKit (= 4.0.0-canary.1)
+    - Notificare/NotificarePushUIKit (= 4.0.0-canary.1)
     - RCT-Folly (= 2024.01.01.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1132,8 +1132,8 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareKit (= 3.9.0)
-    - Notificare/NotificareScannablesKit (= 3.9.0)
+    - Notificare/NotificareKit (= 4.0.0-canary.1)
+    - Notificare/NotificareScannablesKit (= 4.0.0-canary.1)
     - RCT-Folly (= 2024.01.01.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1612,9 +1612,10 @@ DEPENDENCIES:
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  trunk:
-    - BEMCheckBox
+  "git@github.com:Notificare/notificare-cocoapods-specs.git":
     - Notificare
+  https://github.com/CocoaPods/Specs.git:
+    - BEMCheckBox
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -1764,7 +1765,7 @@ SPEC CHECKSUMS:
   fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
   hermes-engine: 16b8530de1b383cdada1476cf52d1b52f0692cbc
-  Notificare: fded090a688e6ba2f8c7cd62ddeb1691ad9b539d
+  Notificare: 1017c9d6a1d4b41bc5427d05e6bfcf8f79e61d1f
   RCT-Folly: 02617c592a293bd6d418e0a88ff4ee1f88329b47
   RCTDeprecation: efb313d8126259e9294dc4ee0002f44a6f676aba
   RCTRequired: f49ea29cece52aee20db633ae7edc4b271435562
@@ -1789,15 +1790,15 @@ SPEC CHECKSUMS:
   React-jsitracing: 233d1a798fe0ff33b8e630b8f00f62c4a8115fbc
   React-logger: 7e7403a2b14c97f847d90763af76b84b152b6fce
   React-Mapbuffer: 11029dcd47c5c9e057a4092ab9c2a8d10a496a33
-  react-native-notificare: 89a846ae2ab2e90aadf85133044323f023e31432
-  react-native-notificare-assets: 41e0530d65e6eddaefffc705abfbc899fc56c8ca
-  react-native-notificare-geo: 700c92be1c69f027ff1bf530bbae2d948067ad64
-  react-native-notificare-in-app-messaging: 636907bbfae9edcc4bf83140dcf8eae09bf2aff5
-  react-native-notificare-inbox: dbfd2387ae507804f637af532776b404764a0dc3
-  react-native-notificare-loyalty: 5ce38a5fce1060ce02c260ab5b8367e2c3e85e25
-  react-native-notificare-push: 6b0c252ec6e38b0d225d9069381bd6d54c5b0649
-  react-native-notificare-push-ui: 9bd35a01720ef3cc341363065e7f3024974c271a
-  react-native-notificare-scannables: f182099f726ce8bc12902874b8e95893a2184eae
+  react-native-notificare: 9fa40bb8edd0266c89973bfd79abc6a9ea266e57
+  react-native-notificare-assets: 8f4d0b82a7504626cf96359cbbf738839b9115a8
+  react-native-notificare-geo: 5b3bdf769b7b056b8e3e95d9849a2585e76b3f78
+  react-native-notificare-in-app-messaging: 2340617d25755f4ab01529d34096405df9b459bc
+  react-native-notificare-inbox: e8618b01cac501e9ef3efb83b61118c200800223
+  react-native-notificare-loyalty: 84186b196b1f7ec863e7b763db38ec9261929fd7
+  react-native-notificare-push: f608c8183c046b0f15f28078d4618a8e71e02c02
+  react-native-notificare-push-ui: 464379f20daeb787c9844c9d34a5d61bea5f646c
+  react-native-notificare-scannables: 5c31dee83e78691a82d29276e283840ad440114c
   react-native-safe-area-context: 7f54ad0a774de306ab790c70d9d950321e5c5449
   React-nativeconfig: b0073a590774e8b35192fead188a36d1dca23dec
   React-NativeModulesApple: df46ff3e3de5b842b30b4ca8a6caae6d7c8ab09f
@@ -1829,6 +1830,6 @@ SPEC CHECKSUMS:
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: b9a182ab00cf25926e7f79657d08c5d23c2d03b0
 
-PODFILE CHECKSUM: c4f935c5953d279bd2e3d39a173d90b39a55f2cf
+PODFILE CHECKSUM: 44dfe9f6f2c8bf346ea9ff646e9f76e675871ae8
 
 COCOAPODS: 1.15.2
