@@ -9,8 +9,8 @@
 
 - Drops support for the monetize module
 - Drops support for Huawei Mobile Services
-- `NotificareDevice.id` attribute no longer contains the push token. Use `NotificarePush.subscriptionId()` instead
-- `NotificareDevice.transport` attribute no longer contains the transport. Use `NotificarePush.transport()` instead
+- `NotificareDevice.id` attribute no longer contains the push token. Use `NotificarePush.getSubscriptionId()` instead
+- `NotificareDevice.transport` attribute no longer contains the transport. Use `NotificarePush.getTransport()` instead
 - The `NotificareDevice` data model was reduced to only publicly relevant attributes
 - `onDeviceRegistered` only triggers once, when the device is created
 
