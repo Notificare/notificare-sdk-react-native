@@ -14,7 +14,7 @@
         plugin = [NotificarePushPlugin new];
         plugin.delegate = self;
     }
-    
+
     return self;
 }
 
@@ -49,6 +49,18 @@ RCT_EXPORT_METHOD(hasRemoteNotificationsEnabled:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
     [plugin hasRemoteNotificationsEnabled:resolve reject:reject];
+}
+
+RCT_EXPORT_METHOD(getTransport:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+{
+    [plugin getTransport:resolve reject:reject];
+}
+
+RCT_EXPORT_METHOD(getSubscriptionId:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+{
+    [plugin getSubscriptionId:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(allowedUI:(RCTPromiseResolveBlock)resolve

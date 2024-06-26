@@ -3,11 +3,27 @@
 ## Upcoming release
 
 - Migrate to Turbo Modules with support for both the old and new architectures
+- Device identifiers become long-lived
 
 #### Breaking changes
 
 - Drops support for the monetize module
 - Drops support for Huawei Mobile Services
+- `NotificareDevice.id` attribute no longer contains the push token. Use `NotificarePush.getSubscriptionId()` instead
+- `NotificareDevice.transport` attribute no longer contains the transport. Use `NotificarePush.getTransport()` instead
+- The `NotificareDevice` data model was reduced to only publicly relevant attributes
+- `onDeviceRegistered` only triggers once, when the device is created
+
+#### Native changes
+
+##### Android
+
+- Fix padding discrepancies in alert dialog with actions
+- `launch()`, `unlaunch()`, `enableRemoteNotifications()` and `disableRemoteNotifications()` become suspending functions with a callback alternative
+
+##### iOS
+
+- `launch()`, `unlaunch()`, `enableRemoteNotifications()` and `disableRemoteNotifications()` become suspending functions with a callback alternative
 
 ## 3.9.0
 

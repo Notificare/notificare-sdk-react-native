@@ -10,6 +10,7 @@ import type {
 } from 'react-native-notificare';
 import type { NotificareSystemNotification } from './models/notificare-system-notification';
 import type { NotificareNotificationDeliveryMechanism } from './models/notificare-notification-delivery-mechanism';
+import type { NotificareTransport } from './models/notificare-transport';
 
 const LINKING_ERROR =
   `The package 'react-native-notificare-push' doesn't seem to be linked. Make sure: \n\n` +
@@ -64,6 +65,14 @@ export class NotificarePush {
 
   public static async hasRemoteNotificationsEnabled(): Promise<boolean> {
     return await NativeModule.hasRemoteNotificationsEnabled();
+  }
+
+  public static async getTransport(): Promise<NotificareTransport | null> {
+    return await NativeModule.getTransport();
+  }
+
+  public static async getSubscriptionId(): Promise<string | null> {
+    return await NativeModule.getSubscriptionId();
   }
 
   public static async allowedUI(): Promise<boolean> {

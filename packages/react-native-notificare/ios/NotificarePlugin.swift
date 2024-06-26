@@ -70,18 +70,26 @@ public class NotificarePlugin: NSObject {
     }
 
     @objc
-    public func launch(_ resolve: @escaping RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
-        onMainThread {
-            Notificare.shared.launch()
-            resolve(nil)
+    public func launch(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        Notificare.shared.launch { result in
+            switch result {
+            case .success:
+                resolve(nil)
+            case let .failure(error):
+                reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
+            }
         }
     }
 
     @objc
-    public func unlaunch(_ resolve: @escaping RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
-        onMainThread {
-            Notificare.shared.unlaunch()
-            resolve(nil)
+    public func unlaunch(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        Notificare.shared.unlaunch { result in
+            switch result {
+            case .success:
+                resolve(nil)
+            case let .failure(error):
+                reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
+            }
         }
     }
 
@@ -195,6 +203,18 @@ public class NotificarePlugin: NSObject {
     @objc
     public func registerUser(_ userId: String?, userName: String?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         Notificare.shared.device().register(userId: userId, userName: userName) { result in
+            switch result {
+            case .success:
+                resolve(nil)
+            case let .failure(error):
+                reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
+            }
+        }
+    }
+
+    @objc
+    public func updateUser(_ userId: String?, userName: String?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        Notificare.shared.device().updateUser(userId: userId, userName: userName) { result in
             switch result {
             case .success:
                 resolve(nil)

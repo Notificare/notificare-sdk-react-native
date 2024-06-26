@@ -12,6 +12,7 @@ import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReadableArray
 import re.notifica.Notificare
+import re.notifica.NotificareCallback
 import re.notifica.internal.NotificareLogger
 import re.notifica.push.ktx.push
 
@@ -101,20 +102,44 @@ public class NotificarePushModule internal constructor(context: ReactApplication
     }
 
     @ReactMethod
+    override fun getTransport(promise: Promise) {
+        promise.resolve(Notificare.push().transport?.rawValue)
+    }
+
+    @ReactMethod
+    override fun getSubscriptionId(promise: Promise) {
+        promise.resolve(Notificare.push().subscriptionId)
+    }
+
+    @ReactMethod
     override fun allowedUI(promise: Promise) {
         promise.resolve(Notificare.push().allowedUI)
     }
 
     @ReactMethod
     override fun enableRemoteNotifications(promise: Promise) {
-        Notificare.push().enableRemoteNotifications()
-        promise.resolve(null)
+        Notificare.push().enableRemoteNotifications(object : NotificareCallback<Unit> {
+            override fun onSuccess(result: Unit) {
+                promise.resolve(null)
+            }
+
+            override fun onFailure(e: Exception) {
+                promise.reject(DEFAULT_ERROR_CODE, e)
+            }
+        })
     }
 
     @ReactMethod
     override fun disableRemoteNotifications(promise: Promise) {
-        Notificare.push().disableRemoteNotifications()
-        promise.resolve(null)
+        Notificare.push().disableRemoteNotifications(object : NotificareCallback<Unit> {
+            override fun onSuccess(result: Unit) {
+                promise.resolve(null)
+            }
+
+            override fun onFailure(e: Exception) {
+                promise.reject(DEFAULT_ERROR_CODE, e)
+            }
+        })
     }
 
     // endregion
@@ -160,6 +185,7 @@ public class NotificarePushModule internal constructor(context: ReactApplication
 
     public companion object {
         internal const val NAME = "NotificarePushModule"
+        internal const val DEFAULT_ERROR_CODE = "notificare_error"
 
         internal fun onMainThread(action: () -> Unit) = Handler(Looper.getMainLooper()).post(action)
     }

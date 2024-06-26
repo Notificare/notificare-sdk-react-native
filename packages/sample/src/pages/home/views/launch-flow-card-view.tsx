@@ -16,7 +16,10 @@ export const LaunchFlowCard = (props: LaunchFlowCardProps) => {
 
   async function launchNotificare() {
     try {
+      console.log('=== Launching Notificare ===');
       await Notificare.launch();
+
+      console.log('=== Launching Notificare finished ===');
     } catch (e) {
       console.log('=== Error launching Notificare ===');
       console.log(JSON.stringify(e));
@@ -30,7 +33,10 @@ export const LaunchFlowCard = (props: LaunchFlowCardProps) => {
 
   async function unlaunchNotificare() {
     try {
+      console.log('=== Unlaunching Notificare ===');
       await Notificare.unlaunch();
+
+      console.log('=== Unlaunching Notificare finished ===');
     } catch (e) {
       console.log('=== Error unlaunching Notificare ===');
       console.log(JSON.stringify(e));

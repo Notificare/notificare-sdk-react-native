@@ -39,11 +39,21 @@ export class NotificareDeviceModule {
     await NativeModule.updatePreferredLanguage(language);
   }
 
+  /**
+   * @deprecated Use updateUser() instead.
+   */
   public async register(
     userId: string | null,
     userName: string | null
   ): Promise<void> {
     await NativeModule.registerUser(userId, userName);
+  }
+
+  public async updateUser(
+    userId: string | null,
+    userName: string | null
+  ): Promise<void> {
+    await NativeModule.updateUser(userId, userName);
   }
 
   public async fetchTags(): Promise<string[]> {

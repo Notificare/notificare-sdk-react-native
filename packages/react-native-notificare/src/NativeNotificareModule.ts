@@ -29,6 +29,7 @@ export interface Spec extends TurboModule {
   getPreferredLanguage(): Promise<string | null>;
   updatePreferredLanguage(language: string | null): Promise<void>;
   registerUser(userId: string | null, userName: string | null): Promise<void>;
+  updateUser(userId: string | null, userName: string | null): Promise<void>;
   fetchTags(): Promise<string[]>;
   addTag(tag: string): Promise<void>;
   addTags(tags: string[]): Promise<void>;

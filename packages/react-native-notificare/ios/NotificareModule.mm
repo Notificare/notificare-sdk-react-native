@@ -117,6 +117,14 @@ RCT_EXPORT_METHOD(registerUser:(NSString *)userId
     [plugin registerUser:userId userName:userName resolve:resolve reject:reject];
 }
 
+RCT_EXPORT_METHOD(updateUser:(NSString *)userId
+                  userName:(NSString *)userName
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+{
+    [plugin updateUser:userId userName:userName resolve:resolve reject:reject];
+}
+
 RCT_EXPORT_METHOD(fetchTags:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {

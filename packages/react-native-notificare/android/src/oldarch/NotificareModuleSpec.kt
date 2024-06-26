@@ -31,6 +31,7 @@ public abstract class NotificareModuleSpec internal constructor(context: ReactAp
     public abstract fun getPreferredLanguage(promise: Promise)
     public abstract fun updatePreferredLanguage(language: String?, promise: Promise)
     public abstract fun registerUser(userId: String?, userName: String?, promise: Promise)
+    public abstract fun updateUser(userId: String?, userName: String?, promise: Promise)
     public abstract fun fetchTags(promise: Promise)
     public abstract fun addTag(tag: String, promise: Promise)
     public abstract fun addTags(payload: ReadableArray, promise: Promise)
