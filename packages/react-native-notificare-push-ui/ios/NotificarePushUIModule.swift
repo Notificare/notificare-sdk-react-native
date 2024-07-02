@@ -145,23 +145,6 @@ class NotificarePushUIModule: RCTEventEmitter {
     }
 }
 
-extension NotificareNotification {
-    var requiresViewController: Bool {
-        get {
-            if let type = NotificareNotification.NotificationType.init(rawValue: type) {
-                switch type {
-                case .none, .alert, .passbook, .rate, .urlScheme:
-                    return false
-                default:
-                    break
-                }
-            }
-            
-            return true
-        }
-    }
-}
-
 extension NotificarePushUIModule: NotificarePushUIDelegate {
     public func notificare(_ notificarePushUI: NotificarePushUI, willPresentNotification notification: NotificareNotification) {
         do {
