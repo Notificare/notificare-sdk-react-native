@@ -897,42 +897,42 @@ PODS:
   - React-Mapbuffer (0.73.5):
     - glog
     - React-debug
-  - react-native-notificare (3.9.1):
+  - react-native-notificare (3.10.0):
     - Notificare/NotificareKit (= 3.10.0)
     - React-Core
-  - react-native-notificare-assets (3.9.1):
+  - react-native-notificare-assets (3.10.0):
     - Notificare/NotificareAssetsKit (= 3.10.0)
     - Notificare/NotificareKit (= 3.10.0)
     - React-Core
-  - react-native-notificare-geo (3.9.1):
+  - react-native-notificare-geo (3.10.0):
     - Notificare/NotificareGeoKit (= 3.10.0)
     - Notificare/NotificareKit (= 3.10.0)
     - React-Core
-  - react-native-notificare-in-app-messaging (3.9.1):
+  - react-native-notificare-in-app-messaging (3.10.0):
     - Notificare/NotificareInAppMessagingKit (= 3.10.0)
     - Notificare/NotificareKit (= 3.10.0)
     - React-Core
-  - react-native-notificare-inbox (3.9.1):
+  - react-native-notificare-inbox (3.10.0):
     - Notificare/NotificareInboxKit (= 3.10.0)
     - Notificare/NotificareKit (= 3.10.0)
     - React-Core
-  - react-native-notificare-loyalty (3.9.1):
+  - react-native-notificare-loyalty (3.10.0):
     - Notificare/NotificareKit (= 3.10.0)
     - Notificare/NotificareLoyaltyKit (= 3.10.0)
     - React-Core
-  - react-native-notificare-monetize (3.9.1):
+  - react-native-notificare-monetize (3.10.0):
     - Notificare/NotificareKit (= 3.10.0)
     - Notificare/NotificareMonetizeKit (= 3.10.0)
     - React-Core
-  - react-native-notificare-push (3.9.1):
+  - react-native-notificare-push (3.10.0):
     - Notificare/NotificareKit (= 3.10.0)
     - Notificare/NotificarePushKit (= 3.10.0)
     - React-Core
-  - react-native-notificare-push-ui (3.9.1):
+  - react-native-notificare-push-ui (3.10.0):
     - Notificare/NotificareKit (= 3.10.0)
     - Notificare/NotificarePushUIKit (= 3.10.0)
     - React-Core
-  - react-native-notificare-scannables (3.9.1):
+  - react-native-notificare-scannables (3.10.0):
     - Notificare/NotificareKit (= 3.10.0)
     - Notificare/NotificareScannablesKit (= 3.10.0)
     - React-Core
@@ -1358,16 +1358,16 @@ SPEC CHECKSUMS:
   React-jsinspector: 32db5e364bcae8fca8cdf8891830636275add0c5
   React-logger: 0331362115f0f5b392bd7ed14636d1a3ea612479
   React-Mapbuffer: 7c35cd53a22d0be04d3f26f7881c7fb7dd230216
-  react-native-notificare: 87630e3c7960624fa888441561fcad77be3d19e2
-  react-native-notificare-assets: 3d6cba027644bcf65009064b12e77de04d13f4bf
-  react-native-notificare-geo: 18b420ed4b679b0a183e24495612d4353f75435d
-  react-native-notificare-in-app-messaging: 179dea6dbcc77d213d9257733dc4173d7612dec5
-  react-native-notificare-inbox: d8727960f41feaac1f96a2e080241b0e85d03169
-  react-native-notificare-loyalty: 716d6c6795beb83f309abca1a8532b38841605fc
-  react-native-notificare-monetize: 315260be83cfef2917b08a73030eb1aaf9f174d8
-  react-native-notificare-push: 61ac039dec6bae7bd4590cb803505b01a61f3401
-  react-native-notificare-push-ui: c4fb0e8498719be747622d22aa631bc3bb1d9ddb
-  react-native-notificare-scannables: e71c41be7e7e239b350c80a1ee5dc8b2e20e2c44
+  react-native-notificare: e11582a77e28f830031e1192502307e02f5d66b4
+  react-native-notificare-assets: a2e7f481440c7eef694b8efedd4fc7f7b163ab68
+  react-native-notificare-geo: d758adb6cc60470ee05ee8b3080af8bdc767edc8
+  react-native-notificare-in-app-messaging: 3d08ed41ae20de27f365f00b607cf491f5010382
+  react-native-notificare-inbox: 2407380344a4db4497d0d5dbdc2d823d2fc0431a
+  react-native-notificare-loyalty: 99ab30f321f6ef06f615a9f8dd789971fbdfb4c8
+  react-native-notificare-monetize: 282453ee085c9162d1ac0cfe379f6eee1031b941
+  react-native-notificare-push: 273c4109e00fe0a010c8456e3ab23fb1708c1d63
+  react-native-notificare-push-ui: 4f1d3d51f8ffbbf37b5b2888c2b81faaaf89b578
+  react-native-notificare-scannables: 9d6b3545dac896ddd0b3ecaa78c5ee8dda0f0721
   react-native-safe-area-context: b97eb6f9e3b7f437806c2ce5983f479f8eb5de4b
   React-nativeconfig: 1166714a4f7ea57a0df5c2cb44fbc70f98d580f9
   React-NativeModulesApple: 726664e9829eb5eed8170241000e46ead269a05f
@@ -1394,7 +1394,7 @@ SPEC CHECKSUMS:
   RNScreens: 17e2f657f1b09a71ec3c821368a04acbb7ebcb46
   RNVectorIcons: 73ab573085f65a572d3b6233e68996d4707fd505
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
-  Yoga: 9e6a04eacbd94f97d94577017e9f23b3ab41cf6c
+  Yoga: a716eea57d0d3430219c0a5a233e1e93ee931eb7
 
 PODFILE CHECKSUM: e764716b4f46a2e41af5e358147034f9e9ca5a2f
 
