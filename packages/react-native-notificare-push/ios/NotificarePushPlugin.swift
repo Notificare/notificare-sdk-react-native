@@ -40,7 +40,6 @@ public class NotificarePushPlugin: NSObject {
     @objc
     public func supportedEvents() -> [String] {
         return [
-            "re.notifica.push.notification_received",
             "re.notifica.push.notification_info_received",
             "re.notifica.push.system_notification_received",
             "re.notifica.push.unknown_notification_received",
@@ -222,14 +221,6 @@ public class NotificarePushPlugin: NSObject {
 }
 
 extension NotificarePushPlugin: NotificarePushDelegate {
-    public func notificare(_ notificarePush: NotificarePush, didReceiveNotification notification: NotificareNotification) {
-        do {
-            dispatchEvent("re.notifica.push.notification_received", payload: try notification.toJson())
-        } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.push.notification_received event.", error: error)
-        }
-    }
-
     public func notificare(_ notificarePush: NotificarePush, didReceiveNotification notification: NotificareNotification, deliveryMechanism: NotificareNotificationDeliveryMechanism) {
         do {
             let payload: [String: Any] = [

@@ -91,18 +91,6 @@ export class NotificarePush {
   // Events
   //
 
-  /**
-   * @deprecated Listen to onNotificationInfoReceived(notification, deliveryMechanism) instead.
-   */
-  public static onNotificationReceived(
-    callback: (notification: NotificareNotification) => void
-  ): EmitterSubscription {
-    return this.eventEmitter.addListener(
-      're.notifica.push.notification_received',
-      callback
-    );
-  }
-
   public static onNotificationInfoReceived(
     callback: (data: {
       notification: NotificareNotification;
