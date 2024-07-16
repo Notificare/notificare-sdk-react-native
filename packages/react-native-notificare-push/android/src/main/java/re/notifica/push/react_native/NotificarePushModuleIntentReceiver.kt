@@ -15,13 +15,6 @@ internal class NotificarePushModuleIntentReceiver : NotificarePushIntentReceiver
         notification: NotificareNotification,
         deliveryMechanism: NotificareNotificationDeliveryMechanism
     ) {
-        // Continue emitting the legacy event to preserve backwards compatibility.
-        try {
-            EventBroker.dispatchEvent("re.notifica.push.notification_received", notification.toJson().toReactMap())
-        } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.notification_received event.", e)
-        }
-
         try {
             val arguments = Arguments.createMap()
             arguments.putMap("notification", notification.toJson().toReactMap())
