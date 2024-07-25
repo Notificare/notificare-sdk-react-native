@@ -22,10 +22,12 @@
   "source": "src/index",
   "files": [
     "src",
+    "plugin",
     "lib",
     "android",
     "ios",
     "cpp",
+    "app.plugin.js",
     "react-native-notificare-push.podspec",
     "CHANGELOG.md",
     "MIGRATION.md",
@@ -37,7 +39,9 @@
     "!**/__mocks__"
   ],
   "scripts": {
-    "build": "bob build",
+    "build": "yarn build:react-native && yarn build:expo",
+    "build:expo": "tsc --build plugin && cp -a plugin/ios/NotificationServiceExtension lib/plugin/ios/",
+    "build:react-native": "bob build",
     "typescript": "tsc --noEmit",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "pack": "npm pack",
@@ -47,6 +51,9 @@
     "docs:create-symbolic-links": "rm README.md CHANGELOG.md MIGRATION.md; ln -s ../../README.md ../../CHANGELOG.md ../../MIGRATION.md .",
     "docs:replace-symbolic-links": "rm README.md CHANGELOG.md MIGRATION.md; cp ../../README.md ../../CHANGELOG.md ../../MIGRATION.md ."
   },
+  "optionalDependencies": {
+    "expo": "*"
+  },
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
@@ -54,6 +61,9 @@
   },
   "devDependencies": {
     "@types/react-native": "^0.66.4",
+    "expo": "~51.0.0",
+    "expo-module-scripts": "^3.5.1",
+    "expo-modules-core": "^1.12.9",
     "react": "17.0.2",
     "react-native": "0.67.4",
     "react-native-builder-bob": "^0.18.0",
