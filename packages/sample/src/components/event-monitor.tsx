@@ -95,6 +95,10 @@ export function EventMonitor() {
           console.log('=== NOTIFICATION SETTINGS CHANGED ===');
           console.log(JSON.stringify(granted, null, 2));
         }),
+        NotificarePush.onSubscriptionIdChanged((subscriptionId) => {
+          console.log('=== SUBSCRIPTION ID CHANGED ===');
+          console.log(JSON.stringify(subscriptionId, null, 2));
+        }),
         NotificarePush.onShouldOpenNotificationSettings((notification) => {
           console.log('=== SHOULD OPEN NOTIFICATION SETTINGS ===');
           console.log(JSON.stringify(notification, null, 2));
