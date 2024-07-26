@@ -48,6 +48,7 @@ public class NotificarePushPlugin: NSObject {
             "re.notifica.push.notification_action_opened",
             "re.notifica.push.unknown_notification_action_opened",
             "re.notifica.push.notification_settings_changed",
+            "re.notifica.push.subscription_id_changed",
             "re.notifica.push.should_open_notification_settings",
             "re.notifica.push.failed_to_register_for_remote_notifications",
         ]
@@ -286,6 +287,10 @@ extension NotificarePushPlugin: NotificarePushDelegate {
 
     public func notificare(_ notificarePush: NotificarePush, didChangeNotificationSettings granted: Bool) {
         dispatchEvent("re.notifica.push.notification_settings_changed", payload: granted)
+    }
+
+    public func notificare(_ notificarePush: any NotificarePush, didChangeSubscriptionId subscriptionId: String?) {
+        dispatchEvent("re.notifica.push.subscription_id_changed", payload: subscriptionId)
     }
 
     public func notificare(_ notificarePush: NotificarePush, shouldOpenSettings notification: NotificareNotification?) {
