@@ -4,6 +4,7 @@
 
 - Migrate to Turbo Modules with support for both the old and new architectures
 - Device identifiers become long-lived
+- Add `NotificarePush.onSubscriptionIdChanged` event for push token updates
 
 #### Breaking changes
 
