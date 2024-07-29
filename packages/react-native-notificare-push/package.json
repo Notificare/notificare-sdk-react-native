@@ -51,17 +51,20 @@
     "docs:create-symbolic-links": "rm README.md CHANGELOG.md MIGRATION.md; ln -s ../../README.md ../../CHANGELOG.md ../../MIGRATION.md .",
     "docs:replace-symbolic-links": "rm README.md CHANGELOG.md MIGRATION.md; cp ../../README.md ../../CHANGELOG.md ../../MIGRATION.md ."
   },
-  "optionalDependencies": {
-    "expo": "*"
-  },
   "peerDependencies": {
+    "expo": "*",
     "react": "*",
     "react-native": "*",
     "react-native-notificare": "3.10.0"
   },
+  "peerDependenciesMeta": {
+    "expo": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@types/react-native": "^0.66.4",
-    "expo": "~51.0.0",
+    "expo": "^51.0.0",
     "expo-module-scripts": "^3.5.1",
     "expo-modules-core": "^1.12.9",
     "react": "17.0.2",
