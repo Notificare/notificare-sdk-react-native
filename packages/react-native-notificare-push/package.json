@@ -40,7 +40,7 @@
   ],
   "scripts": {
     "build": "yarn build:react-native && yarn build:expo",
-    "build:expo": "tsc --build plugin && cp -a plugin/ios/NotificationServiceExtension lib/plugin/ios/",
+    "build:expo": "tsc --project plugin/tsconfig.json && cp -a plugin/ios/NotificationServiceExtension lib/plugin/ios/",
     "build:react-native": "bob build",
     "typescript": "tsc --noEmit",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
