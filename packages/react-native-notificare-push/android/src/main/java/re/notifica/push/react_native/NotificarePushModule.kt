@@ -27,6 +27,10 @@ public class NotificarePushModule internal constructor(context: ReactApplication
         EventBroker.dispatchEvent("re.notifica.push.notification_settings_changed", allowedUI)
     }
 
+    private val subscriptionIdObserver = Observer<String?> { subscriptionId ->
+        EventBroker.dispatchEvent("re.notifica.push.subscription_id_changed", subscriptionId)
+    }
+
     override fun initialize() {
         super.initialize()
 
@@ -35,6 +39,7 @@ public class NotificarePushModule internal constructor(context: ReactApplication
 
         onMainThread {
             Notificare.push().observableAllowedUI.observeForever(allowedUIObserver)
+            Notificare.push().observableSubscriptionId.observeForever(subscriptionIdObserver)
         }
 
         // Listen to incoming intents.
@@ -48,6 +53,7 @@ public class NotificarePushModule internal constructor(context: ReactApplication
 
         onMainThread {
             Notificare.push().observableAllowedUI.removeObserver(allowedUIObserver)
+            Notificare.push().observableSubscriptionId.removeObserver(subscriptionIdObserver)
         }
     }
 

@@ -19,7 +19,7 @@ internal object EventBroker {
         }
     }
 
-    fun dispatchEvent(name: String, payload: Any) {
+    fun dispatchEvent(name: String, payload: Any?) {
         val eventEmitter = eventEmitter ?: run {
             eventQueue.add(Event(name, payload))
             return
@@ -30,6 +30,6 @@ internal object EventBroker {
 
     private data class Event(
         val name: String,
-        val payload: Any
+        val payload: Any?
     )
 }

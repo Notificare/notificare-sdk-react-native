@@ -173,6 +173,15 @@ export class NotificarePush {
     );
   }
 
+  public static onSubscriptionIdChanged(
+    callback: (subscriptionId?: string | null) => void
+  ): EmitterSubscription {
+    return this.eventEmitter.addListener(
+      're.notifica.push.subscription_id_changed',
+      callback
+    );
+  }
+
   public static onShouldOpenNotificationSettings(
     callback: (notification: NotificareNotification | null) => void
   ): EmitterSubscription {
