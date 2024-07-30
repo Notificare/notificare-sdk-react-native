@@ -1,6 +1,6 @@
 {
   "name": "react-native-notificare-push",
-  "version": "3.9.0",
+  "version": "3.11.0",
   "description": "Notificare Push React Native module.",
   "author": "Notificare <info@notifica.re> (https://notificare.com)",
   "license": "MIT",
@@ -22,10 +22,12 @@
   "source": "src/index",
   "files": [
     "src",
+    "plugin",
     "lib",
     "android",
     "ios",
     "cpp",
+    "app.plugin.js",
     "react-native-notificare-push.podspec",
     "CHANGELOG.md",
     "MIGRATION.md",
@@ -37,7 +39,9 @@
     "!**/__mocks__"
   ],
   "scripts": {
-    "build": "bob build",
+    "build": "yarn build:react-native && yarn build:expo",
+    "build:expo": "tsc --project plugin/tsconfig.json && cp -a plugin/ios/NotificationServiceExtension lib/plugin/ios/",
+    "build:react-native": "bob build",
     "typescript": "tsc --noEmit",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "pack": "npm pack",
@@ -48,17 +52,26 @@
     "docs:replace-symbolic-links": "rm README.md CHANGELOG.md MIGRATION.md; cp ../../README.md ../../CHANGELOG.md ../../MIGRATION.md ."
   },
   "peerDependencies": {
+    "expo": "*",
     "react": "*",
     "react-native": "*",
-    "react-native-notificare": "3.9.0"
+    "react-native-notificare": "3.11.0"
+  },
+  "peerDependenciesMeta": {
+    "expo": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/react": "^18.2.44",
+    "expo": "^51.0.0",
+    "expo-module-scripts": "^3.5.1",
+    "expo-modules-core": "^1.12.9",
     "react": "18.2.0",
     "react-native": "0.74.1",
-    "react-native-builder-bob": "^0.20.0",
-    "react-native-notificare": "3.9.0",
-    "typescript": "^5.2.2"
+    "react-native-builder-bob": "^0.28.0",
+    "react-native-notificare": "3.11.0",
+    "typescript": "^5.4.5"
   },
   "react-native-builder-bob": {
     "source": "src",

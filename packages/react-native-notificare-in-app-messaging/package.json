@@ -1,6 +1,6 @@
 {
   "name": "react-native-notificare-in-app-messaging",
-  "version": "3.9.0",
+  "version": "3.11.0",
   "description": "Notificare In-App Messaging React Native module.",
   "author": "Notificare <info@notifica.re> (https://notificare.com)",
   "license": "MIT",
@@ -50,15 +50,15 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-notificare": "3.9.0"
+    "react-native-notificare": "3.11.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.44",
     "react": "18.2.0",
     "react-native": "0.74.1",
-    "react-native-builder-bob": "^0.20.0",
-    "react-native-notificare": "3.9.0",
-    "typescript": "^5.2.2"
+    "react-native-builder-bob": "^0.28.0",
+    "react-native-notificare": "3.11.0",
+    "typescript": "^5.4.5"
   },
   "react-native-builder-bob": {
     "source": "src",
