@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.11.0
+
+- Integrated Expo plugins
+
 ## 3.10.0
 
 #### Native changes
