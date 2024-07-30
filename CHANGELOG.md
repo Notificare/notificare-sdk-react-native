@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Upcoming release
+## 3.11.0
 
 - Integrated Expo plugins
 

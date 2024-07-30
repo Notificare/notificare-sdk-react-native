@@ -1,6 +1,6 @@
 {
   "name": "react-native-notificare-push",
-  "version": "3.10.0",
+  "version": "3.11.0",
   "description": "Notificare Push React Native module.",
   "author": "Notificare <info@notifica.re> (https://notificare.com)",
   "license": "MIT",
@@ -55,7 +55,7 @@
     "expo": "*",
     "react": "*",
     "react-native": "*",
-    "react-native-notificare": "3.10.0"
+    "react-native-notificare": "3.11.0"
   },
   "peerDependenciesMeta": {
     "expo": {
@@ -70,7 +70,7 @@
     "react": "17.0.2",
     "react-native": "0.67.4",
     "react-native-builder-bob": "^0.18.0",
-    "react-native-notificare": "3.10.0",
+    "react-native-notificare": "3.11.0",
     "typescript": "^5.4.5"
   },
   "react-native-builder-bob": {
