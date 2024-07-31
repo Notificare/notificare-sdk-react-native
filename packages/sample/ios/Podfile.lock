@@ -945,7 +945,7 @@ PODS:
   - React-Mapbuffer (0.74.1):
     - glog
     - React-debug
-  - react-native-notificare (3.11.0):
+  - react-native-notificare (4.0.0-beta.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -967,7 +967,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-assets (3.11.0):
+  - react-native-notificare-assets (4.0.0-beta.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -990,7 +990,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-geo (3.11.0):
+  - react-native-notificare-geo (4.0.0-beta.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1013,7 +1013,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-in-app-messaging (3.11.0):
+  - react-native-notificare-in-app-messaging (4.0.0-beta.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1036,7 +1036,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-inbox (3.11.0):
+  - react-native-notificare-inbox (4.0.0-beta.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1059,7 +1059,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-loyalty (3.11.0):
+  - react-native-notificare-loyalty (4.0.0-beta.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1082,7 +1082,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-push (3.11.0):
+  - react-native-notificare-push (4.0.0-beta.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1105,7 +1105,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-push-ui (3.11.0):
+  - react-native-notificare-push-ui (4.0.0-beta.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1128,7 +1128,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-scannables (3.11.0):
+  - react-native-notificare-scannables (4.0.0-beta.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1683,15 +1683,15 @@ SPEC CHECKSUMS:
   React-jsitracing: 233d1a798fe0ff33b8e630b8f00f62c4a8115fbc
   React-logger: 7e7403a2b14c97f847d90763af76b84b152b6fce
   React-Mapbuffer: 11029dcd47c5c9e057a4092ab9c2a8d10a496a33
-  react-native-notificare: 8f9e155d8f3d9505596b2b2080b63d775c4bf703
-  react-native-notificare-assets: 80fbb8287cba405cac3bcbc1c9d34f389779b092
-  react-native-notificare-geo: 56967cc3f1d9ef24b77be0b9eb9290bda2083035
-  react-native-notificare-in-app-messaging: aec4b9ee2449625d564fc524c2e9f97d37a0fa06
-  react-native-notificare-inbox: fabfbe3537e92f7b3f8d13a4339b37ae2f14069a
-  react-native-notificare-loyalty: 6f493cdcce59c8f3e6c93f094816feb48182edbe
-  react-native-notificare-push: 2b2b481b20a689f2e628e47befa9642738b79b5f
-  react-native-notificare-push-ui: 936eec3130fb81e84c5d407a6ec7c04be84ab4f6
-  react-native-notificare-scannables: a2298e9e784e83d04e0be467512f9e3a015c34db
+  react-native-notificare: 9e240e7c8f73c32d47d1c3ebc9b3a1ec4504ce2b
+  react-native-notificare-assets: 0c0ed062efec69e8d0967caac1567e2d9cfba85d
+  react-native-notificare-geo: 67350dafae9547d4434611cdb0a3189f01894cb8
+  react-native-notificare-in-app-messaging: 471420db97ec5a4e6313c5e7a42661a11412ad14
+  react-native-notificare-inbox: 5fff1ab78df634083175ed6b69a6577c3076bd2e
+  react-native-notificare-loyalty: ba12a755bad84c63deaeadb5192aa371940ab9d4
+  react-native-notificare-push: 65d7ea7bb4d6ff562b25bda9fcf53cc7da4194f1
+  react-native-notificare-push-ui: 761174eebfa7752d0ff804f18d8edb196bd2ce6b
+  react-native-notificare-scannables: 36e004011256a27ab5e7020e7bf63b531f4a2b71
   react-native-safe-area-context: dcab599c527c2d7de2d76507a523d20a0b83823d
   React-nativeconfig: b0073a590774e8b35192fead188a36d1dca23dec
   React-NativeModulesApple: df46ff3e3de5b842b30b4ca8a6caae6d7c8ab09f
