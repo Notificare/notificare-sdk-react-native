@@ -20,6 +20,8 @@ public class NotificarePushPackage : TurboReactPackage() {
         return ReactModuleInfoProvider {
             val moduleInfos: MutableMap<String, ReactModuleInfo> = HashMap()
             val isTurboModule: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
+
+            @Suppress("DEPRECATION")
             moduleInfos[NotificarePushModule.NAME] = ReactModuleInfo(
                 NotificarePushModule.NAME,
                 NotificarePushModule.NAME,
