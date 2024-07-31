@@ -149,7 +149,7 @@ public class NotificarePushUIPlugin: NSObject {
     }
 }
 
-extension NotificarePushUIModule: NotificarePushUIDelegate {
+extension NotificarePushUIPlugin: NotificarePushUIDelegate {
     public func notificare(_ notificarePushUI: NotificarePushUI, willPresentNotification notification: NotificareNotification) {
         do {
             dispatchEvent("re.notifica.push.ui.notification_will_present", payload: try notification.toJson())
