@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Upcoming release
+## 4.0.0-beta.1
 
 - Migrate to Turbo Modules with support for both the old and new architectures
 - Device identifiers become long-lived
@@ -21,11 +21,6 @@
 ##### Android
 
 - Fix padding discrepancies in alert dialog with actions
-- `launch()`, `unlaunch()`, `enableRemoteNotifications()` and `disableRemoteNotifications()` become suspending functions with a callback alternative
-
-##### iOS
-
-- `launch()`, `unlaunch()`, `enableRemoteNotifications()` and `disableRemoteNotifications()` become suspending functions with a callback alternative
 
 ## 3.11.0
 
