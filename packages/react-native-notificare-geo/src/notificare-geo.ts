@@ -1,4 +1,5 @@
 import {
+  AppRegistry,
   type EmitterSubscription,
   NativeEventEmitter,
   NativeModules,
@@ -63,6 +64,79 @@ export class NotificareGeo {
 
   public static async disableLocationUpdates(): Promise<void> {
     await NativeModule.disableLocationUpdates();
+  }
+
+  //
+  // Background methods
+  //
+
+  public static onLocationUpdatedBackgroundTask(
+    task: (location: NotificareLocation) => Promise<void>
+  ) {
+    if (Platform.OS === 'android') {
+      AppRegistry.registerHeadlessTask(
+        're.notifica.geo.background_task_location_updated',
+        () => task
+      );
+    }
+  }
+
+  public static onRegionEnteredBackgroundTask(
+    task: (region: NotificareRegion) => Promise<void>
+  ) {
+    if (Platform.OS === 'android') {
+      AppRegistry.registerHeadlessTask(
+        're.notifica.geo.background_task_region_entered',
+        () => task
+      );
+    }
+  }
+
+  public static onRegionExitedBackgroundTask(
+    task: (region: NotificareRegion) => Promise<void>
+  ) {
+    if (Platform.OS === 'android') {
+      AppRegistry.registerHeadlessTask(
+        're.notifica.geo.background_task_region_exited',
+        () => task
+      );
+    }
+  }
+
+  public static onBeaconEnteredBackgroundTask(
+    task: (beacon: NotificareBeacon) => Promise<void>
+  ) {
+    if (Platform.OS === 'android') {
+      AppRegistry.registerHeadlessTask(
+        're.notifica.geo.background_task_beacon_entered',
+        () => task
+      );
+    }
+  }
+
+  public static onBeaconExitedBackgroundTask(
+    task: (beacon: NotificareBeacon) => Promise<void>
+  ) {
+    if (Platform.OS === 'android') {
+      AppRegistry.registerHeadlessTask(
+        're.notifica.geo.background_task_beacon_exited',
+        () => task
+      );
+    }
+  }
+
+  public static onBeaconsRangedBackgroundTask(
+    task: (data: {
+      region: NotificareRegion;
+      beacons: NotificareBeacon[];
+    }) => Promise<void>
+  ) {
+    if (Platform.OS === 'android') {
+      AppRegistry.registerHeadlessTask(
+        're.notifica.geo.background_task_beacons_ranged',
+        () => task
+      );
+    }
   }
 
   //
