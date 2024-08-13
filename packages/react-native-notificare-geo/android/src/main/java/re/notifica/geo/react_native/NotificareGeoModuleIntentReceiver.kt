@@ -21,7 +21,10 @@ internal class NotificareGeoModuleIntentReceiver : NotificareGeoIntentReceiver()
         }
 
         try {
-            EventBroker.dispatchEvent("re.notifica.geo.location_updated", location.toJson().toReactMap())
+            EventBroker.dispatchEvent(
+                "re.notifica.geo.location_updated",
+                location.toJson().toReactMap()
+            )
         } catch (e: Exception) {
             NotificareLogger.error("Failed to emit the re.notifica.geo.location_updated event.", e)
         }
@@ -36,7 +39,10 @@ internal class NotificareGeoModuleIntentReceiver : NotificareGeoIntentReceiver()
         }
 
         try {
-            EventBroker.dispatchEvent("re.notifica.geo.region_entered", region.toJson().toReactMap())
+            EventBroker.dispatchEvent(
+                "re.notifica.geo.region_entered",
+                region.toJson().toReactMap()
+            )
         } catch (e: Exception) {
             NotificareLogger.error("Failed to emit the re.notifica.geo.region_entered event.", e)
         }
@@ -66,7 +72,10 @@ internal class NotificareGeoModuleIntentReceiver : NotificareGeoIntentReceiver()
         }
 
         try {
-            EventBroker.dispatchEvent("re.notifica.geo.beacon_entered", beacon.toJson().toReactMap())
+            EventBroker.dispatchEvent(
+                "re.notifica.geo.beacon_entered",
+                beacon.toJson().toReactMap()
+            )
         } catch (e: Exception) {
             NotificareLogger.error("Failed to emit the re.notifica.geo.beacon_entered event.", e)
         }
@@ -87,9 +96,14 @@ internal class NotificareGeoModuleIntentReceiver : NotificareGeoIntentReceiver()
         }
     }
 
-    override fun onBeaconsRanged(context: Context, region: NotificareRegion, beacons: List<NotificareBeacon>) {
+    override fun onBeaconsRanged(
+        context: Context,
+        region: NotificareRegion,
+        beacons: List<NotificareBeacon>
+    ) {
         if (!isAppOnForeground(context)) {
-            val event = NotificareGeoModuleHeadlessService.BackgroundEvent.BeaconsRanged(beacons, region)
+            val event =
+                NotificareGeoModuleHeadlessService.BackgroundEvent.BeaconsRanged(beacons, region)
             processHeadlessTask(context, event)
 
             return
@@ -111,7 +125,8 @@ internal class NotificareGeoModuleIntentReceiver : NotificareGeoIntentReceiver()
     private fun isAppOnForeground(context: Context): Boolean {
         val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val appProcesses = activityManager.runningAppProcesses ?: return false
-        val packageName: String = context.packageName
+        val packageName = context.packageName
+
         for (appProcess in appProcesses) {
             if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND &&
                 appProcess.processName == packageName

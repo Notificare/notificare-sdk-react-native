@@ -18,7 +18,8 @@ internal class NotificareGeoModuleHeadlessService : HeadlessJsTaskService() {
     override fun getTaskConfig(intent: Intent?): HeadlessJsTaskConfig? {
         return intent?.extras?.let {
             val event = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                it.getSerializable(BUNDLE_BACKGROUND_EVENT_KEY, BackgroundEvent::class.java) ?: return null
+                it.getSerializable(BUNDLE_BACKGROUND_EVENT_KEY, BackgroundEvent::class.java)
+                    ?: return null
             } else {
                 @Suppress("DEPRECATION")
                 it.getSerializable(BUNDLE_BACKGROUND_EVENT_KEY) as? BackgroundEvent ?: return null
