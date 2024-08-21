@@ -51,12 +51,12 @@ internal class NotificareGeoModuleHeadlessService : HeadlessJsTaskService() {
     }
 
     internal enum class HeadlessTask(val key: String) {
-        LOCATION_UPDATED(key = "re.notifica.geo.background_task_location_updated"),
-        REGION_ENTERED(key = "re.notifica.geo.background_task_region_entered"),
-        REGION_EXITED(key = "re.notifica.geo.background_task_region_exited"),
-        BEACON_ENTERED(key = "re.notifica.geo.background_task_beacon_entered"),
-        BEACON_EXITED(key = "re.notifica.geo.background_task_beacon_exited"),
-        BEACONS_RANGED(key = "re.notifica.geo.background_task_beacons_ranged"),
+        LOCATION_UPDATED(key = "re.notifica.geo.location_updated_background_callback"),
+        REGION_ENTERED(key = "re.notifica.geo.region_entered_background_callback"),
+        REGION_EXITED(key = "re.notifica.geo.region_exited_background_callback"),
+        BEACON_ENTERED(key = "re.notifica.geo.beacon_entered_background_callback"),
+        BEACON_EXITED(key = "re.notifica.geo.beacon_exited_background_callback"),
+        BEACONS_RANGED(key = "re.notifica.geo.beacons_ranged_background_callback"),
     }
 
     internal sealed class BackgroundEvent : Serializable {

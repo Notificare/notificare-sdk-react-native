@@ -70,71 +70,71 @@ export class NotificareGeo {
   // Background methods
   //
 
-  public static onLocationUpdatedBackgroundTask(
-    task: (location: NotificareLocation) => Promise<void>
+  public static setLocationUpdatedBackgroundCallback(
+    callback: (location: NotificareLocation) => Promise<void>
   ) {
     if (Platform.OS === 'android') {
       AppRegistry.registerHeadlessTask(
-        're.notifica.geo.background_task_location_updated',
-        () => task
+        're.notifica.geo.location_updated_background_callback',
+        () => callback
       );
     }
   }
 
-  public static onRegionEnteredBackgroundTask(
-    task: (region: NotificareRegion) => Promise<void>
+  public static setRegionEnteredBackgroundCallback(
+    callback: (region: NotificareRegion) => Promise<void>
   ) {
     if (Platform.OS === 'android') {
       AppRegistry.registerHeadlessTask(
-        're.notifica.geo.background_task_region_entered',
-        () => task
+        're.notifica.geo.region_entered_background_callback',
+        () => callback
       );
     }
   }
 
-  public static onRegionExitedBackgroundTask(
-    task: (region: NotificareRegion) => Promise<void>
+  public static setRegionExitedBackgroundCallback(
+    callback: (region: NotificareRegion) => Promise<void>
   ) {
     if (Platform.OS === 'android') {
       AppRegistry.registerHeadlessTask(
-        're.notifica.geo.background_task_region_exited',
-        () => task
+        're.notifica.geo.region_exited_background_callback',
+        () => callback
       );
     }
   }
 
-  public static onBeaconEnteredBackgroundTask(
-    task: (beacon: NotificareBeacon) => Promise<void>
+  public static setBeaconEnteredBackgroundCallback(
+    callback: (beacon: NotificareBeacon) => Promise<void>
   ) {
     if (Platform.OS === 'android') {
       AppRegistry.registerHeadlessTask(
-        're.notifica.geo.background_task_beacon_entered',
-        () => task
+        're.notifica.geo.beacon_entered_background_callback',
+        () => callback
       );
     }
   }
 
-  public static onBeaconExitedBackgroundTask(
-    task: (beacon: NotificareBeacon) => Promise<void>
+  public static setBeaconExitedBackgroundCallback(
+    callback: (beacon: NotificareBeacon) => Promise<void>
   ) {
     if (Platform.OS === 'android') {
       AppRegistry.registerHeadlessTask(
-        're.notifica.geo.background_task_beacon_exited',
-        () => task
+        're.notifica.geo.beacon_exited_background_callback',
+        () => callback
       );
     }
   }
 
-  public static onBeaconsRangedBackgroundTask(
-    task: (data: {
+  public static setBeaconsRangedBackgroundCallback(
+    callback: (data: {
       region: NotificareRegion;
       beacons: NotificareBeacon[];
     }) => Promise<void>
   ) {
     if (Platform.OS === 'android') {
       AppRegistry.registerHeadlessTask(
-        're.notifica.geo.background_task_beacons_ranged',
-        () => task
+        're.notifica.geo.beacons_ranged_background_callback',
+        () => callback
       );
     }
   }
