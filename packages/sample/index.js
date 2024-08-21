@@ -7,23 +7,40 @@ import { App } from './src/app';
 import { name as appName } from './app.json';
 import { NotificareGeo } from 'react-native-notificare-geo';
 import {
-  BackgroundTaskBeaconEntered,
-  BackgroundTaskBeaconExited,
-  BackgroundTaskBeaconsRanged,
-  BackgroundTaskLocationUpdated,
-  BackgroundTaskRegionEntered,
-  BackgroundTaskRegionExited,
-} from './src/background/background-task';
+  BackgroundCallbackBeaconEntered,
+  BackgroundCallbackBeaconExited,
+  BackgroundCallbackBeaconsRanged,
+  BackgroundCallbackLocationUpdated,
+  BackgroundCallbackRegionEntered,
+  BackgroundCallbackRegionExited,
+} from './src/background/background-callback';
 
-function setupBackgroundTasks() {
-  NotificareGeo.onLocationUpdatedBackgroundTask(BackgroundTaskLocationUpdated);
-  NotificareGeo.onRegionEnteredBackgroundTask(BackgroundTaskRegionEntered);
-  NotificareGeo.onRegionExitedBackgroundTask(BackgroundTaskRegionExited);
-  NotificareGeo.onBeaconEnteredBackgroundTask(BackgroundTaskBeaconEntered);
-  NotificareGeo.onBeaconExitedBackgroundTask(BackgroundTaskBeaconExited);
-  NotificareGeo.onBeaconsRangedBackgroundTask(BackgroundTaskBeaconsRanged);
+function setupBackgroundCallbacks() {
+  NotificareGeo.setLocationUpdatedBackgroundCallback(
+    BackgroundCallbackLocationUpdated
+  );
+
+  NotificareGeo.setRegionEnteredBackgroundCallback(
+    BackgroundCallbackRegionEntered
+  );
+
+  NotificareGeo.setRegionExitedBackgroundCallback(
+    BackgroundCallbackRegionExited
+  );
+
+  NotificareGeo.setBeaconEnteredBackgroundCallback(
+    BackgroundCallbackBeaconEntered
+  );
+
+  NotificareGeo.setBeaconExitedBackgroundCallback(
+    BackgroundCallbackBeaconExited
+  );
+
+  NotificareGeo.setBeaconsRangedBackgroundCallback(
+    BackgroundCallbackBeaconsRanged
+  );
 }
 
-setupBackgroundTasks();
+setupBackgroundCallbacks();
 
 AppRegistry.registerComponent(appName, () => App);

@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
-    "android": "react-native run-android --appIdSuffix dev",
-    "ios": "react-native run-ios",
+    "android": "react-native run-android --interactive",
+    "ios": "react-native run-ios --interactive",
     "pods": "cd ios && pod install",
     "typescript": "tsc --noEmit",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
