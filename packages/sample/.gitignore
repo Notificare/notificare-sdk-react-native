@@ -66,3 +66,4 @@ agconnect-services.json
 notificare-services.json
 NotificareServices.plist
 *.keystore
+.env
