@@ -57,10 +57,10 @@ RCT_EXPORT_METHOD(getTransport:(RCTPromiseResolveBlock)resolve
     [plugin getTransport:resolve reject:reject];
 }
 
-RCT_EXPORT_METHOD(getSubscriptionId:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(getSubscription:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [plugin getSubscriptionId:resolve reject:reject];
+    [plugin getSubscription:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(allowedUI:(RCTPromiseResolveBlock)resolve

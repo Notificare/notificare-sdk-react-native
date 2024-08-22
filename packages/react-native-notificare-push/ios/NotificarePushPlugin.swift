@@ -48,7 +48,7 @@ public class NotificarePushPlugin: NSObject {
             "re.notifica.push.notification_action_opened",
             "re.notifica.push.unknown_notification_action_opened",
             "re.notifica.push.notification_settings_changed",
-            "re.notifica.push.subscription_id_changed",
+            "re.notifica.push.subscription_changed",
             "re.notifica.push.should_open_notification_settings",
             "re.notifica.push.failed_to_register_for_remote_notifications",
         ]
@@ -187,8 +187,13 @@ public class NotificarePushPlugin: NSObject {
     }
 
     @objc
-    public func getSubscriptionId(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
-        resolve(Notificare.shared.push().subscriptionId)
+    public func getSubscription(_ resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+        do {
+            let json = try Notificare.shared.push().subscription?.toJson()
+            resolve(json)
+        } catch {
+            reject(DEFAULT_ERROR_CODE, error.localizedDescription, nil)
+        }
     }
 
     @objc
@@ -289,8 +294,12 @@ extension NotificarePushPlugin: NotificarePushDelegate {
         dispatchEvent("re.notifica.push.notification_settings_changed", payload: granted)
     }
 
-    public func notificare(_ notificarePush: any NotificarePush, didChangeSubscriptionId subscriptionId: String?) {
-        dispatchEvent("re.notifica.push.subscription_id_changed", payload: subscriptionId)
+    public func notificare(_ notificarePush: NotificarePush, didChangeSubscription subscription: NotificarePushSubscription?) {
+        do {
+            dispatchEvent("re.notifica.push.subscription_changed", payload: try subscription?.toJson())
+        } catch {
+            NotificareLogger.error("Failed to emit the re.notifica.push.subscription_changed event.", error: error)
+        }
     }
 
     public func notificare(_ notificarePush: NotificarePush, shouldOpenSettings notification: NotificareNotification?) {
