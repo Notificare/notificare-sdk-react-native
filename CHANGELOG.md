@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Upcoming release
+
+- Changed the `subscriptionId` properties to a more robust data model
+
 ## 4.0.0-beta.1
 
 - Migrate to Turbo Modules with support for both the old and new architectures
