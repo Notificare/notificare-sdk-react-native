@@ -11,6 +11,7 @@ import type {
 import type { NotificareSystemNotification } from './models/notificare-system-notification';
 import type { NotificareNotificationDeliveryMechanism } from './models/notificare-notification-delivery-mechanism';
 import type { NotificareTransport } from './models/notificare-transport';
+import type { NotificarePushSubscription } from './models/notificare-push-subscription';
 
 const LINKING_ERROR =
   `The package 'react-native-notificare-push' doesn't seem to be linked. Make sure: \n\n` +
@@ -71,8 +72,8 @@ export class NotificarePush {
     return await NativeModule.getTransport();
   }
 
-  public static async getSubscriptionId(): Promise<string | null> {
-    return await NativeModule.getSubscriptionId();
+  public static async getSubscription(): Promise<NotificarePushSubscription | null> {
+    return await NativeModule.getSubscription();
   }
 
   public static async allowedUI(): Promise<boolean> {
@@ -173,11 +174,11 @@ export class NotificarePush {
     );
   }
 
-  public static onSubscriptionIdChanged(
-    callback: (subscriptionId?: string | null) => void
+  public static onSubscriptionChanged(
+    callback: (subscription?: NotificarePushSubscription | null) => void
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
-      're.notifica.push.subscription_id_changed',
+      're.notifica.push.subscription_changed',
       callback
     );
   }

@@ -151,14 +151,14 @@ export const RemoteNotificationsCardView = () => {
       const hasRemoteNotificationsEnabled =
         await NotificarePush.hasRemoteNotificationsEnabled();
       const transport = await NotificarePush.getTransport();
-      const subscriptionId = await NotificarePush.getSubscriptionId();
+      const subscription = await NotificarePush.getSubscription();
 
       Alert.alert(
         'Notifications Status',
         `allowedUi: ${allowedUi}
 hasRemoteNotificationsEnabled: ${hasRemoteNotificationsEnabled}
 transport: ${transport}
-subscriptionId: ${subscriptionId}`,
+token: ${subscription?.token}`,
         [
           {
             text: 'Ok',

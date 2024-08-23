@@ -1,6 +1,7 @@
 import { TurboModuleRegistry } from 'react-native';
 import type { TurboModule } from 'react-native';
 import type { NotificareTransport } from './models/notificare-transport';
+import type { NotificarePushSubscription } from './models/notificare-push-subscription';
 
 export interface Spec extends TurboModule {
   addListener: (eventType: string) => void;
@@ -16,7 +17,7 @@ export interface Spec extends TurboModule {
 
   hasRemoteNotificationsEnabled(): Promise<boolean>;
   getTransport(): Promise<NotificareTransport | null>;
-  getSubscriptionId(): Promise<string | null>;
+  getSubscription(): Promise<NotificarePushSubscription | null>;
   allowedUI(): Promise<boolean>;
   enableRemoteNotifications(): Promise<void>;
   disableRemoteNotifications(): Promise<void>;

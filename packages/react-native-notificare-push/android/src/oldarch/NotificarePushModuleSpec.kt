@@ -21,7 +21,7 @@ public abstract class NotificarePushModuleSpec internal constructor(context: Rea
 
     public abstract fun hasRemoteNotificationsEnabled(promise: Promise)
     public abstract fun getTransport(promise: Promise)
-    public abstract fun getSubscriptionId(promise: Promise)
+    public abstract fun getSubscription(promise: Promise)
     public abstract fun allowedUI(promise: Promise)
     public abstract fun enableRemoteNotifications(promise: Promise)
     public abstract fun disableRemoteNotifications(promise: Promise)

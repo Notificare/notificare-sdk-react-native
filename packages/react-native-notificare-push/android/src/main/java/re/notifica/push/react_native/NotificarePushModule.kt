@@ -15,6 +15,7 @@ import re.notifica.Notificare
 import re.notifica.NotificareCallback
 import re.notifica.internal.NotificareLogger
 import re.notifica.push.ktx.push
+import re.notifica.push.models.NotificarePushSubscription
 
 public class NotificarePushModule internal constructor(context: ReactApplicationContext) :
     NotificarePushModuleSpec(context), ActivityEventListener {
@@ -27,8 +28,11 @@ public class NotificarePushModule internal constructor(context: ReactApplication
         EventBroker.dispatchEvent("re.notifica.push.notification_settings_changed", allowedUI)
     }
 
-    private val subscriptionIdObserver = Observer<String?> { subscriptionId ->
-        EventBroker.dispatchEvent("re.notifica.push.subscription_id_changed", subscriptionId)
+    private val subscriptionObserver = Observer<NotificarePushSubscription?> { subscription ->
+        EventBroker.dispatchEvent(
+            "re.notifica.push.subscription_changed",
+            subscription?.toJson()?.toReactMap()
+        )
     }
 
     override fun initialize() {
@@ -39,7 +43,7 @@ public class NotificarePushModule internal constructor(context: ReactApplication
 
         onMainThread {
             Notificare.push().observableAllowedUI.observeForever(allowedUIObserver)
-            Notificare.push().observableSubscriptionId.observeForever(subscriptionIdObserver)
+            Notificare.push().observableSubscription.observeForever(subscriptionObserver)
         }
 
         // Listen to incoming intents.
@@ -53,7 +57,7 @@ public class NotificarePushModule internal constructor(context: ReactApplication
 
         onMainThread {
             Notificare.push().observableAllowedUI.removeObserver(allowedUIObserver)
-            Notificare.push().observableSubscriptionId.removeObserver(subscriptionIdObserver)
+            Notificare.push().observableSubscription.removeObserver(subscriptionObserver)
         }
     }
 
@@ -113,8 +117,8 @@ public class NotificarePushModule internal constructor(context: ReactApplication
     }
 
     @ReactMethod
-    override fun getSubscriptionId(promise: Promise) {
-        promise.resolve(Notificare.push().subscriptionId)
+    override fun getSubscription(promise: Promise) {
+        promise.resolve(Notificare.push().subscription?.toJson()?.toReactMap())
     }
 
     @ReactMethod
