@@ -256,6 +256,8 @@ export const InboxView: FC = () => {
               </View>
             </TouchableWithoutFeedback>
           )}
+          // Temporary workaround for https://github.com/software-mansion/react-native-screens/issues/2282
+          removeClippedSubviews={false}
         />
       )}
 
