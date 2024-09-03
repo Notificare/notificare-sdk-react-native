@@ -98,7 +98,7 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
 
-  def notificare_version = '4.0.0-beta.1'
+  def notificare_version = '4.0.0-beta.2'
   api "re.notifica:notificare:$notificare_version"
   api "re.notifica:notificare-push-ui:$notificare_version"
   implementation "re.notifica:notificare-push-ui-gms:$notificare_version"
