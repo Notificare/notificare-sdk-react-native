@@ -101,7 +101,6 @@ dependencies {
   def notificare_version = '4.0.0-beta.2'
   api "re.notifica:notificare:$notificare_version"
   api "re.notifica:notificare-geo:$notificare_version"
-  implementation "re.notifica:notificare-geo-gms:$notificare_version"
   implementation "re.notifica:notificare-geo-beacons:$notificare_version"
 }
 
