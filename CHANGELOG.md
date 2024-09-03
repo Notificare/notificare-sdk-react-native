@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Upcoming release
+## 4.0.0-beta.2
 
 - Changed the `subscriptionId` properties to a more robust data model
 - Add methods to register callbacks in order to handle background location events on Android
