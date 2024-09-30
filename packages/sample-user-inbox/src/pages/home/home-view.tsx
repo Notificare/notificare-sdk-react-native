@@ -40,12 +40,13 @@ export const HomeView = () => {
 
       const credentials = await getCredentials();
       if (!credentials) {
-        throw new Error('Undefined credentials.');
+        throw new Error('Failed getting stored credentials.');
       }
 
       const requestResponseStr = await getUserInboxResponse(
         credentials.accessToken
       );
+
       const userInboxResponse =
         await NotificareUserInbox.parseResponseFromString(requestResponseStr);
 
@@ -75,7 +76,7 @@ export const HomeView = () => {
 
       const credentials = await getCredentials();
       if (!credentials) {
-        throw new Error('Undefined credentials.');
+        throw new Error('Failed getting stored credentials.');
       }
 
       setIsLoggedIn(true);
@@ -110,7 +111,7 @@ export const HomeView = () => {
       const credentials = await authorize();
 
       if (!credentials) {
-        throw new Error('Undefined credentials.');
+        throw new Error('Got undefined credentials from login.');
       }
 
       setIsLoggedIn(true);
@@ -142,7 +143,7 @@ export const HomeView = () => {
 
       const credentials = await getCredentials();
       if (!credentials) {
-        throw new Error('Undefined credentials.');
+        throw new Error('Failed getting stored credentials.');
       }
 
       await clearCredentials();

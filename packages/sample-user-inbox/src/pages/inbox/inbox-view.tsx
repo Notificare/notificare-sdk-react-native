@@ -51,6 +51,7 @@ export const InboxView = () => {
       const requestResponseStr = await getUserInboxResponse(
         credentials.accessToken
       );
+
       const userInboxResponse =
         await NotificareUserInbox.parseResponseFromString(requestResponseStr);
 

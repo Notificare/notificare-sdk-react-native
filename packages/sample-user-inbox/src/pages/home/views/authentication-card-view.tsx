@@ -19,7 +19,7 @@ export const AuthenticationCardView = (props: AuthenticationCardProps) => {
 
   const { addSnackbarInfoMessage } = useSnackbarContext();
 
-  async function showLaunchFlowInfo() {
+  async function showAuthenticationFlowInfo() {
     try {
       Alert.alert(
         'Authentication Status',
@@ -48,7 +48,7 @@ isDeviceRegistered: ${isDeviceRegistered}`,
       <View style={mainStyles.section_title_row}>
         <Text style={mainStyles.section_title}>Authentication Flow</Text>
 
-        <TouchableOpacity onPress={showLaunchFlowInfo}>
+        <TouchableOpacity onPress={showAuthenticationFlowInfo}>
           <Icon name="info" size={18} />
         </TouchableOpacity>
       </View>
