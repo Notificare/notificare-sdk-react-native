@@ -64,8 +64,8 @@ export const App: FC = () => {
         <SnackbarProvider>
           <EventMonitor />
           <NavigationContainer>
-            <Stack.Navigator initialRouteName="Sample">
-              <Stack.Screen name="Sample" component={HomeView} />
+            <Stack.Navigator initialRouteName="Sample User Inbox">
+              <Stack.Screen name="Sample User Inbox" component={HomeView} />
               <Stack.Screen name="Inbox" component={InboxView} />
             </Stack.Navigator>
           </NavigationContainer>
