@@ -1,9 +1,7 @@
 package re.notifica.iam.react_native
 
 import com.facebook.react.bridge.ReactContext
-import com.facebook.react.bridge.WritableMap
 import com.facebook.react.modules.core.DeviceEventManagerModule
-import re.notifica.internal.NotificareLogger
 
 internal object EventBroker {
 
@@ -13,7 +11,7 @@ internal object EventBroker {
     fun setup(reactContext: ReactContext) {
         eventEmitter = reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java).also { emitter ->
             if (eventQueue.isNotEmpty()) {
-                NotificareLogger.debug("Processing event queue with ${eventQueue.size} items.")
+                logger.debug("Processing event queue with ${eventQueue.size} items.")
                 eventQueue.forEach { emitter.emit(it.name, it.payload) }
                 eventQueue.clear()
             }

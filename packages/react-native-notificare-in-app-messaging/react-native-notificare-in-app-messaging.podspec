@@ -43,4 +43,5 @@ Pod::Spec.new do |s|
 
   s.dependency "Notificare/NotificareKit", notificare_version
   s.dependency "Notificare/NotificareInAppMessagingKit", notificare_version
+  s.dependency "Notificare/NotificareUtilitiesKit", notificare_version
 end
