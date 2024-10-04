@@ -14,7 +14,6 @@ import re.notifica.inbox.ktx.inbox
 import re.notifica.inbox.models.NotificareInboxItem
 import re.notifica.inbox.models.fromJson
 import re.notifica.inbox.models.toJson
-import re.notifica.internal.NotificareLogger
 import re.notifica.models.NotificareNotification
 import java.util.SortedSet
 
@@ -32,7 +31,7 @@ public class NotificareInboxModule internal constructor(context: ReactApplicatio
 
             EventBroker.dispatchEvent("re.notifica.inbox.inbox_updated", payload)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.inbox.inbox_updated event.", e)
+            logger.error("Failed to emit the re.notifica.inbox.inbox_updated event.", e)
         }
     }
 
@@ -44,6 +43,8 @@ public class NotificareInboxModule internal constructor(context: ReactApplicatio
 
     override fun initialize() {
         super.initialize()
+
+        logger.hasDebugLoggingEnabled = Notificare.options?.debugLoggingEnabled ?: false
 
         EventBroker.setup(reactApplicationContext)
 
