@@ -102,6 +102,7 @@ dependencies {
   api "re.notifica:notificare:$notificare_version"
   api "re.notifica:notificare-geo:$notificare_version"
   implementation "re.notifica:notificare-geo-beacons:$notificare_version"
+  implementation "re.notifica:notificare-utilities:$notificare_version"
 }
 
 if (isNewArchitectureEnabled()) {

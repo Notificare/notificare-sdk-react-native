@@ -9,7 +9,6 @@ import re.notifica.geo.models.NotificareLocation
 import re.notifica.geo.models.NotificareRegion
 import re.notifica.geo.models.toJson
 import re.notifica.geo.react_native.NotificareGeoModuleHeadlessService.Companion.processHeadlessTask
-import re.notifica.internal.NotificareLogger
 
 internal class NotificareGeoModuleIntentReceiver : NotificareGeoIntentReceiver() {
     override fun onLocationUpdated(context: Context, location: NotificareLocation) {
@@ -26,7 +25,7 @@ internal class NotificareGeoModuleIntentReceiver : NotificareGeoIntentReceiver()
                 location.toJson().toReactMap()
             )
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.geo.location_updated event.", e)
+            logger.error("Failed to emit the re.notifica.geo.location_updated event.", e)
         }
     }
 
@@ -44,7 +43,7 @@ internal class NotificareGeoModuleIntentReceiver : NotificareGeoIntentReceiver()
                 region.toJson().toReactMap()
             )
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.geo.region_entered event.", e)
+            logger.error("Failed to emit the re.notifica.geo.region_entered event.", e)
         }
     }
 
@@ -59,7 +58,7 @@ internal class NotificareGeoModuleIntentReceiver : NotificareGeoIntentReceiver()
         try {
             EventBroker.dispatchEvent("re.notifica.geo.region_exited", region.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.geo.region_exited event.", e)
+            logger.error("Failed to emit the re.notifica.geo.region_exited event.", e)
         }
     }
 
@@ -77,7 +76,7 @@ internal class NotificareGeoModuleIntentReceiver : NotificareGeoIntentReceiver()
                 beacon.toJson().toReactMap()
             )
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.geo.beacon_entered event.", e)
+            logger.error("Failed to emit the re.notifica.geo.beacon_entered event.", e)
         }
     }
 
@@ -92,7 +91,7 @@ internal class NotificareGeoModuleIntentReceiver : NotificareGeoIntentReceiver()
         try {
             EventBroker.dispatchEvent("re.notifica.geo.beacon_exited", beacon.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.geo.beacon_exited event.", e)
+            logger.error("Failed to emit the re.notifica.geo.beacon_exited event.", e)
         }
     }
 
@@ -118,7 +117,7 @@ internal class NotificareGeoModuleIntentReceiver : NotificareGeoIntentReceiver()
 
             EventBroker.dispatchEvent("re.notifica.geo.beacons_ranged", payload)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.geo.beacons_ranged event.", e)
+            logger.error("Failed to emit the re.notifica.geo.beacons_ranged event.", e)
         }
     }
 

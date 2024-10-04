@@ -18,6 +18,8 @@ public class NotificareGeoModule internal constructor(context: ReactApplicationC
     override fun initialize() {
         super.initialize()
 
+        logger.hasDebugLoggingEnabled = Notificare.options?.debugLoggingEnabled ?: false
+
         EventBroker.setup(reactApplicationContext)
     }
 
