@@ -1,6 +1,6 @@
 {
   "name": "react-native-notificare-scannables",
-  "version": "4.0.0-beta.2",
+  "version": "4.0.0",
   "description": "Notificare Scannables React Native module.",
   "author": "Notificare <info@notifica.re> (https://notificare.com)",
   "license": "MIT",
@@ -55,7 +55,7 @@
     "expo": "*",
     "react": "*",
     "react-native": "*",
-    "react-native-notificare": "4.0.0-beta.2"
+    "react-native-notificare": "4.0.0"
   },
   "peerDependenciesMeta": {
     "expo": {
@@ -70,7 +70,7 @@
     "react": "18.2.0",
     "react-native": "0.74.1",
     "react-native-builder-bob": "^0.28.0",
-    "react-native-notificare": "4.0.0-beta.2",
+    "react-native-notificare": "4.0.0",
     "typescript": "^5.4.5"
   },
   "react-native-builder-bob": {
