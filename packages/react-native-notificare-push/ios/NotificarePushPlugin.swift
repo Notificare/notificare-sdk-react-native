@@ -18,6 +18,8 @@ public class NotificarePushPlugin: NSObject {
     override public init() {
         super.init()
 
+        logger.hasDebugLoggingEnabled = Notificare.shared.options?.debugLoggingEnabled ?? false
+
         Notificare.shared.push().delegate = self
     }
 
@@ -26,7 +28,7 @@ public class NotificarePushPlugin: NSObject {
         hasListeners = true
 
         if !eventQueue.isEmpty {
-            NotificareLogger.debug("Processing event queue with \(eventQueue.count) items.")
+            logger.debug("Processing event queue with \(eventQueue.count) items.")
             eventQueue.forEach { delegate?.broadcastEvent(name: $0.name, body: $0.payload)}
             eventQueue.removeAll()
         }
@@ -236,7 +238,7 @@ extension NotificarePushPlugin: NotificarePushDelegate {
 
             dispatchEvent("re.notifica.push.notification_info_received", payload: payload)
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.push.notification_info_received event.", error: error)
+            logger.error("Failed to emit the re.notifica.push.notification_info_received event.", error: error)
         }
     }
 
@@ -244,7 +246,7 @@ extension NotificarePushPlugin: NotificarePushDelegate {
         do {
             dispatchEvent("re.notifica.push.system_notification_received", payload: try notification.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.push.system_notification_received event.", error: error)
+            logger.error("Failed to emit the re.notifica.push.system_notification_received event.", error: error)
         }
     }
 
@@ -256,7 +258,7 @@ extension NotificarePushPlugin: NotificarePushDelegate {
         do {
             dispatchEvent("re.notifica.push.notification_opened", payload: try notification.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.push.notification_opened event.", error: error)
+            logger.error("Failed to emit the re.notifica.push.notification_opened event.", error: error)
         }
     }
 
@@ -273,7 +275,7 @@ extension NotificarePushPlugin: NotificarePushDelegate {
 
             dispatchEvent("re.notifica.push.notification_action_opened", payload: payload)
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.push.notification_action_opened event.", error: error)
+            logger.error("Failed to emit the re.notifica.push.notification_action_opened event.", error: error)
         }
     }
 
@@ -298,7 +300,7 @@ extension NotificarePushPlugin: NotificarePushDelegate {
         do {
             dispatchEvent("re.notifica.push.subscription_changed", payload: try subscription?.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.push.subscription_changed event.", error: error)
+            logger.error("Failed to emit the re.notifica.push.subscription_changed event.", error: error)
         }
     }
 
@@ -306,7 +308,7 @@ extension NotificarePushPlugin: NotificarePushDelegate {
         do {
             dispatchEvent("re.notifica.push.should_open_notification_settings", payload: try notification?.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.push.should_open_notification_settings event.", error: error)
+            logger.error("Failed to emit the re.notifica.push.should_open_notification_settings event.", error: error)
         }
     }
 
