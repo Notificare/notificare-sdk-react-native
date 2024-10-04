@@ -7,7 +7,6 @@ import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReadableMap
 import re.notifica.Notificare
-import re.notifica.internal.NotificareLogger
 import re.notifica.models.NotificareNotification
 import re.notifica.push.ui.NotificarePushUI
 import re.notifica.push.ui.ktx.pushUI
@@ -17,6 +16,8 @@ public class NotificarePushUIModule internal constructor(context: ReactApplicati
 
     override fun initialize() {
         super.initialize()
+
+        logger.hasDebugLoggingEnabled = Notificare.options?.debugLoggingEnabled ?: false
 
         EventBroker.setup(reactApplicationContext)
         Notificare.pushUI().addLifecycleListener(this)
@@ -97,7 +98,7 @@ public class NotificarePushUIModule internal constructor(context: ReactApplicati
                 notification.toJson().toReactMap()
             )
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_will_present event.", e)
+            logger.error("Failed to emit the re.notifica.push.ui.notification_will_present event.", e)
         }
     }
 
@@ -105,7 +106,7 @@ public class NotificarePushUIModule internal constructor(context: ReactApplicati
         try {
             EventBroker.dispatchEvent("re.notifica.push.ui.notification_presented", notification.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_presented event.", e)
+            logger.error("Failed to emit the re.notifica.push.ui.notification_presented event.", e)
         }
     }
 
@@ -116,7 +117,7 @@ public class NotificarePushUIModule internal constructor(context: ReactApplicati
                 notification.toJson().toReactMap()
             )
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_finished_presenting event.", e)
+            logger.error("Failed to emit the re.notifica.push.ui.notification_finished_presenting event.", e)
         }
     }
 
@@ -127,7 +128,7 @@ public class NotificarePushUIModule internal constructor(context: ReactApplicati
                 notification.toJson().toReactMap()
             )
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_failed_to_present event.", e)
+            logger.error("Failed to emit the re.notifica.push.ui.notification_failed_to_present event.", e)
         }
     }
 
@@ -139,7 +140,7 @@ public class NotificarePushUIModule internal constructor(context: ReactApplicati
 
             EventBroker.dispatchEvent("re.notifica.push.ui.notification_url_clicked", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.ui.notification_url_clicked event.", e)
+            logger.error("Failed to emit the re.notifica.push.ui.notification_url_clicked event.", e)
         }
     }
 
@@ -151,7 +152,7 @@ public class NotificarePushUIModule internal constructor(context: ReactApplicati
 
             EventBroker.dispatchEvent("re.notifica.push.ui.action_will_execute", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.ui.action_will_execute event.", e)
+            logger.error("Failed to emit the re.notifica.push.ui.action_will_execute event.", e)
         }
     }
 
@@ -163,7 +164,7 @@ public class NotificarePushUIModule internal constructor(context: ReactApplicati
 
             EventBroker.dispatchEvent("re.notifica.push.ui.action_executed", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.ui.action_executed event.", e)
+            logger.error("Failed to emit the re.notifica.push.ui.action_executed event.", e)
         }
     }
 
@@ -180,7 +181,7 @@ public class NotificarePushUIModule internal constructor(context: ReactApplicati
 
             EventBroker.dispatchEvent("re.notifica.push.ui.action_failed_to_execute", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.ui.action_failed_to_execute event.", e)
+            logger.error("Failed to emit the re.notifica.push.ui.action_failed_to_execute event.", e)
         }
     }
 
@@ -197,7 +198,7 @@ public class NotificarePushUIModule internal constructor(context: ReactApplicati
 
             EventBroker.dispatchEvent("re.notifica.push.ui.custom_action_received", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.ui.custom_action_received event.", e)
+            logger.error("Failed to emit the re.notifica.push.ui.custom_action_received event.", e)
         }
     }
 
