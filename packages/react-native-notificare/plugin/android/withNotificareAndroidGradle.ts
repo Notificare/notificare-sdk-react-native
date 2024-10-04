@@ -76,7 +76,7 @@ const withProjectGradleDependencies: ConfigPlugin<NotificarePluginProps> = (
       newConfig.modResults.contents,
       /dependencies\s?{/,
       `dependencies {
-        classpath 're.notifica.gradle:notificare-services:1.0.1'`
+        classpath 're.notifica.gradle:notificare-services:1.1.0'`
     );
 
     return newConfig;

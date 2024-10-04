@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## Upcoming release
+
+- Migrate to Turbo Modules with support for both the old and new architectures
+- Add methods to register callbacks in order to handle background location events on Android
+- Device identifiers become long-lived
+- Add support for customisable hosts
+- Add `NotificarePush.onSubscriptionChanged` event for push token updates
+- `launch()`, `unlaunch()`, `enableRemoteNotifications()` and `disableRemoteNotifications()` functions now complete after all the work is done
+
+#### Breaking changes
+- Drops support for the monetize module
+- Drops support for Huawei Mobile Services
+- `NotificareDevice.id` attribute no longer contains the push token. Use `NotificarePush.getSubscription()` instead
+- `NotificareDevice.transport` attribute no longer contains the transport. Use `NotificarePush.getTransport()` instead
+- The `NotificareDevice` data model was reduced to only publicly relevant attributes
+- `onDeviceRegistered` only triggers once, when the device is created
+- Removed deprecated `NotificarePush.onNotificationReceived(notification)` event. Use `NotificarePush.onNotificationInfoReceived(notification, deliveryMechanism)` instead
+
+#### Native changes
+
+##### Android
+
+- Fix padding discrepancies in alert dialog with actions
+
 ## 4.0.0-beta.2
 
 - Changed the `subscriptionId` properties to a more robust data model

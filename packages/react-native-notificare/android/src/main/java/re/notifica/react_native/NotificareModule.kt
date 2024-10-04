@@ -13,7 +13,6 @@ import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.ReadableMap
 import re.notifica.Notificare
 import re.notifica.NotificareCallback
-import re.notifica.internal.NotificareLogger
 import re.notifica.ktx.device
 import re.notifica.ktx.events
 import re.notifica.models.NotificareApplication
@@ -35,6 +34,8 @@ public class NotificareModule internal constructor(context: ReactApplicationCont
 
     override fun initialize() {
         super.initialize()
+
+        logger.hasDebugLoggingEnabled = Notificare.options?.debugLoggingEnabled ?: false
 
         EventBroker.setup(reactApplicationContext)
         Notificare.intentReceiver = NotificareModuleIntentReceiver::class.java
@@ -440,7 +441,7 @@ public class NotificareModule internal constructor(context: ReactApplicationCont
 
     private fun waitForActivityAndProcessInitialIntent() {
         if (lifecycleEventListener != null) {
-            NotificareLogger.warning("Cannot await an Activity for more than one call.")
+            logger.warning("Cannot await an Activity for more than one call.")
             return
         }
 
@@ -449,7 +450,7 @@ public class NotificareModule internal constructor(context: ReactApplicationCont
                 val activity = currentActivity
 
                 if (activity == null) {
-                    NotificareLogger.warning("Cannot process the initial intent when the host resumed without an activity.")
+                    logger.warning("Cannot process the initial intent when the host resumed without an activity.")
                 }
 
                 activity?.intent?.also { processIntent(it) }
