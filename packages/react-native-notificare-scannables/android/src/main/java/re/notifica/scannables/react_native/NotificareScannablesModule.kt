@@ -5,7 +5,6 @@ import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
 import re.notifica.Notificare
 import re.notifica.NotificareCallback
-import re.notifica.internal.NotificareLogger
 import re.notifica.scannables.NotificareScannables
 import re.notifica.scannables.ktx.scannables
 import re.notifica.scannables.models.NotificareScannable
@@ -17,8 +16,9 @@ public class NotificareScannablesModule internal constructor(context: ReactAppli
     override fun initialize() {
         super.initialize()
 
-        EventBroker.setup(reactApplicationContext)
+        logger.hasDebugLoggingEnabled = Notificare.options?.debugLoggingEnabled ?: false
 
+        EventBroker.setup(reactApplicationContext)
         Notificare.scannables().addListener(this)
     }
 
@@ -107,7 +107,7 @@ public class NotificareScannablesModule internal constructor(context: ReactAppli
         try {
             EventBroker.dispatchEvent("re.notifica.scannables.scannable_detected", scannable.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.scannables.scannable_detected event.", e)
+            logger.error("Failed to emit the re.notifica.scannables.scannable_detected event.", e)
         }
     }
 
@@ -115,7 +115,7 @@ public class NotificareScannablesModule internal constructor(context: ReactAppli
         try {
             EventBroker.dispatchEvent("re.notifica.scannables.scannable_session_failed", error.localizedMessage)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.scannables.scannable_session_failed event.", e)
+            logger.error("Failed to emit the re.notifica.scannables.scannable_session_failed event.", e)
         }
     }
 
