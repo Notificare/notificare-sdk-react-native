@@ -3,24 +3,39 @@ package re.notifica.react_native
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import com.facebook.react.bridge.*
+import com.facebook.react.bridge.ActivityEventListener
+import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.LifecycleEventListener
+import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.ReadableArray
+import com.facebook.react.bridge.ReadableMap
 import re.notifica.Notificare
 import re.notifica.NotificareCallback
 import re.notifica.ktx.device
 import re.notifica.ktx.events
-import re.notifica.models.*
-import com.facebook.react.bridge.ReactMethod
-import re.notifica.internal.NotificareLogger
+import re.notifica.models.NotificareApplication
+import re.notifica.models.NotificareDoNotDisturb
+import re.notifica.models.NotificareDynamicLink
+import re.notifica.models.NotificareEvent
+import re.notifica.models.NotificareEventData
+import re.notifica.models.NotificareNotification
+import re.notifica.models.NotificareUserData
 
-public class NotificareModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext),
-    ActivityEventListener {
+public class NotificareModule internal constructor(context: ReactApplicationContext) :
+    NotificareModuleSpec(context), ActivityEventListener {
 
     private var lifecycleEventListener: LifecycleEventListener? = null
 
-    override fun getName(): String = "NotificareModule"
+    override fun getName(): String {
+        return NAME
+    }
 
     override fun initialize() {
         super.initialize()
+
+        logger.hasDebugLoggingEnabled = Notificare.options?.debugLoggingEnabled ?: false
 
         EventBroker.setup(reactApplicationContext)
         Notificare.intentReceiver = NotificareModuleIntentReceiver::class.java
@@ -42,46 +57,60 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     // endregion
 
     @ReactMethod
-    public fun addListener(@Suppress("UNUSED_PARAMETER") eventName: String) {
+    override fun addListener(eventName: String) {
         // Keep: Required for RN built in Event Emitter Calls.
     }
 
     @ReactMethod
-    public fun removeListeners(@Suppress("UNUSED_PARAMETER") count: Int) {
+    override fun removeListeners(count: Double) {
         // Keep: Required for RN built in Event Emitter Calls.
     }
 
     // region Notificare
 
     @ReactMethod
-    public fun isConfigured(promise: Promise) {
+    override fun isConfigured(promise: Promise) {
         promise.resolve(Notificare.isConfigured)
     }
 
     @ReactMethod
-    public fun isReady(promise: Promise) {
+    override fun isReady(promise: Promise) {
         promise.resolve(Notificare.isReady)
     }
 
     @ReactMethod
-    public fun launch(promise: Promise) {
-        Notificare.launch()
-        promise.resolve(null)
+    override fun launch(promise: Promise) {
+        Notificare.launch(object : NotificareCallback<Unit> {
+            override fun onSuccess(result: Unit) {
+                promise.resolve(null)
+            }
+
+            override fun onFailure(e: Exception) {
+                promise.reject(DEFAULT_ERROR_CODE, e)
+            }
+        })
     }
 
     @ReactMethod
-    public fun unlaunch(promise: Promise) {
-        Notificare.unlaunch()
-        promise.resolve(null)
+    override fun unlaunch(promise: Promise) {
+        Notificare.unlaunch(object : NotificareCallback<Unit> {
+            override fun onSuccess(result: Unit) {
+                promise.resolve(null)
+            }
+
+            override fun onFailure(e: Exception) {
+                promise.reject(DEFAULT_ERROR_CODE, e)
+            }
+        })
     }
 
     @ReactMethod
-    public fun getApplication(promise: Promise) {
+    override fun getApplication(promise: Promise) {
         promise.resolve(Notificare.application?.toJson()?.toReactMap())
     }
 
     @ReactMethod
-    public fun fetchApplication(promise: Promise) {
+    override fun fetchApplication(promise: Promise) {
         Notificare.fetchApplication(object : NotificareCallback<NotificareApplication> {
             override fun onSuccess(result: NotificareApplication) {
                 promise.resolve(result.toJson().toReactMap())
@@ -94,7 +123,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun fetchNotification(id: String, promise: Promise) {
+    override fun fetchNotification(id: String, promise: Promise) {
         Notificare.fetchNotification(id, object : NotificareCallback<NotificareNotification> {
             override fun onSuccess(result: NotificareNotification) {
                 promise.resolve(result.toJson().toReactMap())
@@ -107,7 +136,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun fetchDynamicLink(url: String, promise: Promise) {
+    override fun fetchDynamicLink(url: String, promise: Promise) {
         val uri = Uri.parse(url)
 
         Notificare.fetchDynamicLink(uri, object : NotificareCallback<NotificareDynamicLink> {
@@ -122,7 +151,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun canEvaluateDeferredLink(promise: Promise) {
+    override fun canEvaluateDeferredLink(promise: Promise) {
         Notificare.canEvaluateDeferredLink(object : NotificareCallback<Boolean> {
             override fun onSuccess(result: Boolean) {
                 promise.resolve(result)
@@ -135,7 +164,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun evaluateDeferredLink(promise: Promise) {
+    override fun evaluateDeferredLink(promise: Promise) {
         Notificare.evaluateDeferredLink(object : NotificareCallback<Boolean> {
             override fun onSuccess(result: Boolean) {
                 promise.resolve(result)
@@ -152,17 +181,17 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     // region Notificare device module
 
     @ReactMethod
-    public fun getCurrentDevice(promise: Promise) {
+    override fun getCurrentDevice(promise: Promise) {
         promise.resolve(Notificare.device().currentDevice?.toJson()?.toReactMap())
     }
 
     @ReactMethod
-    public fun getPreferredLanguage(promise: Promise) {
+    override fun getPreferredLanguage(promise: Promise) {
         promise.resolve(Notificare.device().preferredLanguage)
     }
 
     @ReactMethod
-    public fun updatePreferredLanguage(language: String?, promise: Promise) {
+    override fun updatePreferredLanguage(language: String?, promise: Promise) {
         Notificare.device().updatePreferredLanguage(language, object : NotificareCallback<Unit> {
             override fun onSuccess(result: Unit) {
                 promise.resolve(null)
@@ -175,7 +204,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun register(userId: String?, userName: String?, promise: Promise) {
+    override fun registerUser(userId: String?, userName: String?, promise: Promise) {
         Notificare.device().register(userId, userName, object : NotificareCallback<Unit> {
             override fun onSuccess(result: Unit) {
                 promise.resolve(null)
@@ -188,7 +217,20 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun fetchTags(promise: Promise) {
+    override fun updateUser(userId: String?, userName: String?, promise: Promise) {
+        Notificare.device().updateUser(userId, userName, object : NotificareCallback<Unit> {
+            override fun onSuccess(result: Unit) {
+                promise.resolve(null)
+            }
+
+            override fun onFailure(e: Exception) {
+                promise.reject(DEFAULT_ERROR_CODE, e)
+            }
+        })
+    }
+
+    @ReactMethod
+    override fun fetchTags(promise: Promise) {
         Notificare.device().fetchTags(object : NotificareCallback<List<String>> {
             override fun onSuccess(result: List<String>) {
                 promise.resolve(Arguments.fromArray(result.toTypedArray()))
@@ -201,7 +243,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun addTag(tag: String, promise: Promise) {
+    override fun addTag(tag: String, promise: Promise) {
         Notificare.device().addTag(tag, object : NotificareCallback<Unit> {
             override fun onSuccess(result: Unit) {
                 promise.resolve(null)
@@ -214,7 +256,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun addTags(payload: ReadableArray, promise: Promise) {
+    override fun addTags(payload: ReadableArray, promise: Promise) {
         val tags = payload.toArrayList().map { it.toString() }
 
         Notificare.device().addTags(tags, object : NotificareCallback<Unit> {
@@ -229,7 +271,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun removeTag(tag: String, promise: Promise) {
+    override fun removeTag(tag: String, promise: Promise) {
         Notificare.device().removeTag(tag, object : NotificareCallback<Unit> {
             override fun onSuccess(result: Unit) {
                 promise.resolve(null)
@@ -242,7 +284,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun removeTags(payload: ReadableArray, promise: Promise) {
+    override fun removeTags(payload: ReadableArray, promise: Promise) {
         val tags = payload.toArrayList().map { it.toString() }
 
         Notificare.device().removeTags(tags, object : NotificareCallback<Unit> {
@@ -257,7 +299,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun clearTags(promise: Promise) {
+    override fun clearTags(promise: Promise) {
         Notificare.device().clearTags(object : NotificareCallback<Unit> {
             override fun onSuccess(result: Unit) {
                 promise.resolve(null)
@@ -270,7 +312,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun fetchDoNotDisturb(promise: Promise) {
+    override fun fetchDoNotDisturb(promise: Promise) {
         Notificare.device().fetchDoNotDisturb(object : NotificareCallback<NotificareDoNotDisturb?> {
             override fun onSuccess(result: NotificareDoNotDisturb?) {
                 promise.resolve(result?.toJson()?.toReactMap())
@@ -283,7 +325,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun updateDoNotDisturb(payload: ReadableMap, promise: Promise) {
+    override fun updateDoNotDisturb(payload: ReadableMap, promise: Promise) {
         val dnd = payload.toJson().let { NotificareDoNotDisturb.fromJson(it) }
 
         Notificare.device().updateDoNotDisturb(dnd, object : NotificareCallback<Unit> {
@@ -298,7 +340,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun clearDoNotDisturb(promise: Promise) {
+    override fun clearDoNotDisturb(promise: Promise) {
         Notificare.device().clearDoNotDisturb(object : NotificareCallback<Unit> {
             override fun onSuccess(result: Unit) {
                 promise.resolve(null)
@@ -311,7 +353,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun fetchUserData(promise: Promise) {
+    override fun fetchUserData(promise: Promise) {
         Notificare.device().fetchUserData(object : NotificareCallback<NotificareUserData> {
             override fun onSuccess(result: NotificareUserData) {
                 val userData = result.let { userData ->
@@ -332,7 +374,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     @ReactMethod
-    public fun updateUserData(payload: ReadableMap, promise: Promise) {
+    override fun updateUserData(payload: ReadableMap, promise: Promise) {
         val userData: NotificareUserData = payload.let { reactMap ->
             val parsed = mutableMapOf<String, String>()
 
@@ -365,7 +407,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     // region Notificare events module
 
     @ReactMethod
-    public fun logCustom(event: String, dataMap: ReadableMap?, promise: Promise) {
+    override fun logCustom(event: String, dataMap: ReadableMap?, promise: Promise) {
         val data: NotificareEventData?
 
         try {
@@ -399,7 +441,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
 
     private fun waitForActivityAndProcessInitialIntent() {
         if (lifecycleEventListener != null) {
-            NotificareLogger.warning("Cannot await an Activity for more than one call.")
+            logger.warning("Cannot await an Activity for more than one call.")
             return
         }
 
@@ -408,7 +450,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
                 val activity = currentActivity
 
                 if (activity == null) {
-                    NotificareLogger.warning("Cannot process the initial intent when the host resumed without an activity.")
+                    logger.warning("Cannot process the initial intent when the host resumed without an activity.")
                 }
 
                 activity?.intent?.also { processIntent(it) }
@@ -438,6 +480,7 @@ public class NotificareModule(reactContext: ReactApplicationContext) : ReactCont
     }
 
     public companion object {
+        internal const val NAME = "NotificareModule"
         internal const val DEFAULT_ERROR_CODE = "notificare_error"
     }
 }

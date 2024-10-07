@@ -6,16 +6,15 @@ buildscript {
         minSdkVersion = 24
         compileSdkVersion = 34
         targetSdkVersion = 34
-        ndkVersion = "25.1.8937393"
+        ndkVersion = "26.1.10909125"
 
-        kotlinVersion = "1.9.10"
+        kotlinVersion = "1.9.24"
     }
     repositories {
         google()
         mavenCentral()
 
         maven { url 'https://maven.notifica.re/releases' }
-        maven { url 'https://developer.huawei.com/repo' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.1.1'
@@ -24,9 +23,8 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
 
-        classpath 're.notifica.gradle:notificare-services:1.0.1'
+        classpath 're.notifica.gradle:notificare-services:1.1.0'
         classpath 'com.google.gms:google-services:4.3.14'
-        classpath 'com.huawei.agconnect:agcp:1.9.1.301'
     }
 }
 
@@ -38,7 +36,6 @@ allprojects {
 
         maven { url 'https://maven.notifica.re/releases' }
         maven { url 'https://maven.notifica.re/prereleases' }
-        maven { url 'https://developer.huawei.com/repo' }
 
         mavenLocal()
 

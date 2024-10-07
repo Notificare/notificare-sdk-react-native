@@ -10,17 +10,6 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.load
 import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
-import re.notifica.iam.react_native.NotificareInAppMessagingPackage
-import re.notifica.inbox.user.react_native.NotificareUserInboxPackage
-import re.notifica.monetize.react_native.NotificareMonetizePackage;
-import re.notifica.react_native.NotificarePackage
-import re.notifica.assets.react_native.NotificareAssetsPackage
-import re.notifica.geo.react_native.NotificareGeoPackage
-import re.notifica.inbox.react_native.NotificareInboxPackage
-import re.notifica.loyalty.react_native.NotificareLoyaltyPackage
-import re.notifica.push.react_native.NotificarePushPackage
-import re.notifica.push.ui.react_native.NotificarePushUIPackage
-import re.notifica.scannables.react_native.NotificareScannablesPackage
 
 class MainApplication : Application(), ReactApplication {
 
@@ -30,17 +19,6 @@ class MainApplication : Application(), ReactApplication {
             PackageList(this).packages.apply {
               // Packages that cannot be autolinked yet can be added manually here, for example:
               // add(MyReactNativePackage())
-                add(NotificarePackage())
-                add(NotificareAssetsPackage())
-                add(NotificareGeoPackage())
-                add(NotificareInAppMessagingPackage())
-                add(NotificareInboxPackage())
-                add(NotificareLoyaltyPackage())
-                add(NotificareMonetizePackage())
-                add(NotificarePushPackage())
-                add(NotificarePushUIPackage())
-                add(NotificareScannablesPackage())
-                add(NotificareUserInboxPackage())
             }
 
         override fun getJSMainModuleName(): String = "index"
@@ -52,7 +30,7 @@ class MainApplication : Application(), ReactApplication {
       }
 
   override val reactHost: ReactHost
-    get() = getDefaultReactHost(this.applicationContext, reactNativeHost)
+    get() = getDefaultReactHost(applicationContext, reactNativeHost)
 
   override fun onCreate() {
     super.onCreate()

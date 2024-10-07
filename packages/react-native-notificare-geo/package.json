@@ -1,6 +1,6 @@
 {
   "name": "react-native-notificare-geo",
-  "version": "3.11.0",
+  "version": "4.0.0",
   "description": "Notificare Geo React Native module.",
   "author": "Notificare <info@notifica.re> (https://notificare.com)",
   "license": "MIT",
@@ -55,7 +55,7 @@
     "expo": "*",
     "react": "*",
     "react-native": "*",
-    "react-native-notificare": "3.11.0"
+    "react-native-notificare": "4.0.0"
   },
   "peerDependenciesMeta": {
     "expo": {
@@ -63,14 +63,14 @@
     }
   },
   "devDependencies": {
-    "@types/react-native": "^0.66.4",
+    "@types/react": "^18.2.44",
     "expo": "^51.0.0",
     "expo-module-scripts": "^3.5.1",
     "expo-modules-core": "^1.12.9",
-    "react": "17.0.2",
-    "react-native": "0.67.4",
-    "react-native-builder-bob": "^0.18.0",
-    "react-native-notificare": "3.11.0",
+    "react": "18.2.0",
+    "react-native": "0.74.1",
+    "react-native-builder-bob": "^0.28.0",
+    "react-native-notificare": "4.0.0",
     "typescript": "^5.4.5"
   },
   "react-native-builder-bob": {
@@ -81,5 +81,10 @@
       "module",
       "typescript"
     ]
+  },
+  "codegenConfig": {
+    "name": "RNNotificareGeoModuleSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
   }
 }

@@ -1,19 +1,26 @@
 package re.notifica.iam.react_native
 
-import com.facebook.react.bridge.*
+import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReadableMap
 import re.notifica.Notificare
 import re.notifica.iam.NotificareInAppMessaging
 import re.notifica.iam.ktx.inAppMessaging
 import re.notifica.iam.models.NotificareInAppMessage
-import re.notifica.internal.NotificareLogger
 
-public class NotificareInAppMessagingModule(reactContext: ReactApplicationContext) :
-    ReactContextBaseJavaModule(reactContext), NotificareInAppMessaging.MessageLifecycleListener {
+public class NotificareInAppMessagingModule internal constructor(context: ReactApplicationContext) :
+    NotificareInAppMessagingModuleSpec(context), NotificareInAppMessaging.MessageLifecycleListener {
 
-    override fun getName(): String = "NotificareInAppMessagingModule"
+    override fun getName(): String {
+        return NAME
+    }
 
     override fun initialize() {
         super.initialize()
+
+        logger.hasDebugLoggingEnabled = Notificare.options?.debugLoggingEnabled ?: false
 
         EventBroker.setup(reactApplicationContext)
         Notificare.inAppMessaging().addLifecycleListener(this)
@@ -26,24 +33,24 @@ public class NotificareInAppMessagingModule(reactContext: ReactApplicationContex
     }
 
     @ReactMethod
-    public fun addListener(@Suppress("UNUSED_PARAMETER") eventName: String) {
+    override fun addListener(eventName: String) {
         // Keep: Required for RN built in Event Emitter Calls.
     }
 
     @ReactMethod
-    public fun removeListeners(@Suppress("UNUSED_PARAMETER") count: Int) {
+    override fun removeListeners(count: Double) {
         // Keep: Required for RN built in Event Emitter Calls.
     }
 
     // region Notificare In-App Messaging
 
     @ReactMethod
-    public fun hasMessagesSuppressed(promise: Promise) {
+    override fun hasMessagesSuppressed(promise: Promise) {
         promise.resolve(Notificare.inAppMessaging().hasMessagesSuppressed)
     }
 
     @ReactMethod
-    public fun setMessagesSuppressed(data: ReadableMap, promise: Promise) {
+    override fun setMessagesSuppressed(data: ReadableMap, promise: Promise) {
         val arguments = data.toJson()
         val suppressed = try {
             arguments.getBoolean("suppressed")
@@ -72,7 +79,7 @@ public class NotificareInAppMessagingModule(reactContext: ReactApplicationContex
         try {
             EventBroker.dispatchEvent("re.notifica.iam.message_presented", message.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.iam.message_presented event.", e)
+            logger.error("Failed to emit the re.notifica.iam.message_presented event.", e)
         }
     }
 
@@ -80,7 +87,7 @@ public class NotificareInAppMessagingModule(reactContext: ReactApplicationContex
         try {
             EventBroker.dispatchEvent("re.notifica.iam.message_finished_presenting", message.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("re.notifica.iam.Failed to emit the message_finished_presenting event.", e)
+            logger.error("re.notifica.iam.Failed to emit the message_finished_presenting event.", e)
         }
     }
 
@@ -88,7 +95,7 @@ public class NotificareInAppMessagingModule(reactContext: ReactApplicationContex
         try {
             EventBroker.dispatchEvent("re.notifica.iam.message_failed_to_present", message.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.iam.message_failed_to_present event.", e)
+            logger.error("Failed to emit the re.notifica.iam.message_failed_to_present event.", e)
         }
     }
 
@@ -100,7 +107,7 @@ public class NotificareInAppMessagingModule(reactContext: ReactApplicationContex
 
             EventBroker.dispatchEvent("re.notifica.iam.action_executed", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.iam.action_executed event.", e)
+            logger.error("Failed to emit the re.notifica.iam.action_executed event.", e)
         }
     }
 
@@ -120,13 +127,14 @@ public class NotificareInAppMessagingModule(reactContext: ReactApplicationContex
 
             EventBroker.dispatchEvent("re.notifica.iam.action_failed_to_execute", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.iam.action_failed_to_execute event.", e)
+            logger.error("Failed to emit the re.notifica.iam.action_failed_to_execute event.", e)
         }
     }
 
     // endregion
 
     public companion object {
+        internal const val NAME = "NotificareInAppMessagingModule"
         internal const val DEFAULT_ERROR_CODE = "notificare_error"
     }
 }

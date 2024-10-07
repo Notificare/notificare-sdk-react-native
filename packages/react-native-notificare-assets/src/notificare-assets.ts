@@ -5,10 +5,17 @@ const LINKING_ERROR =
   `The package 'react-native-notificare-assets' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+  '- You are not using Expo Go\n';
 
-const NativeModule = NativeModules.NotificareAssetsModule
-  ? NativeModules.NotificareAssetsModule
+// @ts-expect-error
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
+const NotificareAssetsModule = isTurboModuleEnabled
+  ? require('./NativeNotificareAssetsModule').default
+  : NativeModules.NotificareAssetsModule;
+
+const NativeModule = NotificareAssetsModule
+  ? NotificareAssetsModule
   : new Proxy(
       {},
       {
