@@ -2,7 +2,7 @@ const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
 
 /**
  * Metro configuration
- * https://facebook.github.io/metro/docs/configuration
+ * https://reactnative.dev/docs/metro
  *
  * @type {import('metro-config').MetroConfig}
  */
@@ -19,7 +19,6 @@ const packages = [
   'react-native-notificare-in-app-messaging',
   'react-native-notificare-inbox',
   'react-native-notificare-loyalty',
-  'react-native-notificare-monetize',
   'react-native-notificare-push',
   'react-native-notificare-push-ui',
   'react-native-notificare-scannables',

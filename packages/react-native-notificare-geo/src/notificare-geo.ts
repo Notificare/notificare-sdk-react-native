@@ -1,4 +1,5 @@
 import {
+  AppRegistry,
   type EmitterSubscription,
   NativeEventEmitter,
   NativeModules,
@@ -14,10 +15,17 @@ const LINKING_ERROR =
   `The package 'react-native-notificare-geo' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+  '- You are not using Expo Go\n';
 
-const NativeModule = NativeModules.NotificareGeoModule
-  ? NativeModules.NotificareGeoModule
+// @ts-expect-error
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
+const NotificareGeoModule = isTurboModuleEnabled
+  ? require('./NativeNotificareGeoModule').default
+  : NativeModules.NotificareGeoModule;
+
+const NativeModule = NotificareGeoModule
+  ? NotificareGeoModule
   : new Proxy(
       {},
       {
@@ -56,6 +64,79 @@ export class NotificareGeo {
 
   public static async disableLocationUpdates(): Promise<void> {
     await NativeModule.disableLocationUpdates();
+  }
+
+  //
+  // Background methods
+  //
+
+  public static setLocationUpdatedBackgroundCallback(
+    callback: (location: NotificareLocation) => Promise<void>
+  ) {
+    if (Platform.OS === 'android') {
+      AppRegistry.registerHeadlessTask(
+        're.notifica.geo.location_updated_background_callback',
+        () => callback
+      );
+    }
+  }
+
+  public static setRegionEnteredBackgroundCallback(
+    callback: (region: NotificareRegion) => Promise<void>
+  ) {
+    if (Platform.OS === 'android') {
+      AppRegistry.registerHeadlessTask(
+        're.notifica.geo.region_entered_background_callback',
+        () => callback
+      );
+    }
+  }
+
+  public static setRegionExitedBackgroundCallback(
+    callback: (region: NotificareRegion) => Promise<void>
+  ) {
+    if (Platform.OS === 'android') {
+      AppRegistry.registerHeadlessTask(
+        're.notifica.geo.region_exited_background_callback',
+        () => callback
+      );
+    }
+  }
+
+  public static setBeaconEnteredBackgroundCallback(
+    callback: (beacon: NotificareBeacon) => Promise<void>
+  ) {
+    if (Platform.OS === 'android') {
+      AppRegistry.registerHeadlessTask(
+        're.notifica.geo.beacon_entered_background_callback',
+        () => callback
+      );
+    }
+  }
+
+  public static setBeaconExitedBackgroundCallback(
+    callback: (beacon: NotificareBeacon) => Promise<void>
+  ) {
+    if (Platform.OS === 'android') {
+      AppRegistry.registerHeadlessTask(
+        're.notifica.geo.beacon_exited_background_callback',
+        () => callback
+      );
+    }
+  }
+
+  public static setBeaconsRangedBackgroundCallback(
+    callback: (data: {
+      region: NotificareRegion;
+      beacons: NotificareBeacon[];
+    }) => Promise<void>
+  ) {
+    if (Platform.OS === 'android') {
+      AppRegistry.registerHeadlessTask(
+        're.notifica.geo.beacons_ranged_background_callback',
+        () => callback
+      );
+    }
   }
 
   //

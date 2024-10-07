@@ -13,10 +13,17 @@ const LINKING_ERROR =
   `The package 'react-native-notificare-in-app-messaging' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+  '- You are not using Expo Go\n';
 
-const NativeModule = NativeModules.NotificareInAppMessagingModule
-  ? NativeModules.NotificareInAppMessagingModule
+// @ts-expect-error
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
+const NotificareInAppMessagingModule = isTurboModuleEnabled
+  ? require('./NativeNotificareInAppMessagingModule').default
+  : NativeModules.NotificareInAppMessagingModule;
+
+const NativeModule = NotificareInAppMessagingModule
+  ? NotificareInAppMessagingModule
   : new Proxy(
       {},
       {

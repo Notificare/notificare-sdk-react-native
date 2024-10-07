@@ -6,10 +6,17 @@ const LINKING_ERROR =
   `The package 'react-native-notificare' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+  '- You are not using Expo Go\n';
 
-const NativeModule = NativeModules.NotificareModule
-  ? NativeModules.NotificareModule
+// @ts-expect-error
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
+const NotificareModule = isTurboModuleEnabled
+  ? require('./NativeNotificareModule').default
+  : NativeModules.NotificareModule;
+
+const NativeModule = NotificareModule
+  ? NotificareModule
   : new Proxy(
       {},
       {
@@ -32,11 +39,21 @@ export class NotificareDeviceModule {
     await NativeModule.updatePreferredLanguage(language);
   }
 
+  /**
+   * @deprecated Use updateUser() instead.
+   */
   public async register(
     userId: string | null,
     userName: string | null
   ): Promise<void> {
-    await NativeModule.register(userId, userName);
+    await NativeModule.registerUser(userId, userName);
+  }
+
+  public async updateUser(
+    userId: string | null,
+    userName: string | null
+  ): Promise<void> {
+    await NativeModule.updateUser(userId, userName);
   }
 
   public async fetchTags(): Promise<string[]> {

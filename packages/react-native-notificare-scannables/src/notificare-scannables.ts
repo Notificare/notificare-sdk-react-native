@@ -10,10 +10,17 @@ const LINKING_ERROR =
   `The package 'react-native-notificare-scannables' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+  '- You are not using Expo Go\n';
 
-const NativeModule = NativeModules.NotificareScannablesModule
-  ? NativeModules.NotificareScannablesModule
+// @ts-expect-error
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
+const NotificareScannablesModule = isTurboModuleEnabled
+  ? require('./NativeNotificareScannablesModule').default
+  : NativeModules.NotificareScannablesModule;
+
+const NativeModule = NotificareScannablesModule
+  ? NotificareScannablesModule
   : new Proxy(
       {},
       {

@@ -4,21 +4,30 @@ import {
   NativeModules,
   Platform,
 } from 'react-native';
-import type { NotificareSystemNotification } from './models/notificare-system-notification';
 import type {
   NotificareNotification,
   NotificareNotificationAction,
 } from 'react-native-notificare';
+import type { NotificareSystemNotification } from './models/notificare-system-notification';
 import type { NotificareNotificationDeliveryMechanism } from './models/notificare-notification-delivery-mechanism';
+import type { NotificareTransport } from './models/notificare-transport';
+import type { NotificarePushSubscription } from './models/notificare-push-subscription';
 
 const LINKING_ERROR =
   `The package 'react-native-notificare-push' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+  '- You are not using Expo Go\n';
 
-const NativeModule = NativeModules.NotificarePushModule
-  ? NativeModules.NotificarePushModule
+// @ts-expect-error
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
+const NotificarePushModule = isTurboModuleEnabled
+  ? require('./NativeNotificarePushModule').default
+  : NativeModules.NotificarePushModule;
+
+const NativeModule = NotificarePushModule
+  ? NotificarePushModule
   : new Proxy(
       {},
       {
@@ -59,6 +68,14 @@ export class NotificarePush {
     return await NativeModule.hasRemoteNotificationsEnabled();
   }
 
+  public static async getTransport(): Promise<NotificareTransport | null> {
+    return await NativeModule.getTransport();
+  }
+
+  public static async getSubscription(): Promise<NotificarePushSubscription | null> {
+    return await NativeModule.getSubscription();
+  }
+
   public static async allowedUI(): Promise<boolean> {
     return await NativeModule.allowedUI();
   }
@@ -74,18 +91,6 @@ export class NotificarePush {
   //
   // Events
   //
-
-  /**
-   * @deprecated Listen to onNotificationInfoReceived(notification, deliveryMechanism) instead.
-   */
-  public static onNotificationReceived(
-    callback: (notification: NotificareNotification) => void
-  ): EmitterSubscription {
-    return this.eventEmitter.addListener(
-      're.notifica.push.notification_received',
-      callback
-    );
-  }
 
   public static onNotificationInfoReceived(
     callback: (data: {
@@ -165,6 +170,15 @@ export class NotificarePush {
   ): EmitterSubscription {
     return this.eventEmitter.addListener(
       're.notifica.push.notification_settings_changed',
+      callback
+    );
+  }
+
+  public static onSubscriptionChanged(
+    callback: (subscription?: NotificarePushSubscription | null) => void
+  ): EmitterSubscription {
+    return this.eventEmitter.addListener(
+      're.notifica.push.subscription_changed',
       callback
     );
   }

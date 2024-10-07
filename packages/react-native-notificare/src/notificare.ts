@@ -4,21 +4,28 @@ import {
   NativeModules,
   Platform,
 } from 'react-native';
-import type { NotificareApplication } from './models/notificare-application';
-import type { NotificareNotification } from './models/notificare-notification';
-import type { NotificareDevice } from './models/notificare-device';
-import type { NotificareDynamicLink } from './models/notificare-dynamic-link';
 import { NotificareDeviceModule } from './notificare-device-module';
 import { NotificareEventsModule } from './notificare-events-module';
+import type { NotificareApplication } from './models/notificare-application';
+import type { NotificareNotification } from './models/notificare-notification';
+import type { NotificareDynamicLink } from './models/notificare-dynamic-link';
+import type { NotificareDevice } from './models/notificare-device';
 
 const LINKING_ERROR =
   `The package 'react-native-notificare' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+  '- You are not using Expo Go\n';
 
-const NativeModule = NativeModules.NotificareModule
-  ? NativeModules.NotificareModule
+// @ts-expect-error
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
+const NotificareModule = isTurboModuleEnabled
+  ? require('./NativeNotificareModule').default
+  : NativeModules.NotificareModule;
+
+const NativeModule = NotificareModule
+  ? NotificareModule
   : new Proxy(
       {},
       {

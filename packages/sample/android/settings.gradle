@@ -1,37 +1,7 @@
+pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
+plugins { id("com.facebook.react.settings") }
+extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }
 rootProject.name = 'sample'
-apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+
 include ':app'
 includeBuild('../node_modules/@react-native/gradle-plugin')
-
-include ':react_native_notificare'
-project(':react_native_notificare').projectDir = new File(rootProject.projectDir, '../../react-native-notificare/android')
-
-include ':react_native_notificare_assets'
-project(':react_native_notificare_assets').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-assets/android')
-
-include ':react_native_notificare_geo'
-project(':react_native_notificare_geo').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-geo/android')
-
-include ':react_native_notificare_in_app_messaging'
-project(':react_native_notificare_in_app_messaging').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-in-app-messaging/android')
-
-include ':react_native_notificare_inbox'
-project(':react_native_notificare_inbox').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-inbox/android')
-
-include ':react_native_notificare_loyalty'
-project(':react_native_notificare_loyalty').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-loyalty/android')
-
-include ':react_native_notificare_monetize'
-project(':react_native_notificare_monetize').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-monetize/android')
-
-include ':react_native_notificare_push'
-project(':react_native_notificare_push').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-push/android')
-
-include ':react_native_notificare_push_ui'
-project(':react_native_notificare_push_ui').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-push-ui/android')
-
-include ':react_native_notificare_scannables'
-project(':react_native_notificare_scannables').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-scannables/android')
-
-include ':react_native_notificare_user_inbox'
-project(':react_native_notificare_user_inbox').projectDir = new File(rootProject.projectDir, '../../react-native-notificare-user-inbox/android')
