@@ -2,7 +2,6 @@ package re.notifica.push.react_native
 
 import android.content.Context
 import com.facebook.react.bridge.Arguments
-import re.notifica.internal.NotificareLogger
 import re.notifica.models.NotificareNotification
 import re.notifica.push.NotificarePushIntentReceiver
 import re.notifica.push.models.NotificareNotificationDeliveryMechanism
@@ -22,7 +21,7 @@ internal class NotificarePushModuleIntentReceiver : NotificarePushIntentReceiver
 
             EventBroker.dispatchEvent("re.notifica.push.notification_info_received", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.notification_info_received event.", e)
+            logger.error("Failed to emit the re.notifica.push.notification_info_received event.", e)
         }
     }
 
@@ -33,7 +32,7 @@ internal class NotificarePushModuleIntentReceiver : NotificarePushIntentReceiver
                 notification.toJson().toReactMap()
             )
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.system_notification_received event.", e)
+            logger.error("Failed to emit the re.notifica.push.system_notification_received event.", e)
         }
     }
 
@@ -44,7 +43,7 @@ internal class NotificarePushModuleIntentReceiver : NotificarePushIntentReceiver
                 notification.toJson().toReactMap()
             )
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.unknown_notification_received event.", e)
+            logger.error("Failed to emit the re.notifica.push.unknown_notification_received event.", e)
         }
     }
 
@@ -52,7 +51,7 @@ internal class NotificarePushModuleIntentReceiver : NotificarePushIntentReceiver
         try {
             EventBroker.dispatchEvent("re.notifica.push.notification_opened", notification.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.notification_opened event.", e)
+            logger.error("Failed to emit the re.notifica.push.notification_opened event.", e)
         }
     }
 
@@ -68,7 +67,7 @@ internal class NotificarePushModuleIntentReceiver : NotificarePushIntentReceiver
 
             EventBroker.dispatchEvent("re.notifica.push.notification_action_opened", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.push.notification_action_opened event.", e)
+            logger.error("Failed to emit the re.notifica.push.notification_action_opened event.", e)
         }
     }
 }

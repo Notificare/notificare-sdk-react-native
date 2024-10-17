@@ -9,7 +9,6 @@ import re.notifica.Notificare
 import re.notifica.iam.NotificareInAppMessaging
 import re.notifica.iam.ktx.inAppMessaging
 import re.notifica.iam.models.NotificareInAppMessage
-import re.notifica.internal.NotificareLogger
 
 public class NotificareInAppMessagingModule internal constructor(context: ReactApplicationContext) :
     NotificareInAppMessagingModuleSpec(context), NotificareInAppMessaging.MessageLifecycleListener {
@@ -20,6 +19,8 @@ public class NotificareInAppMessagingModule internal constructor(context: ReactA
 
     override fun initialize() {
         super.initialize()
+
+        logger.hasDebugLoggingEnabled = Notificare.options?.debugLoggingEnabled ?: false
 
         EventBroker.setup(reactApplicationContext)
         Notificare.inAppMessaging().addLifecycleListener(this)
@@ -78,7 +79,7 @@ public class NotificareInAppMessagingModule internal constructor(context: ReactA
         try {
             EventBroker.dispatchEvent("re.notifica.iam.message_presented", message.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.iam.message_presented event.", e)
+            logger.error("Failed to emit the re.notifica.iam.message_presented event.", e)
         }
     }
 
@@ -86,7 +87,7 @@ public class NotificareInAppMessagingModule internal constructor(context: ReactA
         try {
             EventBroker.dispatchEvent("re.notifica.iam.message_finished_presenting", message.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("re.notifica.iam.Failed to emit the message_finished_presenting event.", e)
+            logger.error("re.notifica.iam.Failed to emit the message_finished_presenting event.", e)
         }
     }
 
@@ -94,7 +95,7 @@ public class NotificareInAppMessagingModule internal constructor(context: ReactA
         try {
             EventBroker.dispatchEvent("re.notifica.iam.message_failed_to_present", message.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.iam.message_failed_to_present event.", e)
+            logger.error("Failed to emit the re.notifica.iam.message_failed_to_present event.", e)
         }
     }
 
@@ -106,7 +107,7 @@ public class NotificareInAppMessagingModule internal constructor(context: ReactA
 
             EventBroker.dispatchEvent("re.notifica.iam.action_executed", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.iam.action_executed event.", e)
+            logger.error("Failed to emit the re.notifica.iam.action_executed event.", e)
         }
     }
 
@@ -126,7 +127,7 @@ public class NotificareInAppMessagingModule internal constructor(context: ReactA
 
             EventBroker.dispatchEvent("re.notifica.iam.action_failed_to_execute", arguments)
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.iam.action_failed_to_execute event.", e)
+            logger.error("Failed to emit the re.notifica.iam.action_failed_to_execute event.", e)
         }
     }
 

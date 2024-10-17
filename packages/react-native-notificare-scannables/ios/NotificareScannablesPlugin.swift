@@ -25,6 +25,8 @@ public class NotificareScannablesPlugin: NSObject {
     override public init() {
         super.init()
 
+        logger.hasDebugLoggingEnabled = Notificare.shared.options?.debugLoggingEnabled ?? false
+
         Notificare.shared.scannables().delegate = self
     }
 
@@ -33,7 +35,7 @@ public class NotificareScannablesPlugin: NSObject {
         hasListeners = true
 
         if !eventQueue.isEmpty {
-            NotificareLogger.debug("Processing event queue with \(eventQueue.count) items.")
+            logger.debug("Processing event queue with \(eventQueue.count) items.")
             eventQueue.forEach { delegate?.broadcastEvent(name: $0.name, body: $0.payload)}
             eventQueue.removeAll()
         }
@@ -124,7 +126,7 @@ extension NotificareScannablesPlugin: NotificareScannablesDelegate {
         do {
             dispatchEvent("re.notifica.scannables.scannable_detected", payload: try scannable.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.scannables.scannable_detected event.", error: error)
+            logger.error("Failed to emit the re.notifica.scannables.scannable_detected event.", error: error)
         }
     }
 

@@ -18,6 +18,8 @@ public class NotificareInboxPlugin: NSObject {
     override public init() {
         super.init()
 
+        logger.hasDebugLoggingEnabled = Notificare.shared.options?.debugLoggingEnabled ?? false
+
         Notificare.shared.inbox().delegate = self
     }
 
@@ -26,7 +28,7 @@ public class NotificareInboxPlugin: NSObject {
         hasListeners = true
 
         if !eventQueue.isEmpty {
-            NotificareLogger.debug("Processing event queue with \(eventQueue.count) items.")
+            logger.debug("Processing event queue with \(eventQueue.count) items.")
             eventQueue.forEach { delegate?.broadcastEvent(name: $0.name, body: $0.payload)}
             eventQueue.removeAll()
         }
@@ -174,7 +176,7 @@ extension NotificareInboxPlugin: NotificareInboxDelegate {
         do {
             dispatchEvent("re.notifica.inbox.inbox_updated", payload: try items.map { try $0.toJson() })
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.inbox.inbox_updated event.", error: error)
+            logger.error("Failed to emit the re.notifica.inbox.inbox_updated event.", error: error)
         }
     }
 

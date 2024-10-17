@@ -18,6 +18,8 @@ public class NotificareGeoPlugin: NSObject {
     override public init() {
         super.init()
 
+        logger.hasDebugLoggingEnabled = Notificare.shared.options?.debugLoggingEnabled ?? false
+
         Notificare.shared.geo().delegate = self
     }
 
@@ -26,7 +28,7 @@ public class NotificareGeoPlugin: NSObject {
         hasListeners = true
 
         if !eventQueue.isEmpty {
-            NotificareLogger.debug("Processing event queue with \(eventQueue.count) items.")
+            logger.debug("Processing event queue with \(eventQueue.count) items.")
             eventQueue.forEach { delegate?.broadcastEvent(name: $0.name, body: $0.payload)}
             eventQueue.removeAll()
         }
@@ -111,7 +113,7 @@ extension NotificareGeoPlugin: NotificareGeoDelegate {
         do {
             dispatchEvent("re.notifica.geo.location_updated", payload: try location.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.geo.location_updated event.", error: error)
+            logger.error("Failed to emit the re.notifica.geo.location_updated event.", error: error)
         }
     }
 
@@ -119,7 +121,7 @@ extension NotificareGeoPlugin: NotificareGeoDelegate {
         do {
             dispatchEvent("re.notifica.geo.region_entered", payload: try region.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.geo.region_entered event.", error: error)
+            logger.error("Failed to emit the re.notifica.geo.region_entered event.", error: error)
         }
     }
 
@@ -127,7 +129,7 @@ extension NotificareGeoPlugin: NotificareGeoDelegate {
         do {
             dispatchEvent("re.notifica.geo.region_exited", payload: try region.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.geo.region_exited event.", error: error)
+            logger.error("Failed to emit the re.notifica.geo.region_exited event.", error: error)
         }
     }
 
@@ -135,7 +137,7 @@ extension NotificareGeoPlugin: NotificareGeoDelegate {
         do {
             dispatchEvent("re.notifica.geo.beacon_entered", payload: try beacon.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.geo.beacon_entered event.", error: error)
+            logger.error("Failed to emit the re.notifica.geo.beacon_entered event.", error: error)
         }
     }
 
@@ -143,7 +145,7 @@ extension NotificareGeoPlugin: NotificareGeoDelegate {
         do {
             dispatchEvent("re.notifica.geo.beacon_exited", payload: try beacon.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.geo.beacon_exited event.", error: error)
+            logger.error("Failed to emit the re.notifica.geo.beacon_exited event.", error: error)
         }
     }
 
@@ -156,7 +158,7 @@ extension NotificareGeoPlugin: NotificareGeoDelegate {
 
             dispatchEvent("re.notifica.geo.beacons_ranged", payload: payload)
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.geo.beacons_ranged event.", error: error)
+            logger.error("Failed to emit the re.notifica.geo.beacons_ranged event.", error: error)
         }
     }
 
@@ -164,7 +166,7 @@ extension NotificareGeoPlugin: NotificareGeoDelegate {
         do {
             dispatchEvent("re.notifica.geo.visit", payload: try visit.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.geo.visit event.", error: error)
+            logger.error("Failed to emit the re.notifica.geo.visit event.", error: error)
         }
     }
 
@@ -172,7 +174,7 @@ extension NotificareGeoPlugin: NotificareGeoDelegate {
         do {
             dispatchEvent("re.notifica.geo.heading_updated", payload: try heading.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.geo.heading_updated event.", error: error)
+            logger.error("Failed to emit the re.notifica.geo.heading_updated event.", error: error)
         }
     }
 }

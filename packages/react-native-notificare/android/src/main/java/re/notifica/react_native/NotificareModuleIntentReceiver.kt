@@ -2,7 +2,6 @@ package re.notifica.react_native
 
 import android.content.Context
 import re.notifica.NotificareIntentReceiver
-import re.notifica.internal.NotificareLogger
 import re.notifica.models.NotificareApplication
 import re.notifica.models.NotificareDevice
 
@@ -11,7 +10,7 @@ internal class NotificareModuleIntentReceiver : NotificareIntentReceiver() {
         try {
             EventBroker.dispatchEvent("re.notifica.ready", application.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.ready event.", e)
+            logger.error("Failed to emit the re.notifica.ready event.", e)
         }
     }
 
@@ -23,7 +22,7 @@ internal class NotificareModuleIntentReceiver : NotificareIntentReceiver() {
         try {
             EventBroker.dispatchEvent("re.notifica.device_registered", device.toJson().toReactMap())
         } catch (e: Exception) {
-            NotificareLogger.error("Failed to emit the re.notifica.device_registered event.", e)
+            logger.error("Failed to emit the re.notifica.device_registered event.", e)
         }
     }
 }

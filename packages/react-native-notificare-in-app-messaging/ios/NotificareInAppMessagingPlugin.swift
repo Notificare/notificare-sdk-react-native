@@ -18,6 +18,8 @@ public class NotificareInAppMessagingPlugin: NSObject {
     override public init() {
         super.init()
 
+        logger.hasDebugLoggingEnabled = Notificare.shared.options?.debugLoggingEnabled ?? false
+
         Notificare.shared.inAppMessaging().delegate = self
     }
 
@@ -26,7 +28,7 @@ public class NotificareInAppMessagingPlugin: NSObject {
         hasListeners = true
 
         if !eventQueue.isEmpty {
-            NotificareLogger.debug("Processing event queue with \(eventQueue.count) items.")
+            logger.debug("Processing event queue with \(eventQueue.count) items.")
             eventQueue.forEach { delegate?.broadcastEvent(name: $0.name, body: $0.payload)}
             eventQueue.removeAll()
         }
@@ -83,7 +85,7 @@ extension NotificareInAppMessagingPlugin: NotificareInAppMessagingDelegate {
         do {
             dispatchEvent("re.notifica.iam.message_presented", payload: try message.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.iam.message_presented event.", error: error)
+            logger.error("Failed to emit the re.notifica.iam.message_presented event.", error: error)
         }
     }
 
@@ -91,7 +93,7 @@ extension NotificareInAppMessagingPlugin: NotificareInAppMessagingDelegate {
         do {
             dispatchEvent("re.notifica.iam.message_finished_presenting", payload: try message.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.iam.message_finished_presenting event.", error: error)
+            logger.error("Failed to emit the re.notifica.iam.message_finished_presenting event.", error: error)
         }
     }
 
@@ -99,7 +101,7 @@ extension NotificareInAppMessagingPlugin: NotificareInAppMessagingDelegate {
         do {
             dispatchEvent("re.notifica.iam.message_failed_to_present", payload: try message.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.iam.message_failed_to_present event.", error: error)
+            logger.error("Failed to emit the re.notifica.iam.message_failed_to_present event.", error: error)
         }
     }
 
@@ -110,7 +112,7 @@ extension NotificareInAppMessagingPlugin: NotificareInAppMessagingDelegate {
                 "action": try action.toJson(),
             ])
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.iam.action_executed event.", error: error)
+            logger.error("Failed to emit the re.notifica.iam.action_executed event.", error: error)
         }
     }
 
@@ -127,7 +129,7 @@ extension NotificareInAppMessagingPlugin: NotificareInAppMessagingDelegate {
 
             dispatchEvent("re.notifica.iam.action_failed_to_execute", payload: payload)
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.iam.action_failed_to_execute event.", error: error)
+            logger.error("Failed to emit the re.notifica.iam.action_failed_to_execute event.", error: error)
         }
     }
 }

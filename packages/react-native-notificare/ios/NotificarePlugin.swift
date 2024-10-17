@@ -18,6 +18,7 @@ public class NotificarePlugin: NSObject {
     override public init() {
         super.init()
 
+        logger.hasDebugLoggingEnabled = Notificare.shared.options?.debugLoggingEnabled ?? false
         Notificare.shared.delegate = self
 
         _ = NotificareSwizzler.addInterceptor(self)
@@ -28,7 +29,7 @@ public class NotificarePlugin: NSObject {
         hasListeners = true
 
         if !eventQueue.isEmpty {
-            NotificareLogger.debug("Processing event queue with \(eventQueue.count) items.")
+            logger.debug("Processing event queue with \(eventQueue.count) items.")
             eventQueue.forEach { delegate?.broadcastEvent(name: $0.name, body: $0.payload)}
             eventQueue.removeAll()
         }
@@ -390,7 +391,7 @@ extension NotificarePlugin: NotificareDelegate {
         do {
             dispatchEvent("re.notifica.ready", payload: try application.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.ready event.", error: error)
+            logger.error("Failed to emit the re.notifica.ready event.", error: error)
         }
     }
 
@@ -402,7 +403,7 @@ extension NotificarePlugin: NotificareDelegate {
         do {
             dispatchEvent("re.notifica.device_registered", payload: try device.toJson())
         } catch {
-            NotificareLogger.error("Failed to emit the re.notifica.device_registered event.", error: error)
+            logger.error("Failed to emit the re.notifica.device_registered event.", error: error)
         }
     }
 }
