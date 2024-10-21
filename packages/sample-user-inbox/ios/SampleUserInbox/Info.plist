@@ -46,7 +46,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NFCReaderUsageDescription</key>
-	<string>We will need access to the device's NFC reader to unlock new content.</string>
+	<string>We will need access to the device&apos;s NFC reader to unlock new content.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -55,17 +55,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>We will need access to the device's camera to reply to notifications or scan QR codes.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>We will need to make use of your location to present relevant information about offers around you.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>We will need to make use of your location to present relevant information about offers around you.</string>
-	<key>NSLocationUsageDescription</key>
-	<string>We will need to make use of your location to present relevant information about offers around you.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We will need to make use of your location to present relevant information about offers around you.</string>
+	<string>We will need access to the device&apos;s camera to reply to notifications or scan QR codes.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>We will need access to the device's microphone to reply to notifications.</string>
+	<string>We will need access to the device&apos;s microphone to reply to notifications.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We may need to access your photos to reply to notifications.</string>
 	<key>UIAppFonts</key>
