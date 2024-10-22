@@ -1,5 +1,10 @@
 #import "NotificareGeoModule.h"
+
+#if __has_include(<react_native_notificare_geo/react_native_notificare_geo-Swift.h>)
+#import <react_native_notificare_geo/react_native_notificare_geo-Swift.h>
+#else
 #import "react_native_notificare_geo-Swift.h"
+#endif
 
 @interface NotificareGeoModule () <NotificareGeoModuleDelegate>
 @end

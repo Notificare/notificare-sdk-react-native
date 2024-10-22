@@ -1,5 +1,10 @@
 #import "NotificarePushUIModule.h"
+
+#if __has_include(<react_native_notificare_push_ui/react_native_notificare_push_ui-Swift.h>)
+#import <react_native_notificare_push_ui/react_native_notificare_push_ui-Swift.h>
+#else
 #import "react_native_notificare_push_ui-Swift.h"
+#endif
 
 @interface NotificarePushUIModule () <NotificarePushUIModuleDelegate>
 @end

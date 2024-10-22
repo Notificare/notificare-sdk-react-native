@@ -1,5 +1,10 @@
 #import "NotificareScannablesModule.h"
+
+#if __has_include(<react_native_notificare_scannables/react_native_notificare_scannables-Swift.h>)
+#import <react_native_notificare_scannables/react_native_notificare_scannables-Swift.h>
+#else
 #import "react_native_notificare_scannables-Swift.h"
+#endif
 
 @interface NotificareScannablesModule () <NotificareScannablesModuleDelegate>
 @end
