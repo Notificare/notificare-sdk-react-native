@@ -1,5 +1,10 @@
 #import "NotificareUserInboxModule.h"
+
+#if __has_include(<react_native_notificare_user_inbox/react_native_notificare_user_inbox-Swift.h>)
+#import <react_native_notificare_user_inbox/react_native_notificare_user_inbox-Swift.h>
+#else
 #import "react_native_notificare_user_inbox-Swift.h"
+#endif
 
 @implementation NotificareUserInboxModule {
     NotificareUserInboxPlugin *plugin;

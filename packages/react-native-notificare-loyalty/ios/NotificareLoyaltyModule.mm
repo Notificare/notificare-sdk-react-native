@@ -1,5 +1,10 @@
 #import "NotificareLoyaltyModule.h"
+
+#if __has_include(<react_native_notificare_loyalty/react_native_notificare_loyalty-Swift.h>)
+#import <react_native_notificare_loyalty/react_native_notificare_loyalty-Swift.h>
+#else
 #import "react_native_notificare_loyalty-Swift.h"
+#endif
 
 @implementation NotificareLoyaltyModule {
     NotificareLoyaltyPlugin *plugin;

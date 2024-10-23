@@ -1,5 +1,10 @@
 #import "NotificareInAppMessagingModule.h"
+
+#if __has_include(<react_native_notificare_in_app_messaging/react_native_notificare_in_app_messaging-Swift.h>)
+#import <react_native_notificare_in_app_messaging/react_native_notificare_in_app_messaging-Swift.h>
+#else
 #import "react_native_notificare_in_app_messaging-Swift.h"
+#endif
 
 @interface NotificareInAppMessagingModule () <NotificareInAppMessagingModuleDelegate>
 @end
