@@ -1,0 +1,9 @@
+{
+  "notificare_ok_button": "OK",
+  "notificare_cancel_button": "Cancel",
+  "notificare_close_button": "Close",
+  "NSCameraUsageDescription": "Default NSCameraUsageDescription description.",
+  "NSLocationAlwaysAndWhenInUseUsageDescription": "Default NSLocationAlwaysAndWhenInUseUsageDescription description.",
+  "NSLocationWhenInUseUsageDescription": "Default NSLocationWhenInUseUsageDescription description.",
+  "NSLocationAlwaysUsageDescription": "Default NSLocationAlwaysUsageDescription description."
+}
