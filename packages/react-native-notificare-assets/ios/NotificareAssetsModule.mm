@@ -1,5 +1,10 @@
 #import "NotificareAssetsModule.h"
+
+#if __has_include(<react_native_notificare_assets/react_native_notificare_assets-Swift.h>)
+#import <react_native_notificare_assets/react_native_notificare_assets-Swift.h>
+#else
 #import "react_native_notificare_assets-Swift.h"
+#endif
 
 @implementation NotificareAssetsModule {
     NotificareAssetsPlugin *plugin;

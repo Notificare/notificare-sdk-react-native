@@ -7,7 +7,7 @@ export type NotificarePushPluginProps = {
    */
   ios: {
     /**
-     * (optional) Used to configure APNs environment entitlement. Modes: "development" or "production".
+     * (required) Used to configure APNs environment entitlement. Modes: "development" or "production".
      */
     mode: NotificareApnsEnvironment;
 
