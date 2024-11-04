@@ -1,7 +1,7 @@
 import { ExpoConfig, ConfigContext } from 'expo/config';
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
-  name: 'sample-expo',
+  name: 'Sample Expo',
   slug: 'sample-expo',
   version: '1.0.0',
   orientation: 'portrait',
@@ -13,6 +13,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     image: './assets/images/splash.png',
     resizeMode: 'contain',
     backgroundColor: '#ffffff',
+  },
+  primaryColor: '#00000000',
+  androidStatusBar: {
+    backgroundColor: '#00000000',
   },
   ios: {
     bundleIdentifier: 're.notifica.sample.app.dev',
@@ -36,7 +40,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   android: {
     package: 're.notifica.sample.app.dev',
-    googleServicesFile: "./configuration/google-services.json",
+    googleServicesFile: './configuration/google-services.json',
+    config: {
+      googleMaps: {
+        apiKey: process.env.GOOGLE_API_KEY,
+      },
+    },
     adaptiveIcon: {
       foregroundImage: './assets/images/adaptive-icon.png',
       backgroundColor: '#ffffff',
@@ -78,6 +87,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         },
         android: {
           servicesFile: './configuration/notificare-services.json',
+          debugLoggingEnabled: true,
         },
       },
     ],
@@ -135,6 +145,19 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         android: {
           customStyle: 'Theme.Notificare.Translucent',
         },
+      },
+    ],
+    [
+      'react-native-permissions',
+      {
+        iosPermissions: [
+          'Camera',
+          'Microphone',
+          'LocationWhenInUse',
+          'LocationAlways',
+          'Notifications',
+          'Bluetooth',
+        ],
       },
     ],
   ],
