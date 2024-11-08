@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 4.0.1
+
+- Fix import headers when apps are built with static frameworks
+
 ## 4.0.0
 
 - Migrate to Turbo Modules with support for both the old and new architectures

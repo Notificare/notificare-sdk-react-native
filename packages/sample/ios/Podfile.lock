@@ -848,7 +848,7 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/core
     - Yoga
-  - React-FabricComponents/components (0.76.1):
+  - React-FabricComponents/components (0.75.2):
     - DoubleConversion
     - fmt (= 9.1.0)
     - glog
@@ -1262,7 +1262,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare (4.0.0):
+  - react-native-notificare (4.0.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1285,7 +1285,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-assets (4.0.0):
+  - react-native-notificare-assets (4.0.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1308,7 +1308,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-geo (4.0.0):
+  - react-native-notificare-geo (4.0.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1332,7 +1332,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-in-app-messaging (4.0.0):
+  - react-native-notificare-in-app-messaging (4.0.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1356,7 +1356,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-inbox (4.0.0):
+  - react-native-notificare-inbox (4.0.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1380,7 +1380,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-loyalty (4.0.0):
+  - react-native-notificare-loyalty (4.0.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1403,7 +1403,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-push (4.0.0):
+  - react-native-notificare-push (4.0.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1427,7 +1427,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-push-ui (4.0.0):
+  - react-native-notificare-push-ui (4.0.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1451,7 +1451,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-scannables (4.0.0):
+  - react-native-notificare-scannables (4.0.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2229,4 +2229,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 5b1d6f513a4a621a1b99c1bfd8a51587093961ae
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.1
