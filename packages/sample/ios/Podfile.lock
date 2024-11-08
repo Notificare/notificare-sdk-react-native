@@ -848,7 +848,7 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/core
     - Yoga
-  - React-FabricComponents/components (0.75.2):
+  - React-FabricComponents/components (0.76.1):
     - DoubleConversion
     - fmt (= 9.1.0)
     - glog
@@ -2183,15 +2183,15 @@ SPEC CHECKSUMS:
   React-logger: 97c9dafae1f1a638001a9d1d0e93d431f2f9cb7b
   React-Mapbuffer: 3146a13424f9fec2ea1f1462d49d566e4d69b732
   React-microtasksnativemodule: 02d218c79c72d373a92a8552183f4ead0d1c6e05
-  react-native-notificare: b6d9652b008d759f675d8ff9651e8504eaf9e27f
-  react-native-notificare-assets: f2d1d66f9694623619166f0187d74668fac43c17
-  react-native-notificare-geo: ce579258fe8d38ec41be55408e4456fb9ec2e390
-  react-native-notificare-in-app-messaging: b38795bff4cfbd6441fb84d61cecaffd670a4852
-  react-native-notificare-inbox: 503fa36169186a4efcfe9e7c0d2a28c198944614
-  react-native-notificare-loyalty: d11f4d37717f461764fc01562b201b00aa0f3249
-  react-native-notificare-push: 4e45f4d4a9268e947c3069272f71efab7e3ceeee
-  react-native-notificare-push-ui: ccc26f9e1d90d64e43e7846a4ba745fddd7204e3
-  react-native-notificare-scannables: 18981b5c30a97b6281260659382a3eca4d3d231a
+  react-native-notificare: 05840c2e4cee4a19cbc4ad1074ffec4052c92816
+  react-native-notificare-assets: 534b05ef439fc4d8755b75852fbd3113b1107e6f
+  react-native-notificare-geo: c293c90fd630d0f065316994b3eda0f564edf48c
+  react-native-notificare-in-app-messaging: 8d5ebea7901f480cb7a1b287c4b74e10b3bfdf52
+  react-native-notificare-inbox: 9ba5b522bd3e86a5d15e20778dec5726d91a58b6
+  react-native-notificare-loyalty: fabd2d6d82b68d533349a127428512fc6c404efb
+  react-native-notificare-push: 34ddfa4ad210f74d42420f1f82c5059edef64588
+  react-native-notificare-push-ui: fd592993881825d305ba7d2b7b31307f40c1a9e8
+  react-native-notificare-scannables: 1e7970745071158b04043d9d371edf9b318ece26
   react-native-safe-area-context: 2500e4fe998caad50ad3bc51ec23ef951308569e
   React-nativeconfig: 93fe8c85a8c40820c57814e30f3e44b94c995a7b
   React-NativeModulesApple: b3e076fd0d7b73417fe1e8c8b26e3c57ae9b74aa
@@ -2229,4 +2229,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 5b1d6f513a4a621a1b99c1bfd8a51587093961ae
 
-COCOAPODS: 1.16.1
+COCOAPODS: 1.16.2
