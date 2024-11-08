@@ -12,7 +12,7 @@ import { OtherFeaturesCardView } from '@/components/home/other-features-card-vie
 import { NotificarePush } from 'react-native-notificare-push';
 import { NotificarePushUI } from 'react-native-notificare-push-ui';
 import { NotificareScannables } from 'react-native-notificare-scannables';
-import { NotificareGeo } from 'react-native-notificare-geo/src';
+import { NotificareGeo } from 'react-native-notificare-geo';
 import {
   BackgroundCallbackBeaconEntered,
   BackgroundCallbackBeaconExited,
@@ -29,7 +29,9 @@ export default function HomeScreen() {
     const subscriptions = [
       Notificare.onReady(async (_) => {
         setIsReady(true);
+
         await handleDeferredLink();
+        setupBackgroundCallbacks();
       }),
 
       Notificare.onUnlaunched(() => setIsReady(false)),
@@ -43,6 +45,7 @@ export default function HomeScreen() {
           await NotificarePushUI.presentAction(notification, action);
         }
       ),
+
       NotificareScannables.onScannableDetected(async (scannable) => {
         if (scannable.notification != null) {
           await NotificarePushUI.presentNotification(scannable.notification);
@@ -57,6 +60,13 @@ export default function HomeScreen() {
     (async () => {
       await NotificarePush.setPresentationOptions(['banner', 'badge', 'sound']);
       await Notificare.launch();
+
+      Notificare.onReady(async (_) => {
+        setIsReady(true);
+
+        await handleDeferredLink();
+        setupBackgroundCallbacks();
+      });
     })();
   }, []);
 
@@ -99,8 +109,6 @@ export default function HomeScreen() {
       BackgroundCallbackBeaconsRanged
     );
   }
-
-  setupBackgroundCallbacks();
 
   return (
     <ScrollView>
