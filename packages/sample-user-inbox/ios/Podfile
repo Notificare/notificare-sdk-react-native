@@ -13,7 +13,7 @@ node_require('react-native-permissions/scripts/setup.rb')
 source 'https://cdn.cocoapods.org/'
 source 'git@github.com:Notificare/notificare-cocoapods-specs.git'
 
-platform :ios, '13.4'
+platform :ios, '15.1'
 prepare_react_native_project!
 
 setup_permissions([
@@ -43,7 +43,7 @@ target 'SampleUserInbox' do
     pod 'react-native-notificare-push-ui', :path => '../../react-native-notificare-push-ui'
     pod 'react-native-notificare-user-inbox', :path => '../../react-native-notificare-user-inbox'
 
-    pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+    pod 'RNVectorIcons', :path => '../../../node_modules/react-native-vector-icons'
 
   post_install do |installer|
     react_native_post_install(
