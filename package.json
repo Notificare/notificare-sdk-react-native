@@ -2,8 +2,6 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "workspaces:bootstrap": "yarn install && yarn workspaces:build",
-    "workspaces:build": "yarn workspaces foreach --all --include 'react-native-notificare*' run build",
     "app:metro": "lerna run start --scope sample --stream",
     "app:android": "lerna run android --scope sample --stream",
     "app:android:studio": "studio packages/sample/android",
@@ -32,10 +30,7 @@
     "prettier": "^3.3.3",
     "typescript": "^5.4.5"
   },
-  "workspaces": [
-    "packages/sample",
-    "packages/sample-user-inbox",
-    "packages/react-native-notificare*"
-  ],
-  "packageManager": "yarn@4.5.1"
+  "workspaces": {
+    "packages": ["packages/*"]
+  }
 }
