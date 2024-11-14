@@ -1811,7 +1811,7 @@ PODS:
   - RNCCheckbox (0.5.17):
     - BEMCheckBox (~> 1.4)
     - React-Core
-  - RNPermissions (4.1.5):
+  - RNPermissions (5.1.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1832,7 +1832,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (4.0.0):
+  - RNScreens (4.1.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1853,9 +1853,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNScreens/common (= 4.0.0)
+    - RNScreens/common (= 4.1.0)
     - Yoga
-  - RNScreens/common (4.0.0):
+  - RNScreens/common (4.1.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2221,8 +2221,8 @@ SPEC CHECKSUMS:
   ReactCodegen: 84a006ff4f2742ed633b3044b5c1583ee22a2a6c
   ReactCommon: 422e364463f33e336fc4db196aeb50fd801d90d6
   RNCCheckbox: a3ca9978cb0846b981d28da4e9914bd437403d77
-  RNPermissions: 2e3c3e2b17b8c2f78ac07da1bb91330ef81dffda
-  RNScreens: 2fe13c8d610ef2d9d5ace2e7d85b716ec0f5217c
+  RNPermissions: b9901d90effa8f80b74e4e14607f9af540a08a35
+  RNScreens: 27587018b2e6082f5172b1ecf158c14a0e8842d6
   RNVectorIcons: 07792a9538e8577c1263fcad187712e90d65d8fb
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: 157bed1c62656587df4639d4dc29714898f8fb10
