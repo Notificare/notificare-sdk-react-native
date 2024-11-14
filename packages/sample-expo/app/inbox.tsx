@@ -14,11 +14,11 @@ import {
 } from 'react-native-notificare-inbox';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { NotificarePushUI } from 'react-native-notificare-push-ui';
-import { useNavigation } from '@react-navigation/native';
 import { useSnackbarContext } from '@/components/contexts/snackbar';
 import { bottomSheetStyles } from '@/styles/styles-bottom-sheet';
 import { InboxItem } from '@/components/inbox/inbox-item';
 import { inboxStyles } from '@/styles/styles-inbox';
+import { useNavigation } from 'expo-router';
 
 export default function InboxScreen() {
   const { addSnackbarInfoMessage } = useSnackbarContext();

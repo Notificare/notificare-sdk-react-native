@@ -1,6 +1,5 @@
 import { FlatList, Text, View } from 'react-native';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
 import {
   NotificareBeacon,
   NotificareGeo,
@@ -8,6 +7,7 @@ import {
 } from 'react-native-notificare-geo';
 import { beaconsStyles } from '@/styles/styles-beacons';
 import { Beacon } from '@/components/beacons/beacon';
+import { useNavigation } from 'expo-router';
 
 export default function BeaconsScreen() {
   const navigation = useNavigation();
