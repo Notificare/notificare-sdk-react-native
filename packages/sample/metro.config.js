@@ -36,6 +36,7 @@ const config = {
   watchFolders: [
     path.resolve(__dirname),
     ...packages.map((p) => path.resolve(__dirname, '..', p.name)),
+    path.resolve(__dirname, '../../'),
   ],
 
   // We need to make sure that only one version is loaded for peerDependencies
