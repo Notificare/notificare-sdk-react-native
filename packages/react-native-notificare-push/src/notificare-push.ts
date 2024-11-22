@@ -298,6 +298,14 @@ export class NotificarePush {
     );
   }
 
+  /**
+   * Called when the device's push subscription changes.
+   *
+   * @param callback A callback that will be invoked with the result of the
+   * onSubscriptionChanged event. It will provide the updated
+   * {@link NotificarePushSubscription}, or `null` if the subscription token is
+   * unavailable.
+   */
   public static onSubscriptionChanged(
     callback: (subscription?: NotificarePushSubscription | null) => void
   ): EmitterSubscription {
