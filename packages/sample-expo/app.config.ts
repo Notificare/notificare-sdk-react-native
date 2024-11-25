@@ -143,7 +143,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       'react-native-notificare-scannables',
       {
         android: {
-          customStyle: 'Theme.Notificare.Translucent',
+          customStyle: 'Theme.Notificare.PushUI.Translucent',
         },
       },
     ],

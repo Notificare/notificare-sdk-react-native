@@ -16,7 +16,7 @@ import {
 
 import { NotificarePushUIPluginProps } from '../types/types';
 
-const TRANSLUCENT_STYLE_THEME = 'Theme.Notificare.Translucent';
+const TRANSLUCENT_STYLE_THEME = 'Theme.Notificare.PushUI.Translucent';
 const PUSH_UI_ACTIVITY = 're.notifica.push.ui.NotificationActivity';
 
 const withApplyCustomStyle: ConfigPlugin<NotificarePushUIPluginProps> = (
@@ -81,30 +81,30 @@ const withCreateTranslucentStyle: ConfigPlugin<NotificarePushUIPluginProps> = (
       },
     };
 
-    const itemWindowActionBar: ResourceItemXML = {
-      _: 'true',
+    const windowLightStatusBar: ResourceItemXML = {
+      _: '?attr/isLightTheme',
       $: {
-        name: 'windowActionBar',
+        name: 'android:windowLightStatusBar',
       },
     };
 
-    const itemWindowNoTitle: ResourceItemXML = {
-      _: 'false',
+    const statusBarColor: ResourceItemXML = {
+      _: '@android:color/transparent',
       $: {
-        name: 'windowNoTitle',
+        name: 'android:statusBarColor',
       },
     };
 
     const newStyle: ResourceGroupXML = {
       $: {
         name: TRANSLUCENT_STYLE_THEME,
-        parent: 'AppTheme',
+        parent: 'Theme.AppCompat.DayNight',
       },
       item: [
         itemWindowTranslucent,
         itemWindowBackground,
-        itemWindowActionBar,
-        itemWindowNoTitle,
+        windowLightStatusBar,
+        statusBarColor,
       ],
     };
 

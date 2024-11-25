@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
+    "build": "lerna run build",
     "app:metro": "lerna run start --scope sample --stream",
     "app:android": "lerna run android --scope sample --stream",
     "app:android:studio": "studio packages/sample/android",
@@ -31,6 +32,10 @@
     "typescript": "^5.4.5"
   },
   "workspaces": {
-    "packages": ["packages/*"]
+    "packages": [
+      "packages/react-native-notificare",
+      "packages/react-native-notificare-*",
+      "packages/sample*"
+    ]
   }
 }
