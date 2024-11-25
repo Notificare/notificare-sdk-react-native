@@ -16,7 +16,7 @@ import {
 
 import { NotificarePushUIPluginProps } from '../types/types';
 
-const TRANSLUCENT_STYLE_THEME = 'Theme.Notificare.Push.Translucent';
+const TRANSLUCENT_STYLE_THEME = 'Theme.Notificare.PushUI.Translucent';
 const PUSH_UI_ACTIVITY = 're.notifica.push.ui.NotificationActivity';
 
 const withApplyCustomStyle: ConfigPlugin<NotificarePushUIPluginProps> = (
