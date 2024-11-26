@@ -67,9 +67,9 @@ export class NotificareUserInbox {
   /**
    * Opens an inbox item and retrieves its associated notification.
    *
-   * This is a suspending function that opens the provided
-   * {@link NotificareUserInboxItem} and returns the associated
-   * {@link NotificareNotification}. This operation marks the item as read.
+   * This function opens the provided {@link NotificareUserInboxItem} and returns
+   * the associated {@link NotificareNotification}.
+   * This operation marks the item as read.
    *
    * @param item The {@link NotificareUserInboxItem} to be opened.
    * @return The {@link NotificareNotification} associated with the opened inbox
@@ -84,7 +84,7 @@ export class NotificareUserInbox {
   /**
    * Marks an inbox item as read.
    *
-   * This is a suspending function that updates the status of the provided
+   * This function updates the status of the provided
    * {@link NotificareUserInboxItem} to read.
    *
    * @param item The {@link NotificareUserInboxItem} to mark as read.
@@ -96,8 +96,8 @@ export class NotificareUserInbox {
   /**
    * Removes an inbox item from the user's inbox.
    *
-   * This is a suspending function that deletes the provided
-   * {@link NotificareUserInboxItem} from the user's inbox.
+   * This function deletes the provided {@link NotificareUserInboxItem} from the
+   * user's inbox.
    *
    * @param item The {@link NotificareUserInboxItem} to be removed.
    */

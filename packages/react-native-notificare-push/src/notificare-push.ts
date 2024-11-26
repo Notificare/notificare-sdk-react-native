@@ -48,6 +48,8 @@ export class NotificarePush {
    * Defines the authorization options used when requesting push notification
    * permissions.
    *
+   * **Note**: This method is only supported on iOS.
+   *
    * @param options The authorization options to be set.
    */
   public static async setAuthorizationOptions(
@@ -61,6 +63,8 @@ export class NotificarePush {
   /**
    * Defines the notification category options for custom notification actions.
    *
+   * **Note**: This method is only supported on iOS.
+   *
    * @param options The category options to be set
    */
   public static async setCategoryOptions(options: string[]): Promise<void> {
@@ -72,6 +76,8 @@ export class NotificarePush {
   /**
    * Defines the presentation options for displaying notifications while the app
    * is in the foreground.
+   *
+   * **Note**: This method is only supported on iOS.
    *
    * @param options The presentation options to be set.
    */
@@ -156,10 +162,6 @@ export class NotificarePush {
   /**
    * Called when a push notification is received.
    *
-   * Override to execute additional actions when a {@link NotificareNotification}
-   * is received as indicated by the specified
-   * {@link NotificareNotificationDeliveryMechanism}.
-   *
    * @param callback A callback that will be invoked with the result of the
    * onNotificationInfoReceived event. It will provide the
    * {@link NotificareNotification} received and the
@@ -226,7 +228,7 @@ export class NotificarePush {
   }
 
   /**
-   * Called when a push notification action is opened by the user.
+   * Called when an unknown push notification is opened by the user.
    *
    * @param callback A callback that will be invoked with the result of the
    * onUnknownNotificationOpened event. It will provide the unknown notification
@@ -262,7 +264,7 @@ export class NotificarePush {
   }
 
   /**
-   * Called when a push notification action is opened by the user.
+   * Called when an unknown push notification action is opened by the user.
    *
    * @param callback A callback that will be invoked with the result of the
    * onUnknownNotificationActionOpened event. It will provide the
@@ -284,6 +286,7 @@ export class NotificarePush {
 
   /**
    * Called when the notification settings are changed.
+   *
    * @param callback A callback that will be invoked with the result of the
    * onNotificationSettingsChanged event. It will provide a boolean indicating
    * whether the app is permitted to display notifications. `true` if
@@ -334,6 +337,7 @@ export class NotificarePush {
 
   /**
    *  Called when the app encounters an error during the registration process for
+   *  push notifications.
    *
    * @param callback A callback that will be invoked with the result of the
    * onFailedToRegisterForRemoteNotifications event. IT will provide the error

@@ -94,10 +94,10 @@ export class NotificareGeo {
    *
    * The behavior varies based on granted permissions:
    * - **Permission denied**: Clears the device's location information.
-   * - **Foreground location permission granted**: Tracks location only while the
+   * - **When In Use permission granted**: Tracks location only while the
    * app is in use.
-   * - **Background location permission granted**: Enables geofencing capabilities.
-   * - **Background location + Bluetooth permissions granted**: Enables geofencing
+   * - **Always permission granted**: Enables geofencing capabilities.
+   * - **Always + Bluetooth permissions granted**: Enables geofencing
    * and beacon detection.
    */
   public static async enableLocationUpdates(): Promise<void> {
@@ -156,7 +156,7 @@ export class NotificareGeo {
   }
 
   /**
-   * Sets a callback that will be invoked when an onRegionEntered event is
+   * Sets a callback that will be invoked when an onRegionExited event is
    * triggered in the background.
    *
    * @param callback A callback that will be invoked with the result of the
@@ -175,7 +175,7 @@ export class NotificareGeo {
   }
 
   /**
-   * Sets a callback that will be invoked when an onRegionEntered event is
+   * Sets a callback that will be invoked when an onBeaconsEntered event is
    * triggered in the background.
    *
    * @param callback A callback that will be invoked with the result of the
@@ -194,7 +194,7 @@ export class NotificareGeo {
   }
 
   /**
-   * Sets a callback that will be invoked when an onRegionEntered event is
+   * Sets a callback that will be invoked when an onBeaconsExited event is
    * triggered in the background.
    *
    * @param callback A callback that will be invoked with the result of the
@@ -213,7 +213,7 @@ export class NotificareGeo {
   }
 
   /**
-   * Sets a callback that will be invoked when an onRegionEntered event is
+   * Sets a callback that will be invoked when an onBeaconsRanged event is
    * triggered in the background.
    *
    * @param callback A callback that will be invoked with the result of the
@@ -343,6 +343,8 @@ export class NotificareGeo {
   /**
    * Called when the device registers a location visit.
    *
+   * **Note**: This method is only supported on iOS.
+   *
    * @param callback A callback that will be invoked with the result of the
    * onVisit event. It will provide a {@link NotificareVisit} object representing
    * the details of the visit.
@@ -355,6 +357,8 @@ export class NotificareGeo {
 
   /**
    * Called when there is an update to the device’s heading.
+   *
+   * **Note**: This method is only supported on iOS.
    *
    * @param callback A callback that will be invoked with the result of the
    * onHeadingUpdated event. It will provide a {@link NotificareHeading} object
