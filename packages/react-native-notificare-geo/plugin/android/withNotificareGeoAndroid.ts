@@ -1,5 +1,10 @@
 import { generateImageAsync } from '@expo/image-utils';
-import { ConfigPlugin, withDangerousMod } from 'expo/config-plugins';
+import { PropertiesItem } from '@expo/config-plugins/build/android/Properties';
+import {
+  ConfigPlugin,
+  withDangerousMod,
+  withGradleProperties,
+} from 'expo/config-plugins';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 import { NotificareGeoPluginProps } from '../types/types';
@@ -12,8 +17,38 @@ import {
   SMALL_ICON_FORMATS,
 } from 'react-native-notificare/lib/plugin';
 
+const BEACONS_SUPPORT_FLAG = 'includeBeaconsSupport';
 const BEACONS_FOREGROUND_SERVICE_ICON_NAME =
   'notificare_beacon_notification_icon';
+
+const withBeaconsSupport: ConfigPlugin<NotificareGeoPluginProps> = (
+  config,
+  props
+) => {
+  if (props?.android?.includeBeaconsSupport === undefined) {
+    return config;
+  }
+
+  const beaconsProp: PropertiesItem = {
+    type: 'property',
+    key: BEACONS_SUPPORT_FLAG,
+    value: `${props.android.includeBeaconsSupport}`,
+  };
+
+  return withGradleProperties(config, (newConfig) => {
+    const index = newConfig.modResults.findIndex(
+      (item) => item.type === 'property' && item.key === BEACONS_SUPPORT_FLAG
+    );
+
+    if (index !== -1) {
+      newConfig.modResults[index] = beaconsProp;
+    } else {
+      newConfig.modResults.push(beaconsProp);
+    }
+
+    return newConfig;
+  });
+};
 
 const withForegroundServiceNotificationIcon: ConfigPlugin<
   NotificareGeoPluginProps
@@ -163,6 +198,7 @@ async function createForegroundServiceSmallIcon(
 export const withNotificareGeoAndroid: ConfigPlugin<
   NotificareGeoPluginProps
 > = (config, props) => {
+  config = withBeaconsSupport(config, props);
   config = withForegroundServiceNotificationIcon(config, props);
   config = withGeoMetaData(config, props);
   config = withBeaconForegroundServiceIntent(config, props);
