@@ -17,7 +17,7 @@ import {
   SMALL_ICON_FORMATS,
 } from 'react-native-notificare/lib/plugin';
 
-const BEACONS_SUPPORT_FLAG = 'includeBeaconsSupport';
+const BEACONS_SUPPORT_FLAG = 'notificareBeaconsSupportEnabled';
 const BEACONS_FOREGROUND_SERVICE_ICON_NAME =
   'notificare_beacon_notification_icon';
 
@@ -25,14 +25,14 @@ const withBeaconsSupport: ConfigPlugin<NotificareGeoPluginProps> = (
   config,
   props
 ) => {
-  if (props?.android?.includeBeaconsSupport === undefined) {
+  if (props?.android?.beaconSupportEnabled === undefined) {
     return config;
   }
 
   const beaconsProp: PropertiesItem = {
     type: 'property',
     key: BEACONS_SUPPORT_FLAG,
-    value: `${props.android.includeBeaconsSupport}`,
+    value: `${props.android.beaconSupportEnabled}`,
   };
 
   return withGradleProperties(config, (newConfig) => {

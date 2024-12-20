@@ -129,7 +129,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       'react-native-notificare-geo',
       {
         android: {
-          includeBeaconsSupport: true,
+          beaconSupportEnabled: true,
           beaconForegroundServiceEnabled: true,
           beaconForegroundServiceSmallIcon:
             './assets/beacon-notification-icon.png',
