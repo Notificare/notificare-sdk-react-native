@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Upcoming release
+## 4.0.2
 
 - Add documentation to public methods
 - Add flag to allow excluding beacons dependency
