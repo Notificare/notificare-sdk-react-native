@@ -2,9 +2,24 @@
 
 ## Upcoming release
 
-- Add docs to public methods
+- Add documentation to public methods
 - Add flag to allow excluding beacons dependency
 - Add managed approach for Expo to allow excluding beacons dependency
+
+#### Native changes
+
+##### iOS
+
+- Remove User Inbox messages from the notification center when appropriate
+- Fix refresh badge calls error handling when auto badge is off
+- Fix crash when sending photos using the camera notification action
+- Fix camera notification action behaviour when no camera permission is granted, opening the photo library
+
+##### Android
+
+- Remove User Inbox messages from the notification center when appropriate
+- Cancel in-app message job immediately upon being suppressed
+- Fix missing onMessageFinishedPresenting event when an in-app message action is executed
 
 ## 4.0.1
 
