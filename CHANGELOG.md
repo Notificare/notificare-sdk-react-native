@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Upcoming release
+
+- Add docs to public methods
+- Add flag to allow excluding beacons dependency
+- Add managed approach for Expo to allow excluding beacons dependency
+
 ## 4.0.1
 
 - Fix import headers when apps are built with static frameworks
