@@ -2,9 +2,9 @@
 
 buildscript {
     ext {
-        buildToolsVersion = "34.0.0"
+        buildToolsVersion = "35.0.0"
         minSdkVersion = 24
-        compileSdkVersion = 34
+        compileSdkVersion = 35
         targetSdkVersion = 34
         ndkVersion = "26.1.10909125"
 
@@ -23,7 +23,7 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
 
-        classpath 're.notifica.gradle:notificare-services:1.0.1'
+        classpath 're.notifica.gradle:notificare-services:1.1.0'
         classpath 'com.google.gms:google-services:4.3.14'
     }
 }
@@ -40,10 +40,10 @@ allprojects {
         mavenLocal()
 
         // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-        maven { url("$rootDir/../node_modules/react-native/android") }
+        maven { url("$rootDir/../../../node_modules/react-native/android") }
 
         // Android JSC is installed from npm
-        maven { url("$rootDir/../node_modules/jsc-android/dist") }
+        maven { url("$rootDir/../../../node_modules/jsc-android/dist") }
     }
 }
 

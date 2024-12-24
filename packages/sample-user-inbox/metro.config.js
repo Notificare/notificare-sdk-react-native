@@ -1,4 +1,4 @@
-const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 
 /**
  * Metro configuration
@@ -21,9 +21,7 @@ const packages = [
 
 // An array with the unique names of peer dependencies.
 const peerDependencies = [
-  ...new Set([
-    ...packages.flatMap((p) => Object.keys(p.peerDependencies)),
-  ]),
+  ...new Set([...packages.flatMap((p) => Object.keys(p.peerDependencies))]),
 ];
 
 const config = {
@@ -31,6 +29,7 @@ const config = {
   watchFolders: [
     path.resolve(__dirname),
     ...packages.map((p) => path.resolve(__dirname, '..', p.name)),
+    path.resolve(__dirname, '../../'),
   ],
 
   // We need to make sure that only one version is loaded for peerDependencies
@@ -39,9 +38,11 @@ const config = {
     blacklistRE: blacklist(
       packages.flatMap((p) => {
         return peerDependencies.map((d) => {
-          return new RegExp(`^${escape(path.join(__dirname, '..', p.name, 'node_modules', d))}\\/.*$`);
+          return new RegExp(
+            `^${escape(path.join(__dirname, '..', p.name, 'node_modules', d))}\\/.*$`
+          );
         });
-      }),
+      })
     ),
 
     extraNodeModules: peerDependencies.reduce((acc, name) => {

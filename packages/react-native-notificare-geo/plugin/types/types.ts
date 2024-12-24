@@ -12,6 +12,12 @@ export type NotificareGeoPluginProps = {
     monitoredRegionsLimit?: number;
 
     /**
+     * (Optional) Beacon support is included by default unless explicitly set to FALSE.
+     * This option allows the removal of the beacon library from the build.
+     */
+    beaconSupportEnabled?: boolean;
+
+    /**
      * (optional) The only way to have your app scan for beacons more often on Android version Oreo and up, is by starting the scan as a foreground service.
      * Foreground services will be shown to the user as an ongoing notification.
      */
