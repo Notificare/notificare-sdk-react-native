@@ -46,7 +46,10 @@ export class NotificarePushUI {
    * This method launches the UI for displaying the provided
    * {@link NotificareNotification}.
    *
-   * @param notification The {@link NotificareNotification} to present.
+   * @param {NotificareNotification} notification - The {@link NotificareNotification}
+   * to present.
+   * @returns {Promise<void>} - A promise that resolves when the notification
+   * has been successfully presented to the user.
    */
   public static async presentNotification(
     notification: NotificareNotification
@@ -61,8 +64,12 @@ export class NotificarePushUI {
    * {@link NotificareNotificationAction} associated with the provided
    * {@link NotificareNotification}.
    *
-   * @param notification The {@link NotificareNotification} to present.
-   * @param action The {@link NotificareNotificationAction} to execute.
+   * @param {NotificareNotification} notification - The {@link NotificareNotification}
+   * to present.
+   * @param {NotificareNotificationAction} action - The {@link NotificareNotificationAction}
+   * to execute.
+   * @returns {Promise<void>} - A promise that resolves when the action has
+   * been successfully presented and executed.
    */
   public static async presentAction(
     notification: NotificareNotification,
@@ -80,9 +87,11 @@ export class NotificarePushUI {
    *
    * This method is invoked before the notification is shown to the user.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onNotificationWillPresent event. It will provide the
    * {@link NotificareNotification} that will be presented.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onNotificationWillPresent event.
    */
   static onNotificationWillPresent(
     callback: (notification: NotificareNotification) => void
@@ -98,9 +107,11 @@ export class NotificarePushUI {
    *
    * This method is triggered when the notification has been shown to the user.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onNotificationPresented event. It will provide the
    * {@link NotificareNotification} that was presented.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onNotificationPresented event.
    */
   static onNotificationPresented(
     callback: (notification: NotificareNotification) => void
@@ -117,9 +128,11 @@ export class NotificarePushUI {
    * This method is invoked after the notification UI has been dismissed or the
    * notification interaction has completed.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onNotificationFinishedPresenting event. It will provide the
    * {@link NotificareNotification} that finished presenting.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onNotificationFinishedPresenting event.
    */
   static onNotificationFinishedPresenting(
     callback: (notification: NotificareNotification) => void
@@ -136,9 +149,11 @@ export class NotificarePushUI {
    * This method is invoked if there is an error preventing the notification from
    * being presented.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onNotificationFailedToPresent event. It will provide the
    * {@link NotificareNotification} that failed to present.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onNotificationFailedToPresent event.
    */
   static onNotificationFailedToPresent(
     callback: (notification: NotificareNotification) => void
@@ -154,9 +169,11 @@ export class NotificarePushUI {
    *
    * This method is triggered when the user clicks a URL in the notification.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onNotificationUrlClicked event. It will provide the string URL and the
    * {@link NotificareNotification} containing it.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onNotificationUrlClicked event.
    */
   static onNotificationUrlClicked(
     callback: (data: {
@@ -176,10 +193,12 @@ export class NotificarePushUI {
    * This method is invoked right before the action associated with a notification
    * is executed.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onActionWillExecute event. It will provide the
    * {@link NotificareNotificationAction} that will be executed and the
    * {@link NotificareNotification} containing it.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onActionWillExecute event.
    */
   static onActionWillExecute(
     callback: (data: {
@@ -199,10 +218,12 @@ export class NotificarePushUI {
    * This method is triggered after the action associated with the notification
    * has been successfully executed.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onActionExecuted event. It will provide the
    * {@link NotificareNotificationAction} that was executed and the
    * {@link NotificareNotification} containing it.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onActionExecuted event.
    */
   static onActionExecuted(
     callback: (data: {
@@ -223,10 +244,12 @@ export class NotificarePushUI {
    * This method is triggered after the action associated with the notification
    * has not been executed, caused by user interaction.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onActionNotExecuted event. It will provide the
    * {@link NotificareNotificationAction} that was not executed and the
    * {@link NotificareNotification} containing it.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onActionNotExecuted event.
    */
   static onActionNotExecuted(
     callback: (data: {
@@ -246,11 +269,13 @@ export class NotificarePushUI {
    * This method is triggered if an error occurs while trying to execute an
    * action associated with the notification.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onActionFailedToExecute event. It will provide the
    * {@link NotificareNotificationAction} that was failed to execute and the
    * {@link NotificareNotification} containing it. It may also provide the error
    * that caused the failure.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onActionFailedToExecute event.
    */
   static onActionFailedToExecute(
     callback: (data: {
@@ -271,11 +296,13 @@ export class NotificarePushUI {
    * This method is triggered when a custom action associated with the
    * notification is received, such as a deep link or custom URL scheme.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onCustomActionReceived event. It will provide the
    * {@link NotificareNotificationAction} that triggered the custom action and
    * the {@link NotificareNotification} containing it. It also provides the URL
    * representing the custom action.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onCustomActionReceived event.
    */
   static onCustomActionReceived(
     callback: (data: {

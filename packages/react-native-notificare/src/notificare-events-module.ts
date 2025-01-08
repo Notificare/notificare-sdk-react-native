@@ -32,8 +32,11 @@ export class NotificareEventsModule {
    * optionally associating structured data for more detailed event tracking and
    * analysis.
    *
-   * @param event The name of the custom event to log.
-   * @param data Optional structured event data for further details.
+   * @param {string} event - The name of the custom event to log.
+   * @param {Record<string, any>} data - Optional structured event data for
+   * further details.
+   * @returns {Promise<void>} - A promise that resolves when the custom event
+   * has been successfully logged.
    */
   public async logCustom(
     event: string,
