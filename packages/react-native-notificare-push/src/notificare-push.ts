@@ -107,7 +107,8 @@ export class NotificarePush {
    * Provides the current push transport information.
    *
    * @returns {Promise<NotificareTransport | null>} - A promise that resolves to
-   * the {@link NotificareTransport} assigned to the device.
+   * the {@link NotificareTransport} assigned to the device, or `null` if no transport
+   * has been set.
    */
   public static async getTransport(): Promise<NotificareTransport | null> {
     return await NativeModule.getTransport();
@@ -117,8 +118,8 @@ export class NotificarePush {
    * Provides the current push subscription token.
    *
    * @returns {Promise<NotificarePushSubscription | null>} - A promise that
-   * resolves to the {@link NotificarePushSubscription} object containing the
-   * device's current push subscription token, or `null` if no token is available.
+   * resolves to the device's current {@link NotificarePushSubscription}, or
+   * `null` if no {@link NotificarePushSubscription} is available.
    */
   public static async getSubscription(): Promise<NotificarePushSubscription | null> {
     return await NativeModule.getSubscription();
