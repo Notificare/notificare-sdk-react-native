@@ -45,8 +45,8 @@ export class NotificareGeo {
   /**
    * Indicates whether location services are enabled.
    *
-   * @returns `true` if the location services are enabled by the application,
-   * and `false` otherwise.
+   * @returns {Promise<boolean>} - A promise that resolves to `true` if the
+   * location services are enabled by the application, and `false` otherwise.
    */
   public static async hasLocationServicesEnabled(): Promise<boolean> {
     return await NativeModule.hasLocationServicesEnabled();
@@ -55,8 +55,8 @@ export class NotificareGeo {
   /**
    * Indicates whether Bluetooth is enabled.
    *
-   * @returns `true` if Bluetooth is enabled and available for beacon detection
-   * and ranging, and `false` otherwise.
+   * @returns {Promise<boolean>} - A promise that resolves to `true` if Bluetooth
+   * is enabled and available for beacon detection and ranging, and `false` otherwise.
    */
   public static async hasBluetoothEnabled(): Promise<boolean> {
     return await NativeModule.hasBluetoothEnabled();
@@ -65,8 +65,9 @@ export class NotificareGeo {
   /**
    * Provides a list of regions currently being monitored.
    *
-   * @returns a list of {@link NotificareRegion} objects representing the
-   * geographical regions being actively monitored for entry and exit events.
+   * @returns {Promise<NotificareRegion[]>} - A promise that resolves to a list
+   * of {@link NotificareRegion} objects representing the geographical regions
+   * being actively monitored for entry and exit events.
    */
   public static async getMonitoredRegions(): Promise<NotificareRegion[]> {
     return await NativeModule.getMonitoredRegions();
@@ -75,8 +76,9 @@ export class NotificareGeo {
   /**
    * Provides a list of regions the user has entered.
    *
-   * @returns a list of {@link NotificareRegion} objects representing the regions
-   * that the user has entered and not yet exited.
+   * @returns {Promise<NotificareRegion[]>} - A promise that resolves to a list
+   * of {@link NotificareRegion} objects representing the regions that the user
+   * has entered and not yet exited.
    */
   public static async getEnteredRegions(): Promise<NotificareRegion[]> {
     return await NativeModule.getEnteredRegions();
@@ -99,6 +101,9 @@ export class NotificareGeo {
    * - **Always permission granted**: Enables geofencing capabilities.
    * - **Always + Bluetooth permissions granted**: Enables geofencing
    * and beacon detection.
+   *
+   * @returns {Promise<void>} - A promise that resolves when location updates
+   * have been successfully enabled.
    */
   public static async enableLocationUpdates(): Promise<void> {
     await NativeModule.enableLocationUpdates();
@@ -107,7 +112,11 @@ export class NotificareGeo {
   /**
    * Disables location updates.
    *
-   * This method stops receiving location updates, monitoring regions, and detecting nearby beacons.
+   * This method stops receiving location updates, monitoring regions, and
+   * detecting nearby beacons.
+   *
+   * @returns {Promise<void>} - A promise that resolves when location updates
+   * have been successfully disabled.
    */
   public static async disableLocationUpdates(): Promise<void> {
     await NativeModule.disableLocationUpdates();
@@ -121,7 +130,7 @@ export class NotificareGeo {
    * Sets a callback that will be invoked when an onLocationUpdated event is
    * triggered in the background.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onLocationUpdated event, when in background. It will provide the updated
    * {@link NotificareLocation} object representing the user's new location.
    */
@@ -140,7 +149,7 @@ export class NotificareGeo {
    * Sets a callback that will be invoked when an onRegionEntered event is
    * triggered in the background.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onRegionEntered event. It will provide the {@link NotificareRegion}
    * representing the region the user has entered.
    */
@@ -159,7 +168,7 @@ export class NotificareGeo {
    * Sets a callback that will be invoked when an onRegionExited event is
    * triggered in the background.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onRegionExited event. It will provide the {@link NotificareRegion}
    * representing the region the user has exited.
    */
@@ -178,7 +187,7 @@ export class NotificareGeo {
    * Sets a callback that will be invoked when an onBeaconsEntered event is
    * triggered in the background.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onBeaconEntered event. It will provide the {@link NotificareBeacon}
    * representing the beacon the user has entered the proximity of.
    */
@@ -197,7 +206,7 @@ export class NotificareGeo {
    * Sets a callback that will be invoked when an onBeaconsExited event is
    * triggered in the background.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onBeaconExited event. It will provide the {@link NotificareBeacon}
    * representing the beacon the user has exited the proximity of.
    */
@@ -216,7 +225,7 @@ export class NotificareGeo {
    * Sets a callback that will be invoked when an onBeaconsRanged event is
    * triggered in the background.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onBeaconsRanged event. It will provide a list of {@link NotificareBeacon}
    * that were detected and the {@link NotificareRegion} where they were detected.
    */
@@ -241,9 +250,11 @@ export class NotificareGeo {
   /**
    * Called when a new location update is received.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onLocationUpdated event. It will provide the updated {@link NotificareLocation}
    * object representing the user's new location.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onLocationUpdated event.
    */
   public static onLocationUpdated(
     callback: (location: NotificareLocation) => void
@@ -257,9 +268,11 @@ export class NotificareGeo {
   /**
    * Called when the user enters a monitored region.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onRegionEntered event. It will provide the {@link NotificareRegion}
    * representing the region the user has entered.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onRegionEntered event.
    */
   public static onRegionEntered(
     callback: (region: NotificareRegion) => void
@@ -273,9 +286,11 @@ export class NotificareGeo {
   /**
    * Called when the user exits a monitored region.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onRegionExited event. It will provide the {@link NotificareRegion}
    * representing the region the user has exited.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onRegionExited event.
    */
   public static onRegionExited(
     callback: (region: NotificareRegion) => void
@@ -289,9 +304,11 @@ export class NotificareGeo {
   /**
    * Called when the user enters the proximity of a beacon.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onBeaconEntered event. It will provide the {@link NotificareBeacon}
    * representing the beacon the user has entered the proximity of.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onBeaconEntered event.
    */
   public static onBeaconEntered(
     callback: (beacon: NotificareBeacon) => void
@@ -305,9 +322,11 @@ export class NotificareGeo {
   /**
    * Called when the user exits the proximity of a beacon.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onBeaconExited event. It will provide the {@link NotificareBeacon}
    * representing the beacon the user has exited the proximity of.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onBeaconExited event.
    */
   public static onBeaconExited(
     callback: (beacon: NotificareBeacon) => void
@@ -324,9 +343,11 @@ export class NotificareGeo {
    * This method provides the list of beacons currently detected within the given
    * region.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onBeaconsRanged event. It will provide a list of {@link NotificareBeacon}
    * that were detected and the {@link NotificareRegion} where they were detected.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onBeaconsRanged event.
    */
   public static onBeaconsRanged(
     callback: (data: {
@@ -345,9 +366,11 @@ export class NotificareGeo {
    *
    * **Note**: This method is only supported on iOS.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onVisit event. It will provide a {@link NotificareVisit} object representing
    * the details of the visit.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onVisit event.
    */
   public static onVisit(
     callback: (visit: NotificareVisit) => void
@@ -360,9 +383,11 @@ export class NotificareGeo {
    *
    * **Note**: This method is only supported on iOS.
    *
-   * @param callback A callback that will be invoked with the result of the
+   * @param callback - A callback that will be invoked with the result of the
    * onHeadingUpdated event. It will provide a {@link NotificareHeading} object
    * containing the details of the updated heading.
+   * @returns {EmitterSubscription} - The {@link EmitterSubscription} for the
+   * onHeadingUpdated event.
    */
   public static onHeadingUpdated(
     callback: (heading: NotificareHeading) => void
