@@ -115,7 +115,7 @@ export class NotificarePush {
   }
 
   /**
-   * Provides the current push subscription token.
+   * Provides the current push subscription.
    *
    * @returns {Promise<NotificarePushSubscription | null>} - A promise that
    * resolves to the device's current {@link NotificarePushSubscription}, or

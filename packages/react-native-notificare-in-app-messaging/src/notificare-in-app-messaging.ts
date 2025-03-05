@@ -64,8 +64,7 @@ export class NotificareInAppMessaging {
    * @param {boolean} suppressed - Set to `true` to suppress in-app messages, or
    * `false` to stop suppressing them.
    * @param {boolean} evaluateContext - Set to `true` to re-evaluate the foreground
-   * context when stopping in-app message
-   * suppression.
+   * context when stopping in-app message suppression.
    * @returns {Promise<void>} - A promise that resolves when the message suppression
    * state has been successfully set.
    */
