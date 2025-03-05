@@ -76,7 +76,7 @@ export class NotificareUserInbox {
    *
    * @param {NotificareUserInboxItem} item - The {@link NotificareUserInboxItem}
    * to be opened.
-   * @return {Promise<NotificareNotification>} - The {@link NotificareNotification}
+   * @return {Promise<NotificareNotification>} - A promise that resolves to the {@link NotificareNotification}
    * associated with the opened inbox item.
    */
   public static async open(

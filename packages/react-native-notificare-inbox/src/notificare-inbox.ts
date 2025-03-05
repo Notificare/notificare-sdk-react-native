@@ -70,8 +70,8 @@ export class NotificareInbox {
    * associated notification.
    *
    * @param {NotificareInboxItem} item - The {@link NotificareInboxItem} to open.
-   * @return {Promise<NotificareNotification>} - The {@link NotificareNotification}
-   * associated with the inbox item.
+   * @return {Promise<NotificareNotification>} - A promise that resolves to the
+   * {@link NotificareNotification} associated with the inbox item.
    */
   public static async open(
     item: NotificareInboxItem
