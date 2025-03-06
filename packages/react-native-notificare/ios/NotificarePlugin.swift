@@ -360,8 +360,17 @@ public class NotificarePlugin: NSObject {
     }
 
     @objc
-    public func updateUserData(_ userData: [String: String], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
-        Notificare.shared.device().updateUserData(userData) { result in
+    public func updateUserData(_ userData: [[String: Any]], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        var data: [String: String?] = [:]
+
+        for entry in userData {
+            if let key = entry["key"] as? String {
+                let value = entry["value"] as? String
+                data[key] = value
+            }
+        }
+
+        Notificare.shared.device().updateUserData(data) { result in
             switch result {
             case .success:
                 resolve(nil)
