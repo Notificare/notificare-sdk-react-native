@@ -8,7 +8,6 @@ import re.notifica.NotificareCallback
 import re.notifica.scannables.NotificareScannables
 import re.notifica.scannables.ktx.scannables
 import re.notifica.scannables.models.NotificareScannable
-import re.notifica.scannables.models.toJson
 
 public class NotificareScannablesModule internal constructor(context: ReactApplicationContext) :
     NotificareScannablesModuleSpec(context), NotificareScannables.ScannableSessionListener {

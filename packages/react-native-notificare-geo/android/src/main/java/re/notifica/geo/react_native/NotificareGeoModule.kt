@@ -6,7 +6,6 @@ import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactMethod
 import re.notifica.Notificare
 import re.notifica.geo.ktx.geo
-import re.notifica.geo.models.toJson
 
 public class NotificareGeoModule internal constructor(context: ReactApplicationContext) :
     NotificareGeoModuleSpec(context) {
