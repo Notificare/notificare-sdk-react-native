@@ -47,9 +47,9 @@
     "react-native-notificare-push-ui": "^4.0.1",
     "react-native-notificare-scannables": "^4.0.1",
     "react-native-paper": "^5.12.5",
-    "react-native-permissions": "^5.1.0",
+    "react-native-permissions": "^5.2.5",
     "react-native-reanimated": "~3.16.1",
-    "react-native-safe-area-context": "4.14.0",
+    "react-native-safe-area-context": "^5.2.0",
     "react-native-screens": "^4.1.0",
     "react-native-timeago": "^0.5.0",
     "react-native-web": "~0.19.13"
