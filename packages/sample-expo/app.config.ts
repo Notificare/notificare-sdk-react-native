@@ -40,7 +40,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   android: {
     package: 're.notifica.sample.app.dev',
-    googleServicesFile: './configuration/google-services.json',
+    googleServicesFile:
+      process.env.GOOGLE_SERVICES_JSON ??
+      './configuration/google-services.json',
     config: {
       googleMaps: {
         apiKey: process.env.GOOGLE_API_KEY,
@@ -82,11 +84,15 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       'react-native-notificare',
       {
         ios: {
-          servicesFile: './configuration/NotificareServices.plist',
+          servicesFile:
+            process.env.NOTIFICARE_SERVICES_PLIST ??
+            './configuration/NotificareServices.plist',
           optionsFile: './configuration/NotificareOptions.plist',
         },
         android: {
-          servicesFile: './configuration/notificare-services.json',
+          servicesFile:
+            process.env.NOTIFICARE_SERVICES_JSON ??
+            './configuration/notificare-services.json',
           debugLoggingEnabled: true,
         },
       },
@@ -164,5 +170,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ],
   experiments: {
     typedRoutes: true,
+  },
+  extra: {
+    eas: {
+      projectId: '8e345d54-c98b-4e0f-8331-5b5086ae982d',
+    },
   },
 });
