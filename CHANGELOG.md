@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## Upcoming Release
+
+- Allow unsetting user data fields
+
+#### Native changes
+
+##### iOS
+
+- Fix issue where the notification UI was not dismissed when some actions were executed
+- Fix callback with keyboard safe area insets
+- Improve CoreData threading
+- Change NotificareRegion.timeZoneOffset attribute from int to float to support half-hour & 45 minute timezones
+
+##### Android
+
+- Warnings related to missing requirements for Beacons functionality only logged once during `enableLocationUpdates()` flow
+- Fix UI behaviour after screen rotation when presenting notifications
+- Fix crash when rotating the screen when presenting a `NotificareCallbackActionFragment`
+- Update compile SDK to 35
+
 ## 4.0.2
 
 - Add documentation to public methods

@@ -202,12 +202,24 @@ export class NotificareDeviceModule {
   /**
    * Updates the custom user data associated with the device.
    *
-   * @param {Record<string, string>} userData - The updated user data to associate
+   * @param {Record<string, string | null>} userData - The updated user data to associate
    * with the device.
    * @returns {Promise<void>} - A promise that resolves when the user data has
    * been successfully updated.
    */
-  public async updateUserData(userData: Record<string, string>): Promise<void> {
+  public async updateUserData(
+    userData: Record<string, string | null>
+  ): Promise<void> {
+    if (Platform.OS === 'ios') {
+      // Convert useData record into an array of objects in order to handler NULL values in iOS as those are only received in the interop layer (https://github.com/facebook/react-native/pull/49250)
+      const data = Object.entries(userData).map(([key, value]) => ({
+        key,
+        value,
+      }));
+
+      return await NativeModule.updateUserData(data);
+    }
+
     await NativeModule.updateUserData(userData);
   }
 }

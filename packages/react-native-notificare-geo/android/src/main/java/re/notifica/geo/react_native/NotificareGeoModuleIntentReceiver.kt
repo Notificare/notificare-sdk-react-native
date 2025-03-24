@@ -7,7 +7,6 @@ import re.notifica.geo.NotificareGeoIntentReceiver
 import re.notifica.geo.models.NotificareBeacon
 import re.notifica.geo.models.NotificareLocation
 import re.notifica.geo.models.NotificareRegion
-import re.notifica.geo.models.toJson
 import re.notifica.geo.react_native.NotificareGeoModuleHeadlessService.Companion.processHeadlessTask
 
 internal class NotificareGeoModuleIntentReceiver : NotificareGeoIntentReceiver() {

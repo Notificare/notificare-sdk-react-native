@@ -196,7 +196,7 @@ RCT_EXPORT_METHOD(fetchUserData:(RCTPromiseResolveBlock)resolve
     [plugin fetchUserData:resolve reject:reject];
 }
 
-RCT_EXPORT_METHOD(updateUserData:(NSDictionary *)userData
+RCT_EXPORT_METHOD(updateUserData:(NSArray *)userData
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
