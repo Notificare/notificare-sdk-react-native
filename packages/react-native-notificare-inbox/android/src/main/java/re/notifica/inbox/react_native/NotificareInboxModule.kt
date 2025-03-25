@@ -12,8 +12,6 @@ import re.notifica.Notificare
 import re.notifica.NotificareCallback
 import re.notifica.inbox.ktx.inbox
 import re.notifica.inbox.models.NotificareInboxItem
-import re.notifica.inbox.models.fromJson
-import re.notifica.inbox.models.toJson
 import re.notifica.models.NotificareNotification
 import java.util.SortedSet
 

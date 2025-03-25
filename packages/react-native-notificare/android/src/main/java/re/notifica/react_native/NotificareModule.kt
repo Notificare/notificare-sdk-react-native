@@ -375,17 +375,15 @@ public class NotificareModule internal constructor(context: ReactApplicationCont
 
     @ReactMethod
     override fun updateUserData(payload: ReadableMap, promise: Promise) {
-        val userData: NotificareUserData = payload.let { reactMap ->
-            val parsed = mutableMapOf<String, String>()
+        val userData: Map<String, String?> = payload.let { reactMap ->
+            val parsed = mutableMapOf<String, String?>()
 
             val iterator = reactMap.keySetIterator()
             while (iterator.hasNextKey()) {
                 val key = iterator.nextKey()
                 val value = reactMap.getString(key)
 
-                if (value != null) {
-                    parsed[key] = value
-                }
+                parsed[key] = value
             }
 
             parsed

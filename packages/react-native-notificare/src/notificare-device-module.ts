@@ -28,15 +28,18 @@ const NativeModule = NotificareModule
 
 export class NotificareDeviceModule {
   /**
-   * @returns The current {@link NotificareDevice} information.
+   * @returns {Promise<NotificareDevice | null>} - A promise that resolves to
+   * the current {@link NotificareDevice} information, or 'null' in case no
+   * device is registered.
    */
   public async getCurrentDevice(): Promise<NotificareDevice | null> {
     return await NativeModule.getCurrentDevice();
   }
 
   /**
-   * @returns The preferred language of the current device for notifications and
-   * messages.
+   * @returns {Promise<string | null>} - A promise that resolves to the
+   * preferred language of the current device for notifications and messages, or
+   * `null` if no preferred language is set.
    */
   public async getPreferredLanguage(): Promise<string | null> {
     return await NativeModule.getPreferredLanguage();
@@ -45,7 +48,9 @@ export class NotificareDeviceModule {
   /**
    * Updates the preferred language setting for the device.
    *
-   * @param language The preferred language code.
+   * @param {string | null} language - The preferred language code.
+   * @returns {Promise<void>} - A promise that resolves when the preferred language
+   * has been successfully updated.
    */
   public async updatePreferredLanguage(language: string | null): Promise<void> {
     await NativeModule.updatePreferredLanguage(language);
@@ -56,8 +61,10 @@ export class NotificareDeviceModule {
    *
    * To register the device anonymously, set both `userId` and `userName` to `null`.
    *
-   * @param userId Optional user identifier.
-   * @param userName Optional username.
+   * @param {string | null} userId - Optional user identifier.
+   * @param {string | null} userName - Optional username.
+   * @returns {Promise<void>} - A promise that resolves when the user has been
+   * successfully registered.
    *
    * @deprecated Use updateUser() instead.
    */
@@ -73,8 +80,10 @@ export class NotificareDeviceModule {
    *
    * To register the device anonymously, set both `userId` and `userName` to `null`.
    *
-   * @param userId Optional user identifier.
-   * @param userName Optional username.
+   * @param {string | null} userId - Optional user identifier.
+   * @param {string | null} userName - Optional username.
+   * @returns {Promise<void>} - A promise that resolves when the user information
+   * has been successfully updated.
    */
   public async updateUser(
     userId: string | null,
@@ -86,7 +95,8 @@ export class NotificareDeviceModule {
   /**
    * Fetches the tags associated with the device.
    *
-   * @return A list of tags currently associated with the device.
+   * @return {Promise<string[]>} - A promise that resolves to a list of tags
+   * currently associated with the device.
    */
   public async fetchTags(): Promise<string[]> {
     return await NativeModule.fetchTags();
@@ -95,7 +105,9 @@ export class NotificareDeviceModule {
   /**
    * Adds a single tag to the device.
    *
-   * @param tag The tag to add.
+   * @param {string} tag - The tag to add.
+   * @returns {Promise<void>} - A promise that resolves when the tag has been
+   * successfully added to the device.
    */
   public async addTag(tag: string): Promise<void> {
     await NativeModule.addTag(tag);
@@ -104,7 +116,9 @@ export class NotificareDeviceModule {
   /**
    * Adds multiple tags to the device.
    *
-   * @param tags A list of tags to add.
+   * @param {string[]} tags - A list of tags to add.
+   * @returns {Promise<void>} - A promise that resolves when all the tags have
+   * been successfully added to the device.
    */
   public async addTags(tags: string[]): Promise<void> {
     await NativeModule.addTags(tags);
@@ -113,7 +127,9 @@ export class NotificareDeviceModule {
   /**
    * Removes a specific tag from the device.
    *
-   * @param tag The tag to remove.
+   * @param {string} tag - The tag to remove.
+   * @returns {Promise<void>} - A promise that resolves when the tag has been
+   * successfully removed from the device.
    */
   public async removeTag(tag: string): Promise<void> {
     await NativeModule.removeTag(tag);
@@ -122,7 +138,9 @@ export class NotificareDeviceModule {
   /**
    * Removes multiple tags from the device.
    *
-   * @param tags A list of tags to remove.
+   * @param {string[]} tags - A list of tags to remove.
+   * @returns {Promise<void>} - A promise that resolves when all the specified tags
+   * have been successfully removed from the device.
    */
   public async removeTags(tags: string[]): Promise<void> {
     await NativeModule.removeTags(tags);
@@ -130,6 +148,9 @@ export class NotificareDeviceModule {
 
   /**
    * Clears all tags from the device.
+   *
+   * @returns {Promise<void>} - A promise that resolves when all tags have been
+   * successfully cleared from the device.
    */
   public async clearTags(): Promise<void> {
     await NativeModule.clearTags();
@@ -138,7 +159,8 @@ export class NotificareDeviceModule {
   /**
    * Fetches the "Do Not Disturb" (DND) settings for the device.
    *
-   * @return The current {@link NotificareDoNotDisturb} settings, or `null` if
+   * @return {Promise<NotificareDoNotDisturb | null>} - A promise that resolves
+   * to the current {@link NotificareDoNotDisturb} settings, or `null` if
    * none are set.
    */
   public async fetchDoNotDisturb(): Promise<NotificareDoNotDisturb | null> {
@@ -148,7 +170,10 @@ export class NotificareDeviceModule {
   /**
    * Updates the "Do Not Disturb" (DND) settings for the device.
    *
-   * @param dnd The new {@link NotificareDoNotDisturb} settings to apply.
+   * @param {NotificareDoNotDisturb} dnd - The new {@link NotificareDoNotDisturb}
+   * settings to apply.
+   * @returns {Promise<void>} - A promise that resolves when the DND settings
+   * have been successfully updated.
    */
   public async updateDoNotDisturb(dnd: NotificareDoNotDisturb): Promise<void> {
     await NativeModule.updateDoNotDisturb(dnd);
@@ -156,6 +181,9 @@ export class NotificareDeviceModule {
 
   /**
    * Clears the "Do Not Disturb" (DND) settings for the device.
+   *
+   * @returns {Promise<void>} - A promise that resolves when the DND settings
+   * have been successfully cleared.
    */
   public async clearDoNotDisturb(): Promise<void> {
     await NativeModule.clearDoNotDisturb();
@@ -164,7 +192,8 @@ export class NotificareDeviceModule {
   /**
    * Fetches the user data associated with the device.
    *
-   * @return The current user data.
+   * @return {Promise<Record<string, string>>} - A promise that resolves to a
+   * {@link Record} object containing the current user data.
    */
   public async fetchUserData(): Promise<Record<string, string>> {
     return await NativeModule.fetchUserData();
@@ -173,9 +202,24 @@ export class NotificareDeviceModule {
   /**
    * Updates the custom user data associated with the device.
    *
-   * @param userData The updated user data to associate with the device.
+   * @param {Record<string, string | null>} userData - The updated user data to associate
+   * with the device.
+   * @returns {Promise<void>} - A promise that resolves when the user data has
+   * been successfully updated.
    */
-  public async updateUserData(userData: Record<string, string>): Promise<void> {
+  public async updateUserData(
+    userData: Record<string, string | null>
+  ): Promise<void> {
+    if (Platform.OS === 'ios') {
+      // Convert useData record into an array of objects in order to handler NULL values in iOS as those are only received in the interop layer (https://github.com/facebook/react-native/pull/49250)
+      const data = Object.entries(userData).map(([key, value]) => ({
+        key,
+        value,
+      }));
+
+      return await NativeModule.updateUserData(data);
+    }
+
     await NativeModule.updateUserData(userData);
   }
 }

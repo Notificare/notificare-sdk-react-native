@@ -11,7 +11,6 @@ import org.json.JSONObject
 import re.notifica.geo.models.NotificareBeacon
 import re.notifica.geo.models.NotificareLocation
 import re.notifica.geo.models.NotificareRegion
-import re.notifica.geo.models.toJson
 import java.io.Serializable
 
 internal class NotificareGeoModuleHeadlessService : HeadlessJsTaskService() {

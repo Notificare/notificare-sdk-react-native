@@ -1,6 +1,6 @@
 {
   "name": "react-native-notificare",
-  "version": "4.0.2",
+  "version": "4.1.0",
   "description": "Notificare React Native module.",
   "author": "Notificare <info@notifica.re> (https://notificare.com)",
   "license": "MIT",
@@ -67,7 +67,7 @@
     "expo-module-scripts": "^4.0.2",
     "expo-modules-core": "^2.0.2",
     "react": "18.3.1",
-    "react-native": "0.76.1",
+    "react-native": "0.77.1",
     "react-native-builder-bob": "^0.31.0",
     "typescript": "^5.4.5"
   },

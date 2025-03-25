@@ -171,6 +171,31 @@ export const DeviceView = () => {
     }
   }
 
+  async function unsetUserData() {
+    try {
+      await Notificare.device().updateUserData({
+        firstName: null,
+        lastName: 'LastNameExample',
+      });
+      console.log('=== Unset user data successfully ===');
+
+      addSnackbarInfoMessage({
+        message: 'Unset user data successfully.',
+        type: 'success',
+      });
+
+      await loadDeviceData();
+    } catch (e) {
+      console.log('=== Error unsetting user data ===');
+      console.log(JSON.stringify(e));
+
+      addSnackbarInfoMessage({
+        message: 'Error unsetting user data.',
+        type: 'error',
+      });
+    }
+  }
+
   return (
     <ScrollView>
       <View style={mainStyles.main_view_container}>
@@ -264,6 +289,14 @@ export const DeviceView = () => {
           <TouchableOpacity onPress={updateUserData}>
             <View style={mainStyles.button}>
               <Text>Update user data</Text>
+            </View>
+          </TouchableOpacity>
+
+          <View style={mainStyles.divider} />
+
+          <TouchableOpacity onPress={unsetUserData}>
+            <View style={mainStyles.button}>
+              <Text>Unset user data</Text>
             </View>
           </TouchableOpacity>
         </Card>

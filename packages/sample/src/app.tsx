@@ -1,5 +1,9 @@
 import React, { FC, useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  DarkTheme,
+  DefaultTheme,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { HomeView } from './pages/home/home-view';
@@ -16,10 +20,13 @@ import { ScannablesView } from './pages/scannables/scannables-view';
 import { EventMonitor } from './components/event-monitor';
 import { SnackbarProvider } from './contexts/snackbar';
 import { NotificareScannables } from 'react-native-notificare-scannables';
+import { useColorScheme } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
 export const App: FC = () => {
+  const theme = useColorScheme();
+
   useEffect(function launch() {
     (async () => {
       await NotificarePush.setPresentationOptions(['banner', 'badge', 'sound']);
@@ -70,7 +77,9 @@ export const App: FC = () => {
     <PaperProvider>
       <SnackbarProvider>
         <EventMonitor />
-        <NavigationContainer>
+        <NavigationContainer
+          theme={theme === 'dark' ? DarkTheme : DefaultTheme}
+        >
           <Stack.Navigator initialRouteName="Sample">
             <Stack.Screen name="Sample" component={HomeView} />
             <Stack.Screen name="Device" component={DeviceView} />

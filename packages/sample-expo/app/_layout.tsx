@@ -12,6 +12,8 @@ import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { SnackbarProvider } from '@/components/contexts/snackbar';
+import { PaperProvider } from 'react-native-paper';
+import { EventMonitor } from '@/components/EventMonitor';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -33,23 +35,26 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <SnackbarProvider>
-        <Stack>
-          <Stack.Screen name="index" options={{ title: 'Sample Expo' }} />
-          <Stack.Screen name="device" options={{ title: 'Device' }} />
-          <Stack.Screen name="inbox" options={{ title: 'Inbox' }} />
-          <Stack.Screen name="tags" options={{ title: 'Tags' }} />
-          <Stack.Screen name="beacons" options={{ title: 'Beacons' }} />
-          <Stack.Screen name="scannables" options={{ title: 'Scannables' }} />
-          <Stack.Screen name="assets" options={{ title: 'Assets' }} />
-          <Stack.Screen
-            name="custom-events"
-            options={{ title: 'Custom Events' }}
-          />
-        </Stack>
-      </SnackbarProvider>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <PaperProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <SnackbarProvider>
+          <EventMonitor />
+          <Stack>
+            <Stack.Screen name="index" options={{ title: 'Sample Expo' }} />
+            <Stack.Screen name="device" options={{ title: 'Device' }} />
+            <Stack.Screen name="inbox" options={{ title: 'Inbox' }} />
+            <Stack.Screen name="tags" options={{ title: 'Tags' }} />
+            <Stack.Screen name="beacons" options={{ title: 'Beacons' }} />
+            <Stack.Screen name="scannables" options={{ title: 'Scannables' }} />
+            <Stack.Screen name="assets" options={{ title: 'Assets' }} />
+            <Stack.Screen
+              name="custom-events"
+              options={{ title: 'Custom Events' }}
+            />
+          </Stack>
+        </SnackbarProvider>
+        <StatusBar style="auto" />
+      </ThemeProvider>
+    </PaperProvider>
   );
 }
