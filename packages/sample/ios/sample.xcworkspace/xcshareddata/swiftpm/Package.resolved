@@ -1,0 +1,15 @@
+{
+  "originHash" : "32be138294ac3ad39dac5d487106f3eed90b38103906d8a46c8ab79624305ba1",
+  "pins" : [
+    {
+      "identity" : "notificare-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Notificare/notificare-sdk-ios",
+      "state" : {
+        "revision" : "17ccda302ede671e902ceae2e455e59a754e61f8",
+        "version" : "4.1.0"
+      }
+    }
+  ],
+  "version" : 3
+}
