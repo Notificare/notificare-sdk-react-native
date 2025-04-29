@@ -1230,7 +1230,7 @@ PODS:
     - React-jsiexecutor
     - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
-  - react-native-notificare (4.1.0):
+  - react-native-notificare (4.2.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1253,7 +1253,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-assets (4.1.0):
+  - react-native-notificare-assets (4.2.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1276,7 +1276,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-geo (4.1.0):
+  - react-native-notificare-geo (4.2.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1300,7 +1300,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-in-app-messaging (4.1.0):
+  - react-native-notificare-in-app-messaging (4.2.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1324,7 +1324,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-inbox (4.1.0):
+  - react-native-notificare-inbox (4.2.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1348,7 +1348,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-loyalty (4.1.0):
+  - react-native-notificare-loyalty (4.2.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1371,7 +1371,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-push (4.1.0):
+  - react-native-notificare-push (4.2.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1395,7 +1395,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-push-ui (4.1.0):
+  - react-native-notificare-push-ui (4.2.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1419,7 +1419,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-scannables (4.1.0):
+  - react-native-notificare-scannables (4.2.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2183,15 +2183,15 @@ SPEC CHECKSUMS:
   React-logger: e7eeebaed32b88dcc29b10901aa8c5822dc397c4
   React-Mapbuffer: 73dd1210c4ecf0dfb4e2d4e06f2a13f824a801a9
   React-microtasksnativemodule: d03753688e2abf135edcd4160ab3ce7526da8b0d
-  react-native-notificare: 8bcb777147a3ba32e907571a07b6a541729e50d8
-  react-native-notificare-assets: 762f421a55fe2d23a3a5b892c9623bc9f959eb9e
-  react-native-notificare-geo: a4ecb80c5a9cafef5081602ac5e60a4367786573
-  react-native-notificare-in-app-messaging: b773a4e044464c5ec03f9b36672c16501ceeb6bb
-  react-native-notificare-inbox: 4f0ab44487ea9318cb54b54931cb6950817fe118
-  react-native-notificare-loyalty: ef8df4f4a0adba62e695e2ee358eebc3ab66ccb8
-  react-native-notificare-push: f954afed65e33a173b92a9c5fa0f15e2471d8f91
-  react-native-notificare-push-ui: 38d0b1d44e1d2a30d5bdaa428a57b829c8eb4d5e
-  react-native-notificare-scannables: b6eee43f7fccaddfd557f10c44f5f660e2357111
+  react-native-notificare: 86853f04462d4b38b35967e411a94c82018bd8bf
+  react-native-notificare-assets: 2d53ae32575838c48883db04e36cfc769ceab164
+  react-native-notificare-geo: e41801df768f1dbca1ff34b1749ac63511004e7b
+  react-native-notificare-in-app-messaging: 5524a09acf8af31a01b69750831647189da53960
+  react-native-notificare-inbox: a23c473186179b59fdf20952f44acd3690211f0c
+  react-native-notificare-loyalty: f30f43d3233c6aa312738dda8ffe37850981be0f
+  react-native-notificare-push: 60579402f57dd4294c2ff2f149042faea3674161
+  react-native-notificare-push-ui: 649b55206fd5536236fb6e1e8b225899a490306b
+  react-native-notificare-scannables: 8a19ca860efe76892cd496ca41effb5b717b7221
   react-native-safe-area-context: 0f14bce545abcdfbff79ce2e3c78c109f0be283e
   React-nativeconfig: cb207ebba7cafce30657c7ad9f1587a8f32e4564
   React-NativeModulesApple: 8411d548b1ad9d2b3e597beb9348e715c8020e0c
@@ -2227,7 +2227,7 @@ SPEC CHECKSUMS:
   RNScreens: b32d0d59b53acb574fa795a9343591ef4e7ab7c2
   RNVectorIcons: bd818296a51dc2bb8c3bd97a3ca399df1afe216d
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  Yoga: 2957d0e744897870b5a377f26522e3f08cadd7ac
+  Yoga: 1fd059161b449018342943b095a6d4e69bcaa719
 
 PODFILE CHECKSUM: 5b1d6f513a4a621a1b99c1bfd8a51587093961ae
 
