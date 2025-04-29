@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Upcoming Release
+## 4.2.0
 
 - Recover when a device is removed remotely
 
