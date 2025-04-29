@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 4.2.0
+
+- Recover when a device is removed remotely
+
+#### Native changes
+
+##### iOS
+
+- Reload action categories during launch
+
 ## 4.1.0
 
 - Allow unsetting user data fields

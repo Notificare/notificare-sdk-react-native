@@ -18,15 +18,15 @@ PODS:
     - hermes-engine/Pre-built (= 0.77.1)
   - hermes-engine/Pre-built (0.77.1)
   - JWTDecode (3.1.0)
-  - Notificare/NotificareKit (4.1.0):
+  - Notificare/NotificareKit (4.2.0):
     - Notificare/NotificareUtilitiesKit
-  - Notificare/NotificarePushKit (4.1.0):
+  - Notificare/NotificarePushKit (4.2.0):
     - Notificare/NotificareUtilitiesKit
-  - Notificare/NotificarePushUIKit (4.1.0):
+  - Notificare/NotificarePushUIKit (4.2.0):
     - Notificare/NotificareUtilitiesKit
-  - Notificare/NotificareUserInboxKit (4.1.0):
+  - Notificare/NotificareUserInboxKit (4.2.0):
     - Notificare/NotificareUtilitiesKit
-  - Notificare/NotificareUtilitiesKit (4.1.0)
+  - Notificare/NotificareUtilitiesKit (4.2.0)
   - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
@@ -1229,12 +1229,12 @@ PODS:
     - React-jsiexecutor
     - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
-  - react-native-notificare (4.0.2):
+  - react-native-notificare (4.1.0):
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareKit (= 4.1.0)
-    - Notificare/NotificareUtilitiesKit (= 4.1.0)
+    - Notificare/NotificareKit (= 4.2.0)
+    - Notificare/NotificareUtilitiesKit (= 4.2.0)
     - RCT-Folly (= 2024.11.18.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1252,13 +1252,13 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-push (4.0.2):
+  - react-native-notificare-push (4.1.0):
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareKit (= 4.1.0)
-    - Notificare/NotificarePushKit (= 4.1.0)
-    - Notificare/NotificareUtilitiesKit (= 4.1.0)
+    - Notificare/NotificareKit (= 4.2.0)
+    - Notificare/NotificarePushKit (= 4.2.0)
+    - Notificare/NotificareUtilitiesKit (= 4.2.0)
     - RCT-Folly (= 2024.11.18.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1276,13 +1276,13 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-push-ui (4.0.2):
+  - react-native-notificare-push-ui (4.1.0):
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareKit (= 4.1.0)
-    - Notificare/NotificarePushUIKit (= 4.1.0)
-    - Notificare/NotificareUtilitiesKit (= 4.1.0)
+    - Notificare/NotificareKit (= 4.2.0)
+    - Notificare/NotificarePushUIKit (= 4.2.0)
+    - Notificare/NotificareUtilitiesKit (= 4.2.0)
     - RCT-Folly (= 2024.11.18.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1300,12 +1300,12 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-user-inbox (4.0.2):
+  - react-native-notificare-user-inbox (4.1.0):
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareKit (= 4.1.0)
-    - Notificare/NotificareUserInboxKit (= 4.1.0)
+    - Notificare/NotificareKit (= 4.2.0)
+    - Notificare/NotificareUserInboxKit (= 4.2.0)
     - RCT-Folly (= 2024.11.18.00)
     - RCTRequired
     - RCTTypeSafety
@@ -2028,7 +2028,7 @@ SPEC CHECKSUMS:
   glog: eb93e2f488219332457c3c4eafd2738ddc7e80b8
   hermes-engine: ccc24d29d650ea725d582a9a53d57cd417fbdb53
   JWTDecode: 3eaab1e06b6f4dcbdd6716aff09ba4c2104ca8b7
-  Notificare: fd2f28924a769e174ad5aed3c72fce61b4869b5d
+  Notificare: f6858eddf2ec74f4dafd2e13101fa302f7908a28
   RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: 664055db806cce35c3c1b43c84414dd66e117ae6
   RCTRequired: dc9a83fa1012054f94430d210337ca3a1afe6fc0
@@ -2058,10 +2058,10 @@ SPEC CHECKSUMS:
   React-logger: e7eeebaed32b88dcc29b10901aa8c5822dc397c4
   React-Mapbuffer: 73dd1210c4ecf0dfb4e2d4e06f2a13f824a801a9
   React-microtasksnativemodule: d03753688e2abf135edcd4160ab3ce7526da8b0d
-  react-native-notificare: 4e19fb012434068c2961b70022b681c2526f52c7
-  react-native-notificare-push: 08916a88209800864d6da18fd273be88c9f7e1e3
-  react-native-notificare-push-ui: eff1f4a4379a16af49f6b751da9b3de7529eb68a
-  react-native-notificare-user-inbox: f9524d8b64fca427290466ca998f1befe5f1ee23
+  react-native-notificare: 8bcb777147a3ba32e907571a07b6a541729e50d8
+  react-native-notificare-push: f954afed65e33a173b92a9c5fa0f15e2471d8f91
+  react-native-notificare-push-ui: 38d0b1d44e1d2a30d5bdaa428a57b829c8eb4d5e
+  react-native-notificare-user-inbox: 998421b3ff2e6b791c72d86eca8929f3b9beda1a
   react-native-safe-area-context: 0f14bce545abcdfbff79ce2e3c78c109f0be283e
   React-nativeconfig: cb207ebba7cafce30657c7ad9f1587a8f32e4564
   React-NativeModulesApple: 8411d548b1ad9d2b3e597beb9348e715c8020e0c
