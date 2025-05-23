@@ -1,6 +1,6 @@
 {
   "name": "react-native-notificare-user-inbox",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "Notificare User Inbox React Native module.",
   "author": "Notificare <info@notifica.re> (https://notificare.com)",
   "license": "MIT",
@@ -50,14 +50,14 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-notificare": "4.2.0"
+    "react-native-notificare": "4.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",
     "react": "18.3.1",
     "react-native": "0.77.1",
     "react-native-builder-bob": "^0.31.0",
-    "react-native-notificare": "4.2.0",
+    "react-native-notificare": "4.2.1",
     "typescript": "^5.4.5"
   },
   "react-native-builder-bob": {
