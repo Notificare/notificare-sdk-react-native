@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 4.2.1
+
+#### Native changes
+
+##### iOS
+
+- Refactor the integration with CoreData, fixing threading fatal errors
+
 ## 4.2.0
 
 - Recover when a device is removed remotely
