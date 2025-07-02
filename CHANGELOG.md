@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Upcoming Release
+## 4.2.2
 
 #### Native changes
 
