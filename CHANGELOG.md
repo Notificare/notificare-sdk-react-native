@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Upcoming Release
+
+#### Native changes
+
+##### iOS
+
+- Fix Swift Concurrency issues when synchronizing inbox items
+
 ## 4.2.1
 
 #### Native changes
