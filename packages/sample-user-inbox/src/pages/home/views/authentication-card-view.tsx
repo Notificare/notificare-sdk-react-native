@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, Text, TouchableOpacity, View } from 'react-native';
 // @ts-ignore
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import Card from '../../../components/card-view';
 import { mainStyles } from '../../../styles/styles';
 import { useSnackbarContext } from '../../../contexts/snackbar';
@@ -49,7 +49,7 @@ isDeviceRegistered: ${isDeviceRegistered}`,
         <Text style={mainStyles.section_title}>Authentication Flow</Text>
 
         <TouchableOpacity onPress={showAuthenticationFlowInfo}>
-          <Icon name="info" size={18} />
+          <MaterialIcons name="info" size={18} />
         </TouchableOpacity>
       </View>
 

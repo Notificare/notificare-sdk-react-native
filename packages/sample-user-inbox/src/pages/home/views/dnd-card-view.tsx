@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Switch } from 'react-native';
 // @ts-ignore
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import Card from '../../../components/card-view';
 import { Notificare } from 'react-native-notificare';
 import { mainStyles } from '../../../styles/styles';
@@ -87,7 +87,7 @@ export const DnDNotificationsCardView = () => {
 
       <Card>
         <View style={mainStyles.row}>
-          <Icon name="do-not-disturb-on" size={18} />
+          <MaterialIcons name="do-not-disturb-on" size={18} />
 
           <Text style={mainStyles.subtitle}>Do Not Disturb</Text>
 

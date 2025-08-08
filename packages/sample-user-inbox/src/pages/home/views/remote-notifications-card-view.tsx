@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Alert, Switch, Text, TouchableOpacity, View } from 'react-native';
 // @ts-ignore
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import { Badge } from 'react-native-paper';
 import Card from '../../../components/card-view';
 import { mainStyles } from '../../../styles/styles';
@@ -165,13 +165,13 @@ hasRemoteNotificationsEnabled: ${hasRemoteNotificationsEnabled}`,
         <Text style={mainStyles.section_title}>Remote Notifications</Text>
 
         <TouchableOpacity onPress={showNotificationsStatusInfo}>
-          <Icon name="info" size={18} />
+          <MaterialIcons name="info" size={18} />
         </TouchableOpacity>
       </View>
 
       <Card>
         <View style={mainStyles.row}>
-          <Icon name="notifications" size={18} />
+          <MaterialIcons name="notifications" size={18} />
 
           <Text style={mainStyles.subtitle}>Notifications</Text>
 
@@ -186,7 +186,7 @@ hasRemoteNotificationsEnabled: ${hasRemoteNotificationsEnabled}`,
 
         <TouchableOpacity onPress={onInboxClicked}>
           <View style={mainStyles.row}>
-            <Icon name="inbox" size={18} />
+            <MaterialIcons name="inbox" size={18} />
 
             <Text style={mainStyles.subtitle}>Inbox</Text>
 
@@ -194,7 +194,11 @@ hasRemoteNotificationsEnabled: ${hasRemoteNotificationsEnabled}`,
               {props.badge}
             </Badge>
 
-            <Icon name="arrow-forward-ios" size={14} color="#00000026" />
+            <MaterialIcons
+              name="arrow-forward-ios"
+              size={14}
+              color="#00000026"
+            />
           </View>
         </TouchableOpacity>
       </Card>
