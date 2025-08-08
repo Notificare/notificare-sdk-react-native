@@ -8,7 +8,7 @@ import {
   Alert,
 } from 'react-native';
 // @ts-ignore
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import Card from '../../../components/card-view';
 import { mainStyles } from '../../../styles/styles';
 import {
@@ -232,13 +232,13 @@ hasBluetoothEnabled: ${hasBluetoothEnabled}`,
         <Text style={mainStyles.section_title}>Geo</Text>
 
         <TouchableOpacity onPress={showLocationStatusInfo}>
-          <Icon name="info" size={18} />
+          <MaterialIcons name="info" size={18} />
         </TouchableOpacity>
       </View>
 
       <Card>
         <View style={mainStyles.row}>
-          <Icon name="notifications" size={18} />
+          <MaterialIcons name="notifications" size={18} />
 
           <Text style={mainStyles.subtitle}>Location</Text>
 
@@ -253,11 +253,15 @@ hasBluetoothEnabled: ${hasBluetoothEnabled}`,
 
         <TouchableOpacity onPress={onBeaconsClicked}>
           <View style={mainStyles.row}>
-            <Icon name="bluetooth-searching" size={18} />
+            <MaterialIcons name="bluetooth-searching" size={18} />
 
             <Text style={mainStyles.subtitle}>Beacons</Text>
 
-            <Icon name="arrow-forward-ios" size={14} color="#00000026" />
+            <MaterialIcons
+              name="arrow-forward-ios"
+              size={14}
+              color="#00000026"
+            />
           </View>
         </TouchableOpacity>
       </Card>

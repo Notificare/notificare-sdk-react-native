@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 // @ts-ignore
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import Card from '../../../components/card-view';
 import { mainStyles } from '../../../styles/styles';
 import { useNavigation } from '@react-navigation/native';
@@ -33,11 +33,15 @@ export const OtherFeaturesCardView = () => {
       <Card>
         <TouchableOpacity onPress={onScannablesClicked}>
           <View style={mainStyles.row}>
-            <Icon name="qr-code-scanner" size={18} />
+            <MaterialIcons name="qr-code-scanner" size={18} />
 
             <Text style={mainStyles.subtitle}>Scannables</Text>
 
-            <Icon name="arrow-forward-ios" size={14} color="#00000026" />
+            <MaterialIcons
+              name="arrow-forward-ios"
+              size={14}
+              color="#00000026"
+            />
           </View>
         </TouchableOpacity>
 
@@ -45,11 +49,15 @@ export const OtherFeaturesCardView = () => {
 
         <TouchableOpacity onPress={onAssetsClicked}>
           <View style={mainStyles.row}>
-            <Icon name="folder" size={18} />
+            <MaterialIcons name="folder" size={18} />
 
             <Text style={mainStyles.subtitle}>Assets</Text>
 
-            <Icon name="arrow-forward-ios" size={14} color="#00000026" />
+            <MaterialIcons
+              name="arrow-forward-ios"
+              size={14}
+              color="#00000026"
+            />
           </View>
         </TouchableOpacity>
 
@@ -57,11 +65,15 @@ export const OtherFeaturesCardView = () => {
 
         <TouchableOpacity onPress={onCustomEventClicked}>
           <View style={mainStyles.row}>
-            <Icon name="add-alert" size={18} />
+            <MaterialIcons name="add-alert" size={18} />
 
             <Text style={mainStyles.subtitle}>Custom Events</Text>
 
-            <Icon name="arrow-forward-ios" size={14} color="#00000026" />
+            <MaterialIcons
+              name="arrow-forward-ios"
+              size={14}
+              color="#00000026"
+            />
           </View>
         </TouchableOpacity>
       </Card>

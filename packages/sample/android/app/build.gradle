@@ -131,5 +131,3 @@ dependencies {
 project.ext.vectoricons = [
   iconFontsDir: "../../../../node_modules/react-native-vector-icons/Fonts"
 ]
-
-apply from: "../../../../node_modules/react-native-vector-icons/fonts.gradle"
