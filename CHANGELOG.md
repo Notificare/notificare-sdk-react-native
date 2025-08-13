@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Upcoming Release
+
+#### Native changes
+
+##### Android
+
+- Update dependencies
+
 ## 4.2.2
 
 #### Native changes
