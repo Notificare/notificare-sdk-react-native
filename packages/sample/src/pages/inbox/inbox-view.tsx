@@ -16,10 +16,11 @@ import { InboxItem } from './views/inbox-item';
 import { NotificarePushUI } from 'react-native-notificare-push-ui';
 import { useNavigation } from '@react-navigation/native';
 // @ts-ignore
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import { inboxStyles } from '../../styles/styles-inbox';
 import { bottomSheetStyles } from '../../styles/styles-bottom-sheet';
 import { useSnackbarContext } from '../../contexts/snackbar';
+import { HeaderButton } from '@react-navigation/elements';
 
 export const InboxView: FC = () => {
   const { addSnackbarInfoMessage } = useSnackbarContext();
@@ -58,32 +59,44 @@ export const InboxView: FC = () => {
     navigation.setOptions({
       headerRight: () => (
         <>
-          <Icon.Button
-            name="sync"
-            backgroundColor="transparent"
-            underlayColor="transparent"
-            color="black"
-            style={inboxStyles.toolbarAction}
-            onPress={refresh}
-          />
+          <HeaderButton
+            accessibilityLabel="More options"
+            onPress={() => console.log('button pressed')}
+          >
+            <MaterialIcons
+              name="sync"
+              size={24}
+              color="black"
+              style={inboxStyles.toolbarAction}
+              onPress={refresh}
+            />
+          </HeaderButton>
 
-          <Icon.Button
-            name="mark-email-read"
-            style={inboxStyles.toolbarAction}
-            backgroundColor="transparent"
-            underlayColor="transparent"
-            color="black"
-            onPress={markAllAsRead}
-          />
+          <HeaderButton
+            accessibilityLabel="More options"
+            onPress={() => console.log('button pressed')}
+          >
+            <MaterialIcons
+              name="mark-email-read"
+              size={24}
+              color="black"
+              style={inboxStyles.toolbarAction}
+              onPress={markAllAsRead}
+            />
+          </HeaderButton>
 
-          <Icon.Button
-            style={inboxStyles.toolbarAction}
-            name="delete-sweep"
-            backgroundColor="transparent"
-            underlayColor="transparent"
-            color="black"
-            onPress={clear}
-          />
+          <HeaderButton
+            accessibilityLabel="More options"
+            onPress={() => console.log('button pressed')}
+          >
+            <MaterialIcons
+              name="delete-sweep"
+              size={24}
+              color="black"
+              style={inboxStyles.toolbarAction}
+              onPress={clear}
+            />
+          </HeaderButton>
         </>
       ),
     });

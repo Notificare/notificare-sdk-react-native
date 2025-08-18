@@ -20,7 +20,7 @@ import {
 import { InboxItem } from './views/inbox-item';
 import { NotificarePushUI } from 'react-native-notificare-push-ui';
 // @ts-ignore
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import { inboxStyles } from '../../styles/styles-inbox';
 import { bottomSheetStyles } from '../../styles/styles-bottom-sheet';
 import { useSnackbarContext } from '../../contexts/snackbar';
@@ -28,6 +28,7 @@ import { getUserInboxResponse } from '../../network/user-inbox-request';
 import { useAuth0 } from 'react-native-auth0';
 import { useNavigation } from '@react-navigation/native';
 import { NotificarePush } from 'react-native-notificare-push';
+import { HeaderButton } from '@react-navigation/elements';
 
 export const InboxView = () => {
   const { getCredentials, hasValidCredentials } = useAuth0();
@@ -101,14 +102,18 @@ export const InboxView = () => {
     navigation.setOptions({
       headerRight: () => (
         <>
-          <Icon.Button
-            name="sync"
-            backgroundColor="transparent"
-            underlayColor="transparent"
-            color="black"
-            style={inboxStyles.toolbarAction}
-            onPress={refresh}
-          />
+          <HeaderButton
+            accessibilityLabel="More options"
+            onPress={() => console.log('button pressed')}
+          >
+            <MaterialIcons
+              name="sync"
+              size={24}
+              color="black"
+              style={inboxStyles.toolbarAction}
+              onPress={refresh}
+            />
+          </HeaderButton>
         </>
       ),
     });

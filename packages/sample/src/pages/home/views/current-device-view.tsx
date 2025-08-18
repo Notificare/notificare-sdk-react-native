@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 // @ts-ignore
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import Card from '../../../components/card-view';
 import { mainStyles } from '../../../styles/styles';
 import { useNavigation } from '@react-navigation/native';
@@ -22,11 +22,15 @@ export const CurrentDeviceCardView = () => {
       <Card>
         <TouchableOpacity onPress={onCurrentDeviceClicked}>
           <View style={mainStyles.row}>
-            <Icon name="smartphone" size={18} />
+            <MaterialIcons name="smartphone" size={18} />
 
             <Text style={mainStyles.subtitle}>Current Device</Text>
 
-            <Icon name="arrow-forward-ios" size={14} color="#00000026" />
+            <MaterialIcons
+              name="arrow-forward-ios"
+              size={14}
+              color="#00000026"
+            />
           </View>
         </TouchableOpacity>
       </Card>

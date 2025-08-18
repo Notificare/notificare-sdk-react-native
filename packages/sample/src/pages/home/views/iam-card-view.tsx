@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Switch } from 'react-native';
 // @ts-ignore
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import Card from '../../../components/card-view';
 import { mainStyles } from '../../../styles/styles';
 import { NotificareInAppMessaging } from 'react-native-notificare-in-app-messaging';
@@ -45,7 +45,7 @@ export const InAppMessagingCardView = () => {
 
       <Card>
         <View style={mainStyles.row}>
-          <Icon name="mark-chat-unread" size={18} />
+          <MaterialIcons name="mark-chat-unread" size={18} />
 
           <Text style={mainStyles.subtitle}>Evaluate Context</Text>
 
@@ -59,7 +59,7 @@ export const InAppMessagingCardView = () => {
         <View style={mainStyles.divider_margin} />
 
         <View style={mainStyles.row}>
-          <Icon name="speaker-notes-off" size={18} />
+          <MaterialIcons name="speaker-notes-off" size={18} />
 
           <Text style={mainStyles.subtitle}>Suppressed</Text>
 

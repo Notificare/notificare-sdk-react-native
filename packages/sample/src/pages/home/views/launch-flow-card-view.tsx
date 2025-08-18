@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, TouchableOpacity, Alert } from 'react-native';
 import Card from '../../../components/card-view';
 // @ts-ignore
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import { Notificare } from 'react-native-notificare';
 import { mainStyles } from '../../../styles/styles';
 import { useSnackbarContext } from '../../../contexts/snackbar';
@@ -81,7 +81,7 @@ isReadyInfo: ${isReadyStatus}`,
         <Text style={mainStyles.section_title}>Launch Flow</Text>
 
         <TouchableOpacity onPress={showLaunchFlowInfo}>
-          <Icon name="info" size={18} />
+          <MaterialIcons name="info" size={18} />
         </TouchableOpacity>
       </View>
 
