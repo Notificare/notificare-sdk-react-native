@@ -43,8 +43,6 @@ target 'SampleUserInbox' do
     pod 'react-native-notificare-push-ui', :path => '../../react-native-notificare-push-ui'
     pod 'react-native-notificare-user-inbox', :path => '../../react-native-notificare-user-inbox'
 
-    pod 'RNVectorIcons', :path => '../../../node_modules/react-native-vector-icons'
-
   post_install do |installer|
     react_native_post_install(
       installer,

@@ -1229,7 +1229,7 @@ PODS:
     - React-jsiexecutor
     - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
-  - react-native-notificare (4.2.1):
+  - react-native-notificare (4.2.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1252,7 +1252,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-push (4.2.1):
+  - react-native-notificare-push (4.2.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1276,7 +1276,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-push-ui (4.2.1):
+  - react-native-notificare-push-ui (4.2.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1300,7 +1300,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-notificare-user-inbox (4.2.1):
+  - react-native-notificare-user-inbox (4.2.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1389,6 +1389,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - react-native-vector-icons-material-icons (12.3.0)
   - React-nativeconfig (0.77.1)
   - React-NativeModulesApple (0.77.1):
     - glog
@@ -1747,27 +1748,6 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNVectorIcons (10.2.0):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.11.18.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - Yoga
   - SimpleKeychain (1.1.0)
   - SocketRocket (0.7.1)
   - Yoga (0.0.0)
@@ -1817,6 +1797,7 @@ DEPENDENCIES:
   - react-native-notificare-push-ui (from `../../react-native-notificare-push-ui`)
   - react-native-notificare-user-inbox (from `../../react-native-notificare-user-inbox`)
   - react-native-safe-area-context (from `../../../node_modules/react-native-safe-area-context`)
+  - "react-native-vector-icons-material-icons (from `../../../node_modules/@react-native-vector-icons/material-icons`)"
   - React-nativeconfig (from `../../../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../../../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../../../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -1849,7 +1830,6 @@ DEPENDENCIES:
   - "RNCCheckbox (from `../../../node_modules/@react-native-community/checkbox`)"
   - RNPermissions (from `../../../node_modules/react-native-permissions`)
   - RNScreens (from `../../../node_modules/react-native-screens`)
-  - RNVectorIcons (from `../../../node_modules/react-native-vector-icons`)
   - Yoga (from `../../../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -1947,6 +1927,8 @@ EXTERNAL SOURCES:
     :path: "../../react-native-notificare-user-inbox"
   react-native-safe-area-context:
     :path: "../../../node_modules/react-native-safe-area-context"
+  react-native-vector-icons-material-icons:
+    :path: "../../../node_modules/@react-native-vector-icons/material-icons"
   React-nativeconfig:
     :path: "../../../node_modules/react-native/ReactCommon"
   React-NativeModulesApple:
@@ -2011,8 +1993,6 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/react-native-permissions"
   RNScreens:
     :path: "../../../node_modules/react-native-screens"
-  RNVectorIcons:
-    :path: "../../../node_modules/react-native-vector-icons"
   Yoga:
     :path: "../../../node_modules/react-native/ReactCommon/yoga"
 
@@ -2058,11 +2038,12 @@ SPEC CHECKSUMS:
   React-logger: e7eeebaed32b88dcc29b10901aa8c5822dc397c4
   React-Mapbuffer: 73dd1210c4ecf0dfb4e2d4e06f2a13f824a801a9
   React-microtasksnativemodule: d03753688e2abf135edcd4160ab3ce7526da8b0d
-  react-native-notificare: bdd4bb5a18f6794209ab17a67afd267c026e509f
-  react-native-notificare-push: 74d305adcb78fbff3e94f1298b77e07848aefcf2
-  react-native-notificare-push-ui: 90ea9870ea19f5f4c70205052df43959226be17b
-  react-native-notificare-user-inbox: 157c433caba0dd39eb96dc16a36a4af3311a180b
+  react-native-notificare: 8e1d6ea3c30d5eae322646639c85be16b09a5851
+  react-native-notificare-push: 23eb86aa0cb91dfcbcf812d13182777a04d8e59d
+  react-native-notificare-push-ui: fb8373dc99a7b693c0f9ef35fab1aad969508a42
+  react-native-notificare-user-inbox: a379f2bf31a9531054628f1a07eb17c3dbe6b8bb
   react-native-safe-area-context: 0f14bce545abcdfbff79ce2e3c78c109f0be283e
+  react-native-vector-icons-material-icons: eff7417eb1ac6c740ab802837ad34b8233fded34
   React-nativeconfig: cb207ebba7cafce30657c7ad9f1587a8f32e4564
   React-NativeModulesApple: 8411d548b1ad9d2b3e597beb9348e715c8020e0c
   React-perflogger: c4c3b7c18f8a50cdbe2bcdd2f15705ba029a5a02
@@ -2095,11 +2076,10 @@ SPEC CHECKSUMS:
   RNCCheckbox: 450ce156f3e29e25efa0315c96cfbabe5a39ded1
   RNPermissions: f2f4373a816fa810064258772e513a4d4e3f9b1c
   RNScreens: b32d0d59b53acb574fa795a9343591ef4e7ab7c2
-  RNVectorIcons: bd818296a51dc2bb8c3bd97a3ca399df1afe216d
   SimpleKeychain: f8707c8e97b38c6a6e687b17732afc9bcef06439
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: 2957d0e744897870b5a377f26522e3f08cadd7ac
 
-PODFILE CHECKSUM: f153f787a064d8d09a40a8bc7de32a2060e7b62a
+PODFILE CHECKSUM: 3462647697075b7e4085717e63f37b7e0cd5345e
 
 COCOAPODS: 1.16.2
