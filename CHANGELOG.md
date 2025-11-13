@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Upcoming release
+## 4.2.4
 
 - Add required referrer for embedded YouTube videos
 
