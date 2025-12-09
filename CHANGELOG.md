@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## Upcoming release
+
+#### Native changes
+
+##### iOS
+
+- Fix APNS token registration race condition
+
+##### Android
+
+- Gracefully fail when Google Play Services are unavailable
+- Fix conflicting flags in location pending intents
+
 ## 4.2.4
 
 - Add required referrer for embedded YouTube videos
