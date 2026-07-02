@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Upcoming release
+
+#### Native changes
+
+##### iOS
+
+- Fix preferred language update when only region or language value is changed
+
 ## 4.2.5
 
 #### Native changes
