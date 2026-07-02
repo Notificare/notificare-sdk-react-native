@@ -9,25 +9,25 @@ PODS:
   - hermes-engine (0.77.1):
     - hermes-engine/Pre-built (= 0.77.1)
   - hermes-engine/Pre-built (0.77.1)
-  - Notificare/NotificareAssetsKit (4.2.4):
+  - Notificare/NotificareAssetsKit (4.2.5):
     - Notificare/NotificareUtilitiesKit
-  - Notificare/NotificareGeoKit (4.2.4):
+  - Notificare/NotificareGeoKit (4.2.5):
     - Notificare/NotificareUtilitiesKit
-  - Notificare/NotificareInAppMessagingKit (4.2.4):
+  - Notificare/NotificareInAppMessagingKit (4.2.5):
     - Notificare/NotificareUtilitiesKit
-  - Notificare/NotificareInboxKit (4.2.4):
+  - Notificare/NotificareInboxKit (4.2.5):
     - Notificare/NotificareUtilitiesKit
-  - Notificare/NotificareKit (4.2.4):
+  - Notificare/NotificareKit (4.2.5):
     - Notificare/NotificareUtilitiesKit
-  - Notificare/NotificareLoyaltyKit (4.2.4):
+  - Notificare/NotificareLoyaltyKit (4.2.5):
     - Notificare/NotificareUtilitiesKit
-  - Notificare/NotificarePushKit (4.2.4):
+  - Notificare/NotificarePushKit (4.2.5):
     - Notificare/NotificareUtilitiesKit
-  - Notificare/NotificarePushUIKit (4.2.4):
+  - Notificare/NotificarePushUIKit (4.2.5):
     - Notificare/NotificareUtilitiesKit
-  - Notificare/NotificareScannablesKit (4.2.4):
+  - Notificare/NotificareScannablesKit (4.2.5):
     - Notificare/NotificareUtilitiesKit
-  - Notificare/NotificareUtilitiesKit (4.2.4)
+  - Notificare/NotificareUtilitiesKit (4.2.5)
   - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
@@ -1234,8 +1234,8 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareKit (= 4.2.4)
-    - Notificare/NotificareUtilitiesKit (= 4.2.4)
+    - Notificare/NotificareKit (= 4.2.5)
+    - Notificare/NotificareUtilitiesKit (= 4.2.5)
     - RCT-Folly (= 2024.11.18.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1257,8 +1257,8 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareAssetsKit (= 4.2.4)
-    - Notificare/NotificareKit (= 4.2.4)
+    - Notificare/NotificareAssetsKit (= 4.2.5)
+    - Notificare/NotificareKit (= 4.2.5)
     - RCT-Folly (= 2024.11.18.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1280,9 +1280,9 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareGeoKit (= 4.2.4)
-    - Notificare/NotificareKit (= 4.2.4)
-    - Notificare/NotificareUtilitiesKit (= 4.2.4)
+    - Notificare/NotificareGeoKit (= 4.2.5)
+    - Notificare/NotificareKit (= 4.2.5)
+    - Notificare/NotificareUtilitiesKit (= 4.2.5)
     - RCT-Folly (= 2024.11.18.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1304,9 +1304,9 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareInAppMessagingKit (= 4.2.4)
-    - Notificare/NotificareKit (= 4.2.4)
-    - Notificare/NotificareUtilitiesKit (= 4.2.4)
+    - Notificare/NotificareInAppMessagingKit (= 4.2.5)
+    - Notificare/NotificareKit (= 4.2.5)
+    - Notificare/NotificareUtilitiesKit (= 4.2.5)
     - RCT-Folly (= 2024.11.18.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1328,9 +1328,9 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareInboxKit (= 4.2.4)
-    - Notificare/NotificareKit (= 4.2.4)
-    - Notificare/NotificareUtilitiesKit (= 4.2.4)
+    - Notificare/NotificareInboxKit (= 4.2.5)
+    - Notificare/NotificareKit (= 4.2.5)
+    - Notificare/NotificareUtilitiesKit (= 4.2.5)
     - RCT-Folly (= 2024.11.18.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1352,8 +1352,8 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareKit (= 4.2.4)
-    - Notificare/NotificareLoyaltyKit (= 4.2.4)
+    - Notificare/NotificareKit (= 4.2.5)
+    - Notificare/NotificareLoyaltyKit (= 4.2.5)
     - RCT-Folly (= 2024.11.18.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1375,9 +1375,9 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareKit (= 4.2.4)
-    - Notificare/NotificarePushKit (= 4.2.4)
-    - Notificare/NotificareUtilitiesKit (= 4.2.4)
+    - Notificare/NotificareKit (= 4.2.5)
+    - Notificare/NotificarePushKit (= 4.2.5)
+    - Notificare/NotificareUtilitiesKit (= 4.2.5)
     - RCT-Folly (= 2024.11.18.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1399,9 +1399,9 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareKit (= 4.2.4)
-    - Notificare/NotificarePushUIKit (= 4.2.4)
-    - Notificare/NotificareUtilitiesKit (= 4.2.4)
+    - Notificare/NotificareKit (= 4.2.5)
+    - Notificare/NotificarePushUIKit (= 4.2.5)
+    - Notificare/NotificareUtilitiesKit (= 4.2.5)
     - RCT-Folly (= 2024.11.18.00)
     - RCTRequired
     - RCTTypeSafety
@@ -1423,9 +1423,9 @@ PODS:
     - DoubleConversion
     - glog
     - hermes-engine
-    - Notificare/NotificareKit (= 4.2.4)
-    - Notificare/NotificareScannablesKit (= 4.2.4)
-    - Notificare/NotificareUtilitiesKit (= 4.2.4)
+    - Notificare/NotificareKit (= 4.2.5)
+    - Notificare/NotificareScannablesKit (= 4.2.5)
+    - Notificare/NotificareUtilitiesKit (= 4.2.5)
     - RCT-Folly (= 2024.11.18.00)
     - RCTRequired
     - RCTTypeSafety
@@ -2133,7 +2133,7 @@ SPEC CHECKSUMS:
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
   glog: eb93e2f488219332457c3c4eafd2738ddc7e80b8
   hermes-engine: ccc24d29d650ea725d582a9a53d57cd417fbdb53
-  Notificare: e7da68f89e8d7e50cb8a94c9dc1e2c81fc131ecd
+  Notificare: bf4b1dd06288f3c3c2aa1d3d8ea51bdbf5c38295
   RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: 664055db806cce35c3c1b43c84414dd66e117ae6
   RCTRequired: dc9a83fa1012054f94430d210337ca3a1afe6fc0
@@ -2163,15 +2163,15 @@ SPEC CHECKSUMS:
   React-logger: e7eeebaed32b88dcc29b10901aa8c5822dc397c4
   React-Mapbuffer: 73dd1210c4ecf0dfb4e2d4e06f2a13f824a801a9
   React-microtasksnativemodule: d03753688e2abf135edcd4160ab3ce7526da8b0d
-  react-native-notificare: 3771095ce562f3bac558cce8669799b8463bd0c1
-  react-native-notificare-assets: 95f047626383acfb721677ca8583ea7f4e0fc035
-  react-native-notificare-geo: af18e7bb3cbbf52626579e9aa976dd41bc9974df
-  react-native-notificare-in-app-messaging: e793c82637bfb4ea8523b821ae62d526c6d6001e
-  react-native-notificare-inbox: e8213975a46604bd28ef570abd15f77233bbeba1
-  react-native-notificare-loyalty: a566b52121903e86f9bb5ca7c9e00910486d900c
-  react-native-notificare-push: 9b4d0b648b544c31cbb39c2306104a4b597a5d55
-  react-native-notificare-push-ui: 3ab756f5815de73dfb99c76ce4337516fe1fec6b
-  react-native-notificare-scannables: a8e54dabfcf3e26912d6e4977bbd4dc008ba0945
+  react-native-notificare: ab86f4c189879f4a83e0126eed926decbe9623fe
+  react-native-notificare-assets: 61295bd524a14ec9099038ad9779c3ea944cbe5a
+  react-native-notificare-geo: 8cfa53e55bcac2346f516baa73ed5e7ee1f66560
+  react-native-notificare-in-app-messaging: 7e367d1d1a3cc07f8f7f5b555ddbd1d37ce9ed2b
+  react-native-notificare-inbox: 096454f5282e1b904a86e19e193dffb9a50376e2
+  react-native-notificare-loyalty: a0ad534eaaa46fc23624c02a4b3d565ced039ce8
+  react-native-notificare-push: 39937f348d620fe76f9e2666788515f3fe75a3b6
+  react-native-notificare-push-ui: 27f4dccd65bcee80508eac7feba4678b4e9d57ef
+  react-native-notificare-scannables: c3959ae47fe2a58e73a72f03ee7974f48361e829
   react-native-safe-area-context: 0f14bce545abcdfbff79ce2e3c78c109f0be283e
   react-native-vector-icons-material-icons: eff7417eb1ac6c740ab802837ad34b8233fded34
   React-nativeconfig: cb207ebba7cafce30657c7ad9f1587a8f32e4564
@@ -2207,7 +2207,7 @@ SPEC CHECKSUMS:
   RNPermissions: f2f4373a816fa810064258772e513a4d4e3f9b1c
   RNScreens: b32d0d59b53acb574fa795a9343591ef4e7ab7c2
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  Yoga: 1fd059161b449018342943b095a6d4e69bcaa719
+  Yoga: 2957d0e744897870b5a377f26522e3f08cadd7ac
 
 PODFILE CHECKSUM: 5f42b7aca70daf985e9461e678aa08cc6f240a42
 
